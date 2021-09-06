@@ -1,4 +1,7 @@
 
+# About
+Fullstack application including React SPA as frontend, SpringBoot API and MySQL database.
+
 # STS Project Creation
 Modules- Spring web, devtools, JPA
 
