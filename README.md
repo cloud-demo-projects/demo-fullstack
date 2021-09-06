@@ -1,5 +1,5 @@
 
-# About
+# Project Detail
 Fullstack application including React SPA as frontend, SpringBoot API and MySQL database.
 
 # STS Project Creation
