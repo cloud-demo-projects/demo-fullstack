@@ -41,7 +41,20 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>		
+		<!-- Actuator -->
+		<dependency>
+		   <groupId>org.springframework.boot</groupId>
+		   <artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
+		<!-- Actuator -->
+		<!--  Swagger -->
+		<dependency>
+		    <groupId>org.springdoc</groupId>
+		    <artifactId>springdoc-openapi-ui</artifactId>
+		    <version>1.5.2</version>
+		</dependency>
+		<!--  Swagger -->
 	</dependencies>
 
 	<build>
