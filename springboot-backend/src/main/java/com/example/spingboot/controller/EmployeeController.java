@@ -15,7 +15,7 @@ import com.example.spingboot.repository.EmployeeRepository;
 
 @RestController
 @RequestMapping(path = "/api/v1/")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {"http://localhost:3000", "http://nipunbahri.com"})
 public class EmployeeController {
 	
 	@Autowired

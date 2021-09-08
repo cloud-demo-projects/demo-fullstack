@@ -18,7 +18,15 @@ spec:
         app: react-frontend
     spec:
       containers:
-      - image: react-frontend:v1.0
+      - image: bahrinipun/react-frontend:v1.2
         name: react-frontend
+        ports:
+        - containerPort: 3000
+        env:
+        - name: REACT_APP_EMPLOYEE_API_BASE_URL
+          valueFrom:
+            configMapKeyRef:
+              name: reactconfig
+              key: EMPLOYEE_API_BASE_URL_VALUE
         resources: {}
 status: {}
