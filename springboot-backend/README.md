@@ -1,6 +1,6 @@
 
 # STS Project Creation
-Modules- Spring web, devtools, JPA
+Modules- Spring web, devtools, JPA, Actuator, Swagger 
 
 # SpringBoot app
 - Create Model
