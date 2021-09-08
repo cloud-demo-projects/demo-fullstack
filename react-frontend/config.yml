@@ -3,5 +3,4 @@ data:
   EMPLOYEE_API_BASE_URL_VALUE: http://51.105.224.69:8080/api/v1/employees
 kind: ConfigMap
 metadata:
-  creationTimestamp: null
   name: reactconfig

@@ -1,7 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  creationTimestamp: null
   labels:
     app: react-frontend
   name: react-frontend
@@ -10,10 +9,8 @@ spec:
   selector:
     matchLabels:
       app: react-frontend
-  strategy: {}
   template:
     metadata:
-      creationTimestamp: null
       labels:
         app: react-frontend
     spec:
@@ -28,5 +25,3 @@ spec:
             configMapKeyRef:
               name: reactconfig
               key: EMPLOYEE_API_BASE_URL_VALUE
-        resources: {}
-status: {}
