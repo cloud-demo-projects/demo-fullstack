@@ -42,7 +42,11 @@
   bottom: 0;
   width:100%;
   height: 50px;
-  background-color: black;
+  background-color: rgb(92, 71, 185);
   text-align: center;
   color: white;
+}
+
+.color-nav {
+  background-color: rgb(92, 71, 185);
 }
