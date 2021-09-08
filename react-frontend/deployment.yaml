@@ -15,7 +15,7 @@ spec:
         app: react-frontend
     spec:
       containers:
-      - image: bahrinipun/react-frontend:v1.3
+      - image: bahrinipun/react-frontend:v1.4
         name: react-frontend
         ports:
         - containerPort: 3000
