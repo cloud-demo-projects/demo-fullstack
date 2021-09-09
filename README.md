@@ -2,6 +2,12 @@
 # Project Detail
 Fullstack application including React SPA as frontend, SpringBoot API and MySQL database.
 
+# Prerequisites
+- JDK11
+- Node v14.17.5
+- Kubectl
+- Azure CLI
+- Helm 3
 
 # MySQL
 - docker pull mysql
