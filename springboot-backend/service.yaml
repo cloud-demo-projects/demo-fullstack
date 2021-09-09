@@ -5,6 +5,7 @@ metadata:
     app: springboot-backend
   name: springboot-backend
 spec:
+  externalName: springboot-backend.com
   ports:
   - name: backend-port
     port: 8080
@@ -12,4 +13,4 @@ spec:
     targetPort: 8080
   selector:
     app: springboot-backend
-  type: LoadBalancer
+  type: ExternalName
