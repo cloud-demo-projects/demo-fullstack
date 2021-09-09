@@ -1,6 +1,7 @@
 
 # Project Detail
-Fullstack application including React SPA as frontend, SpringBoot API and MySQL database.
+- Fullstack application including React SPA as frontend, SpringBoot API and MySQL database microservices.
+- AKS Deployment through Helm charts
 
 # Prerequisites
 - JDK11
