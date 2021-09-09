@@ -2,6 +2,17 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+# React app
+- Creating React App- (Steps: npx create-react-app my-app, cd my-app, npm start ), Edit and see app.js
+- Import bootstrap css library- npm install bootstrap --save
+- Import bootstrap css- import 'bootstrap/dist/css/bootstrap.min.css';
+- For faster development use- Reactjs code snippets VS code extention e.g. write rcc intellisense in component jsx file
+- Create and include component (Import axios http library for making http calls i.e. npm install axios --save)
+- Create Service file
+- Create Header & Footer compomentnts with static content & include in UI
+- Routing- npm install react-router-dom
+  import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+  
 ## Available Scripts
 
 In the project directory, you can run:
