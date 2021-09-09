@@ -1,6 +1,7 @@
 
 # Project Detail
 - Fullstack application including React SPA as frontend, SpringBoot API and MySQL database microservices.
+- Docker conterization
 - AKS Deployment through Helm charts
 
 # Prerequisites
