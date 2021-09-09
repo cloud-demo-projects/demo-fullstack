@@ -1,0 +1,22 @@
+replicaCount: 1
+
+image:
+  repository: bahrinipun/react-frontend
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "v1.4"
+
+service:
+  type: LoadBalancer
+  port: 80
+  targetPort: 3000
+
+configMap:
+  name: reactconfig
+
+ingress:
+  enabled: false
+
+
+
+
