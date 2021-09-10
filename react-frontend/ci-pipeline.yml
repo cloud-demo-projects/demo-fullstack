@@ -45,7 +45,7 @@ steps:
         cd react-frontend/frontend-chart
         helm chart save . hello-world:0.1.0
         helm chart save . testaksacr9.azurecr.io/helm/hello-world:0.1.0
-        helm registry login testaksacr9.azurecr.io --username testaksacr9 --password 6lps+e22wxBZWjdIcsg3YQhKvoo+dLpj
+        helm registry login testaksacr9.azurecr.io --username testaksacr9 --password-stdin
         helm chart push testaksacr9.azurecr.io/helm/hello-world:0.1.0
       failOnStderr: true
       name: helmPush
