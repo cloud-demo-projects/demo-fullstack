@@ -52,19 +52,9 @@ steps:
         command: 'save'
         chartNameForACR: 'frontend-chart'
         chartPathForACR: 'react-frontend/frontend-chart'
+      env:
+        HELM_EXPERIMENTAL_OCI: 1
         
-    # - bash: |
-    #     helm version
-    #     export HELM_EXPERIMENTAL_OCI=1
-    #     cd react-frontend/frontend-chart
-    #     helm chart save . $(projectName):0.1.0
-    #     helm chart save . $(containerRegistry)/helm/$(projectName):0.1.0
-    #     echo $(acrPassword) | helm registry login $(containerRegistry) --username $(username) --password-stdin
-    #     helm chart push $(containerRegistry)/helm/$(projectName):0.1.0
-    #   failOnStderr: true
-    #   name: helmPush
-    #   condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
-    #   displayName: 'Helm push'
       
     # - bash: |
     #     helm repo add testaksacr9 https://testaksacr9.azurecr.io/helm/v1/repo --username testaksacr9 --password 6lps+e22wxBZWjdIcsg3YQhKvoo+dLpj
