@@ -37,4 +37,4 @@ steps:
     - task: HelmDeploy@0
       inputs:
         command: 'package'
-        chartPath: '/frontend-chart'
+        chartPath: 'frontend-chart'
