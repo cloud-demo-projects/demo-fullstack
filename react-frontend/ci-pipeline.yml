@@ -18,16 +18,16 @@ variables:
   imagePullSecret: 'testaksacr91577d987-auth'
 
 steps:
-    - task: Docker@2
-      displayName: Build and push an image to container registry
-      inputs:
-        containerRegistry: '$(dockerRegistryServiceConnection)'
-        repository: '$(imageRepository)'
-        command: 'buildAndPush'
-        Dockerfile: '**/Dockerfile'
-        tags: '$(tag)'
-        addPipelineData: false
-        addBaseImageData: false
+    # - task: Docker@2
+    #   displayName: Build and push an image to container registry
+    #   inputs:
+    #     containerRegistry: '$(dockerRegistryServiceConnection)'
+    #     repository: '$(imageRepository)'
+    #     command: 'buildAndPush'
+    #     Dockerfile: '**/Dockerfile'
+    #     tags: '$(tag)'
+    #     addPipelineData: false
+    #     addBaseImageData: false
         
     - task: HelmInstaller@0
       inputs:
@@ -37,4 +37,4 @@ steps:
     - task: HelmDeploy@0
       inputs:
         command: 'package'
-        chartPath: '../frontend-chart'
+        chartPath: '/frontend-chart'
