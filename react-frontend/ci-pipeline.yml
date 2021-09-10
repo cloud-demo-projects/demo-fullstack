@@ -81,8 +81,8 @@ steps:
         useClusterAdmin: true
         namespace: 'dev'
         command: 'upgrade'
-        chartType: 'Name'
-        chartName: '$(projectName)/$(chartName)'
+        chartType: 'FilePath'
+        chartPath: '$(projectName)/$(chartName)'
         releaseName: 'dev'
         arguments: '--create-namespace'
       
