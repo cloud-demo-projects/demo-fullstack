@@ -79,10 +79,12 @@ steps:
         azureResourceGroup: 'test-aks'
         kubernetesCluster: 'testaks'
         useClusterAdmin: true
-        namespace: 'default'
+        namespace: 'dev'
         command: 'upgrade'
         chartType: 'Name'
         chartName: '$(chartName)'
+        releaseName: 'dev'
+        arguments: '--create-namespace'
       
     
     
