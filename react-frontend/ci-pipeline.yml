@@ -42,6 +42,7 @@ steps:
     - bash: |
         helm version
         export HELM_EXPERIMENTAL_OCI=1
+        cd frontend-chart
         helm chart save . hello-world:0.1.0
         helm chart save . testaksacr9.azurecr.io/helm/hello-world:0.1.0
         helm chart push testaksacr9.azurecr.io/helm/hello-world:0.1.0
