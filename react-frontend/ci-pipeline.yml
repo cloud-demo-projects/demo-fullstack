@@ -42,7 +42,9 @@ steps:
     - bash: |
         helm version
         export HELM_EXPERIMENTAL_OCI=1
-        helm chart push testaksacr9.azurecr.io/helm/react-frontend:$(tag)
+        helm chart save . hello-world:0.1.0
+        helm chart save . testaksacr9.azurecr.io/helm/hello-world:0.1.0
+        helm chart push testaksacr9.azurecr.io/helm/hello-world:0.1.0
       failOnStderr: true
       name: helmPush
       condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
