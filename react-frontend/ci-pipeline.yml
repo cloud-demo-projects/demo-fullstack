@@ -51,7 +51,7 @@ steps:
         helm chart save . $(containerRegistry)/helm/frontend-chart:$(tag)
         echo $(tag)
         echo $(acrPassword) | helm registry login $(containerRegistry) --username $(username) --password-stdin
-        helm chart push $(containerRegistry)/helm/frontend-chart:$(tag)
+        helm chart push $(containerRegistry)/helm/frontend-chart:$(tag):0.1.0
       failOnStderr: true
       name: helmPush
       condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
