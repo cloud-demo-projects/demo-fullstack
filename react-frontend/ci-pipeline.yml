@@ -25,6 +25,8 @@ variables:
   imgVersion: '444'
   # attach AKS ACR - az aks update -n testaks -g test-aks --attach-acr testaksacr9
   # docker registry sc is required
+  chartName: frontend-chart
+  chartVersion: 0.1.0
 
 steps:
     # - task: Docker@2
@@ -55,7 +57,22 @@ steps:
       env:
         HELM_EXPERIMENTAL_OCI: 1
         
-      
+    - task: AzureCLI@2
+      displayName: Download Helm Chart
+      inputs:
+        azureSubscription: 'Nipun Bahri Subscription(bf0f6779-86d2-467e-8226-10f92a8ad378)'
+        scriptType: 'bash'
+        scriptLocation: 'inlineScript'
+        inlineScript: |
+          az acr helm repo add --name testaksacr9
+          echo $(acrPassword) | helm registry login $(containerRegistry) --username $(username) --password-stdin
+          helm repo update
+          helm chart pull $(containerRegistry)/helm/$(chartName):$(chartVersion)
+          helm chart export $(containerRegistry)/helm/$(chartName):$(chartVersion) --destination
+        env:
+          HELM_EXPERIMENTAL_OCI: 1
+
+
     # - bash: |
     #     helm repo add testaksacr9 https://testaksacr9.azurecr.io/helm/v1/repo --username testaksacr9 --password 6lps+e22wxBZWjdIcsg3YQhKvoo+dLpj
     #     helm repo update
