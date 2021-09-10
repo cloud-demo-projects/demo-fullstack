@@ -10,7 +10,7 @@ pool:
 
 variables:
   # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: 'd6e7b3b6-e634-4138-8e27-3ff952063801'
+  dockerRegistryServiceConnection: '79b46b2c-e2cd-4e7a-92f5-e512b29ecc63'
   imageRepository: 'react-frontend'
   containerRegistry: 'testaksacr9.azurecr.io'
   dockerfilePath: '**/Dockerfile'
@@ -29,11 +29,12 @@ steps:
     - task: Docker@2
       displayName: 'Build & Push Docker Image to ACR'
       inputs:
-        containerRegistry: 'testaksacr9'
+        containerRegistry: $(dockerRegistryServiceConnection)
         repository: '$(imageRepository)'
         command: 'buildAndPush'
         Dockerfile: '**/Dockerfile'
         tags: '$(tag)'
+
         
     - task: HelmInstaller@0
       displayName: 'Install Helm'
