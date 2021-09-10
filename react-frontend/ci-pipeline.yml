@@ -42,16 +42,13 @@ steps:
     #     chartPath: 'react-frontend/frontend-chart'
         
     - bash: |
-        echo $(tag)
         helm version
         export HELM_EXPERIMENTAL_OCI=1
         cd react-frontend/frontend-chart
-        helm chart save . frontend-chart:$(tag)
-        echo $(tag)
-        helm chart save . $(containerRegistry)/helm/frontend-chart:$(tag)
-        echo $(tag)
+        helm chart save . frontend-chart:0.1.0
+        helm chart save . $(containerRegistry)/helm/frontend-chart:0.1.0
         echo $(acrPassword) | helm registry login $(containerRegistry) --username $(username) --password-stdin
-        helm chart push $(containerRegistry)/helm/frontend-chart:$(tag):0.1.0
+        helm chart push $(containerRegistry)/helm/frontend-chart:0.1.0
       failOnStderr: true
       name: helmPush
       condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
