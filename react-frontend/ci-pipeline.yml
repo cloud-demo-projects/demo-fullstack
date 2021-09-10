@@ -82,7 +82,7 @@ steps:
         namespace: 'dev'
         command: 'upgrade'
         chartType: 'Name'
-        chartName: '$(chartName)'
+        chartName: '$(projectName)/$(chartName)'
         releaseName: 'dev'
         arguments: '--create-namespace'
       
