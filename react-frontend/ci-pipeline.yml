@@ -74,10 +74,8 @@ steps:
 
     - task: HelmDeploy@0
       inputs:
-        connectionType: 'Azure Resource Manager'
-        azureSubscription: 'Nipun Bahri Subscription(bf0f6779-86d2-467e-8226-10f92a8ad378)'
-        azureResourceGroup: 'test-aks'
-        kubernetesCluster: 'testaks'
+        connectionType: 'Kubernetes Service Connection'
+        kubernetesServiceConnection: 'testaks-default'
         namespace: 'default'
         command: 'upgrade'
         chartType: 'Name'
