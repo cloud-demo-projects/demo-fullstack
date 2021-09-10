@@ -24,16 +24,17 @@ variables:
   replicas: '1'
   imgVersion: '400'
   # attach AKS ACR - az aks update -n testaks -g test-aks --attach-acr testaksacr9
+  # docker registry sc is required
 
 steps:
-    - task: Docker@2
-      displayName: 'Build & Push Docker Image to ACR'
-      inputs:
-        containerRegistry: $(dockerRegistryServiceConnection)
-        repository: '$(imageRepository)'
-        command: 'buildAndPush'
-        Dockerfile: '**/Dockerfile'
-        tags: '$(tag)'
+    # - task: Docker@2
+    #   displayName: 'Build & Push Docker Image to ACR'
+    #   inputs:
+    #     containerRegistry: $(dockerRegistryServiceConnection)
+    #     repository: '$(imageRepository)'
+    #     command: 'buildAndPush'
+    #     Dockerfile: '**/Dockerfile'
+    #     tags: '$(tag)'
 
         
     - task: HelmInstaller@0
@@ -43,14 +44,13 @@ steps:
         installKubectl: true
         
     - task: HelmDeploy@0
-      displayName: 'Save Helm Package to ACR'
       inputs:
-        azureSubscriptionForACR: 'Nipun Bahri Subscription(1)(bf0f6779-86d2-467e-8226-10f92a8ad378)'
+        azureSubscriptionForACR: 'Nipun Bahri Subscription(bf0f6779-86d2-467e-8226-10f92a8ad378)'
         azureResourceGroupForACR: 'test-aks'
         azureContainerRegistry: 'testaksacr9.azurecr.io'
         command: 'save'
-        chartNameForACR: '$(projectName)'
-        chartPathForACR: '$(containerRegistry)'
+        chartNameForACR: 'frontend-chart'
+        chartPathForACR: 'react-frontend/frontend-chart'
         
     # - bash: |
     #     helm version
