@@ -75,6 +75,7 @@ steps:
         kubernetesCluster: 'testaks'
         namespace: 'default'
         command: 'upgrade'
-        chartType: 'FilePath'
-        chartPath: 'testaksacr9.azurecr.io/helm/frontend-chart:0.1.0'
+        chartType: 'Name'
+        chartName: 'testaksacr9.azurecr.io/helm/frontend-chart'
+        chartVersion: '0.1.0'
     
