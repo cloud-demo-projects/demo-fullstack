@@ -73,9 +73,8 @@ steps:
         azureSubscription: 'Nipun Bahri Subscription(1)(bf0f6779-86d2-467e-8226-10f92a8ad378)'
         azureResourceGroup: 'test-aks'
         kubernetesCluster: 'testaks'
-        useClusterAdmin: true
         namespace: 'default'
         command: 'upgrade'
         chartType: 'Name'
-        chartName: 'testaksacr9.azurecr.io/helm/frontend-chart'
+        chartName: 'testaksacr9.azurecr.io/helm/frontend-chart:0.1.0'
     
