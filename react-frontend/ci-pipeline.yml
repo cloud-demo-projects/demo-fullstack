@@ -58,7 +58,7 @@ steps:
         HELM_EXPERIMENTAL_OCI: 1
         
     - task: AzureCLI@2
-      displayName: Download Helm Chart
+      displayName: Download Helm Chart from ACR
       inputs:
         azureSubscription: 'Nipun Bahri Subscription(bf0f6779-86d2-467e-8226-10f92a8ad378)'
         scriptType: 'bash'
@@ -73,6 +73,7 @@ steps:
         HELM_EXPERIMENTAL_OCI: 1
 
     - task: HelmDeploy@0
+      displayName: Helm Package Deployment in AKS
       inputs:
         connectionType: 'Azure Resource Manager'
         azureSubscription: 'Nipun Bahri Subscription(bf0f6779-86d2-467e-8226-10f92a8ad378)'
