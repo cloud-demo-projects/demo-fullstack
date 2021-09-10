@@ -75,31 +75,11 @@ steps:
     - task: HelmDeploy@0
       inputs:
         connectionType: 'Kubernetes Service Connection'
-        kubernetesServiceConnection: 'testaks-default'
+        kubernetesServiceConnection: 'testaks-default-1019'
         namespace: 'default'
         command: 'upgrade'
         chartType: 'Name'
         chartName: '$(chartName)'
-
-
-    # - bash: |
-    #     helm repo add testaksacr9 https://testaksacr9.azurecr.io/helm/v1/repo --username testaksacr9 --password 6lps+e22wxBZWjdIcsg3YQhKvoo+dLpj
-    #     helm repo update
-
-    #     helm upgrade \
-    #     --namespace default \
-    #     --create-namespace \
-    #     --install \
-    #     --wait \
-    #     --set image.repository=$(containerRegistry)/$(projectName) \
-    #     --set image.tag=$imgVersion \
-    #     --set replicaCount=$(replicas) \
-    #     frontend-chart \
-    #     ./frontend-chart
-    #   failOnStderr: true
-    #   name: helmCred
-    #   condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
-    #   displayName: 'Helm Cred'
       
     
     
