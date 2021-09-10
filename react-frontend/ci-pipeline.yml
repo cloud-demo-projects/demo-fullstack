@@ -35,10 +35,10 @@ steps:
         helmVersion: '2.14.1'
         installKubectl: true
         
-    - task: HelmDeploy@0
-      inputs:
-        command: 'package'
-        chartPath: 'react-frontend/frontend-chart'
+    # - task: HelmDeploy@0
+    #   inputs:
+    #     command: 'package'
+    #     chartPath: 'react-frontend/frontend-chart'
         
     - bash: |
         helm version
