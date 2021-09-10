@@ -17,6 +17,7 @@ variables:
   tag: '$(Build.BuildId)'
   imagePullSecret: 'testaksacr91577d987-auth'
   acrPassword: '6lps+e22wxBZWjdIcsg3YQhKvoo+dLpj'
+  username: 'testaksacr9'
 
 steps:
     # - task: Docker@2
@@ -44,10 +45,10 @@ steps:
         helm version
         export HELM_EXPERIMENTAL_OCI=1
         cd react-frontend/frontend-chart
-        helm chart save . frontend-chart:0.1.0
-        helm chart save . testaksacr9.azurecr.io/helm/frontend-chart:0.1.0
-        echo $(acrPassword) | helm registry login testaksacr9.azurecr.io --username testaksacr9 --password-stdin
-        helm chart push testaksacr9.azurecr.io/helm/frontend-chart:0.1.0
+        helm chart save . frontend-chart:$(tag)
+        helm chart save . $(containerRegistry)/helm/frontend-chart:$(tag)
+        echo $(acrPassword) | helm registry login $(containerRegistry) --username $(username) --password-stdin
+        helm chart push $(containerRegistry)/helm/frontend-chart:$(tag)
       failOnStderr: true
       name: helmPush
       condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
