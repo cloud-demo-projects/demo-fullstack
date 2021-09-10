@@ -38,3 +38,12 @@ steps:
       inputs:
         command: 'package'
         chartPath: 'react-frontend/frontend-chart'
+        
+    - bash: |
+        helm chart push testaksacr9 .azurecr.io/helm/react-frontend:$(tag)
+      failOnStderr: true
+      name: helmPush
+      condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
+      displayName: 'Helm push'
+        
+    
