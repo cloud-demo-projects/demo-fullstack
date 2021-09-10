@@ -18,6 +18,8 @@ variables:
   imagePullSecret: 'testaksacr91577d987-auth'
   acrPassword: '6lps+e22wxBZWjdIcsg3YQhKvoo+dLpj'
   username: 'testaksacr9'
+  aks: 'testaks'
+  rg: 'test-aks'
 
 steps:
     # - task: Docker@2
@@ -56,20 +58,34 @@ steps:
       condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
       displayName: 'Helm push'
       
-    - bash: |
-         helm upgrade \
-          --namespace default \
-          --create-namespace \
-          --install \
-          --wait \
-          --version 0.1.0 \
-          --set image.repository=$(registryServerName)/$(projectName) \
-          --set ingress.enabled=false \
-          $(projectName) \
-          $(registryName)/$(projectName)
-      failOnStderr: true
-      name: helmPush
-      condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
-      displayName: 'Helm push'
-        
+    # - bash: |
+    #      az aks get-credentials -n $(aks) -g $(rg)
+
+    #      helm upgrade \
+    #       --namespace default \
+    #       --create-namespace \
+    #       --install \
+    #       --wait \
+    #       --version 0.1.0 \
+    #       --set image.repository=$(registryServerName)/$(projectName) \
+    #       --set ingress.enabled=false \
+    #       $(projectName) \
+    #       $(registryName)/$(projectName)
+    #   failOnStderr: true
+    #   name: helmDeploy
+    #   condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
+    #   displayName: 'Helm Deploy'
+      
+    
+    - task: HelmDeploy@0
+      inputs:
+        connectionType: 'Azure Resource Manager'
+        azureSubscription: 'Nipun Bahri Subscription(1)(bf0f6779-86d2-467e-8226-10f92a8ad378)'
+        azureResourceGroup: 'test-aks'
+        kubernetesCluster: 'testaks'
+        namespace: 'default'
+        command: 'upgrade'
+        chartType: 'Name'
+        chartName: 'testaksacr9.azurecr.io/helm/frontend-chart'
+        chartVersion: '0.1.0'
     
