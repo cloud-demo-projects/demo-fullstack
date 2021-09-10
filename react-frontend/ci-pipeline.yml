@@ -51,7 +51,6 @@ steps:
         helm chart save . $(containerRegistry)/helm/frontend-chart:0.1.0
         echo $(acrPassword) | helm registry login $(containerRegistry) --username $(username) --password-stdin
         helm chart push $(containerRegistry)/helm/frontend-chart:0.1.0
-        az acr repository show --name $(containerRegistry) --repository helm/frontend-chart
 
       failOnStderr: true
       name: helmPush
