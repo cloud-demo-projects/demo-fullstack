@@ -25,60 +25,62 @@ variables:
   imgVersion: '400'
 
 steps:
-    # - task: Docker@2
-    #   displayName: Build and push an image to container registry
-    #   inputs:
-    #     containerRegistry: '$(dockerRegistryServiceConnection)'
-    #     repository: '$(imageRepository)'
-    #     command: 'buildAndPush'
-    #     Dockerfile: '**/Dockerfile'
-    #     tags: '$(tag)'
-    #     addPipelineData: false
-    #     addBaseImageData: false
+    - task: Docker@2
+      displayName: Build and push an image to container registry
+      inputs:
+        containerRegistry: '$(dockerRegistryServiceConnection)'
+        repository: '$(imageRepository)'
+        command: 'buildAndPush'
+        Dockerfile: '**/Dockerfile'
+        tags: '$(tag)'
+        addPipelineData: false
+        addBaseImageData: false
         
     - task: HelmInstaller@0
       inputs:
         helmVersion: '2.14.1'
         installKubectl: true
         
-    # - task: HelmDeploy@0
-    #   inputs:
-    #     command: 'package'
-    #     chartPath: 'react-frontend/$(projectName)'
-        
-    - bash: |
-        helm version
-        export HELM_EXPERIMENTAL_OCI=1
-        cd react-frontend/frontend-chart
-        helm chart save . $(projectName):0.1.0
-        helm chart save . $(containerRegistry)/helm/$(projectName):0.1.0
-        echo $(acrPassword) | helm registry login $(containerRegistry) --username $(username) --password-stdin
-        helm chart push $(containerRegistry)/helm/$(projectName):0.1.0
-
-      failOnStderr: true
-      name: helmPush
-      condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
+    - task: HelmDeploy@0
       displayName: 'Helm push'
+      inputs:
+        azureSubscriptionForACR: 'Nipun Bahri Subscription(1)(bf0f6779-86d2-467e-8226-10f92a8ad378)'
+        azureResourceGroupForACR: 'wdqwe'
+        command: 'save'
+        chartNameForACR: '$(projectName)'
+        chartPathForACR: '$(containerRegistry)'
+        
+    # - bash: |
+    #     helm version
+    #     export HELM_EXPERIMENTAL_OCI=1
+    #     cd react-frontend/frontend-chart
+    #     helm chart save . $(projectName):0.1.0
+    #     helm chart save . $(containerRegistry)/helm/$(projectName):0.1.0
+    #     echo $(acrPassword) | helm registry login $(containerRegistry) --username $(username) --password-stdin
+    #     helm chart push $(containerRegistry)/helm/$(projectName):0.1.0
+    #   failOnStderr: true
+    #   name: helmPush
+    #   condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
+    #   displayName: 'Helm push'
       
-    - bash: |
-        helm repo add testaksacr9 https://testaksacr9.azurecr.io/helm/v1/repo --username testaksacr9 --password 6lps+e22wxBZWjdIcsg3YQhKvoo+dLpj
-        helm repo update
+    # - bash: |
+    #     helm repo add testaksacr9 https://testaksacr9.azurecr.io/helm/v1/repo --username testaksacr9 --password 6lps+e22wxBZWjdIcsg3YQhKvoo+dLpj
+    #     helm repo update
 
-        helm upgrade \
-        --namespace default \
-        --create-namespace \
-        --install \
-        --wait \
-        --set image.repository=$(containerRegistry)/$(projectName) \
-        --set image.tag=$imgVersion \
-        --set replicaCount=$(replicas) \
-        frontend-chart \
-        ./frontend-chart
-
-      failOnStderr: true
-      name: helmCred
-      condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
-      displayName: 'Helm Cred'
+    #     helm upgrade \
+    #     --namespace default \
+    #     --create-namespace \
+    #     --install \
+    #     --wait \
+    #     --set image.repository=$(containerRegistry)/$(projectName) \
+    #     --set image.tag=$imgVersion \
+    #     --set replicaCount=$(replicas) \
+    #     frontend-chart \
+    #     ./frontend-chart
+    #   failOnStderr: true
+    #   name: helmCred
+    #   condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
+    #   displayName: 'Helm Cred'
       
     
     
