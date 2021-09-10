@@ -49,6 +49,24 @@ steps:
         helm chart save . $(containerRegistry)/helm/frontend-chart:0.1.0
         echo $(acrPassword) | helm registry login $(containerRegistry) --username $(username) --password-stdin
         helm chart push $(containerRegistry)/helm/frontend-chart:0.1.0
+        az acr repository show --name $(containerRegistry) --repository helm/frontend-chart
+
+      failOnStderr: true
+      name: helmPush
+      condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
+      displayName: 'Helm push'
+      
+    - bash: |
+         helm upgrade \
+          --namespace default \
+          --create-namespace \
+          --install \
+          --wait \
+          --version 0.1.0 \
+          --set image.repository=$(registryServerName)/$(projectName) \
+          --set ingress.enabled=false \
+          $(projectName) \
+          $(registryName)/$(projectName)
       failOnStderr: true
       name: helmPush
       condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
