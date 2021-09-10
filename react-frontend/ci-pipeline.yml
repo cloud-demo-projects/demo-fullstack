@@ -21,6 +21,8 @@ variables:
   aks: 'testaks'
   rg: 'test-aks'
   projectName: 'react-frontend'
+  replicas: '1'
+  imgVersion: '400'
 
 steps:
     # - task: Docker@2
