@@ -64,8 +64,6 @@ steps:
         helm repo add testaksacr9 https://testaksacr9.azurecr.io/helm/v1/repo --username testaksacr9 --password 6lps+e22wxBZWjdIcsg3YQhKvoo+dLpj
         helm repo update
 
-        cd ../
-        
         helm upgrade \
         --namespace default \
         --create-namespace \
@@ -74,8 +72,8 @@ steps:
         --set image.repository=$(containerRegistry)/$(projectName) \
         --set image.tag=$imgVersion \
         --set replicaCount=$(replicas) \
-        $(projectName) \
-        ./$(projectName)
+        frontend-chart \
+        ./frontend-chart
 
       failOnStderr: true
       name: helmCred
