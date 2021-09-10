@@ -58,8 +58,7 @@ steps:
       displayName: 'Helm push'
       
     - bash: |
-        az aks get-credentials -n testaks -g test-aks
-        echo $(acrPassword) | helm repo add testaksacr9 https://testaksacr9.azurecr.io/helm/v1/repo --username $(username) --password-stdin
+        helm repo add testaksacr9 https://testaksacr9.azurecr.io/helm/v1/repo --username testaksacr9 --password 6lps+e22wxBZWjdIcsg3YQhKvoo+dLpj
         helm repo update
       failOnStderr: true
       name: helmCred
