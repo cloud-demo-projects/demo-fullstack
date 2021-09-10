@@ -16,7 +16,7 @@ variables:
   dockerfilePath: '**/Dockerfile'
   tag: '$(Build.BuildId)'
   imagePullSecret: 'testaksacr91577d987-auth'
-  acrPassword: '6lps+e22wxBZWjdIcsg3YQhKvoo+dLpj'
+  acrPassword: 'VVKYOBOjvEgDcZsTbQxnTMtopFqrbN=W'
   username: 'testaksacr9'
   aks: 'testaks'
   rg: 'test-aks'
@@ -27,9 +27,8 @@ variables:
 
 steps:
     - task: Docker@2
-      displayName: Build & Push Docker Image to ACR
       inputs:
-        containerRegistry: '$(dockerRegistryServiceConnection)'
+        containerRegistry: 'testaksacr9'
         repository: '$(imageRepository)'
         command: 'buildAndPush'
         Dockerfile: '**/Dockerfile'
