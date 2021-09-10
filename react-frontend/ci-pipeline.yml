@@ -40,7 +40,8 @@ steps:
         chartPath: 'react-frontend/frontend-chart'
         
     - bash: |
-        HELM_EXPERIMENTAL_OCI=1
+        helm version
+        export HELM_EXPERIMENTAL_OCI=1
         helm chart push testaksacr9 .azurecr.io/helm/react-frontend:$(tag)
       failOnStderr: true
       name: helmPush
