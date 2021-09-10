@@ -22,7 +22,7 @@ variables:
   rg: 'test-aks'
   projectName: 'react-frontend'
   replicas: '1'
-  imgVersion: '400'
+  imgVersion: '444'
   # attach AKS ACR - az aks update -n testaks -g test-aks --attach-acr testaksacr9
   # docker registry sc is required
 
@@ -44,6 +44,7 @@ steps:
         installKubectl: true
         
     - task: HelmDeploy@0
+      displayName: Save Helm Package to ACR
       inputs:
         azureSubscriptionForACR: 'Nipun Bahri Subscription(bf0f6779-86d2-467e-8226-10f92a8ad378)'
         azureResourceGroupForACR: 'test-aks'
