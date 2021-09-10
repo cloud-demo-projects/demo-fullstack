@@ -45,7 +45,8 @@ steps:
       displayName: 'Helm push'
       inputs:
         azureSubscriptionForACR: 'Nipun Bahri Subscription(1)(bf0f6779-86d2-467e-8226-10f92a8ad378)'
-        azureResourceGroupForACR: 'wdqwe'
+        azureResourceGroupForACR: 'test-aks'
+        azureContainerRegistry: 'testaksacr9.azurecr.io'
         command: 'save'
         chartNameForACR: '$(projectName)'
         chartPathForACR: '$(containerRegistry)'
