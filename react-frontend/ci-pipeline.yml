@@ -69,8 +69,8 @@ steps:
           helm repo update
           helm chart pull $(containerRegistry)/helm/$(chartName):$(chartVersion)
           helm chart export $(containerRegistry)/helm/$(chartName):$(chartVersion) --destination
-        env:
-          HELM_EXPERIMENTAL_OCI: 1
+      env:
+        HELM_EXPERIMENTAL_OCI: 1
 
 
     # - bash: |
