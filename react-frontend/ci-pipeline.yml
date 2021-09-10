@@ -72,7 +72,16 @@ steps:
       env:
         HELM_EXPERIMENTAL_OCI: 1
 
-
+    - task: HelmDeploy@0
+      inputs:
+        connectionType: 'Azure Resource Manager'
+        azureSubscription: 'Nipun Bahri Subscription(bf0f6779-86d2-467e-8226-10f92a8ad378)'
+        azureResourceGroup: 'test-aks'
+        kubernetesCluster: 'testaks'
+        namespace: 'default'
+        command: 'upgrade'
+        chartType: 'Name'
+        chartName: '$(chartName)'
 
 
     # - bash: |
