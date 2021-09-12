@@ -19,6 +19,7 @@ variables:
   username: 'testaks9acr9'
   projectName: 'react-frontend'
   chartName: frontend-chart
+  appVersion: 1.16.0
   chartVersion: 0.1.0
   # Attach AKS ACR - az aks update -n testaks9 -g test-aks --attach-acr testaks9acr9
 
@@ -30,7 +31,7 @@ steps:
         repository: '$(imageRepository)'
         command: 'buildAndPush'
         Dockerfile: '**/Dockerfile'
-        tags: '$(chartVersion)'
+        tags: '$(appVersion)'
         
     - task: HelmInstaller@0
       displayName: 'Install Helm'
