@@ -10,23 +10,17 @@ pool:
 
 variables:
   # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: '79b46b2c-e2cd-4e7a-92f5-e512b29ecc63'
+  dockerRegistryServiceConnection: '033f8c5e-c938-45a1-b856-5cb5be0b58e2'
   imageRepository: 'react-frontend'
   containerRegistry: 'testaksacr9.azurecr.io'
   dockerfilePath: '**/Dockerfile'
   tag: '$(Build.BuildId)'
-  imagePullSecret: 'testaksacr91577d987-auth'
   acrPassword: 'VVKYOBOjvEgDcZsTbQxnTMtopFqrbN=W'
   username: 'testaksacr9'
-  aks: 'testaks'
-  rg: 'test-aks'
   projectName: 'react-frontend'
-  replicas: '1'
-  imgVersion: '444'
-  # attach AKS ACR - az aks update -n testaks -g test-aks --attach-acr testaksacr9
-  # docker registry sc is required
   chartName: frontend-chart
   chartVersion: 0.1.0
+  # Attach AKS ACR - az aks update -n testaks -g test-aks --attach-acr testaksacr9
 
 steps:
     - task: Docker@2
