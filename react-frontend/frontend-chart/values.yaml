@@ -1,7 +1,7 @@
 replicaCount: 1
 
 image:
-  repository: bahrinipun/react-frontend
+  repository: testaks9acr9.azurecr.io/react-frontend
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: "v1.4"
