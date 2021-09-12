@@ -30,7 +30,7 @@ steps:
         repository: '$(imageRepository)'
         command: 'buildAndPush'
         Dockerfile: '**/Dockerfile'
-        tags: '$(tag)'
+        tags: '$(chartVersion)'
         
     - task: HelmInstaller@0
       displayName: 'Install Helm'
@@ -57,7 +57,7 @@ steps:
         scriptType: 'bash'
         scriptLocation: 'inlineScript'
         inlineScript: |
-          az acr repository list -n testaks9acr9
+          az acr login --name testaks9acr9
           az acr helm repo add --name testaks9acr9
           echo $(acrPassword) | helm registry login $(containerRegistry) --username $(username) --password-stdin
           helm repo update
@@ -70,7 +70,7 @@ steps:
       displayName: Helm Package Deployment in AKS
       inputs:
         connectionType: 'Azure Resource Manager'
-        azureSubscription: 'Nipun Bahri Subscription(bf0f6779-86d2-467e-8226-10f92a8ad378)'
+        azureSubscription: 'Nipun Bahri Subscription(2)(bf0f6779-86d2-467e-8226-10f92a8ad378)'
         azureResourceGroup: 'test-aks'
         kubernetesCluster: 'testaks9'
         useClusterAdmin: true
