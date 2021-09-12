@@ -11,11 +11,11 @@ pool:
 variables:
   # Container registry service connection established during pipeline creation
   dockerRegistryServiceConnection: '033f8c5e-c938-45a1-b856-5cb5be0b58e2'
-  imageRepository: 'react-frontend'
+  acrPassword: 'eJPgnlcoCHecAbBV/PVxsRrYH47LkfyG'
   containerRegistry: 'testaksacr9.azurecr.io'
+  imageRepository: 'react-frontend'  
   dockerfilePath: '**/Dockerfile'
   tag: '$(Build.BuildId)'
-  acrPassword: 'VVKYOBOjvEgDcZsTbQxnTMtopFqrbN=W'
   username: 'testaksacr9'
   projectName: 'react-frontend'
   chartName: frontend-chart
