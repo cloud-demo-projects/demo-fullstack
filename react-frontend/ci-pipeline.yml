@@ -10,27 +10,27 @@ pool:
 
 variables:
   # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: '033f8c5e-c938-45a1-b856-5cb5be0b58e2'
+  dockerRegistryServiceConnection: 'e2d0e05b-235c-435c-b140-80d35117509c'
   acrPassword: 'eJPgnlcoCHecAbBV/PVxsRrYH47LkfyG'
-  containerRegistry: 'testaksacr9.azurecr.io'
+  containerRegistry: 'testaks9acr9.azurecr.io'
   imageRepository: 'react-frontend'  
   dockerfilePath: '**/Dockerfile'
   tag: '$(Build.BuildId)'
-  username: 'testaksacr9'
+  username: 'testaks9acr9'
   projectName: 'react-frontend'
   chartName: frontend-chart
   chartVersion: 0.1.0
-  # Attach AKS ACR - az aks update -n testaks -g test-aks --attach-acr testaksacr9
+  # Attach AKS ACR - az aks update -n testaks9 -g test-aks --attach-acr testaks9acr9
 
 steps:
-    # - task: Docker@2
-    #   displayName: 'Build & Push Docker Image to ACR'
-    #   inputs:
-    #     containerRegistry: $(dockerRegistryServiceConnection)
-    #     repository: '$(imageRepository)'
-    #     command: 'buildAndPush'
-    #     Dockerfile: '**/Dockerfile'
-    #     tags: '$(tag)'
+    - task: Docker@2
+      displayName: 'Build & Push Docker Image to ACR'
+      inputs:
+        containerRegistry: $(dockerRegistryServiceConnection)
+        repository: '$(imageRepository)'
+        command: 'buildAndPush'
+        Dockerfile: '**/Dockerfile'
+        tags: '$(tag)'
         
     - task: HelmInstaller@0
       displayName: 'Install Helm'
@@ -43,7 +43,7 @@ steps:
       inputs:
         azureSubscriptionForACR: 'Nipun Bahri Subscription(bf0f6779-86d2-467e-8226-10f92a8ad378)'
         azureResourceGroupForACR: 'test-aks'
-        azureContainerRegistry: 'testaksacr9.azurecr.io'
+        azureContainerRegistry: 'testaks9acr9.azurecr.io'
         command: 'save'
         chartNameForACR: 'frontend-chart'
         chartPathForACR: 'react-frontend/frontend-chart'
@@ -57,8 +57,8 @@ steps:
         scriptType: 'bash'
         scriptLocation: 'inlineScript'
         inlineScript: |
-          az acr repository list -n testaksacr9
-          az acr helm repo add --name testaksacr9
+          az acr repository list -n testaks9acr9
+          az acr helm repo add --name testaks9acr9
           echo $(acrPassword) | helm registry login $(containerRegistry) --username $(username) --password-stdin
           helm repo update
           helm chart pull $(containerRegistry)/helm/$(chartName):$(chartVersion)
@@ -72,7 +72,7 @@ steps:
         connectionType: 'Azure Resource Manager'
         azureSubscription: 'Nipun Bahri Subscription(bf0f6779-86d2-467e-8226-10f92a8ad378)'
         azureResourceGroup: 'test-aks'
-        kubernetesCluster: 'testaks'
+        kubernetesCluster: 'testaks9'
         useClusterAdmin: true
         namespace: 'default'
         command: 'upgrade'
