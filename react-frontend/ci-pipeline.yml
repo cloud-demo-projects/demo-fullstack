@@ -71,7 +71,7 @@ steps:
       displayName: Helm Package Deployment in AKS
       inputs:
         connectionType: 'Azure Resource Manager'
-        azureSubscription: 'Nipun Bahri Subscription(bf0f6779-86d2-467e-8226-10f92a8ad378)'
+        azureSubscription: 'Nipun Bahri Subscription(2)(bf0f6779-86d2-467e-8226-10f92a8ad378)'
         azureResourceGroup: 'test-aks'
         kubernetesCluster: 'testaks9'
         useClusterAdmin: true
