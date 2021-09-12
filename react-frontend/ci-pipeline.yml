@@ -73,11 +73,11 @@ steps:
         azureResourceGroup: 'test-aks'
         kubernetesCluster: 'testaks'
         useClusterAdmin: true
-        namespace: 'dev'
+        namespace: 'default'
         command: 'upgrade'
         chartType: 'FilePath'
         chartPath: '$(projectName)/$(chartName)'
-        releaseName: 'dev'
+        releaseName: 'default'
         arguments: '--create-namespace'
       
     
