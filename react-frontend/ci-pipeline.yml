@@ -19,18 +19,19 @@ variables:
   username: 'testaks9acr9'
   projectName: 'react-frontend'
   chartName: frontend-chart
+  appVersion: 1.16.0
   chartVersion: 0.1.0
   # Attach AKS ACR - az aks update -n testaks9 -g test-aks --attach-acr testaks9acr9
 
 steps:
-    # - task: Docker@2
-    #   displayName: 'Build & Push Docker Image to ACR'
-    #   inputs:
-    #     containerRegistry: $(dockerRegistryServiceConnection)
-    #     repository: '$(imageRepository)'
-    #     command: 'buildAndPush'
-    #     Dockerfile: '**/Dockerfile'
-    #     tags: '$(chartVersion)'
+    - task: Docker@2
+      displayName: 'Build & Push Docker Image to ACR'
+      inputs:
+        containerRegistry: $(dockerRegistryServiceConnection)
+        repository: '$(imageRepository)'
+        command: 'buildAndPush'
+        Dockerfile: '**/Dockerfile'
+        tags: '$(appVersion)'
         
     - task: HelmInstaller@0
       displayName: 'Install Helm'
