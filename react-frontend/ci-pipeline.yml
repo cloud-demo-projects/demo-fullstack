@@ -13,10 +13,10 @@ variables:
   dockerRegistryServiceConnection: 'e2d0e05b-235c-435c-b140-80d35117509c'
   acrPassword: 'eJPgnlcoCHecAbBV/PVxsRrYH47LkfyG'
   containerRegistry: 'testaks9acr9.azurecr.io'
-  imageRepository: 'react-frontend'  
   acrname: 'testaks9acr9'
   aks: 'testaks9'
   aksrg: 'test-aks'
+  imageRepository: 'react-frontend'  
   projectName: 'react-frontend'
   chartName: frontend-chart
   appVersion: 1.16.0
