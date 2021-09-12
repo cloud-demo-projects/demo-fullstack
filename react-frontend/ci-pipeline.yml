@@ -78,7 +78,6 @@ steps:
         command: 'upgrade'
         chartType: 'FilePath'
         chartPath: '$(projectName)/$(chartName)'
-        releaseName: 'default'
         arguments: '--create-namespace'
       
     
