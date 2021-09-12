@@ -14,15 +14,14 @@ variables:
   acrPassword: 'eJPgnlcoCHecAbBV/PVxsRrYH47LkfyG'
   containerRegistry: 'testaks9acr9.azurecr.io'
   imageRepository: 'react-frontend'  
-  dockerfilePath: '**/Dockerfile'
-  tag: '$(Build.BuildId)'
-  username: 'testaks9acr9'
+  acrname: 'testaks9acr9'
+  aks: 'testaks9'
+  aksrg: 'test-aks'
   projectName: 'react-frontend'
   chartName: frontend-chart
   appVersion: 1.16.0
-  chartVersion: 0.1.0
-  # Attach AKS ACR - az aks update -n testaks9 -g test-aks --attach-acr testaks9acr9
-
+  chartVersion: 1.16.0
+  
 steps:
     - task: Docker@2
       displayName: 'Build & Push Docker Image to ACR'
@@ -43,11 +42,11 @@ steps:
       displayName: Save Helm Package to ACR
       inputs:
         azureSubscriptionForACR: 'Nipun Bahri Subscription(bf0f6779-86d2-467e-8226-10f92a8ad378)'
-        azureResourceGroupForACR: 'test-aks'
-        azureContainerRegistry: 'testaks9acr9.azurecr.io'
+        azureResourceGroupForACR: $(aksrg)
+        azureContainerRegistry: $(containerRegistry)
         command: 'save'
-        chartNameForACR: 'frontend-chart'
-        chartPathForACR: 'react-frontend/frontend-chart'
+        chartNameForACR: $(chartName)
+        chartPathForACR: '$(projectName)/$(chartName)'
       env:
         HELM_EXPERIMENTAL_OCI: 1
         
@@ -58,9 +57,9 @@ steps:
         scriptType: 'bash'
         scriptLocation: 'inlineScript'
         inlineScript: |
-          az acr login --name testaks9acr9
-          az acr helm repo add --name testaks9acr9
-          echo $(acrPassword) | helm registry login $(containerRegistry) --username $(username) --password-stdin
+          az acr login --name $(acrname)
+          az acr helm repo add --name $(acrname)
+          echo $(acrPassword) | helm registry login $(containerRegistry) --username $(acrname) --password-stdin
           helm repo update
           helm chart pull $(containerRegistry)/helm/$(chartName):$(chartVersion)
           helm chart export $(containerRegistry)/helm/$(chartName):$(chartVersion) --destination .
@@ -71,9 +70,9 @@ steps:
       displayName: Helm Package Deployment in AKS
       inputs:
         connectionType: 'Azure Resource Manager'
-        azureSubscription: 'Nipun Bahri Subscription(2)(bf0f6779-86d2-467e-8226-10f92a8ad378)'
-        azureResourceGroup: 'test-aks'
-        kubernetesCluster: 'testaks9'
+        azureSubscription: 'Nipun Bahri Subscription(bf0f6779-86d2-467e-8226-10f92a8ad378)'
+        azureResourceGroup: $(aksrg)
+        kubernetesCluster: $(aks)
         useClusterAdmin: true
         namespace: 'default'
         command: 'upgrade'
