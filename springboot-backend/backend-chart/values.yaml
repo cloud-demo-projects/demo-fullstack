@@ -2,7 +2,7 @@
 replicaCount: 1
 
 image:
-  repository: testaksacr9.azurecr.io/springboot-backend
+  repository: testaks9acr9.azurecr.io/springboot-backend
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: v1.5
