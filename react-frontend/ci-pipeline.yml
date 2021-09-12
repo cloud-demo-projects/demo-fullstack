@@ -10,75 +10,82 @@ pool:
 
 variables:
   # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: 'd6e7b3b6-e634-4138-8e27-3ff952063801'
+  dockerRegistryServiceConnection: '79b46b2c-e2cd-4e7a-92f5-e512b29ecc63'
   imageRepository: 'react-frontend'
   containerRegistry: 'testaksacr9.azurecr.io'
   dockerfilePath: '**/Dockerfile'
   tag: '$(Build.BuildId)'
   imagePullSecret: 'testaksacr91577d987-auth'
-  acrPassword: '6lps+e22wxBZWjdIcsg3YQhKvoo+dLpj'
+  acrPassword: 'VVKYOBOjvEgDcZsTbQxnTMtopFqrbN=W'
   username: 'testaksacr9'
   aks: 'testaks'
   rg: 'test-aks'
   projectName: 'react-frontend'
   replicas: '1'
-  imgVersion: '400'
+  imgVersion: '444'
+  # attach AKS ACR - az aks update -n testaks -g test-aks --attach-acr testaksacr9
+  # docker registry sc is required
+  chartName: frontend-chart
+  chartVersion: 0.1.0
 
 steps:
     # - task: Docker@2
-    #   displayName: Build and push an image to container registry
+    #   displayName: 'Build & Push Docker Image to ACR'
     #   inputs:
-    #     containerRegistry: '$(dockerRegistryServiceConnection)'
+    #     containerRegistry: $(dockerRegistryServiceConnection)
     #     repository: '$(imageRepository)'
     #     command: 'buildAndPush'
     #     Dockerfile: '**/Dockerfile'
     #     tags: '$(tag)'
-    #     addPipelineData: false
-    #     addBaseImageData: false
+
         
     - task: HelmInstaller@0
+      displayName: 'Install Helm'
       inputs:
         helmVersion: '2.14.1'
         installKubectl: true
         
-    # - task: HelmDeploy@0
-    #   inputs:
-    #     command: 'package'
-    #     chartPath: 'react-frontend/$(projectName)'
+    - task: HelmDeploy@0
+      displayName: Save Helm Package to ACR
+      inputs:
+        azureSubscriptionForACR: 'Nipun Bahri Subscription(bf0f6779-86d2-467e-8226-10f92a8ad378)'
+        azureResourceGroupForACR: 'test-aks'
+        azureContainerRegistry: 'testaksacr9.azurecr.io'
+        command: 'save'
+        chartNameForACR: 'frontend-chart'
+        chartPathForACR: 'react-frontend/frontend-chart'
+      env:
+        HELM_EXPERIMENTAL_OCI: 1
         
-    - bash: |
-        helm version
-        export HELM_EXPERIMENTAL_OCI=1
-        cd react-frontend/frontend-chart
-        helm chart save . $(projectName):0.1.0
-        helm chart save . $(containerRegistry)/helm/$(projectName):0.1.0
-        echo $(acrPassword) | helm registry login $(containerRegistry) --username $(username) --password-stdin
-        helm chart push $(containerRegistry)/helm/$(projectName):0.1.0
+    - task: AzureCLI@2
+      displayName: Download Helm Chart from ACR
+      inputs:
+        azureSubscription: 'Nipun Bahri Subscription(bf0f6779-86d2-467e-8226-10f92a8ad378)'
+        scriptType: 'bash'
+        scriptLocation: 'inlineScript'
+        inlineScript: |
+          az acr helm repo add --name testaksacr9
+          echo $(acrPassword) | helm registry login $(containerRegistry) --username $(username) --password-stdin
+          helm repo update
+          helm chart pull $(containerRegistry)/helm/$(chartName):$(chartVersion)
+          helm chart export $(containerRegistry)/helm/$(chartName):$(chartVersion) --destination .
+      env:
+        HELM_EXPERIMENTAL_OCI: 1
 
-      failOnStderr: true
-      name: helmPush
-      condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
-      displayName: 'Helm push'
-      
-    - bash: |
-        helm repo add testaksacr9 https://testaksacr9.azurecr.io/helm/v1/repo --username testaksacr9 --password 6lps+e22wxBZWjdIcsg3YQhKvoo+dLpj
-        helm repo update
-
-        helm upgrade \
-        --namespace default \
-        --create-namespace \
-        --install \
-        --wait \
-        --set image.repository=$(containerRegistry)/$(projectName) \
-        --set image.tag=$imgVersion \
-        --set replicaCount=$(replicas) \
-        frontend-chart \
-        ./frontend-chart
-
-      failOnStderr: true
-      name: helmCred
-      condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
-      displayName: 'Helm Cred'
+    - task: HelmDeploy@0
+      displayName: Helm Package Deployment in AKS
+      inputs:
+        connectionType: 'Azure Resource Manager'
+        azureSubscription: 'Nipun Bahri Subscription(bf0f6779-86d2-467e-8226-10f92a8ad378)'
+        azureResourceGroup: 'test-aks'
+        kubernetesCluster: 'testaks'
+        useClusterAdmin: true
+        namespace: 'dev'
+        command: 'upgrade'
+        chartType: 'FilePath'
+        chartPath: '$(projectName)/$(chartName)'
+        releaseName: 'dev'
+        arguments: '--create-namespace'
       
     
     
