@@ -57,6 +57,7 @@ steps:
         scriptType: 'bash'
         scriptLocation: 'inlineScript'
         inlineScript: |
+          az acr repository list -n testaksacr9
           az acr helm repo add --name testaksacr9
           echo $(acrPassword) | helm registry login $(containerRegistry) --username $(username) --password-stdin
           helm repo update
