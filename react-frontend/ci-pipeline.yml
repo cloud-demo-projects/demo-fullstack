@@ -77,7 +77,7 @@ steps:
         command: 'upgrade'
         chartType: 'FilePath'
         chartPath: '$(projectName)/$(chartName)'
-        releaseName: 'dev'
+        releaseName: 'react'
         arguments: '--create-namespace'
       
     
