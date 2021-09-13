@@ -28,7 +28,7 @@ steps:
         containerRegistry: '$(dockerRegistryServiceConnection)'
         repository: '$(projectName)'
         command: 'buildAndPush'
-        Dockerfile: '/$(projectName)/'
+        Dockerfile: '/$(projectName)/Dockerfile'
         tags: '$(appVersion)'
         
     - task: HelmInstaller@0
