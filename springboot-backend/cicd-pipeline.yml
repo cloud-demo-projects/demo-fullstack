@@ -18,8 +18,8 @@ variables:
   aksrg: 'test-aks'
   projectName: 'springboot-backend'
   chartName: backend-chart
-  appVersion: 1.16.0
-  chartVersion: 1.16.0
+  appVersion: 1.16.1
+  chartVersion: 1.16.1
   
 steps:
     - task: Docker@2
