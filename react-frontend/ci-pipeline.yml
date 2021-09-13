@@ -16,7 +16,6 @@ variables:
   acrname: 'testaks9acr9'
   aks: 'testaks9'
   aksrg: 'test-aks'
-  imageRepository: 'react-frontend'  
   projectName: 'react-frontend'
   chartName: frontend-chart
   appVersion: 1.16.0
@@ -27,7 +26,7 @@ steps:
       displayName: 'Build & Push Docker Image to ACR'
       inputs:
         containerRegistry: $(dockerRegistryServiceConnection)
-        repository: '$(imageRepository)'
+        repository: '$(projectName)'
         command: 'buildAndPush'
         Dockerfile: '**/Dockerfile'
         tags: '$(appVersion)'
