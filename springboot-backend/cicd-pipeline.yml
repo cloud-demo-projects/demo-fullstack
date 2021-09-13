@@ -10,7 +10,7 @@ pool:
 
 variables:
   # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: 'e2d0e05b-235c-435c-b140-80d35117509c'
+  dockerRegistryServiceConnection: '996a8bb4-7de3-4358-959a-93145356536d'
   acrPassword: 'eJPgnlcoCHecAbBV/PVxsRrYH47LkfyG'
   containerRegistry: 'testaks9acr9.azurecr.io'
   acrname: 'testaks9acr9'
