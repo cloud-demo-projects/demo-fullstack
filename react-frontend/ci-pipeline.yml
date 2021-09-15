@@ -38,7 +38,7 @@ stages:
     pool:
       vmImage: ubuntu-latest  
     steps:
-        - template: ../pipelines/templates/ci-template.yml
+      - template: ../pipelines/templates/ci-template.yml
 
 - stage: Helm_Deploy
   displayName: Helm Deployment
@@ -48,36 +48,7 @@ stages:
     pool:
       vmImage: ubuntu-latest  
     steps:      
-        - task: AzureCLI@2
-          displayName: Download Helm Chart from ACR
-          inputs:
-            azureSubscription: 'Nipun Bahri Subscription(bf0f6779-86d2-467e-8226-10f92a8ad378)'
-            scriptType: 'bash'
-            scriptLocation: 'inlineScript'
-            inlineScript: |
-              az acr login --name $(acrname)
-              az acr helm repo add --name $(acrname)
-              echo $(acrPassword) | helm registry login $(containerRegistry) --username $(acrname) --password-stdin
-              helm repo update
-              helm chart pull $(containerRegistry)/helm/${{ parameters.chartName }}:${{ parameters.chartVersion }}
-              helm chart export $(containerRegistry)/helm/${{ parameters.chartName }}:${{ parameters.chartVersion }} --destination .
-          env:
-            HELM_EXPERIMENTAL_OCI: 1
-
-        - task: HelmDeploy@0
-          displayName: Helm Package Deployment in AKS
-          inputs:
-            connectionType: 'Azure Resource Manager'
-            azureSubscription: 'Nipun Bahri Subscription(bf0f6779-86d2-467e-8226-10f92a8ad378)'
-            azureResourceGroup: $(aksrg)
-            kubernetesCluster: $(aks)
-            useClusterAdmin: true
-            namespace: 'default'
-            command: 'upgrade'
-            chartType: 'FilePath'
-            chartPath: '${{ parameters.projectName }}/${{ parameters.chartName }}'
-            releaseName: 'react'
-            arguments: '--create-namespace'
+      - template: ../pipelines/templates/cd-template.yml
       
     
     
