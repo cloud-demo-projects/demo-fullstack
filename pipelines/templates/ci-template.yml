@@ -1,0 +1,30 @@
+steps:
+    - task: Docker@2
+      displayName: 'Build & Push Docker Image to ACR'
+      inputs:
+        containerRegistry: $(dockerRegistryServiceConnection)
+        repository: '$(projectName)'
+        command: 'buildAndPush'
+        Dockerfile: '**/Dockerfile'
+        tags: '$(appVersion)'
+        
+    - task: HelmInstaller@0
+      displayName: 'Install Helm'
+      inputs:
+        helmVersion: '2.14.1'
+        installKubectl: true
+        
+    - task: HelmDeploy@0
+      displayName: Save Helm Package to ACR
+      inputs:
+        azureSubscriptionForACR: 'Nipun Bahri Subscription(bf0f6779-86d2-467e-8226-10f92a8ad378)'
+        azureResourceGroupForACR: $(aksrg)
+        azureContainerRegistry: $(containerRegistry)
+        command: 'save'
+        chartNameForACR: $(chartName)
+        chartPathForACR: '$(projectName)/$(chartName)'
+      env:
+        HELM_EXPERIMENTAL_OCI: 1
+      
+    
+    
