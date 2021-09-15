@@ -23,6 +23,9 @@ parameters:
   - name: chartVersion
     type: string
     default: 1.16.0
+  - name: releaseName
+    type: string
+    default: react
     
 variables:
 - template: ../pipelines/variables/cicd-variables.yml
@@ -59,3 +62,4 @@ stages:
           chartName: '${{ parameters.chartName }}'
           appVersion: '${{ parameters.appVersion }}'
           chartVersion: '${{ parameters.chartVersion }}'
+          releaseName: '${{ parameters.releaseName }}'

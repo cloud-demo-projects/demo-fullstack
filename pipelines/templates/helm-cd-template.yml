@@ -27,7 +27,7 @@ steps:
         command: 'upgrade'
         chartType: 'FilePath'
         chartPath: '${{ parameters.projectName }}/${{ parameters.chartName }}'
-        releaseName: 'react'
+        releaseName: ${{ parameters.releaseName }}
         arguments: '--create-namespace'
       
     
