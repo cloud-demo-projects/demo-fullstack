@@ -15,7 +15,7 @@ parameters:
     type: string
   - name: appVersion
     type: string
-  - name: appVersion
+  - name: chartVersion
     type: string
 
 variables:
@@ -28,7 +28,7 @@ variables:
   projectName: ${{ parameters.projectName }}
   chartName: ${{ parameters.chartName }}
   appVersion: ${{ parameters.appVersion }}
-  chartVersion: ${{ parameters.appVersion }}
+  chartVersion: ${{ parameters.chartVersion }}
 
 stages:
 - stage: Helm Build & Deploy
