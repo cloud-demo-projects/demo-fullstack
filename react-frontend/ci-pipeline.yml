@@ -7,6 +7,23 @@ trigger:
 resources:
 - repo: self
 
+parameters:
+  - name: dockerRegistry_sc
+    type: string
+    default: testaks9acr9_sc
+  - name: projectName
+    type: string
+    default: react-frontend
+  - name: chartName
+    type: string
+    default: frontend-chart
+  - name: appVersion
+    type: string
+    default: 1.16.0
+  - name: chartVersion
+    type: string
+    default: 1.16.0
+    
 variables:
 - template: ../pipelines/variables/cicd-variables.yml
 
