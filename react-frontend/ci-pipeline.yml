@@ -23,7 +23,6 @@ parameters:
     default: 1.16.0
 
 variables:
-  # Container registry service connection established during pipeline creation
   acrPassword: 'hS=gdMACcSIsx0i5N88iwQrwZmZPRdmu'
   containerRegistry: 'testaks9acr9.azurecr.io'
   acrname: 'testaks9acr9'
@@ -31,11 +30,11 @@ variables:
   aksrg: 'test-aks'
 
 stages:
-- stage: Helm_Build_Deploy
-  displayName: Helm Build & Deploy Stage
+- stage: Helm_Packaging
+  displayName: Helm Packaging
   jobs:
-  - job: Helm
-    displayName: Helm Package and Deploy
+  - job: Helm_Package
+    displayName: Helm Package
     pool:
       vmImage: ubuntu-latest  
     steps:
@@ -65,7 +64,15 @@ stages:
             chartPathForACR: '${{ parameters.projectName }}/${{ parameters.chartName }}'
           env:
             HELM_EXPERIMENTAL_OCI: 1
-            
+
+- stage: Helm_Deploy
+  displayName: Helm Deployment
+  jobs:
+  - job: Helm_Deployment
+    displayName: Helm Deloy
+    pool:
+      vmImage: ubuntu-latest  
+    steps:      
         - task: AzureCLI@2
           displayName: Download Helm Chart from ACR
           inputs:
