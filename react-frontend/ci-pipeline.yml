@@ -1,3 +1,6 @@
+# Build Name
+name: $(TeamProject)_$(SourceBranch)_$(BuildId) 
+
 trigger:
 - none
 
