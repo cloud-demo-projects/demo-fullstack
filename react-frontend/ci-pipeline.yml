@@ -31,7 +31,7 @@ variables:
   aksrg: 'test-aks'
 
 stages:
-- stage: Helm Build & Deploy
+- stage: Helm_Build_Deploy
   displayName: Helm Build & Deploy Stage
   jobs:
   - job: Helm
