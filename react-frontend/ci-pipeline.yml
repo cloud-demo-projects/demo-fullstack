@@ -38,7 +38,7 @@ stages:
     pool:
       vmImage: ubuntu-latest  
     steps:
-      - template: ../pipelines/templates/ci-template.yml
+      - template: ../pipelines/templates/helm-ci-template.yml
         parameters:
           dockerRegistry_sc: testaks9acr9_sc
           projectName: react-frontend
@@ -54,7 +54,7 @@ stages:
     pool:
       vmImage: ubuntu-latest  
     steps:      
-      - template: ../pipelines/templates/cd-template.yml
+      - template: ../pipelines/templates/helm-cd-template.yml
         parameters:
           dockerRegistry_sc: testaks9acr9_sc
           projectName: react-frontend
