@@ -29,10 +29,6 @@ variables:
   acrname: 'testaks9acr9'
   aks: 'testaks9'
   aksrg: 'test-aks'
-  projectName: ${{ parameters.projectName }}
-  chartName: ${{ parameters.chartName }}
-  appVersion: ${{ parameters.appVersion }}
-  chartVersion: ${{ parameters.chartVersion }}
 
 stages:
 - stage: Helm Build & Deploy
@@ -47,10 +43,10 @@ stages:
           displayName: 'Build & Push Docker Image to ACR'
           inputs:
             containerRegistry: 'testaks9acr9_sc'
-            repository: '$(projectName)'
+            repository: '${{ parameters.projectName }}'
             command: 'buildAndPush'
-            Dockerfile: '$(projectName)/Dockerfile'
-            tags: '$(appVersion)'
+            Dockerfile: '${{ parameters.projectName }}/Dockerfile'
+            tags: '${{ parameters.appVersion }}'
         
         - task: HelmInstaller@0
           displayName: 'Install Helm'
@@ -65,8 +61,8 @@ stages:
             azureResourceGroupForACR: $(aksrg)
             azureContainerRegistry: $(containerRegistry)
             command: 'save'
-            chartNameForACR: $(chartName)
-            chartPathForACR: '$(projectName)/$(chartName)'
+            chartNameForACR: ${{ parameters.chartName }}
+            chartPathForACR: '${{ parameters.projectName }}/${{ parameters.chartName }}'
           env:
             HELM_EXPERIMENTAL_OCI: 1
             
@@ -81,8 +77,8 @@ stages:
               az acr helm repo add --name $(acrname)
               echo $(acrPassword) | helm registry login $(containerRegistry) --username $(acrname) --password-stdin
               helm repo update
-              helm chart pull $(containerRegistry)/helm/$(chartName):$(chartVersion)
-              helm chart export $(containerRegistry)/helm/$(chartName):$(chartVersion) --destination .
+              helm chart pull $(containerRegistry)/helm/${{ parameters.chartName }}:${{ parameters.chartVersion }}
+              helm chart export $(containerRegistry)/helm/${{ parameters.chartName }}:${{ parameters.chartVersion }} --destination .
           env:
             HELM_EXPERIMENTAL_OCI: 1
 
@@ -97,7 +93,7 @@ stages:
             namespace: 'default'
             command: 'upgrade'
             chartType: 'FilePath'
-            chartPath: '$(projectName)/$(chartName)'
+            chartPath: '${{ parameters.projectName }}/${{ parameters.chartName }}'
             releaseName: $(chartVersion)
             arguments: '--create-namespace'
       
