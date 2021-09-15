@@ -57,6 +57,13 @@ stages:
       vmImage: ubuntu-latest  
     steps:      
       - template: ../pipelines/templates/cd-template.yml
+        parameters:
+          dockerRegistry_sc: testaks9acr9_sc
+          projectName: react-frontend
+          chartName: frontend-chart
+          appVersion: 1.16.0
+          chartVersion: 1.16.0
+          
       
     
     
