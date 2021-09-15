@@ -5,9 +5,6 @@ trigger:
 resources:
 - repo: self
 
-pool:
-  vmImage: ubuntu-latest
-
 parameters:
   - name: projectName
     type: string
@@ -37,7 +34,7 @@ stages:
   - job: Helm
     displayName: Helm Package and Deploy
     pool:
-      vmImage: $(vmImage)  
+      vmImage: ubuntu-latest  
     steps:
         - task: Docker@2
           displayName: 'Build & Push Docker Image to ACR'
