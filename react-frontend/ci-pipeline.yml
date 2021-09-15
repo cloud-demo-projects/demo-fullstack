@@ -91,7 +91,7 @@ stages:
             command: 'upgrade'
             chartType: 'FilePath'
             chartPath: '${{ parameters.projectName }}/${{ parameters.chartName }}'
-            releaseName: $(chartVersion)
+            releaseName: ${{ parameters.chartVersion }}
             arguments: '--create-namespace'
       
     
