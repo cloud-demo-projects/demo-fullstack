@@ -40,11 +40,11 @@ stages:
     steps:
       - template: ../pipelines/templates/helm-ci-template.yml
         parameters:
-          dockerRegistry_sc: testaks9acr9_sc
-          projectName: react-frontend
-          chartName: frontend-chart
-          appVersion: 1.16.0
-          chartVersion: 1.16.0         
+          dockerRegistry_sc: '${{ parameters.dockerRegistry_sc }}'
+          projectName: '${{ parameters.projectName }}'
+          chartName: '${{ parameters.chartName }}'
+          appVersion: '${{ parameters.appVersion }}'
+          chartVersion: '${{ parameters.chartVersion }}'
 
 - stage: Helm_Deploy
   displayName: Helm Deployment
@@ -56,8 +56,8 @@ stages:
     steps:      
       - template: ../pipelines/templates/helm-cd-template.yml
         parameters:
-          dockerRegistry_sc: testaks9acr9_sc
-          projectName: react-frontend
-          chartName: frontend-chart
-          appVersion: 1.16.0
-          chartVersion: 1.16.0
+          dockerRegistry_sc: '${{ parameters.dockerRegistry_sc }}'
+          projectName: '${{ parameters.projectName }}'
+          chartName: '${{ parameters.chartName }}'
+          appVersion: '${{ parameters.appVersion }}'
+          chartVersion: '${{ parameters.chartVersion }}'
