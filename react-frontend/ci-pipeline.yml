@@ -8,6 +8,16 @@ resources:
 pool:
   vmImage: ubuntu-latest
 
+parameters:
+  - name: projectName
+    type: string
+  - name: chartName
+    type: string
+  - name: appVersion
+    type: string
+  - name: appVersion
+    type: string
+
 variables:
   # Container registry service connection established during pipeline creation
   acrPassword: 'hS=gdMACcSIsx0i5N88iwQrwZmZPRdmu'
@@ -18,7 +28,7 @@ variables:
   projectName: ${{ parameters.projectName }}
   chartName: ${{ parameters.chartName }}
   appVersion: ${{ parameters.appVersion }}
-  chartVersion: ${{ parameters.chartVersion }}
+  chartVersion: ${{ parameters.appVersion }}
 
 stages:
 - stage: Helm Build & Deploy
