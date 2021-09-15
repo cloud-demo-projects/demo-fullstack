@@ -39,6 +39,14 @@ stages:
       vmImage: ubuntu-latest  
     steps:
       - template: ../pipelines/templates/ci-template.yml
+        parameters:
+          dockerRegistry_sc: testaks9acr9_sc
+          projectName: react-frontend
+          chartName: frontend-chart
+          appVersion: 1.16.0
+          chartVersion: 1.16.0
+
+          
 
 - stage: Helm_Deploy
   displayName: Helm Deployment
