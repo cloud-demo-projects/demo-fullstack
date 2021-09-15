@@ -10,8 +10,7 @@ pool:
 
 variables:
   # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: '996a8bb4-7de3-4358-959a-93145356536d'
-  acrPassword: 'ajrVdZkJKO4/cL2h5Drq7YOPx15w7bzf'
+  acrPassword: 'hS=gdMACcSIsx0i5N88iwQrwZmZPRdmu'
   containerRegistry: 'testaks9acr9.azurecr.io'
   acrname: 'testaks9acr9'
   aks: 'testaks9'
@@ -33,7 +32,7 @@ stages:
         - task: Docker@2
           displayName: 'Build & Push Docker Image to ACR'
           inputs:
-            containerRegistry: $(dockerRegistryServiceConnection)
+            containerRegistry: 'testaks9acr9_sc'
             repository: '$(projectName)'
             command: 'buildAndPush'
             Dockerfile: '$(projectName)/Dockerfile'
