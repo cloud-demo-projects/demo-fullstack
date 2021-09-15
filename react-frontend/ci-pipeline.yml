@@ -15,10 +15,10 @@ variables:
   acrname: 'testaks9acr9'
   aks: 'testaks9'
   aksrg: 'test-aks'
-  projectName: 'react-frontend'
-  chartName: frontend-chart
-  appVersion: 1.16.0
-  chartVersion: 1.16.0
+  projectName: ${{ parameters.projectName }}
+  chartName: ${{ parameters.chartName }}
+  appVersion: ${{ parameters.appVersion }}
+  chartVersion: ${{ parameters.chartVersion }}
 
 stages:
 - stage: Helm Build & Deploy
