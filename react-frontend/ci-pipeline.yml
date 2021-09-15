@@ -61,7 +61,3 @@ stages:
           chartName: frontend-chart
           appVersion: 1.16.0
           chartVersion: 1.16.0
-          
-      
-    
-    
