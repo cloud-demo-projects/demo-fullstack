@@ -10,8 +10,8 @@ steps:
           az acr helm repo add --name $(acrname)
           echo $(acrPassword) | helm registry login $(containerRegistry) --username $(acrname) --password-stdin
           helm repo update
-          helm chart pull $(containerRegistry)/helm/$(chartName):$(chartVersion)
-          helm chart export $(containerRegistry)/helm/$(chartName):$(chartVersion) --destination .
+          helm chart pull $(containerRegistry)/helm/${{ parameters.chartName }}:${{ parameters.chartVersion }}
+          helm chart export $(containerRegistry)/helm/${{ parameters.chartName }}:${{ parameters.chartVersion }} --destination .
       env:
         HELM_EXPERIMENTAL_OCI: 1
 
@@ -26,8 +26,8 @@ steps:
         namespace: 'default'
         command: 'upgrade'
         chartType: 'FilePath'
-        chartPath: '$(projectName)/$(chartName)'
-        releaseName: 'dev'
+        chartPath: '${{ parameters.projectName }}/${{ parameters.chartName }}'
+        releaseName: 'react'
         arguments: '--create-namespace'
       
     

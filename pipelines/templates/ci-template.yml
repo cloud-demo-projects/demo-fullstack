@@ -5,7 +5,7 @@ steps:
         containerRegistry: '${{ parameters.dockerRegistry_sc }}'
         repository: '${{ parameters.projectName }}'
         command: 'buildAndPush'
-        Dockerfile: '${{ parameters.projectName }}/Dockerfile'
+        Dockerfile: '../../${{ parameters.projectName }}/Dockerfile'
         tags: '${{ parameters.appVersion }}'
         
     - task: HelmInstaller@0
