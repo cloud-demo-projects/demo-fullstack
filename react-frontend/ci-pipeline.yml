@@ -4,6 +4,9 @@ trigger:
 resources:
 - repo: self
 
+variables:
+- template: ../pipelines/variables/cicd-variables.yml
+
 stages:
 - stage: Helm_Packaging
   displayName: Helm Packaging
