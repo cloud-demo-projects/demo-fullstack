@@ -38,7 +38,7 @@ stages:
     pool:
       vmImage: ubuntu-latest  
     steps:
-        - template: ../common/ci-steps-template.yml
+        - template: ../pipelines/templates/ci-template.yml
 
 - stage: Helm_Deploy
   displayName: Helm Deployment
