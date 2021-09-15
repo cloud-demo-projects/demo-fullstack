@@ -6,6 +6,9 @@ resources:
 - repo: self
 
 parameters:
+  - name: dockerRegistry_sc
+    type: string
+    default: testaks9acr9_sc
   - name: projectName
     type: string
     default: react-frontend
@@ -39,7 +42,7 @@ stages:
         - task: Docker@2
           displayName: 'Build & Push Docker Image to ACR'
           inputs:
-            containerRegistry: 'testaks9acr9_sc'
+            containerRegistry: '${{ parameters.dockerRegistry_sc }}'
             repository: '${{ parameters.projectName }}'
             command: 'buildAndPush'
             Dockerfile: '${{ parameters.projectName }}/Dockerfile'
