@@ -25,18 +25,3 @@ spec:
             configMapKeyRef:
               name: springbootconfig
               key: ENVIRONMENT
-        - name: SPRING_DATASOURCE_URL
-          valueFrom:
-            secretKeyRef:
-              name: springbootsecret
-              key: SPRINGDATASOURCEURL
-        - name: SPRING_DATASOURCE_USERNAME
-          valueFrom:
-            secretKeyRef:
-              name: springbootsecret
-              key: SPRINGDATASOURCEUSERNAME
-        - name: SPRING_DATASOURCE_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: springbootsecret
-              key: SPRINGDATASOURCEPASSWORD
