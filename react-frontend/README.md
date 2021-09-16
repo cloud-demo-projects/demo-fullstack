@@ -1,3 +1,5 @@
+[![Build Status](https://dev.azure.com/bahrinipun/demo-fullstack/_apis/build/status/react-frontend?branchName=master)](https://dev.azure.com/bahrinipun/demo-fullstack/_build/latest?definitionId=47&branchName=master)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
