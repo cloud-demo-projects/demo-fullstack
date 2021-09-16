@@ -1,3 +1,4 @@
+[![Build Status](https://dev.azure.com/bahrinipun/demo-fullstack/_apis/build/status/springboot-backend?branchName=master)](https://dev.azure.com/bahrinipun/demo-fullstack/_build/latest?definitionId=48&branchName=master)
 
 # SpringBoot App
 - STS Project with modules- Spring web, Devtools, JPA
