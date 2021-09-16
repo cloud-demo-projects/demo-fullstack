@@ -25,23 +25,18 @@ spec:
             configMapKeyRef:
               name: springbootconfig
               key: ENVIRONMENT
-        - name: AZ_DATABASE_SERVER_NAME
+        - name: SPRING_DATASOURCE_URL
           valueFrom:
-            configMapKeyRef:
-              name: springbootconfig
-              key: AZ_DATABASE_SERVER_NAME
-        - name: AZ_DATABASE_NAME
+            secretKeyRef:
+              name: springbootsecret
+              key: SPRINGDATASOURCEURL
+        - name: SPRING_DATASOURCE_USERNAME
           valueFrom:
-            configMapKeyRef:
-              name: springbootconfig
-              key: AZ_DATABASE_NAME
-        - name: AZ_DATABASE_SERVER_USER
+            secretKeyRef:
+              name: springbootsecret
+              key: SPRINGDATASOURCEUSERNAME
+        - name: SPRING_DATASOURCE_PASSWORD
           valueFrom:
-            configMapKeyRef:
-              name: springbootconfig
-              key: AZ_DATABASE_SERVER_USER
-        - name: AZ_DATABASE_SERVER_PASSWORD
-          valueFrom:
-            configMapKeyRef:
-              name: springbootconfig
-              key: AZ_DATABASE_SERVER_PASSWORD
+            secretKeyRef:
+              name: springbootsecret
+              key: SPRINGDATASOURCEPASSWORD

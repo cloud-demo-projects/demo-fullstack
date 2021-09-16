@@ -41,6 +41,9 @@ service:
 configMap:
   name: springbootconfig
 
+secret:
+  name: springbootsecret
+
 ingress:
   enabled: false
   annotations: {}
