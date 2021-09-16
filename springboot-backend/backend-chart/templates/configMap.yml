@@ -2,6 +2,10 @@ apiVersion: v1
 data:
     MYSQLCONNECTION: jdbc:mysql://db-chart.default.svc.cluster.local:3306/employee_management_system
     ENVIRONMENT: dev
+    AZ_DATABASE_SERVER_NAME: testsqldbserver9
+    AZ_DATABASE_NAME: testsqldb9
+    AZ_DATABASE_SERVER_USER: adminuser
+    AZ_DATABASE_SERVER_PASSWORD: Passw0rd     
 kind: ConfigMap
 metadata:
   name: {{ .Values.configMap.name }}
