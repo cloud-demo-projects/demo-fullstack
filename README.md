@@ -1,6 +1,6 @@
 
 # Project Detail
-- Fullstack application including React SPA as frontend, SpringBoot API and MySQL database microservices.
+- Fullstack application including React SPA as frontend, SpringBoot API with ORM(Hibernate) and MySQL/Azure SQL database microservices.
 - Docker conterization
 - AKS Deployment through Helm charts
 
@@ -11,4 +11,4 @@
 - VS Code
 - Kubectl
 - Azure CLI
-- Helm 3
+- Helm 3.6.3
