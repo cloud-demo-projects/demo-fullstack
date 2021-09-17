@@ -15,6 +15,6 @@
 - Azure CLI
 - Helm 3.6.3
 
-## Environment 
+## CI/CD 
 - Docker Registry Service Connection
 - SPN with AcrPull role on ACR (For Helm to pull chart from ACR)
