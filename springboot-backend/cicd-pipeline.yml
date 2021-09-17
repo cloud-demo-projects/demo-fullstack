@@ -31,21 +31,21 @@ variables:
 - template: ../pipelines/variables/cicd-variables.yml
 
 stages:
-# - stage: Helm_Packaging
-#   displayName: Helm Packaging
-#   jobs:
-#   - job: Helm_Package
-#     displayName: Helm Package
-#     pool:
-#       vmImage: ubuntu-latest  
-#     steps:
-#       - template: ../pipelines/templates/helm-ci-template.yml
-#         parameters:
-#           dockerRegistry_sc: '${{ parameters.dockerRegistry_sc }}'
-#           projectName: '${{ parameters.projectName }}'
-#           chartName: '${{ parameters.chartName }}'
-#           appVersion: '${{ parameters.appVersion }}'
-#           chartVersion: '${{ parameters.chartVersion }}'
+- stage: Helm_Packaging
+  displayName: Helm Packaging
+  jobs:
+  - job: Helm_Package
+    displayName: Helm Package
+    pool:
+      vmImage: ubuntu-latest  
+    steps:
+      - template: ../pipelines/templates/helm-ci-template.yml
+        parameters:
+          dockerRegistry_sc: '${{ parameters.dockerRegistry_sc }}'
+          projectName: '${{ parameters.projectName }}'
+          chartName: '${{ parameters.chartName }}'
+          appVersion: '${{ parameters.appVersion }}'
+          chartVersion: '${{ parameters.chartVersion }}'
 
 - stage: Helm_Deploy
   displayName: Helm Deployment
