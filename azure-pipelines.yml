@@ -10,7 +10,7 @@ stages:
   - job: Validate
     displayName: Validation
     steps:
-    - task: TerraformInstaller@0
+    - task: charleszipp.azure-pipelines-tasks-terraform.azure-pipelines-tasks-terraform-installer.TerraformInstaller@0
       displayName: Terraform installation
       inputs:
         terraformVersion: '1.0.7'
