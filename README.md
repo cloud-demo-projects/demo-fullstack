@@ -21,5 +21,4 @@
 ## CI/CD 
 - AKS Cluster with CNI, Managed Identity enabled and ACR integrated
 - Docker Registry Service Connection
-- SPN with AcrPull role on ACR (For Helm to pull chart from ACR)
 - Azure SQL database server firewall opened up through private endpoint against AKS VNet.
