@@ -4,11 +4,15 @@
 - Docker conterization
 - AKS Deployment through Helm charts
 
-# Prerequisites
-- JDK11
+# Prerequisites- Local Dvelopment
+- JDK 11
 - Spring Tool Suite
 - Node v14.17.5
 - VS Code
 - Kubectl
 - Azure CLI
 - Helm 3.6.3
+
+# Prerequisites- Environment 
+- Docker Registry Service Connection
+- SPN with AcrPull role on ACR
