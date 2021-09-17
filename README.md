@@ -11,6 +11,8 @@
 - Spring Tool Suite
 - Node v14.17.5
 - VS Code
+- Docker
+- Kubernetes Cluster
 - Kubectl
 - Azure CLI
 - Helm 3.6.3
