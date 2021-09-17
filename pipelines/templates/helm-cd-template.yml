@@ -8,7 +8,8 @@ steps:
         inlineScript: |
           az acr login --name $(acrname)
           az acr helm repo add --name $(acrname)
-          echo $(acrPassword) | helm registry login $(containerRegistry) --username $(acrname) --password-stdin
+          TOKEN=$(az acr login --name <acrName> --expose-token --output tsv --query accessToken)
+          echo $TOKEN | helm registry login $(containerRegistry) --username $(acrname) --password-stdin
           helm repo update
           helm chart pull $(containerRegistry)/helm/${{ parameters.chartName }}:${{ parameters.chartVersion }}
           helm chart export $(containerRegistry)/helm/${{ parameters.chartName }}:${{ parameters.chartVersion }} --destination .
