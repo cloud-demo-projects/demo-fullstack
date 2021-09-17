@@ -1,6 +1,6 @@
 variables:
-  acrPassword: 'A7M6lOstlI7yhid/Zum=AlDR+fEznUE3'
+  acrPassword: 'BO~FoJ8Hc8e4jFCdnuHNAhN~Mt-cUBKJQx'
   containerRegistry: 'testaks9acr9.azurecr.io'
-  acrname: 'testaks9acr9'
+  acrname: 'fcaaf049-d0ae-4d89-bd09-26758e6b6365'
   aks: 'testaks9'
   aksrg: 'test-aks'
