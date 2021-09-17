@@ -8,7 +8,7 @@ stages:
 - stage: Terraform_Validate
   jobs:
   - job: Validate
-    continueOnError: false
+    displayName: Validation
     steps:
     - task: TerraformInstaller@0
       displayName: Terraform installation
