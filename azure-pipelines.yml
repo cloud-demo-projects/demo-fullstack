@@ -1,0 +1,35 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- none
+
+pool:
+  vmImage: ubuntu-latest
+
+stages:
+- stage: Validate
+  jobs:
+  - job: Validate
+    continueOnError: false
+    steps:
+    - task: TerraformInstaller@0
+      inputs:
+        terraformVersion: 'latest'
+
+    - task: TerraformTaskV2@2
+      inputs:
+        provider: 'azurerm'
+        command: 'init'
+        backendServiceArm: 'Nipun Bahri Subscription(bf0f6779-86d2-467e-8226-10f92a8ad378)'
+        backendAzureRmResourceGroupName: 'test-aks'
+        backendAzureRmStorageAccountName: 'tfaks9'
+        backendAzureRmContainerName: 'akstfstate'
+        backendAzureRmKey: 'izc726yGbvWcMq2QfSt/Pu26VeHhBR1nQM64c6wEoFEHqhnxB3dak4XcAiQFh5dVzFz4YClI19WP05/ZNcfj+w=='
+
+    - task: TerraformTaskV2@2
+      inputs:
+        provider: 'azurerm'
+        command: 'validate'
