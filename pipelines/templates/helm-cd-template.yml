@@ -9,7 +9,7 @@ steps:
           az acr login --name $(acrname)
           az acr helm repo add --name $(acrname)
           HELM_USER='00000000-0000-0000-0000-000000000000'
-          HELM_TOKEN=`$(az acr login --name $(acrname) --expose-token --output tsv --query accessToken)`
+          HELM_TOKEN=$(az acr login --name $(acrname) --expose-token --output tsv --query accessToken)
           echo $HELM_TOKEN | helm registry login $(containerRegistry) --username $HELM_USER --password-stdin
           helm repo update
           helm chart pull $(containerRegistry)/helm/${{ parameters.chartName }}:${{ parameters.chartVersion }}
