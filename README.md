@@ -23,3 +23,6 @@
 - AKS Cluster with CNI, Managed Identity enabled and ACR integrated
 - Docker Registry Service Connection
 - Azure SQL database server firewall opened up through private endpoint against AKS VNet.
+
+## IaC
+- SPN for AKS & ACR provisioning through Terraform
