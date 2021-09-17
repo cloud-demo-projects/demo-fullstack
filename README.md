@@ -5,6 +5,7 @@
 - AKS Deployment through Helm charts
 
 # Prerequisites
+
 ##  Local Dvelopment
 - JDK 11
 - Spring Tool Suite
@@ -16,4 +17,4 @@
 
 ## Environment 
 - Docker Registry Service Connection
-- SPN with AcrPull role on ACR
+- SPN with AcrPull role on ACR (For Helm to pull chart from ACR)
