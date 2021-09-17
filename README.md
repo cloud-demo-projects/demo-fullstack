@@ -13,7 +13,7 @@
 - VS Code ( React code IDE )
 - Docker ( For local conainter building & testing through Dockerfile )
 - Kubernetes Cluster ( For local k8 cluster testing )
-- Kubectl ( For cluster communication through command line )
+- Kubectl ( For kubernetes cluster communication through command line )
 - Azure CLI ( For Azure subscription communication through command line )
 - Helm 3.6.3 ( For Helm communication through command line )
 - Azure SQL database with database server firewall opened up against client IP ( For local database development )
