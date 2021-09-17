@@ -20,6 +20,7 @@ stages:
       inputs:
         provider: 'azurerm'
         command: 'init'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/pipelines/terraform-aks-k8s -test'
         backendServiceArm: 'Nipun Bahri Subscription(bf0f6779-86d2-467e-8226-10f92a8ad378)'
         backendAzureRmResourceGroupName: 'test-aks'
         backendAzureRmStorageAccountName: 'tfaks9'
