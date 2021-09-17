@@ -69,6 +69,6 @@ stages:
       inputs:
         provider: 'azurerm'
         command: 'apply'
-        workingDirectory: $(System.DefaultWorkingDirectory)/pipelines/terraform-aks-k8s-test'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/pipelines/terraform-aks-k8s-test'
         commandOptions: '$(System.DefaultWorkingDirectory)/pipelines/terraform-aks-k8s-test/out.plan'
         environmentServiceNameAzureRM: 'Nipun Bahri Subscription(bf0f6779-86d2-467e-8226-10f92a8ad378)'
