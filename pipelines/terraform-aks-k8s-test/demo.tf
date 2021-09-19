@@ -14,16 +14,25 @@ provider "azurerm" {
   features {}
 }
 
-# Create a resource group
 resource "azurerm_resource_group" "example" {
   name     = "example-resources"
   location = "West Europe"
 }
 
-# Create a virtual network within the resource group
-resource "azurerm_virtual_network" "example" {
-  name                = "example-network"
-  resource_group_name = azurerm_resource_group.example.name
-  location            = azurerm_resource_group.example.location
-  address_space       = ["10.0.0.0/16"]
+resource "azurerm_storage_account" "example" {
+  name                     = "tfaks9"
+  resource_group_name      = azurerm_resource_group.example.name
+  location                 = azurerm_resource_group.example.location
+  account_tier             = "Standard"
+  account_replication_type = "LRS"
+
+  tags = {
+    environment = "dev"
+  }
+}
+
+resource "azurerm_storage_container" "example" {
+  name                  = "akstfstate"
+  storage_account_name  = azurerm_storage_account.example.name
+  container_access_type = "private"
 }
