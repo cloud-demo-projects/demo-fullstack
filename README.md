@@ -1,8 +1,9 @@
 
 # Project Detail
 - Fullstack application including React SPA as frontend, SpringBoot API with ORM(Hibernate) and Azure SQL/MySQL database microservices.
-- Docker containerization
 - AKS Deployment through Helm charts
+- IaC with Terraform
+- Azure PaaS (Azure SQL) connectivity through Private Endpoint
 
 # Prerequisites
 
@@ -22,3 +23,6 @@
 - AKS Cluster with CNI, Managed Identity enabled and ACR integrated
 - Docker Registry Service Connection
 - Azure SQL database server firewall opened up through private endpoint against AKS VNet.
+
+## IaC
+- SPN for AKS & ACR provisioning through Terraform
