@@ -25,4 +25,4 @@
 - Azure SQL database server firewall opened up through private endpoint against AKS VNet.
 
 ## IaC
-- SPN for AKS & ACR provisioning through Terraform
+- Service principle for AKS & ACR provisioning through Terraform
