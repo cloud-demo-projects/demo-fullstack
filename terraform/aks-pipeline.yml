@@ -25,7 +25,7 @@ stages:
         backendAzureRmResourceGroupName: 'test-aks'
         backendAzureRmStorageAccountName: 'tfaks9'
         backendAzureRmContainerName: 'akstfstate'
-        backendAzureRmKey: 'izc726yGbvWcMq2QfSt/Pu26VeHhBR1nQM64c6wEoFEHqhnxB3dak4XcAiQFh5dVzFz4YClI19WP05/ZNcfj+w=='
+        backendAzureRmKey: 'g9G16UV05PZGb6TL3b9T/DbQ/W5MPl876ZTFZr8glELJ9QVBzDZednZ2YhMqVxIw3EmWKJh8KphNOisyhTJKcg=='
 
     - task: TerraformTaskV2@2
       displayName: Terraform validate
