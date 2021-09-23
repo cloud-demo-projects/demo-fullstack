@@ -8,6 +8,7 @@ This sample shows how to create/manage/deploy an AKS clusters with:
 - Terraform has been used as IaC to build/change the Azure infrastructure
 
 # Prerequisites
+Prerequisites are listed down for local development, CICD and IaC.
 
 ##  Local Dvelopment
 - JDK 11 ( For local java code compilation )
