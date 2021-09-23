@@ -53,7 +53,7 @@ stages:
         backendAzureRmResourceGroupName: 'test-aks'
         backendAzureRmStorageAccountName: 'tfaks9'
         backendAzureRmContainerName: 'akstfstate'
-        backendAzureRmKey: 'izc726yGbvWcMq2QfSt/Pu26VeHhBR1nQM64c6wEoFEHqhnxB3dak4XcAiQFh5dVzFz4YClI19WP05/ZNcfj+w=='
+        backendAzureRmKey: 'tf/terraform.tfstate'
 
     - task: TerraformTaskV2@2
       displayName: Terraform plan
