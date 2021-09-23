@@ -1,6 +1,6 @@
 
 # Project Detail
-- Fullstack application including React SPA as frontend, SpringBoot API with ORM(Hibernate) and Azure SQL/MySQL database microservices.
+- Fullstack application including React SPA as frontend, SpringBoot API with ORM(JPA) and Azure SQL/MySQL database microservices.
 - AKS Deployment through Helm charts
 - IaC with Terraform
 - Azure PaaS (Azure SQL) connectivity through Private Endpoint
