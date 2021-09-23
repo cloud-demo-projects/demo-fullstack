@@ -1,9 +1,10 @@
 
-# Project Detail
-- Fullstack application including React SPA as frontend, SpringBoot API with ORM(JPA) and Azure SQL/MySQL database microservices.
-- AKS Deployment through Helm charts
-- IaC with Terraform
-- Azure PaaS (Azure SQL) connectivity through Private Endpoint
+# Fullstack application development, deployment into AKS using Azure DevOps, Terraform & Helm charts including:
+- Minimal React frontend 
+- Spring boot API
+- Azure SQL connectivity through Private Endpoint
+- Helm charts used as release management into AKS cluster
+- Terraform has been used as IaC to build/change the Azure infrastructure
 
 # Prerequisites
 
