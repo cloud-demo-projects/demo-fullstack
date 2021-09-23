@@ -72,3 +72,35 @@ stages:
         workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
         commandOptions: '$(System.DefaultWorkingDirectory)/terraform/out.plan'
         environmentServiceNameAzureRM: 'Nipun Bahri Subscription(bf0f6779-86d2-467e-8226-10f92a8ad378)'
+
+- stage: Terraform_Destroy
+  displayName: Terraform Destroy
+  enabled: false
+  jobs:
+  - job: Destroy
+    displayName: Destroy
+    steps:
+    - task: charleszipp.azure-pipelines-tasks-terraform.azure-pipelines-tasks-terraform-installer.TerraformInstaller@0
+      displayName: Terraform installation
+      inputs:
+        terraformVersion: '1.0.7'
+
+    - task: TerraformTaskV2@2
+      displayName: Terraform init
+      inputs:
+        provider: 'azurerm'
+        command: 'init'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
+        backendServiceArm: 'Nipun Bahri Subscription(bf0f6779-86d2-467e-8226-10f92a8ad378)'
+        backendAzureRmResourceGroupName: 'test-aks'
+        backendAzureRmStorageAccountName: 'tfaks9'
+        backendAzureRmContainerName: 'akstfstate'
+        backendAzureRmKey: 'aks.tfstate'
+
+    - task: TerraformTaskV1@0
+      displayName: 'Terraform Destroy'
+      inputs:
+        provider: 'azurerm'
+        command: 'destroy'
+        environmentServiceNameAzureRM: 'Nipun Bahri Subscription(bf0f6779-86d2-467e-8226-10f92a8ad378)'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
