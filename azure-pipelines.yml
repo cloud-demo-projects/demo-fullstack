@@ -20,7 +20,7 @@ stages:
       inputs:
         provider: 'azurerm'
         command: 'init'
-        workingDirectory: '$(System.DefaultWorkingDirectory)/pipelines/terraform-aks-k8s-test'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
         backendServiceArm: 'Nipun Bahri Subscription(bf0f6779-86d2-467e-8226-10f92a8ad378)'
         backendAzureRmResourceGroupName: 'test-aks'
         backendAzureRmStorageAccountName: 'tfaks9'
@@ -48,7 +48,7 @@ stages:
       inputs:
         provider: 'azurerm'
         command: 'init'
-        workingDirectory: '$(System.DefaultWorkingDirectory)/pipelines/terraform-aks-k8s-test'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
         backendServiceArm: 'Nipun Bahri Subscription(bf0f6779-86d2-467e-8226-10f92a8ad378)'
         backendAzureRmResourceGroupName: 'test-aks'
         backendAzureRmStorageAccountName: 'tfaks9'
@@ -60,8 +60,8 @@ stages:
       inputs:
         provider: 'azurerm'
         command: 'plan'
-        workingDirectory: '$(System.DefaultWorkingDirectory)/pipelines/terraform-aks-k8s-test'
-        commandOptions: '-out $(System.DefaultWorkingDirectory)/pipelines/terraform-aks-k8s-test/out.plan'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
+        commandOptions: '-out $(System.DefaultWorkingDirectory)/terraform/out.plan'
         environmentServiceNameAzureRM: 'Nipun Bahri Subscription(bf0f6779-86d2-467e-8226-10f92a8ad378)'
 
     - task: TerraformTaskV2@2
@@ -69,6 +69,6 @@ stages:
       inputs:
         provider: 'azurerm'
         command: 'apply'
-        workingDirectory: '$(System.DefaultWorkingDirectory)/pipelines/terraform-aks-k8s-test'
-        commandOptions: '$(System.DefaultWorkingDirectory)/pipelines/terraform-aks-k8s-test/out.plan'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
+        commandOptions: '$(System.DefaultWorkingDirectory)/terraform/out.plan'
         environmentServiceNameAzureRM: 'Nipun Bahri Subscription(bf0f6779-86d2-467e-8226-10f92a8ad378)'
