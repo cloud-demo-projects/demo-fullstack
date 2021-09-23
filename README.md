@@ -1,5 +1,6 @@
 
-# Fullstack application development, deployment into AKS using Azure DevOps, Terraform & Helm charts including:
+# Fullstack application development, deployment into AKS using Azure DevOps, Terraform & Helm Charts
+This sample shows how to create/manage/deploy an AKS clusters with:
 - Minimal React frontend 
 - Spring boot API
 - Azure SQL connectivity through Private Endpoint
