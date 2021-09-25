@@ -30,4 +30,4 @@ Prerequisites are listed down for local development, CICD and IaC.
 ## IaC
 - Service principle for AKS & ACR provisioning through Terraform
 - Storage account for Terraform state
-- Key Vault for secrets
+- Key Vault for secrets with SPN having GET access policy to SECRETS
