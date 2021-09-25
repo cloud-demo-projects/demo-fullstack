@@ -5,7 +5,7 @@ This sample shows how to create/manage/deploy an AKS clusters with:
 - Spring boot API
 - Azure SQL connectivity through Private Endpoint
 - Helm charts used as release management into AKS cluster
-- Terraform has been used as IaC to build/change the Azure infrastructure
+- Terraform has been used as IaC to build/change/destroy the Azure infrastructure
 
 # Prerequisites
 Prerequisites are listed down for local development, CICD and IaC.
@@ -28,7 +28,7 @@ Prerequisites are listed down for local development, CICD and IaC.
 - Azure SQL database server firewall opened up through private endpoint against AKS VNet.
 
 ## IaC
-- Service principle for AKS & ACR provisioning through Terraform
+- Service principle for Azure DevOps pipeline (AKS & ACR provisioning through Terraform)
 - Service Principle/Managed Identity for cluster resource provisioning   
 - SSH key for VM/node access
 - Storage account for Terraform state
