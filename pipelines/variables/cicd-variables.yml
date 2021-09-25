@@ -3,4 +3,4 @@ variables:
   containerRegistry: 'testaks9acr9.azurecr.io'
   acrname: 'testaks9acr9'
   aks: 'testaks9'
-  aksrg: 'test-aks'
+  aksrg: 'test-aks9'
