@@ -22,7 +22,7 @@ stages:
     - task: AzureCLI@2
       displayName: 'Get Latest Kubernetes Version'
       inputs:
-        azureSubscription: 'aks_spn'
+        azureSubscription: 'sub-sc'
         scriptType: 'bash'
         scriptLocation: 'inlineScript'
         inlineScript: |
@@ -40,7 +40,7 @@ stages:
         provider: 'azurerm'
         command: 'init'
         workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
-        backendServiceArm: 'aks_spn'
+        backendServiceArm: 'sub-sc'
         backendAzureRmResourceGroupName: 'test-aks'
         backendAzureRmStorageAccountName: 'tfaks9'
         backendAzureRmContainerName: 'akstfstate'
@@ -67,7 +67,7 @@ stages:
         provider: 'azurerm'
         command: 'init'
         workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
-        backendServiceArm: 'aks_spn'
+        backendServiceArm: 'sub-sc'
         backendAzureRmResourceGroupName: 'test-aks'
         backendAzureRmStorageAccountName: 'tfaks9'
         backendAzureRmContainerName: 'akstfstate'
@@ -80,7 +80,7 @@ stages:
         command: 'plan'
         workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
         commandOptions: '-out $(System.DefaultWorkingDirectory)/terraform/out.plan'
-        environmentServiceNameAzureRM: 'aks_spn'
+        environmentServiceNameAzureRM: 'sub-sc'
 
     - task: TerraformTaskV2@2
       displayName: Terraform apply
@@ -89,7 +89,7 @@ stages:
         command: 'apply'
         workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
         commandOptions: '$(System.DefaultWorkingDirectory)/terraform/out.plan'
-        environmentServiceNameAzureRM: 'aks_spn'
+        environmentServiceNameAzureRM: 'sub-sc'
 
 # - stage: Terraform_Destroy
 #   displayName: Terraform Destroy
@@ -108,7 +108,7 @@ stages:
 #         provider: 'azurerm'
 #         command: 'init'
 #         workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
-#         backendServiceArm: 'aks_spn'
+#         backendServiceArm: 'sub-sc'
 #         backendAzureRmResourceGroupName: 'test-aks'
 #         backendAzureRmStorageAccountName: 'tfaks9'
 #         backendAzureRmContainerName: 'akstfstate'
@@ -119,5 +119,5 @@ stages:
 #       inputs:
 #         provider: 'azurerm'
 #         command: 'destroy'
-#         environmentServiceNameAzureRM: 'aks_spn'
+#         environmentServiceNameAzureRM: 'sub-sc'
 #         workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
