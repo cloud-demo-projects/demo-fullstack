@@ -61,9 +61,13 @@ resource "azurerm_kubernetes_cluster" "k8s" {
         vm_size         = var.vm_size
     }
 
-    service_principal {
-        client_id     = data.azurerm_key_vault_secret.spn_id.value
-        client_secret = data.azurerm_key_vault_secret.spn_secret.value
+    # service_principal {
+    #     client_id     = data.azurerm_key_vault_secret.spn_id.value
+    #     client_secret = data.azurerm_key_vault_secret.spn_secret.value
+    # }
+
+    identity {
+      type = "SystemAssigned"
     }
 
     # addon_profile {
@@ -99,5 +103,5 @@ resource "azurerm_container_registry" "acr" {
 resource "azurerm_role_assignment" "aks_sp_container_registry" {
     scope                = azurerm_container_registry.acr.id
     role_definition_name = "AcrPull"
-    principal_id         = var.spn_object_id
+    principal_id         = azurerm_kubernetes_cluster.k8s.identity[0].object_id
 }
