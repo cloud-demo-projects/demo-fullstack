@@ -1,17 +1,18 @@
-variable "client_id" {
-    default = "468b6d82-4d1f-4752-947e-b61d196b40fc"
-}
-variable "client_secret" {
-    default = "uAtl_hpxnR.M4G5vdzYqd01poGv9.zW_lv"
-}
+# AKS
+# variable "client_id" {
+#     default = "468b6d82-4d1f-4752-947e-b61d196b40fc"
+# }
+# variable "client_secret" {
+#     default = "uAtl_hpxnR.M4G5vdzYqd01poGv9.zW_lv"
+# }
 
 variable "agent_count" {
     default = 1
 }
 
-variable "ssh_public_key" {
-    default = "~/.ssh/id_rsa.pub"
-}
+# variable "ssh_public_key" {
+#     default = "~/.ssh/id_rsa.pub"
+# }
 
 variable "dns_prefix" {
     default = "k8stest"
