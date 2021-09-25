@@ -58,7 +58,7 @@ resource "azurerm_kubernetes_cluster" "k8s" {
     default_node_pool {
         name            = "agentpool"
         node_count      = var.agent_count
-        vm_size         = "Standard_B2S"
+        vm_size         = var.vm_size
     }
 
     service_principal {
@@ -73,6 +73,10 @@ resource "azurerm_kubernetes_cluster" "k8s" {
     #     }
     # }
 
+    role_based_access_control {
+        enabled = var.role_based_access_control_enabled
+    }
+
     network_profile {
         load_balancer_sku = "Standard"
         network_plugin = "azure"
@@ -81,4 +85,19 @@ resource "azurerm_kubernetes_cluster" "k8s" {
     tags = {
         Environment = "Development"
     }
+}
+
+resource "azurerm_container_registry" "acr" {
+    name                = var.acr_name
+    resource_group_name = azurerm_resource_group.k8s.name
+    location            = azurerm_resource_group.k8s.location
+    sku                 = "Basic"
+    admin_enabled       = false
+    depends_on          = [azurerm_resource_group.k8s]
+}
+
+resource "azurerm_role_assignment" "aks_sp_container_registry" {
+    scope                = azurerm_container_registry.acr.id
+    role_definition_name = "AcrPull"
+    principal_id         = var.spn_object_id
 }
