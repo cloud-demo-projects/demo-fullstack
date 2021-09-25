@@ -51,7 +51,7 @@ resource "azurerm_kubernetes_cluster" "k8s" {
         admin_username = "ubuntu"
 
         ssh_key {
-            key_data = file(var.ssh_public_key)
+            key_data = data.azurerm_key_vault_secret.ssh_public_key.value
         }
     }
 
@@ -62,8 +62,8 @@ resource "azurerm_kubernetes_cluster" "k8s" {
     }
 
     service_principal {
-        client_id     = var.client_id
-        client_secret = var.client_secret
+        client_id     = data.azurerm_key_vault_secret.spn_id.value
+        client_secret = data.azurerm_key_vault_secret.spn_secret.value
     }
 
     addon_profile {

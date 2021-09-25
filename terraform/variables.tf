@@ -40,3 +40,12 @@ variable log_analytics_workspace_location {
 variable log_analytics_workspace_sku {
     default = "PerGB2018"
 }
+
+# KV
+variable keyvault_name {
+    default = "kvaks9"
+}
+
+variable keyvault_rg {
+    default = "test-aks"
+}
