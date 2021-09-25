@@ -15,15 +15,15 @@ variable "agent_count" {
 # }
 
 variable "dns_prefix" {
-    default = "k8stest"
+    default = "testaks9"
 }
 
 variable cluster_name {
-    default = "k8stest"
+    default = "testaks9"
 }
 
 variable resource_group_name {
-    default = "azure-k8stest"
+    default = "test-aks"
 }
 
 variable location {
