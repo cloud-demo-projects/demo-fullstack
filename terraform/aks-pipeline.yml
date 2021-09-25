@@ -13,14 +13,14 @@ stages:
     - task: AzureCLI@2
       displayName: 'Get Latest Kubernetes Version'
       inputs:
-        scriptType: bash
-        scriptLocation: inlineScript
-        azureSubscription: $(azureSubscription)
-        addSpnToEnvironment: true
+        azureSubscription: 'Nipun Bahri Subscription(bf0f6779-86d2-467e-8226-10f92a8ad378)'
+        scriptType: 'bash'
+        scriptLocation: 'inlineScript'
         inlineScript: |
           version=$(az aks get-versions --location $(location) --query orchestrators[-1].orchestratorVersion --output tsv)
           echo "##vso[task.setvariable variable=kubernetesVersion;]$version"
           echo "kubernetesVersion: $(kubernetesVersion)"
+        addSpnToEnvironment: true
     - task: ms-devlabs.custom-terraform-tasks.custom-terraform-installer-task.TerraformInstaller@0
       displayName: Terraform installation
       inputs:
