@@ -50,57 +50,16 @@ stages:
         provider: 'azurerm'
         command: 'validate'
         
-# - stage: Terraform_Deploy
-#   jobs:
-#   - job: Deploy
-#     displayName: TF Deployment
-#     steps:
-#     - task: ms-devlabs.custom-terraform-tasks.custom-terraform-installer-task.TerraformInstaller@0
-#       displayName: Terraform installation
-#       inputs:
-#         terraformVersion: '1.0.7'
-      
-#     - task: TerraformTaskV2@2
-#       displayName: Terraform init
-#       inputs:
-#         provider: 'azurerm'
-#         command: 'init'
-#         workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
-#         backendServiceArm: 'sub-sc'
-#         backendAzureRmResourceGroupName: 'test-aks'
-#         backendAzureRmStorageAccountName: 'tfaks9'
-#         backendAzureRmContainerName: 'akstfstate'
-#         backendAzureRmKey: $(tfstatePath)
-
-#     - task: TerraformTaskV2@2
-#       displayName: Terraform plan
-#       inputs:
-#         provider: 'azurerm'
-#         command: 'plan'
-#         workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
-#         commandOptions: '-out $(System.DefaultWorkingDirectory)/terraform/out.plan'
-#         environmentServiceNameAzureRM: 'sub-sc'
-
-#     - task: TerraformTaskV2@2
-#       displayName: Terraform apply
-#       inputs:
-#         provider: 'azurerm'
-#         command: 'apply'
-#         workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
-#         commandOptions: '$(System.DefaultWorkingDirectory)/terraform/out.plan'
-#         environmentServiceNameAzureRM: 'sub-sc'
-
-- stage: Terraform_Destroy
-  displayName: Terraform Destroy
+- stage: Terraform_Deploy
   jobs:
-  - job: Destroy
-    displayName: Destroy
+  - job: Deploy
+    displayName: TF Deployment
     steps:
     - task: ms-devlabs.custom-terraform-tasks.custom-terraform-installer-task.TerraformInstaller@0
       displayName: Terraform installation
       inputs:
         terraformVersion: '1.0.7'
-
+      
     - task: TerraformTaskV2@2
       displayName: Terraform init
       inputs:
@@ -121,11 +80,41 @@ stages:
         workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
         commandOptions: '-out $(System.DefaultWorkingDirectory)/terraform/out.plan'
         environmentServiceNameAzureRM: 'sub-sc'
-        
-    - task: TerraformTaskV1@0
-      displayName: 'Terraform Destroy'
+
+    - task: TerraformTaskV2@2
+      displayName: Terraform apply
       inputs:
         provider: 'azurerm'
-        command: 'destroy'
-        environmentServiceNameAzureRM: 'sub-sc'
+        command: 'apply'
         workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
+        commandOptions: '$(System.DefaultWorkingDirectory)/terraform/out.plan'
+        environmentServiceNameAzureRM: 'sub-sc'
+
+# - stage: Terraform_Destroy
+#   displayName: Terraform Destroy
+#   jobs:
+#   - job: Destroy
+#     displayName: Destroy
+#     steps:
+#     - task: ms-devlabs.custom-terraform-tasks.custom-terraform-installer-task.TerraformInstaller@0
+#       displayName: Terraform installation
+#       inputs:
+#         terraformVersion: '1.0.7'
+#     - task: TerraformTaskV2@2
+#       displayName: Terraform init
+#       inputs:
+#         provider: 'azurerm'
+#         command: 'init'
+#         workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
+#         backendServiceArm: 'sub-sc'
+#         backendAzureRmResourceGroupName: 'test-aks'
+#         backendAzureRmStorageAccountName: 'tfaks9'
+#         backendAzureRmContainerName: 'akstfstate'
+#         backendAzureRmKey: $(tfstatePath)
+#     - task: TerraformTaskV1@0
+#       displayName: 'Terraform Destroy'
+#       inputs:
+#         provider: 'azurerm'
+#         command: 'destroy'
+#         environmentServiceNameAzureRM: 'sub-sc'
+#         workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
