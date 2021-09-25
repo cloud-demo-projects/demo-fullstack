@@ -10,7 +10,7 @@ stages:
   - job: Validate
     displayName: Validation
     steps:
-    - task: charleszipp.azure-pipelines-tasks-terraform.azure-pipelines-tasks-terraform-installer.TerraformInstaller@0
+    - task: ms-devlabs.custom-terraform-tasks.custom-terraform-installer-task.TerraformInstaller@0
       displayName: Terraform installation
       inputs:
         terraformVersion: '1.0.7'
@@ -38,7 +38,7 @@ stages:
   - job: Deploy
     displayName: TF Deployment
     steps:
-    - task: charleszipp.azure-pipelines-tasks-terraform.azure-pipelines-tasks-terraform-installer.TerraformInstaller@0
+    - task: ms-devlabs.custom-terraform-tasks.custom-terraform-installer-task.TerraformInstaller@0
       displayName: Terraform installation
       inputs:
         terraformVersion: '1.0.7'
@@ -80,7 +80,7 @@ stages:
   - job: Destroy
     displayName: Destroy
     steps:
-    - task: charleszipp.azure-pipelines-tasks-terraform.azure-pipelines-tasks-terraform-installer.TerraformInstaller@0
+    - task: ms-devlabs.custom-terraform-tasks.custom-terraform-installer-task.TerraformInstaller@0
       displayName: Terraform installation
       inputs:
         terraformVersion: '1.0.7'
