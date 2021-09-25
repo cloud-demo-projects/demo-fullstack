@@ -5,6 +5,7 @@ pool:
   vmImage: ubuntu-latest
 
 variables:
+- group: global-variables
 - name: terraformVersion
   value: 1.0.7
 - name: tfstatePath
