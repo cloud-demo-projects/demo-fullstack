@@ -21,7 +21,7 @@ stages:
     - task: AzureCLI@2
       displayName: 'Get Latest Kubernetes Version'
       inputs:
-        azureSubscription: 'Nipun Bahri Subscription(bf0f6779-86d2-467e-8226-10f92a8ad378)'
+        azureSubscription: 'sub_sc'
         scriptType: 'bash'
         scriptLocation: 'inlineScript'
         inlineScript: |
@@ -39,7 +39,7 @@ stages:
         provider: 'azurerm'
         command: 'init'
         workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
-        backendServiceArm: 'Nipun Bahri Subscription(bf0f6779-86d2-467e-8226-10f92a8ad378)'
+        backendServiceArm: 'sub_sc'
         backendAzureRmResourceGroupName: 'test-aks'
         backendAzureRmStorageAccountName: 'tfaks9'
         backendAzureRmContainerName: 'akstfstate'
@@ -66,7 +66,7 @@ stages:
         provider: 'azurerm'
         command: 'init'
         workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
-        backendServiceArm: 'Nipun Bahri Subscription(bf0f6779-86d2-467e-8226-10f92a8ad378)'
+        backendServiceArm: 'sub_sc'
         backendAzureRmResourceGroupName: 'test-aks'
         backendAzureRmStorageAccountName: 'tfaks9'
         backendAzureRmContainerName: 'akstfstate'
@@ -79,7 +79,7 @@ stages:
         command: 'plan'
         workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
         commandOptions: '-out $(System.DefaultWorkingDirectory)/terraform/out.plan'
-        environmentServiceNameAzureRM: 'Nipun Bahri Subscription(bf0f6779-86d2-467e-8226-10f92a8ad378)'
+        environmentServiceNameAzureRM: 'sub_sc'
 
     - task: TerraformTaskV2@2
       displayName: Terraform apply
@@ -88,7 +88,7 @@ stages:
         command: 'apply'
         workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
         commandOptions: '$(System.DefaultWorkingDirectory)/terraform/out.plan'
-        environmentServiceNameAzureRM: 'Nipun Bahri Subscription(bf0f6779-86d2-467e-8226-10f92a8ad378)'
+        environmentServiceNameAzureRM: 'sub_sc'
 
 # - stage: Terraform_Destroy
 #   displayName: Terraform Destroy
@@ -106,7 +106,7 @@ stages:
 #         provider: 'azurerm'
 #         command: 'init'
 #         workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
-#         backendServiceArm: 'Nipun Bahri Subscription(bf0f6779-86d2-467e-8226-10f92a8ad378)'
+#         backendServiceArm: 'sub_sc'
 #         backendAzureRmResourceGroupName: 'test-aks'
 #         backendAzureRmStorageAccountName: 'tfaks9'
 #         backendAzureRmContainerName: 'akstfstate'
@@ -116,5 +116,5 @@ stages:
 #       inputs:
 #         provider: 'azurerm'
 #         command: 'destroy'
-#         environmentServiceNameAzureRM: 'Nipun Bahri Subscription(bf0f6779-86d2-467e-8226-10f92a8ad378)'
+#         environmentServiceNameAzureRM: 'sub_sc'
 #         workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
