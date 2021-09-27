@@ -61,14 +61,14 @@ resource "azurerm_kubernetes_cluster" "k8s" {
         vm_size         = var.vm_size
     }
 
-    # service_principal {
-    #     client_id     = data.azurerm_key_vault_secret.spn_id.value
-    #     client_secret = data.azurerm_key_vault_secret.spn_secret.value
-    # }
-
-    identity {
-      type = "SystemAssigned"
+    service_principal {
+        client_id     = data.azurerm_key_vault_secret.spn_id.value
+        client_secret = data.azurerm_key_vault_secret.spn_secret.value
     }
+
+    # identity {
+    #   type = "SystemAssigned"
+    # }
 
     # addon_profile {
     #     oms_agent {
@@ -100,8 +100,15 @@ resource "azurerm_container_registry" "acr" {
     depends_on          = [azurerm_resource_group.k8s]
 }
 
+# resource "azurerm_role_assignment" "aks_sp_container_registry" {
+#     scope                = azurerm_container_registry.acr.id
+#     role_definition_name = "AcrPull"
+#     principal_id         = azurerm_kubernetes_cluster.k8s.kubelet_identity[0].object_id
+# }
+
 resource "azurerm_role_assignment" "aks_sp_container_registry" {
-    scope                = azurerm_container_registry.acr.id
-    role_definition_name = "AcrPull"
-    principal_id         = azurerm_kubernetes_cluster.k8s.kubelet_identity[0].object_id
+  scope                            = azurerm_container_registry.acr.id
+  role_definition_name             = "AcrPull"
+  principal_id                     = data.azuread_service_principal.aks_principal.object_id
+  skip_service_principal_aad_check = true
 }

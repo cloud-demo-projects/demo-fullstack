@@ -1,3 +1,4 @@
+### Key Vault #######################################
 data "azurerm_key_vault" "terraform_vault" {
   name                = var.keyvault_name
   resource_group_name = var.keyvault_rg
@@ -15,4 +16,9 @@ data "azurerm_key_vault_secret" "spn_id" {
 data "azurerm_key_vault_secret" "spn_secret" {
   name         = "spn-secret"
   key_vault_id = data.azurerm_key_vault.terraform_vault.id
+}
+
+### Azure AD #######################################
+data "azuread_service_principal" "aks_principal" {
+  application_id = data.azurerm_key_vault_secret.spn_id.value
 }
