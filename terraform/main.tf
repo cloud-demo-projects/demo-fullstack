@@ -111,3 +111,9 @@ resource "azurerm_role_assignment" "aks_sp_container_registry" {
   role_definition_name             = "AcrPull"
   principal_id                     = data.azuread_service_principal.aks_principal.object_id
 }
+
+resource "azurerm_role_assignment" "aks_sp_container_registry" {
+  scope                            = azurerm_container_registry.acr.id
+  role_definition_name             = "AcrPush"
+  principal_id                     = data.azuread_service_principal.aks_principal.object_id
+}
