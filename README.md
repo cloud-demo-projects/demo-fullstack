@@ -29,7 +29,8 @@ Prerequisites are listed down for local development, CICD and IaC.
 
 ## IaC with Principle of Least Privileges 
 - DevOps Service principle for Azure DevOps pipeline
-- Server Service Principle/Managed Identity for cluster resources provisioning   
+- Server Service Principle/Managed Identity for cluster resources provisioning
+- Client Service Principle for RBAC   
 - SSH key for VM/node access
 - Storage account for Terraform state
 - Key Vault for secrets with SPN having GET access policy to SECRETS
