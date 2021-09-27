@@ -57,7 +57,7 @@ variable "vm_size" {
 
 ###### KV #######################################################################
 variable keyvault_name {
-    default = "kvaks9"
+    default = "kvaks99"
 }
 
 variable keyvault_rg {
