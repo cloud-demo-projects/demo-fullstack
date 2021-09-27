@@ -27,9 +27,9 @@ Prerequisites are listed down for local development, CICD and IaC.
 - Docker Registry Service Connection
 - Azure SQL database server firewall opened up through private endpoint against AKS VNet.
 
-## IaC
-- Service principle for Azure DevOps pipeline (AKS & ACR provisioning through Terraform)
-- Service Principle/Managed Identity for cluster resource provisioning   
+## IaC with Principle of Least Privilages 
+- DevOps Service principle for Azure DevOps pipeline
+- Server Service Principle/Managed Identity for cluster resources provisioning   
 - SSH key for VM/node access
 - Storage account for Terraform state
 - Key Vault for secrets with SPN having GET access policy to SECRETS
