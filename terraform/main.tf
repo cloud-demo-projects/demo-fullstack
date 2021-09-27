@@ -100,19 +100,25 @@ resource "azurerm_container_registry" "acr" {
     depends_on          = [azurerm_resource_group.k8s]
 }
 
-# resource "azurerm_role_assignment" "aks_sp_container_registry" {
+# resource "azurerm_role_assignment" "aks_sp_container_registry_pull" {
 #     scope                = azurerm_container_registry.acr.id
 #     role_definition_name = "AcrPull"
 #     principal_id         = azurerm_kubernetes_cluster.k8s.kubelet_identity[0].object_id
 # }
 
-resource "azurerm_role_assignment" "aks_sp_container_registry" {
+# resource "azurerm_role_assignment" "aks_sp_container_registry_push" {
+#     scope                = azurerm_container_registry.acr.id
+#     role_definition_name = "AcrPull"
+#     principal_id         = azurerm_kubernetes_cluster.k8s.kubelet_identity[0].object_id
+# }
+
+resource "azurerm_role_assignment" "aks_sp_container_registry_pull" {
   scope                            = azurerm_container_registry.acr.id
   role_definition_name             = "AcrPull"
   principal_id                     = data.azuread_service_principal.aks_principal.object_id
 }
 
-resource "azurerm_role_assignment" "aks_sp_container_registry" {
+resource "azurerm_role_assignment" "aks_sp_container_registry_push" {
   scope                            = azurerm_container_registry.acr.id
   role_definition_name             = "AcrPush"
   principal_id                     = data.azuread_service_principal.aks_principal.object_id
