@@ -28,6 +28,7 @@ Prerequisites are listed down for local development, CICD and IaC.
 - Azure SQL database server firewall opened up through private endpoint against AKS VNet.
 
 ## IaC with Principle of Least Privileges 
+- Governing Service Principle to provide delegations to other service principles
 - DevOps Service principle for Azure DevOps pipeline
 - Server Service Principle/Managed Identity for cluster resources provisioning
 - Client Service Principle for RBAC   
