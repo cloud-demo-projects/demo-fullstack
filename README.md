@@ -27,7 +27,7 @@ Prerequisites are listed down for local development, CICD and IaC.
 - Docker Registry Service Connection
 - Azure SQL database server firewall opened up through private endpoint against AKS VNet.
 
-## IaC with Principle of Least Privilages 
+## IaC with Principle of Least Privileges 
 - DevOps Service principle for Azure DevOps pipeline
 - Server Service Principle/Managed Identity for cluster resources provisioning   
 - SSH key for VM/node access
