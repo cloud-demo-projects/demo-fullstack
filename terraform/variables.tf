@@ -27,7 +27,7 @@ variable cluster_name {
 }
 
 variable resource_group_name {
-    default = "test-aks9"
+    default = "test-aks"
 }
 
 variable location {
