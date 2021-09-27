@@ -1,0 +1,38 @@
+trigger:
+- none
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+- template: iac-variables/cicd-variables.yml
+
+stages:
+- stage: Terraform_Destroy
+  displayName: Terraform Destroy
+  jobs:
+  - job: Destroy
+    displayName: Destroy
+    steps:
+    - task: ms-devlabs.custom-terraform-tasks.custom-terraform-installer-task.TerraformInstaller@0
+      displayName: Terraform installation
+      inputs:
+        terraformVersion: '1.0.7'
+    - task: TerraformTaskV2@2
+      displayName: Terraform init
+      inputs:
+        provider: 'azurerm'
+        command: 'init'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
+        backendServiceArm: $(service_connection)
+        backendAzureRmResourceGroupName: $(aks_rg)
+        backendAzureRmStorageAccountName: $(sac)
+        backendAzureRmContainerName: $(sac_container)
+        backendAzureRmKey: $(tfstatePath)
+    - task: TerraformTaskV1@0
+      displayName: 'Terraform Destroy'
+      inputs:
+        provider: 'azurerm'
+        command: 'destroy'
+        environmentServiceNameAzureRM: $(service_connection)
+        workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'

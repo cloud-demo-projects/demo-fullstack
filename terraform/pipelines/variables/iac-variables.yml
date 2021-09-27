@@ -1,0 +1,8 @@
+variables:
+  terraformVersion: 1.0.7
+  tfstatePath: terraform.tfstate
+  location: westeurope
+  service_connection: sub_sc
+  aks_rg: test-aks
+  sac: tfaks9
+  sac_container: akstfstate
