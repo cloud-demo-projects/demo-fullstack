@@ -3,6 +3,6 @@ variables:
   tfstatePath: terraform.tfstate
   location: westeurope
   service_connection: sub_sc
-  aks_rg: test-aks
+  aks_rg: test-aks9
   sac: tfaks9
   sac_container: akstfstate
