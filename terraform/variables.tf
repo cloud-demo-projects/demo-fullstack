@@ -61,7 +61,7 @@ variable keyvault_name {
 }
 
 variable keyvault_rg {
-    default = "test-aks"
+    default = "test-aks9"
 }
 
 ### ACR #####################################################
