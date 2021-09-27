@@ -5,7 +5,7 @@ pool:
   vmImage: ubuntu-latest
 
 variables:
-- template: iac-variables/cicd-variables.yml
+- template: variables/iac-variables.yml
 
 stages:
 - stage: Terraform_Validate
