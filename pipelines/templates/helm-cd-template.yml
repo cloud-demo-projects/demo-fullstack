@@ -2,7 +2,7 @@ steps:
     - task: AzureCLI@2
       displayName: Download Helm Chart from ACR
       inputs:
-        azureSubscription: 'Nipun Bahri Subscription(bf0f6779-86d2-467e-8226-10f92a8ad378)'
+        azureSubscription: $(service_connection)
         scriptType: 'bash'
         scriptLocation: 'inlineScript'
         inlineScript: |
@@ -21,7 +21,7 @@ steps:
       displayName: Helm Package Deployment in AKS
       inputs:
         connectionType: 'Azure Resource Manager'
-        azureSubscription: 'Nipun Bahri Subscription(bf0f6779-86d2-467e-8226-10f92a8ad378)'
+        azureSubscription: $(service_connection)
         azureResourceGroup: $(aksrg)
         kubernetesCluster: $(aks)
         useClusterAdmin: true

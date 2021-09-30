@@ -1,5 +1,5 @@
 variables:
-  acrPassword: 'BO~FoJ8Hc8e4jFCdnuHNAhN~Mt-cUBKJQx'
+  service_connection: sub_sc
   containerRegistry: 'testaks9acr9.azurecr.io'
   acrname: 'testaks9acr9'
   aks: 'testaks9'

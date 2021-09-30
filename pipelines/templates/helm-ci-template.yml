@@ -18,7 +18,7 @@ steps:
     - task: HelmDeploy@0
       displayName: Save Helm Package to ACR
       inputs:
-        azureSubscriptionForACR: 'Nipun Bahri Subscription(bf0f6779-86d2-467e-8226-10f92a8ad378)'
+        azureSubscriptionForACR: $(service_connection)
         azureResourceGroupForACR: $(aksrg)
         azureContainerRegistry: $(containerRegistry)
         command: 'save'
