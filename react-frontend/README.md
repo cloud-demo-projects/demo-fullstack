@@ -1,10 +1,12 @@
 [![Build Status](https://dev.azure.com/bahrinipun/demo-fullstack/_apis/build/status/react-frontend?branchName=master)](https://dev.azure.com/bahrinipun/demo-fullstack/_build/latest?definitionId=47&branchName=master)
 
 # Getting Started with Create React App
-
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-# React app
+# Prerequisites Pipeline
+-  Docker registry service connection
+
+# React App Development Steps
 - Creating React App- (Steps: npx create-react-app my-app, cd my-app, npm start ), Edit and see app.js
 - Import bootstrap css library- npm install bootstrap --save
 - Import bootstrap css- import 'bootstrap/dist/css/bootstrap.min.css';
@@ -14,7 +16,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - Create Header & Footer compomentnts with static content & include in UI
 - Routing- npm install react-router-dom
   import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-  
+
 ## Available Scripts
 
 In the project directory, you can run:
