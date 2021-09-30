@@ -1,4 +1,11 @@
-steps:        
+steps:
+    - task: HelmInstaller@0
+      displayName: 'Install Helm'
+      inputs:
+        helmVersion: '3.6.3'
+        checkLatestHelmVersion: false
+        installKubectl: true
+
     - task: AzureCLI@2
       displayName: Download Helm Chart from ACR
       inputs:
