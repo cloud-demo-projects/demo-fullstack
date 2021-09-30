@@ -11,6 +11,7 @@ steps:
           HELM_USER='00000000-0000-0000-0000-000000000000'
           HELM_TOKEN=$(az acr login --name $(acrname) --expose-token --output tsv --query accessToken)
           echo $HELM_TOKEN | helm registry login $(containerRegistry) --username $HELM_USER --password-stdin
+          helm version
           helm repo update
           helm chart pull $(containerRegistry)/helm/${{ parameters.chartName }}:${{ parameters.chartVersion }}
           helm chart export $(containerRegistry)/helm/${{ parameters.chartName }}:${{ parameters.chartVersion }} --destination .
