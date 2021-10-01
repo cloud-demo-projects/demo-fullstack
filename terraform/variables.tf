@@ -14,9 +14,9 @@ variable "agent_count" {
     default = 1
 }
 
-# variable "ssh_public_key" {
-#     default = "~/.ssh/id_rsa.pub"
-# }
+variable "ssh_public_key_value" {
+    default = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDgdoD5MOC+suUURmM8omGZ//cjW2SvzVhdYgWzNHSxbVy3HPTCEhGpUrgmmDYbi3sdZxpI4SIyazqKL+IAtlHJeENnJjp2QJFz5VFqMW0k4o3FtI1G32Ij1CoBiw3dVT2S3j4+RxOu1pE5AaW3H8Y8WoFla+i978VGz4hRQddpQOhmk6kQS0AISx37MWi6n3hYz+eCgPUIh2H4ZW4TNcCm5vObR5W3w8+SF9qN8rnILgFnb79FDaOIQ3qFpNqeq3ho++ZfEIA+awYV0s/5k750aPCdNKSS1S61B/z2RYn9VUH0FHL6PgHSsOi4AUgCuQb9k87EXHSG5L6ZqNI+8zTJ nipun@cc-a7b25532-6f7f5f69d5-nk8hx"
+}
 
 variable "dns_prefix" {
     default = "testaks9"

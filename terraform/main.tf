@@ -52,7 +52,7 @@ resource "azurerm_kubernetes_cluster" "k8s" {
 
         ssh_key {
             //key_data = data.azurerm_key_vault_secret.ssh_public_key.value
-            key_data = var.ssh_public_key
+            key_data    = var.ssh_public_key_value
         }
     }
 
