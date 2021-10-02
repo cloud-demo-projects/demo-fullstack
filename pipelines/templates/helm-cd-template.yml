@@ -38,7 +38,7 @@ steps:
         chartType: 'FilePath'
         chartPath: '${{ parameters.projectName }}/${{ parameters.chartName }}'
         releaseName: ${{ parameters.releaseName }}
-        arguments: '--debug'
+        arguments: '--create-namespace'
       
     
     
