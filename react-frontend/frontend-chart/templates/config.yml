@@ -1,6 +1,6 @@
 apiVersion: v1
 data:
-  EMPLOYEE_API_BASE_URL_VALUE: http://20.73.135.144:8080/api/v1/employees
+  EMPLOYEE_API_BASE_URL_VALUE: http://51.136.72.145:8080/api/v1/employees
 kind: ConfigMap
 metadata:
   name: {{ .Values.configMap.name }}
