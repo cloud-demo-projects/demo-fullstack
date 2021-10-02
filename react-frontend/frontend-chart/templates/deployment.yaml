@@ -25,3 +25,8 @@ spec:
             configMapKeyRef:
               name: reactconfig
               key: EMPLOYEE_API_BASE_URL_VALUE
+        - name: REACT_APP_SKILL_API_BASE_URL
+          valueFrom:
+            configMapKeyRef:
+              name: reactconfig
+              key: SKILL_API_BASE_URL_VALUE

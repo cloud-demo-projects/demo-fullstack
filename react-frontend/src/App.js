@@ -2,7 +2,7 @@ import './App.css';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import FooterComponent from './component/FooterComponent';
 import HeaderComponent from './component/HeaderComponent';
-import ListEmployeeComponent from './component/ListEmployeeComponent';
+import ListSkillComponent from './component/ListSkillComponent';
 
 function App() {
   return (
@@ -11,9 +11,9 @@ function App() {
           <HeaderComponent />
           <div className="container">
             <Switch>
-              <Route path = "/" component = {ListEmployeeComponent}></Route>
-              <Route path = "/employees" component = {ListEmployeeComponent}></Route>
-              <ListEmployeeComponent/>
+              <Route path = "/" component = {ListSkillComponent}></Route>
+              <Route path = "/employees" component = {ListSkillComponent}></Route>
+              <ListSkillComponent/>
             </Switch>
           </div>
           <FooterComponent />
