@@ -15,7 +15,7 @@ variable "agent_count" {
 }
 
 variable "ssh_public_key_value" {
-    default = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDgdoD5MOC+suUURmM8omGZ//cjW2SvzVhdYgWzNHSxbVy3HPTCEhGpUrgmmDYbi3sdZxpI4SIyazqKL+IAtlHJeENnJjp2QJFz5VFqMW0k4o3FtI1G32Ij1CoBiw3dVT2S3j4+RxOu1pE5AaW3H8Y8WoFla+i978VGz4hRQddpQOhmk6kQS0AISx37MWi6n3hYz+eCgPUIh2H4ZW4TNcCm5vObR5W3w8+SF9qN8rnILgFnb79FDaOIQ3qFpNqeq3ho++ZfEIA+awYV0s/5k750aPCdNKSS1S61B/z2RYn9VUH0FHL6PgHSsOi4AUgCuQb9k87EXHSG5L6ZqNI+8zTJ nipun@cc-a7b25532-6f7f5f69d5-nk8hx"
+    default = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCaVp7TBD+qngQYPFiMzYhW68zyJRl1TmUh+S/8Gc/Hg8bLnRbWBjQ75YY/C2BxaTBcYCX8fd4dEGku/jf9hkcGM8SukwXg4qssCVjr3KKIoPa3QNfmH2uW0QCdXs+TR9j5bo1iaZ2hjgVa87QJ9SiW/bmcNETk5/PLWX6jilW9+Vj1MsHve5IZ7vHdkkiHe7PtkVglzTGbWb/V6DAhhr+6Vwny+W45Juczq0ScJiQg+YWc4A1OAj+GcyU4nntoAZN/BIvBK9KR5+pldOklnujsUrQSH/uicv/Rw2bxyN/xLXR2im6fIUaptRKxz1muKw3TFbKfJqRtTkeB5fVrRM4F nipun@cc-bd44156f-75946bd9b5-tklwn"
 }
 
 variable "dns_prefix" {
