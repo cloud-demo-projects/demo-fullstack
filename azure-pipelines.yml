@@ -1,0 +1,16 @@
+# AKS Prerequsites pipeline
+# DevOps SPN and permissions & role assignment
+# Server SPN & role assignment
+# Storage Account for terraform state
+# Key vault for storing secrets such as ssh key, spn secrets
+
+trigger:
+- none
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- script: echo Hello, world!
+  displayName: 'AKS Prerequistes Creation'
+
