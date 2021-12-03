@@ -5,7 +5,7 @@ This sample shows how to create/manage/deploy an AKS clusters with:
 - Spring boot API
 - Azure SQL connectivity through Private Endpoint
 - Helm charts used as release management into AKS cluster
-- Terraform has been used as IaC to build/change/destroy the Azure infrastructure
+- Terraform for IaC to build/change/destroy the Azure infrastructure
 
 # Prerequisites
 Prerequisites are listed down for local development, CICD and IaC.
