@@ -4,7 +4,7 @@ This sample shows how to create/manage/deploy an AKS clusters with:
 - React SPA frontend 
 - Spring boot API
 - Azure SQL connectivity through Private Endpoint
-- Helm charts used as release management into AKS cluster
+- Helm charts for release management into AKS cluster
 - Terraform for IaC to build/change/destroy the Azure infrastructure
 
 # Prerequisites
