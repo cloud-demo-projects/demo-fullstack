@@ -5,7 +5,7 @@
 # Key vault for storing secrets such as ssh key, spn secrets
 
 trigger:
-- master
+- none
 
 name: AKS Prerequisites Deployment Using Bicep
 
