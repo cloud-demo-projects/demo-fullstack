@@ -15,17 +15,24 @@ variables:
   azureServiceConnection: 'sub_sc'
   resourceGroupName: 'exampleRG'
   location: 'westeurope'
-  templateFile: './createSacDeploy.bicep'
+  templateFile: '../createSacDeploy.bicep'
 pool:
   vmImage: $(vmImageName)
 
-steps:
-- task: AzureCLI@2
-  inputs:
-    azureSubscription: $(azureServiceConnection)
-    scriptType: bash
-    scriptLocation: inlineScript
-    inlineScript: |
-      az --version
-      az group create --name $(resourceGroupName) --location $(location)
-      az deployment group create --resource-group $(resourceGroupName) --template-file $(templateFile)
+stages:
+- stage: Bicep_Deploy
+  displayName: Bicep Deploy
+  jobs:
+  - job: Deploy
+    displayName: Deploy
+    steps:
+    - task: AzureCLI@2
+      displayName: Bicep SAC Deployment
+      inputs:
+        azureSubscription: $(azureServiceConnection)
+        scriptType: bash
+        scriptLocation: inlineScript
+        inlineScript: |
+          az --version
+          az group create --name $(resourceGroupName) --location $(location)
+          az deployment group create --resource-group $(resourceGroupName) --template-file $(templateFile)
