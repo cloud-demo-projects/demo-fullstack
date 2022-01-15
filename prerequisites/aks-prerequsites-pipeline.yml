@@ -34,5 +34,4 @@ stages:
         scriptLocation: inlineScript
         inlineScript: |
           az --version
-          az group create --name $(resourceGroupName) --location $(location)
-          az deployment group create --resource-group $(resourceGroupName) --template-file $(templateFile)
+          az deployment sub create --template-file $(templateFile) -l 'westeurope'
