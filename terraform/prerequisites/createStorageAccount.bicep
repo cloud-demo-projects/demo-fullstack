@@ -1,6 +1,6 @@
 resource rStorageAccount 'Microsoft.Storage/storageAccounts@2020-08-01-preview' = {
-  name: 'stgplayground001'
-  location: resourceGroup().location
+  name: 'tfaks9'
+  location: ''resourceGroup().location''
   sku: {
     name: 'Standard_LRS'
   }
@@ -36,6 +36,6 @@ resource rStorageAccount 'Microsoft.Storage/storageAccounts@2020-08-01-preview' 
 }
 
 resource rStorageAccountContainer 'Microsoft.Storage/storageAccounts/blobServices/containers@2021-04-01' = {
-  name: '${rStorageAccount.name}/default/container001'
+  name: '${rStorageAccount.name}/default/akstfstate'
   properties: {}
 }
