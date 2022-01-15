@@ -1,6 +1,6 @@
 resource rStorageAccount 'Microsoft.Storage/storageAccounts@2020-08-01-preview' = {
   name: 'tfaks9'
-  location: ''resourceGroup().location''
+  location: resourceGroup().location
   sku: {
     name: 'Standard_LRS'
   }
