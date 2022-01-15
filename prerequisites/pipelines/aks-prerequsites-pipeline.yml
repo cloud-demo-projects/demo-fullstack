@@ -15,7 +15,7 @@ variables:
   azureServiceConnection: 'sub_sc'
   resourceGroupName: 'exampleRG'
   location: 'westeurope'
-  templateFile: './createSacDeploy.bicep'
+  templateFile: '../createSacDeploy.bicep'
 pool:
   vmImage: $(vmImageName)
 
