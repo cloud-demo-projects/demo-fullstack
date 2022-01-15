@@ -21,6 +21,7 @@ pool:
 
 steps:
 - task: AzureCLI@2
+  displayName: Bicep SAC Deployment
   inputs:
     azureSubscription: $(azureServiceConnection)
     scriptType: bash
