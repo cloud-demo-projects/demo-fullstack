@@ -5,12 +5,27 @@
 # Key vault for storing secrets such as ssh key, spn secrets
 
 trigger:
-- none
+- master
 
+name: AKS Prerequisites Deployment Using Bicep
+
+variables:
+  vmImageName: 'ubuntu-latest'
+
+  azureServiceConnection: 'sub_sc'
+  resourceGroupName: 'exampleRG'
+  location: 'westeurope'
+  templateFile: './createSacDeploy.bicep'
 pool:
-  vmImage: ubuntu-latest
+  vmImage: $(vmImageName)
 
 steps:
-- script: echo Hello, world!
-  displayName: 'AKS Prerequistes Creation'
-
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: $(azureServiceConnection)
+    scriptType: bash
+    scriptLocation: inlineScript
+    inlineScript: |
+      az --version
+      az group create --name $(resourceGroupName) --location $(location)
+      az deployment group create --resource-group $(resourceGroupName) --template-file $(templateFile)
