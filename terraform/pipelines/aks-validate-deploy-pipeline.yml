@@ -24,10 +24,12 @@ stages:
           echo "##vso[task.setvariable variable=kubernetesVersion;]$version"
           echo "kubernetesVersion: $(version)"
         #addSpnToEnvironment: true
+
     - task: ms-devlabs.custom-terraform-tasks.custom-terraform-installer-task.TerraformInstaller@0
       displayName: Terraform installation
       inputs:
         terraformVersion: $(terraformVersion)
+
     - task: TerraformTaskV2@2
       displayName: Terraform init
       inputs:
@@ -39,6 +41,7 @@ stages:
         backendAzureRmStorageAccountName: $(sac)
         backendAzureRmContainerName: $(sac_container)
         backendAzureRmKey: $(tfstatePath)
+        
     - task: TerraformTaskV2@2
       displayName: Terraform validate
       inputs:
