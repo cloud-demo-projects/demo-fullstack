@@ -22,7 +22,7 @@ stages:
         inlineScript: |
           version=$(az aks get-versions --location $(location) --query orchestrators[-1].orchestratorVersion --output tsv)
           echo "##vso[task.setvariable variable=kubernetesVersion;]$version"
-          echo "kubernetesVersion: $(kubernetesVersion)"
+          echo "kubernetesVersion: $(version)"
         #addSpnToEnvironment: true
     - task: ms-devlabs.custom-terraform-tasks.custom-terraform-installer-task.TerraformInstaller@0
       displayName: Terraform installation
