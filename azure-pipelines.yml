@@ -40,7 +40,7 @@ stages:
       displayName: Build an image
       inputs:
         command: build
-        repository: sb
+        repository: 'testaks9acr9.azurecr.io/sb'
         dockerfile: '$(Build.SourcesDirectory)/springboot-backend/Dockerfile'
         tags: "1.60"
 
