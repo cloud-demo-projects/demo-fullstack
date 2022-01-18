@@ -24,8 +24,7 @@ stages:
       inputs:
         targetType: 'inline'
         script: |
-          wget -O /bin/hadolint https://github.com/hadolint/hadolint/releases/download/v1.16.3/hadolint-Linux-x86_64
-          chmod +x /bin/hadolint
+          docker run --rm -i hadolint/hadolint < '$(Build.SourcesDirectory)/springboot-backend/Dockerfile'
     - task: Docker@2
       displayName: Build an image
       inputs:
