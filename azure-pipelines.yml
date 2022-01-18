@@ -62,6 +62,5 @@ stages:
     - task: Docker@2
       inputs:
         containerRegistry: 'testaks9acr9_sc'
-        repository: 'sb'
+        repository: 'sb:160'
         command: 'push'
-        tags: "1.60"
