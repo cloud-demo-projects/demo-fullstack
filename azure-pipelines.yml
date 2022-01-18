@@ -35,8 +35,6 @@ stages:
           else
             echo "##vso[task.complete result=Succeeded]Docker Lint succeeded"
           fi
-
-          echo "Scan completed"
     - task: Docker@2
       displayName: Build an image
       inputs:
