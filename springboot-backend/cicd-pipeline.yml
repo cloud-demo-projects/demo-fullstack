@@ -49,6 +49,7 @@ stages:
           chartName: '${{ parameters.chartName }}'
           appVersion: '${{ parameters.appVersion }}'
           chartVersion: '${{ parameters.chartVersion }}'
+          acrName: '${{ parameters.acrName }}'
 
       - template: ../pipelines/templates/helm-ci-template.yml
         parameters:
