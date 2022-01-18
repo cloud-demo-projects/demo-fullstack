@@ -51,11 +51,11 @@ stages:
           chartVersion: '${{ parameters.chartVersion }}'
           acrName: '${{ parameters.acrName }}'
 
-- stage: Helm_Packaging
-  displayName: Helm Packaging
+- stage: Helm_Chart_Packaging
+  displayName: Helm Chart Packaging
   jobs:
-  - job: Helm_Package
-    displayName: Helm Package
+  - job: Helm_Chart_Package
+    displayName: Helm Chart Package
     pool:
       vmImage: ubuntu-latest  
     steps:
@@ -67,11 +67,11 @@ stages:
           appVersion: '${{ parameters.appVersion }}'
           chartVersion: '${{ parameters.chartVersion }}'
 
-- stage: Helm_Deploy
-  displayName: Helm Deployment
+- stage: Helm_Chart_Deploy
+  displayName: Helm Chart Deployment
   jobs:
-  - job: Helm_Deployment
-    displayName: Helm Deloy
+  - job: Helm_Chart_Deployment
+    displayName: Helm Chart Deloy
     pool:
       vmImage: ubuntu-latest  
     steps:      
