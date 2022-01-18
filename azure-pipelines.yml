@@ -65,5 +65,4 @@ stages:
         containerRegistry: 'testaks9acr9_sc'
         repository: 'sb'
         command: 'push'
-        Dockerfile: '$(Build.SourcesDirectory)/springboot-backend/Dockerfile'
         tags: '1.60'
