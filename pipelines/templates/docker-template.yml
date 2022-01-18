@@ -1,0 +1,58 @@
+# hadolint
+# build
+# trivy scan
+# push
+
+steps:
+    - task: Bash@3
+      displayName: "Linting Dockerfile"
+      continueOnError: true
+      inputs:
+        targetType: 'inline'
+        script: |
+          docker run --rm -i hadolint/hadolint < '${{ parameters.projectName }}/Dockerfile'
+          
+          # check if the Hadolint command found issues or not
+          if [ $? != 0 ];
+          then
+            echo "##vso[task.logissue type=error]Lint scanning found errors in the Dockerfile that need to be resolved!"
+            echo "##vso[task.complete result=Failed]Docker Lint reporting errors"
+          else
+            echo "##vso[task.complete result=Succeeded]Docker Lint succeeded"
+          fi
+
+    - task: Docker@2
+      displayName: 'Build Docker Image'
+      inputs:
+        containerRegistry: '${{ parameters.dockerRegistry_sc }}'
+        repository: '${{ parameters.projectName }}'
+        command: 'build'
+        Dockerfile: '${{ parameters.projectName }}/Dockerfile'
+        tags: '${{ parameters.appVersion }}'
+
+    - task: Bash@3
+      displayName: Download & Install Trivy
+      inputs:
+        targetType: 'inline'
+        script: |
+          docker images
+          wget https://github.com/aquasecurity/trivy/releases/download/v0.19.2/trivy_0.19.2_Linux-64bit.deb
+          sudo dpkg -i trivy_0.19.2_Linux-64bit.deb
+
+    - task: Bash@3
+      displayName: Trivy Image Scan
+      inputs:
+        targetType: 'inline'
+        script: |
+          trivy image '${{ parameters.acrName }}'/'${{ parameters.projectName }}':'${{ parameters.appVersion }}'
+
+    - task: Docker@2
+      displayName: 'Push Docker Image to ACR'
+      inputs:
+        containerRegistry: '${{ parameters.dockerRegistry_sc }}'
+        repository: '${{ parameters.projectName }}'
+        command: 'push'
+        tags: '${{ parameters.appVersion }}'
+      
+    
+    
