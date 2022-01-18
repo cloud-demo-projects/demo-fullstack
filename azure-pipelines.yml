@@ -42,8 +42,7 @@ stages:
         command: build
         repository: sb
         dockerfile: '$(Build.SourcesDirectory)/springboot-backend/Dockerfile'
-        tags: |
-          $(tag)
+        tags: "1.60"
 
     - task: Bash@3
       displayName: Download & Install Trivy For Image Scan
@@ -58,4 +57,4 @@ stages:
       inputs:
         targetType: 'inline'
         script: |
-          trivy image liamgu/azuredevopscontainersdemo:74
+          trivy image sb:1.60
