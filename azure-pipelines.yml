@@ -64,3 +64,4 @@ stages:
         containerRegistry: 'testaks9acr9_sc'
         repository: 'sb'
         command: 'push'
+        tags: "1.60"
