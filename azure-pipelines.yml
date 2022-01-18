@@ -58,7 +58,7 @@ stages:
       inputs:
         targetType: 'inline'
         script: |
-          trivy image sb:1.60
+          trivy image testaks9acr9.azurecr.io/sb:1.60
 
     - task: Docker@2
       inputs:
