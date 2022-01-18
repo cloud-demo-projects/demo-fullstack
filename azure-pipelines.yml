@@ -24,9 +24,7 @@ stages:
       inputs:
         targetType: 'inline'
         script: |
-          git clone https://github.com/hadolint/hadolint \
-          && cd hadolint \
-          && stack install
+          wget -O /bin/hadolint https://github.com/hadolint/hadolint/releases/download/v1.16.3/hadolint-Linux-x86_64
     - task: Docker@2
       displayName: Build an image
       inputs:
