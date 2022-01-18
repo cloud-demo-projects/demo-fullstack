@@ -1,5 +1,5 @@
 
-# Fullstack Application in AKS using Azure DevOps, Terraform & Helm Charts
+# Fullstack Application in AKS using Azure DevOps, Terraform, Bicep & Helm Charts
 This sample shows how to create/manage/deploy an AKS clusters with:
 - React SPA frontend 
 - Spring boot API
@@ -21,6 +21,7 @@ Prerequisites are listed down for local development, CICD and IaC.
 - Azure CLI ( For Azure subscription communication through command line )
 - Helm 3.6.3 ( For Helm communication through command line )
 - Azure SQL database with database server firewall opened up against client IP ( For local database development )
+- Bicep (Az CLI, VS code bicep extension)
 
 ## CI/CD 
 - AKS Cluster with CNI, Managed Identity enabled and ACR integrated
