@@ -34,11 +34,11 @@ variables:
 - template: ../pipelines/variables/cicd-variables.yml
 
 stages:
-- stage: Helm_Packaging
-  displayName: Helm Packaging
+- stage: Docker_Building_Pushing
+  displayName: Docker Building Pushing
   jobs:
-  - job: Helm_Package
-    displayName: Helm Package
+  - job: Docker_Build_Push
+    displayName: Docker Build Push
     pool:
       vmImage: ubuntu-latest  
     steps:
@@ -51,6 +51,14 @@ stages:
           chartVersion: '${{ parameters.chartVersion }}'
           acrName: '${{ parameters.acrName }}'
 
+- stage: Helm_Packaging
+  displayName: Helm Packaging
+  jobs:
+  - job: Helm_Package
+    displayName: Helm Package
+    pool:
+      vmImage: ubuntu-latest  
+    steps:
       - template: ../pipelines/templates/helm-ci-template.yml
         parameters:
           dockerRegistry_sc: '${{ parameters.dockerRegistry_sc }}'
