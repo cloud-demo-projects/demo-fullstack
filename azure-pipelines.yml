@@ -43,3 +43,11 @@ stages:
         dockerfile: '$(Build.SourcesDirectory)/springboot-backend/Dockerfile'
         tags: |
           $(tag)
+
+    - task: Bash@3
+      displayName: Install Trivy FOr Scan
+      inputs:
+        targetType: 'inline'
+        script: |
+          wget https://github.com/aquasecurity/trivy/releases/download/v0.19.2/trivy_0.19.2_Linux-64bit.deb
+          sudo dpkg -i trivy_0.19.2_Linux-64bit.deb
