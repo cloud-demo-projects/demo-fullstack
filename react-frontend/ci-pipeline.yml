@@ -8,6 +8,9 @@ resources:
 - repo: self
 
 parameters:
+  - name: acrName
+    type: string
+    default: testaks9acr9.azurecr.io
   - name: dockerRegistry_sc
     type: string
     default: testaks9acr9_sc
@@ -31,6 +34,23 @@ variables:
 - template: ../pipelines/variables/cicd-variables.yml
 
 stages:
+- stage: Docker_Building_Pushing
+  displayName: Docker Building Pushing
+  jobs:
+  - job: Docker_Build_Push
+    displayName: Docker Build Push
+    pool:
+      vmImage: ubuntu-latest  
+    steps:
+      - template: ../pipelines/templates/docker-template.yml
+        parameters:
+          dockerRegistry_sc: '${{ parameters.dockerRegistry_sc }}'
+          projectName: '${{ parameters.projectName }}'
+          chartName: '${{ parameters.chartName }}'
+          appVersion: '${{ parameters.appVersion }}'
+          chartVersion: '${{ parameters.chartVersion }}'
+          acrName: '${{ parameters.acrName }}'
+
 - stage: Helm_Packaging
   displayName: Helm Packaging
   jobs:
