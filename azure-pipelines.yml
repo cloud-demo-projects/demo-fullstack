@@ -63,7 +63,7 @@ stages:
     - task: Docker@2
       inputs:
         containerRegistry: 'testaks9acr9_sc'
-        repository: 'testaks9acr9/sb'
+        repository: 'testaks9acr9.azurecr.io/sb'
         command: 'push'
         Dockerfile: '$(Build.SourcesDirectory)/springboot-backend/Dockerfile'
         tags: '1.60'
