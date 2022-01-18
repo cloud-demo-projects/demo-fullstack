@@ -21,14 +21,48 @@ stages:
       vmImage: ubuntu-latest
     steps:
     - task: Bash@3
+      continueOnError: true
+      displayName: "Linting Dockerfile"
       inputs:
         targetType: 'inline'
         script: |
           docker run --rm -i hadolint/hadolint < '$(Build.SourcesDirectory)/springboot-backend/Dockerfile'
+          
+          # check if the Hadolint command found issues or not
+          if [ $? != 0 ];
+          then
+            echo "##vso[task.logissue type=error]Lint scanning found errors in the Dockerfile that need to be resolved!"
+            echo "##vso[task.complete result=Failed]Docker Lint reporting errors"
+          else
+            echo "##vso[task.complete result=Succeeded]Docker Lint succeeded"
+          fi
     - task: Docker@2
       displayName: Build an image
       inputs:
         command: build
+        repository: 'testaks9acr9.azurecr.io/sb'
         dockerfile: '$(Build.SourcesDirectory)/springboot-backend/Dockerfile'
-        tags: |
-          $(tag)
+        tags: "1.60"
+
+    - task: Bash@3
+      displayName: Download & Install Trivy For Image Scan
+      inputs:
+        targetType: 'inline'
+        script: |
+          docker images
+          wget https://github.com/aquasecurity/trivy/releases/download/v0.19.2/trivy_0.19.2_Linux-64bit.deb
+          sudo dpkg -i trivy_0.19.2_Linux-64bit.deb
+
+    - task: Bash@3
+      displayName: Trivy Scan
+      inputs:
+        targetType: 'inline'
+        script: |
+          trivy image testaks9acr9.azurecr.io/sb:1.60
+
+    - task: Docker@2
+      inputs:
+        containerRegistry: 'testaks9acr9_sc'
+        repository: 'sb'
+        command: 'push'
+        tags: '1.60'
