@@ -1,4 +1,6 @@
 # Steps
+# Junit Unit Tests
+# Code Coverage Jacoco, Cabetura 
 # Code compilation & static scan: sonarcube,PMD, FindBugs
 # Docker image build & push
 # Helm chart packaging & deployment
