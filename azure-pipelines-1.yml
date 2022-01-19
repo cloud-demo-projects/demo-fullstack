@@ -30,5 +30,5 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      ls -lrt '$(Build.SourcesDirectory)/' 
+      ls -lrt '$(Build.SourcesDirectory)/springboot-backend/target/' 
       ls -lrt '$(Build.ArtifactStagingDirectory)/'
