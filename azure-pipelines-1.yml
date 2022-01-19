@@ -19,8 +19,15 @@ steps:
     effectivePomSkip: false
     sonarQubeRunAnalysis: false
 
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: '$(System.DefaultWorkingDirectory)/springboot-backend/target/'
+    Contents: |
+      *.jar
+    TargetFolder: '$(build.artifactstagingdirectory)'
+
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '$(Build.SourcesDirectory)/springboot-backend/target/springboot-backend-0.0.1-SNAPSHOT.jar'
+    PathtoPublish: '$(build.artifactstagingdirectory)'
     ArtifactName: 'target'
     publishLocation: 'Container'
