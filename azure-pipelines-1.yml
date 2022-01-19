@@ -31,3 +31,4 @@ steps:
     targetType: 'inline'
     script: |
       ls -lrt '$(Build.SourcesDirectory)/' 
+      ls -lrt '$(Build.ArtifactStagingDirectory)/'
