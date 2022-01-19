@@ -24,11 +24,3 @@ steps:
     PathtoPublish: '$(Build.SourcesDirectory)/springboot-backend/target/springboot-backend-0.0.1-SNAPSHOT.jar'
     ArtifactName: 'target'
     publishLocation: 'Container'
-
-- task: Bash@3
-  displayName: Jar finding
-  inputs:
-    targetType: 'inline'
-    script: |
-      ls -lrt '$(Build.SourcesDirectory)/springboot-backend/target/' 
-      ls -lrt '$(Build.ArtifactStagingDirectory)/'
