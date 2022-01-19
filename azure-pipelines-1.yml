@@ -19,6 +19,12 @@ steps:
     effectivePomSkip: false
     sonarQubeRunAnalysis: false
 
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'Jar'
+    publishLocation: 'Container'
+
 - task: Bash@3
   displayName: Jar finding
   inputs:
