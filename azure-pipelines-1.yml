@@ -9,7 +9,8 @@ steps:
 - task: Maven@3
   inputs:
     mavenPomFile: '$(Build.SourcesDirectory)/springboot-backend/pom.xml'
-    publishJUnitResults: false
+    publishJUnitResults: true
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'
     javaHomeOption: 'JDKVersion'
     jdkVersionOption: '1.11'
     mavenVersionOption: 'Default'
