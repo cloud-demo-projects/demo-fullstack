@@ -1,5 +1,5 @@
 
-# Fullstack Application in AKS using Azure DevOps, Terraform, Bicep & Helm Charts
+# Fullstack Application in AKS using Azure DevOps, IaC(Terraform & Bicep) & Helm Charts
 This sample shows how to create/manage/deploy an AKS clusters with:
 - React SPA frontend 
 - Spring boot API
