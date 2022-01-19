@@ -18,3 +18,10 @@ steps:
     mavenAuthenticateFeed: false
     effectivePomSkip: false
     sonarQubeRunAnalysis: false
+
+- task: Bash@3
+  displayName: Jar finding
+  inputs:
+    targetType: 'inline'
+    script: |
+      ls -lrt '$(Build.SourcesDirectory)/' 
