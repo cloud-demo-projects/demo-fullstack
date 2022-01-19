@@ -12,6 +12,9 @@
   insert into employee_management_system.employees values(1,"bahri.nipun@gmail.com","Nipun","Bahri");
   
 # Additionals
-- Trivy image scan
+- Dockerfile Linting
+docker run --rm -i hadolint/hadolint < Dockerfile
+
+- Trivy Image Scan
 docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v C:\Users\nipun\.cache:/root/.cache/ aquasec/trivy:0.19.2 sb:latest
 
