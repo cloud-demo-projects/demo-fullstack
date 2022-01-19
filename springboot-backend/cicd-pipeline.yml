@@ -42,11 +42,11 @@ variables:
 - template: ../pipelines/variables/cicd-variables.yml
 
 stages:
-- stage: Maven_Building
-  displayName: Maven Building
+- stage: Java_Maven_Building
+  displayName: Java Maven Building
   jobs:
-  - job: Maven_Build
-    displayName: Maven Build
+  - job: Java_Maven_Build
+    displayName: Java Maven Build
     pool:
       vmImage: ubuntu-latest  
     steps:

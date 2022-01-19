@@ -8,6 +8,7 @@
 
 steps:
 - task: Maven@3
+  displayName: Maven Build
   inputs:
     mavenPomFile: '$(Build.SourcesDirectory)/${{ parameters.projectName }}/pom.xml'
     publishJUnitResults: true
@@ -21,6 +22,7 @@ steps:
     sonarQubeRunAnalysis: false
 
 - task: CopyFiles@2
+  displayName: Copy JAR
   inputs:
     SourceFolder: '$(System.DefaultWorkingDirectory)/${{ parameters.projectName }}/target/'
     Contents: |
@@ -28,6 +30,7 @@ steps:
     TargetFolder: '$(build.artifactstagingdirectory)'
 
 - task: PublishBuildArtifacts@1
+  displayName: Upload JAR
   inputs:
     PathtoPublish: '$(build.artifactstagingdirectory)'
     ArtifactName: 'target'
