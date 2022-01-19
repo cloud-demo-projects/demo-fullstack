@@ -21,8 +21,8 @@ steps:
 
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '$(Build.SourcesDirectory)/springboot-backend/target/'
-    ArtifactName: 'Jar'
+    PathtoPublish: '$(Build.SourcesDirectory)/springboot-backend/target/*.jar'
+    ArtifactName: 'target'
     publishLocation: 'Container'
 
 - task: Bash@3
