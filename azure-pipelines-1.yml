@@ -21,8 +21,8 @@ steps:
 
 - task: CopyFiles@2
   inputs:
-    Contents: |
-      *.jar
+    SourceFolder: '''$(System.DefaultWorkingDirectory)/springboot-backend/target/'''
+    Contents: '*.jar'
     TargetFolder: '$(build.artifactstagingdirectory)'
 
 - task: PublishBuildArtifacts@1
