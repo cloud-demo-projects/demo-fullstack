@@ -1,0 +1,29 @@
+# Maven build
+# Junit unit test
+# Cobertura code coverage
+# Static code analysis-
+# PMD
+# Find Bugs
+# Sonarcube
+
+steps:
+- task: Maven@3
+  inputs:
+    mavenPomFile: '$(Build.SourcesDirectory)/${{ parameters.projectName }}/pom.xml'
+    publishJUnitResults: true
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '1.11'
+    mavenVersionOption: 'Default'
+    mavenOptions: '-Xmx3072m'
+    mavenAuthenticateFeed: false
+    effectivePomSkip: false
+    sonarQubeRunAnalysis: false
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.SourcesDirectory)/${{ parameters.projectName }}/target/${{ parameters.projectName }}-0.0.1-SNAPSHOT.jar'
+    ArtifactName: 'target'
+    publishLocation: 'Container'
+    
+    

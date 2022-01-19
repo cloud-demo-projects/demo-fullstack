@@ -42,6 +42,18 @@ variables:
 - template: ../pipelines/variables/cicd-variables.yml
 
 stages:
+- stage: Maven_Building
+  displayName: Maven Building
+  jobs:
+  - job: Maven_Build
+    displayName: Maven Build
+    pool:
+      vmImage: ubuntu-latest  
+    steps:
+      - template: ../pipelines/templates/maven-build-template.yml
+        parameters:
+          projectName: '${{ parameters.projectName }}'
+
 - stage: Docker_Building_Pushing
   displayName: Docker Building Pushing
   jobs:
