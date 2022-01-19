@@ -21,8 +21,4 @@ steps:
     mavenOptions: '-Xmx3072m'
     mavenAuthenticateFeed: false
     effectivePomSkip: false
-    sonarQubeRunAnalysis: true
-    sqMavenPluginVersionChoice: 'latest'
-    checkStyleRunAnalysis: true
-    pmdRunAnalysis: true
-    findBugsRunAnalysis: true
+    sonarQubeRunAnalysis: false
