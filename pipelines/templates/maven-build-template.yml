@@ -35,11 +35,4 @@ steps:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'target'
     publishLocation: 'Container'
-
-- task: Bash@3
-  displayName: Content Check
-  inputs:
-    targetType: 'inline'
-    script: |
-      ls -lrt '$(Build.ArtifactStagingDirectory)/'
     
