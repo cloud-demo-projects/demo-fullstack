@@ -50,11 +50,14 @@ stages:
         script: |          
           ls -lrt '$(build.artifactstagingdirectory)'
 
-    - download: current
-      artifact: target
-
     - task: DownloadBuildArtifacts@1
       inputs:
         buildType: 'current'
         downloadType: 'specific'
         downloadPath: '$(System.ArtifactsDirectory)'
+
+    - task: Bash@3
+      inputs:
+        targetType: 'inline'
+        script: |          
+          ls -lrt '$(build.artifactstagingdirectory)'
