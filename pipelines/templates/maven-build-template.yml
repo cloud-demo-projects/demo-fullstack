@@ -27,13 +27,19 @@ steps:
     SourceFolder: '$(System.DefaultWorkingDirectory)/${{ parameters.projectName }}/target/'
     Contents: |
       *.jar
-    TargetFolder: '$(build.artifactstagingdirectory)'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
 - task: PublishBuildArtifacts@1
   displayName: Upload JAR
   inputs:
-    PathtoPublish: '$(build.artifactstagingdirectory)'
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'target'
     publishLocation: 'Container'
-    
+
+- task: Bash@3
+  displayName: Content Check
+  inputs:
+    targetType: 'inline'
+    script: |
+      ls -lrt '$(Build.ArtifactStagingDirectory)/'
     
