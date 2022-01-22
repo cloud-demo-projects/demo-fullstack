@@ -11,8 +11,6 @@ stages:
   jobs:
   - job: Java_Maven_Build
     displayName: Java Maven Build
-    pool:
-      vmImage: ubuntu-latest 
     steps:
     - task: Maven@3
       inputs:
@@ -45,8 +43,6 @@ stages:
   jobs:
   - job: Maven_Build
     displayName: Maven Build
-    pool:
-      vmImage: ubuntu-latest 
     steps:
     - task: Bash@3
       inputs:
