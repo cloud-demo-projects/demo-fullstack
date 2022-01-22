@@ -21,26 +21,12 @@ steps:
             echo "##vso[task.complete result=Succeeded]Docker Lint succeeded"
           fi
 
-    - task: Bash@3
-      displayName: Content Check
-      inputs:
-        targetType: 'inline'
-        script: |
-          ls -lrt '$(Build.ArtifactStagingDirectory)/'
-
     - task: DownloadBuildArtifacts@1
       displayName: Download JAR
       inputs:
         buildType: 'current'
         downloadType: 'specific'
         downloadPath: '$(Build.ArtifactStagingDirectory)'
-
-    - task: Bash@3
-      displayName: JAR Check
-      inputs:
-        targetType: 'inline'
-        script: |
-          ls -lrt '$(Build.ArtifactStagingDirectory)/target/'
 
     - task: Docker@2
       displayName: 'Build Docker Image'
