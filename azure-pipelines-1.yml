@@ -60,4 +60,4 @@ stages:
       inputs:
         targetType: 'inline'
         script: |          
-          ls -lrt '$(build.artifactstagingdirectory)'
+          ls -lrt '$(build.artifactstagingdirectory)/'
