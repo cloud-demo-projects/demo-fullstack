@@ -28,6 +28,7 @@ steps:
         repository: '${{ parameters.projectName }}'
         command: 'build'
         Dockerfile: '${{ parameters.projectName }}/Dockerfile'
+        buildContext: '$(Build.ArtifactStagingDirectory)'
         tags: '${{ parameters.appVersion }}'
 
     - task: Bash@3
