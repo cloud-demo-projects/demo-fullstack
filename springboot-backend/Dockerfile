@@ -1,10 +1,10 @@
 FROM openjdk:11-jre-slim
 MAINTAINER Nipun Bahri
 LABEL Environment="Development"
-#WORKDIR /usr/local/lib/
-COPY . /usr/local/lib/
+WORKDIR /usr/local/lib/target
+COPY . .
 EXPOSE 8080
-ENTRYPOINT ["java","-jar","/usr/local/lib/springboot-backend-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java","-jar","/usr/local/lib/target/springboot-backend-0.0.1-SNAPSHOT.jar"]
 
 
 #FROM adoptopenjdk/openjdk11

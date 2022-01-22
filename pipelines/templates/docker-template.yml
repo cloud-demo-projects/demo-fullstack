@@ -21,6 +21,13 @@ steps:
             echo "##vso[task.complete result=Succeeded]Docker Lint succeeded"
           fi
 
+    - task: Bash@3
+      displayName: Content Check
+      inputs:
+        targetType: 'inline'
+        script: |
+          ls -lrt '$(Build.ArtifactStagingDirectory)/'
+
     - task: Docker@2
       displayName: 'Build Docker Image'
       inputs:
