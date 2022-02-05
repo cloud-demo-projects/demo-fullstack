@@ -6,6 +6,8 @@ This sample shows how to create/manage/deploy an AKS clusters with:
 - Azure SQL connectivity through Private Endpoint
 - Helm charts for release management into AKS cluster
 - Terraform for IaC to build/change/destroy the Azure infrastructure
+- Hadolint for Dockerfile linting
+- Aqua Trivy for image scan
 
 # Prerequisites
 Prerequisites are listed down for local development, CICD and IaC.
