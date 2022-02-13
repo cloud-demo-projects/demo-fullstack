@@ -64,7 +64,7 @@ stages:
       displayName: Push Image
       inputs:
         containerRegistry: 'dockerhub_sc'
-        repository: 'sb'
+        repository: 'bahrinipun/sb'
         command: 'push'
         tags: '1.60'
 
