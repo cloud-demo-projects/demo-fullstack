@@ -74,5 +74,5 @@ stages:
         dockerRegistryServiceConnection: 'dockerhub_sc'
         repository: 'bahrinipun/sb'
         tag: '1.60'
-        configFile: 'structure-test.yaml'
+        configFile: '$(Build.SourcesDirectory)/cicd/structure-test.yaml'
         testRunTitle: 'Structure Test'
