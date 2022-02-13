@@ -33,6 +33,15 @@ stages:
           else
             echo "##vso[task.complete result=Succeeded]Docker Lint succeeded"
           fi
+
+    - task: ContainerStructureTest@0
+      inputs:
+        dockerRegistryServiceConnection: 'dockerhub_sc'
+        repository: 'sb'
+        tag: '1.60'
+        configFile: 'structure-test.yaml'
+        testRunTitle: 'Structure Test'
+
     - task: Docker@2
       displayName: Build an image
       inputs:
