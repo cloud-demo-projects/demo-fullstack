@@ -55,4 +55,4 @@ stages:
       inputs:
         targetType: 'inline'
         script: |
-          trivy image testaks9acr9.azurecr.io/sb:1.60
+          trivy image bahrinipun/sb:1.60
