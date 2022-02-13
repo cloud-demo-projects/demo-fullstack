@@ -38,7 +38,7 @@ stages:
       displayName: Build an image
       inputs:
         containerRegistry: 'dockerhub_sc'
-        repository: 'bahrinipun/sb'
+        repository: 'sb'
         command: 'build'
         Dockerfile: '$(Build.SourcesDirectory)/springboot-backend/Dockerfile'
         buildContext: '$(Build.ArtifactStagingDirectory)'
@@ -61,6 +61,7 @@ stages:
           trivy image bahrinipun/sb:1.60
           
     - task: Docker@2
+      displayName: Push Image
       inputs:
         containerRegistry: 'dockerhub_sc'
         repository: 'sb'
