@@ -38,9 +38,10 @@ stages:
       displayName: Build an image
       inputs:
         containerRegistry: 'dockerhub_sc'
-        repository: 'bahrinipun/sb'
+        repository: 'sb'
         command: 'build'
         Dockerfile: '$(Build.SourcesDirectory)/springboot-backend/Dockerfile'
+        buildContext: '$(Build.ArtifactStagingDirectory)'
         tags: '1.60'
 
     - task: Bash@3
