@@ -10,11 +10,25 @@ metadataTest:
   entrypoint: []
 
 fileExistenceTests:
-  # Main binary exists
-  - name: go
-    path: /usr/local/go/bin/go
+  - name: 'Docker Entry Point Exists'
+    path: '/docker-entrypoint.sh'
     shouldExist: true
-    permissions: "-rwxr-xr-x"
+
+  - name: 'index.html'
+    path: '/usr/share/nginx/html/index.html'
+    shouldExist: true
+
+  - name: 'Source Files should not exist'
+    path: '/app/blog/'
+    shouldExist: false
+
+  - name: 'Hexo Link should not exist'
+    path: '/usr/local/bin/hexo'
+    shouldExist: false
+
+  - name: 'Hexo should not exist'
+    path: '/usr/local/lib/node_modules/hexo-cli/bin/Hexo'
+    shouldExist: false
 
 commandTests:
   # Main binary can print its version
