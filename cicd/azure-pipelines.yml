@@ -38,11 +38,12 @@ stages:
       displayName: Build an image
       inputs:
         containerRegistry: 'dockerhub_sc'
-        repository: 'sb'
+        repository: 'bahrinipun/sb'
         command: 'build'
         Dockerfile: '$(Build.SourcesDirectory)/springboot-backend/Dockerfile'
         buildContext: '$(Build.ArtifactStagingDirectory)'
         tags: '1.60'
+        arguments: '--no-cache'
 
     - task: Bash@3
       displayName: Download & Install Trivy For Image Scan
@@ -64,14 +65,14 @@ stages:
       displayName: Push Image
       inputs:
         containerRegistry: 'dockerhub_sc'
-        repository: 'sb'
+        repository: 'bahrinipun/sb'
         command: 'push'
         tags: '1.60'
 
     - task: ContainerStructureTest@0
       inputs:
         dockerRegistryServiceConnection: 'dockerhub_sc'
-        repository: 'sb'
+        repository: 'bahrinipun/sb'
         tag: '1.60'
         configFile: 'structure-test.yaml'
         testRunTitle: 'Structure Test'
