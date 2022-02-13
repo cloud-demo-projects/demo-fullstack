@@ -37,10 +37,11 @@ stages:
     - task: Docker@2
       displayName: Build an image
       inputs:
-        command: build
+        containerRegistry: 'dockerhub_sc'
         repository: 'bahrinipun/sb'
-        dockerfile: '$(Build.SourcesDirectory)/springboot-backend/Dockerfile'
-        tags: "1.60"
+        command: 'build'
+        Dockerfile: '$(Build.SourcesDirectory)/springboot-backend/Dockerfile'
+        tags: '1.60'
 
     - task: Bash@3
       displayName: Download & Install Trivy For Image Scan
