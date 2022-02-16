@@ -13,10 +13,10 @@ metadataTest:
     - key: GOPATH
       value: /go
   exposedPorts: ["8080"]
-  volumes: ["/test"]
-  entrypoint: []
-  cmd: ["/bin/bash"]
-  workdir: ["/usr/local/lib"]
+  # volumes: ["/test"]
+  # entrypoint: []
+  # cmd: ["/bin/bash"]
+  # workdir: ["/usr/local/lib"]
 
 fileExistenceTests:
   # check that the apt-packages text file exists and has the correct permissions

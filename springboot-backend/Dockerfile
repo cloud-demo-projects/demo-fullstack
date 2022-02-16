@@ -1,6 +1,6 @@
 FROM openjdk:11-jre-slim
 
-LABEL MAINTAINER="Nipun Bahri"
+LABEL Maintainer="Nipun Bahri"
 LABEL Environment="Development"
 
 WORKDIR /usr/local/lib
