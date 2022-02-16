@@ -10,13 +10,16 @@ globalEnvVars:
 metadataTest:
   # Image has expected default metadata
   env:
-    - key: GOPATH
-      value: /go
+    - key: JAVA_HOME
+      value: /usr/local/openjdk-11
   exposedPorts: ["8080"]
-  # volumes: ["/test"]
+  labels:
+    — key: 'Maintainer'
+      value: 'Nipun Bahri'
+  volumes: ["null"]
   # entrypoint: []
   # cmd: ["/bin/bash"]
-  # workdir: ["/usr/local/lib"]
+  workdir: "/usr/local/lib"
 
 fileExistenceTests:
   # check that the apt-packages text file exists and has the correct permissions
@@ -39,40 +42,40 @@ fileContentTests:
     path: '/etc/apt/apt.conf.d/apt-retry'
     expectedContents: ['Acquire::Retries 3;']
 
-commandTests:
-  # Main binary can print its version
-  - name: go version
-    command: go
-    args: ["version"]
-    expectedOutput: ["go version go1.14.6"]
-    exitCode: 0
+# commandTests:
+#   # Main binary can print its version
+#   - name: go version
+#     command: go
+#     args: ["version"]
+#     expectedOutput: ["go version go1.14.6"]
+#     exitCode: 0
 
-  # Can compile a valid "hello world"
-  - name: hello world
-    setup: [["wget", "https://raw.githubusercontent.com/go-training/helloworld/master/main.go"]]
-    command: go
-    args: ["run", "main.go"]
-    expectedOutput: ["Hello World!!"]
-    exitCode: 0
-    teardown: [["rm", "main.go"]]
+#   # Can compile a valid "hello world"
+#   - name: hello world
+#     setup: [["wget", "https://raw.githubusercontent.com/go-training/helloworld/master/main.go"]]
+#     command: go
+#     args: ["run", "main.go"]
+#     expectedOutput: ["Hello World!!"]
+#     exitCode: 0
+#     teardown: [["rm", "main.go"]]
 
-  # check that the python binary is in the correct location
-  - name: "python installation"
-    command: "which"
-    args: ["python"]
-    expectedOutput: ["/usr/bin/python\n"]
+#   # check that the python binary is in the correct location
+#   - name: "python installation"
+#     command: "which"
+#     args: ["python"]
+#     expectedOutput: ["/usr/bin/python\n"]
 
- # setup a virtualenv, and verify the correct python binary is run
-  - name: "python in virtualenv"
-    setup: [["virtualenv", "/env"]]
-    command: "which"
-    args: ["python"]
-    expectedOutput: ["/env/bin/python\n"]
+#  # setup a virtualenv, and verify the correct python binary is run
+#   - name: "python in virtualenv"
+#     setup: [["virtualenv", "/env"]]
+#     command: "which"
+#     args: ["python"]
+#     expectedOutput: ["/env/bin/python\n"]
 
- # setup a virtualenv, install gunicorn, and verify the installation
-  - name: "gunicorn flask"
-    setup: [["virtualenv", "/env"],
-            ["pip", "install", "gunicorn", "flask"]]
-    command: "which"
-    args: ["gunicorn"]
-    expectedOutput: ["/env/bin/gunicorn"]
+#  # setup a virtualenv, install gunicorn, and verify the installation
+#   - name: "gunicorn flask"
+#     setup: [["virtualenv", "/env"],
+#             ["pip", "install", "gunicorn", "flask"]]
+#     command: "which"
+#     args: ["gunicorn"]
+#     expectedOutput: ["/env/bin/gunicorn"]
