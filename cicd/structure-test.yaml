@@ -14,7 +14,7 @@ metadataTest:
       value: /usr/local/openjdk-11
   exposedPorts: ["8080"]
   labels:
-    — key: 'Maintainer'
+    - key: 'Maintainer'
       value: 'Nipun Bahri'
   volumes: ["null"]
   # entrypoint: []
