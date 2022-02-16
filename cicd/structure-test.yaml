@@ -16,7 +16,7 @@ metadataTest:
   labels:
     - key: 'Maintainer'
       value: 'Nipun Bahri'
-  volumes: ["null"]
+  # volumes: ["null"]
   # entrypoint: []
   # cmd: ["/bin/bash"]
   workdir: "/usr/local/lib"
@@ -27,20 +27,20 @@ fileExistenceTests:
     path: '/usr/local/lib/target/springboot-backend-0.0.1-SNAPSHOT.jar'
     shouldExist: true
 
-  - name: 'Docker Entry Point Exists'
-    path: '/docker-entrypoint.sh'
-    shouldExist: true
+  # - name: 'Docker Entry Point Exists'
+  #   path: '/docker-entrypoint.sh'
+  #   shouldExist: true
 
-fileContentTests:
- # check that the default apt repository is set correctly
-  - name: 'apt sources'
-    path: '/etc/apt/sources.list'
-    expectedContents: ['.*httpredir\.debian\.org/debian jessie main.*']
+# fileContentTests:
+#  # check that the default apt repository is set correctly
+#   - name: 'apt sources'
+#     path: '/etc/apt/sources.list'
+#     expectedContents: ['.*httpredir\.debian\.org/debian jessie main.*']
 
- # check that the retry policy is correctly specified
-  - name: 'retry policy'
-    path: '/etc/apt/apt.conf.d/apt-retry'
-    expectedContents: ['Acquire::Retries 3;']
+#  # check that the retry policy is correctly specified
+#   - name: 'retry policy'
+#     path: '/etc/apt/apt.conf.d/apt-retry'
+#     expectedContents: ['Acquire::Retries 3;']
 
 # commandTests:
 #   # Main binary can print its version
