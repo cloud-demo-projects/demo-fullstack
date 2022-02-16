@@ -12,39 +12,21 @@ metadataTest:
   env:
     - key: GOPATH
       value: /go
-  entrypoint: []
-  exposedPorts: ["8080", "2345"]
+  exposedPorts: ["8080"]
   volumes: ["/test"]
   entrypoint: []
   cmd: ["/bin/bash"]
-  workdir: ["/app"]
+  workdir: ["/usr/local/lib"]
 
 fileExistenceTests:
   # check that the apt-packages text file exists and has the correct permissions
-  - name: 'apt-packages'
-    path: '/resources/apt-packages.txt'
+  - name: 'JAR Existence'
+    path: '/usr/local/lib/target/springboot-backend-0.0.1-SNAPSHOT.jar'
     shouldExist: true
-    permissions: '-rw-rw-r--'
 
   - name: 'Docker Entry Point Exists'
     path: '/docker-entrypoint.sh'
     shouldExist: true
-
-  - name: 'index.html'
-    path: '/usr/share/nginx/html/index.html'
-    shouldExist: true
-
-  - name: 'Source Files should not exist'
-    path: '/app/blog/'
-    shouldExist: false
-
-  - name: 'Hexo Link should not exist'
-    path: '/usr/local/bin/hexo'
-    shouldExist: false
-
-  - name: 'Hexo should not exist'
-    path: '/usr/local/lib/node_modules/hexo-cli/bin/Hexo'
-    shouldExist: false
 
 fileContentTests:
  # check that the default apt repository is set correctly
