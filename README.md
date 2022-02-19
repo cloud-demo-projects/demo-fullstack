@@ -8,7 +8,7 @@ This sample shows how to create/manage/deploy an AKS clusters with:
 - Terraform for IaC to build/change/destroy the k8 infrastructure
 - Bicep for deploying the prerequiste storage account
 - Hadolint for Dockerfile linting
-- Aqua Trivy for image scan
+- Aqua Trivy for image static scan
 - Google container structure test
 
 # Prerequisites
