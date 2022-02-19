@@ -83,7 +83,6 @@ steps:
         tag: '${{ parameters.appVersion }}'
         configFile: 'structure-test-config.yaml'
         testRunTitle: 'Structure Test'
-	      failTaskOnFailedTests: false
       
     
     
