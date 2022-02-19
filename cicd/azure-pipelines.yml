@@ -63,29 +63,23 @@ stages:
         script: |
           set -euo pipefail
           trivy image --exit-code 0 --severity LOW,MEDIUM bahrinipun/sb:1.60
-          trivy image --severity LOW,MEDIUM --format template --template "@templates/junit.tpl" -o junit-report-low-med.xml bahrinipun/sb:1.60
+          trivy image --severity LOW,MEDIUM --format template --template '$(Build.SourcesDirectory)/templates/junit.tpl' -o junit-report-low-med.xml bahrinipun/sb:1.60
 
     - task: Bash@3
-      displayName: Trivy Scan
+      displayName: Listing contents
       inputs:
         targetType: 'inline'
         script: |
-          set -euo pipefail
-
-          trivy image \
-            --ignore-unfixed \
-            --format template \
-            --template '$(Build.SourcesDirectory)/templates/structure-test.yaml' \
-            -o junit-report.xml \
-            bahrinipun/sb:1.60
+          ls -lrt
 
     - task: PublishTestResults@2
       displayName: 'Publish Trivy Scan Results'
       inputs:
-        testResultsFormat: 'JUnit' 
-        testResultsFiles: 'junit-report.xml' 
+        testResultsFormat: 'JUnit'
+        testResultsFiles: '**/junit-report-low-med.xml'
+        mergeTestResults: true
         failTaskOnFailedTests: false
-        testRunTitle: 'Trivy Image Scan'
+        testRunTitle: 'Trivy - Low and Medium Vulnerabilities'
           
     - task: Docker@2
       displayName: Push Image
