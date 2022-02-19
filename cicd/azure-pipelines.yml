@@ -76,3 +76,4 @@ stages:
         tag: '1.60'
         configFile: '$(Build.SourcesDirectory)/cicd/structure-test.yaml'
         testRunTitle: 'Structure Test'
+		failTaskOnFailedTests: false
