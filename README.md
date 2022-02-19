@@ -29,6 +29,7 @@ Prerequisites are listed down for local development, CICD and IaC.
 - Static Code Analysis (Sonarcube, FindBugs, PMD)
 - Dockerfile Linting (Hadolint)
 - Docker Image Build Scan (Trivy) 
+- Lens kubernetes IDE
 
 ## CI/CD 
 - AKS Cluster with CNI, Managed Identity enabled and ACR integrated
