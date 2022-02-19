@@ -39,7 +39,7 @@ parameters:
     default: sb
     
 variables:
-- template: ../pipelines/variables/cicd-variables.yml
+- template: ../cicd/variables/cicd-variables.yml
 
 stages:
 - stage: Java_Maven_Building
