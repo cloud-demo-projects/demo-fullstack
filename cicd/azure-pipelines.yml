@@ -71,6 +71,7 @@ stages:
         targetType: 'inline'
         script: |
           ls -lrt
+          view junit-report-high.xml
 
     - task: PublishTestResults@2
       displayName: 'Publish Trivy Scan Results'
@@ -79,7 +80,8 @@ stages:
         testResultsFiles: 'junit-report-high.xml'
         mergeTestResults: true
         failTaskOnFailedTests: false
-        testRunTitle: 'Trivy - Low and Medium Vulnerabilities'
+        testRunTitle: 'Trivy - High Vulnerabilities'
+      condition: 'always()' 
           
     - task: Docker@2
       displayName: Push Image
