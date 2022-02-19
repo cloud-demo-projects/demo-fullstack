@@ -53,6 +53,8 @@ stages:
           docker images
           wget https://github.com/aquasecurity/trivy/releases/download/v0.19.2/trivy_0.19.2_Linux-64bit.deb
           sudo dpkg -i trivy_0.19.2_Linux-64bit.deb
+          trivy -v
+
 
     - task: Bash@3
       displayName: Trivy Scan
@@ -60,7 +62,8 @@ stages:
         targetType: 'inline'
         script: |
           set -euo pipefail
-          trivy image bahrinipun/sb:1.60
+          trivy image --exit-code 0 --severity LOW,MEDIUM bahrinipun/sb:1.60
+          trivy image --exit-code 1 --severity LOW,MEDIUM bahrinipun/sb:1.60
 
     - task: Bash@3
       displayName: Trivy Scan
