@@ -63,7 +63,7 @@ stages:
         script: |
           set -euo pipefail
           trivy image --exit-code 0 --severity HIGH bahrinipun/sb:1.60
-          trivy image --severity LOW,MEDIUM --format template --template '$(Build.SourcesDirectory)/templates/junit.tpl' -o junit-report-low-med.xml bahrinipun/sb:1.60
+          trivy image --severity LOW,MEDIUM --format template --template '$(Build.SourcesDirectory)/templates/junit.tpl' -o junit-report-high.xml bahrinipun/sb:1.60
 
     - task: Bash@3
       displayName: Listing contents
@@ -76,7 +76,7 @@ stages:
       displayName: 'Publish Trivy Scan Results'
       inputs:
         testResultsFormat: 'JUnit'
-        testResultsFiles: 'junit-report-low-med.xml'
+        testResultsFiles: 'junit-report-high.xml'
         mergeTestResults: true
         failTaskOnFailedTests: false
         testRunTitle: 'Trivy - Low and Medium Vulnerabilities'
