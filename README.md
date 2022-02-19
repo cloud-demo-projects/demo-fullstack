@@ -31,11 +31,6 @@ Prerequisites are listed down for local development, CICD and IaC.
 - Docker Image Build Scan (Trivy) 
 - Lens kubernetes IDE
 
-## CI/CD 
-- AKS Cluster with CNI, Managed Identity enabled and ACR integrated
-- Docker Registry Service Connection
-- Azure SQL database server firewall opened up through private endpoint against AKS VNet.
-
 ## IaC with Principle of Least Privileges 
 With principle of least privilidges the DevOps SPN is granted required delegations by the governing SPN (usually carrying the Owner rights)
 - DevOps Service principle for Azure DevOps pipeline
@@ -43,4 +38,9 @@ With principle of least privilidges the DevOps SPN is granted required delegatio
 - Client Service Principle for RBAC   
 - SSH key for VM/node access
 - Storage account for Terraform state
-- Key Vault for secrets with SPN having GET access policy to SECRETS
+- Key Vault for secrets with SPN having GET access policy to secrets
+
+## CI/CD 
+- AKS Cluster with CNI, Managed Identity enabled and ACR integrated
+- Docker Registry Service Connection
+- Azure SQL database server firewall opened up through private endpoint against AKS VNet.
