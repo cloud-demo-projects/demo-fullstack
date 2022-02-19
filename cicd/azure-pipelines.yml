@@ -63,7 +63,7 @@ stages:
         script: |
           set -euo pipefail
           trivy image --exit-code 0 --severity LOW,MEDIUM bahrinipun/sb:1.60
-          trivy image --severity LOW,MEDIUM --format template --template "@templates/junit.tpl" -o junit-report-low-med.xml bahrinipun/sb:1.60
+          trivy image --severity LOW,MEDIUM --format template --template '$(Build.SourcesDirectory)/templates/junit.tpl' -o junit-report-low-med.xml bahrinipun/sb:1.60
 
     - task: Bash@3
       displayName: Trivy Scan
@@ -75,7 +75,7 @@ stages:
           trivy image \
             --ignore-unfixed \
             --format template \
-            --template '$(Build.SourcesDirectory)/templates/structure-test.yaml' \
+            --template '$(Build.SourcesDirectory)/templates/junit.tpl' \
             -o junit-report.xml \
             bahrinipun/sb:1.60
 
