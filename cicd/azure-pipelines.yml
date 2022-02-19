@@ -61,9 +61,7 @@ stages:
       inputs:
         targetType: 'inline'
         script: |
-          set -euo pipefail
-          trivy image --exit-code 0 --severity HIGH bahrinipun/sb:1.60
-          trivy image --severity HIGH --format template --template '$(Build.SourcesDirectory)/templates/junit.tpl' -o junit-report-high.xml bahrinipun/sb:1.60
+          trivy image --severity HIGH,CRITICAL --format template --template "@templates/junit.tpl" -o junit-report-high-crit.xml bahrinipun/sb:1.60
 
     - task: Bash@3
       displayName: Listing contents
@@ -71,14 +69,14 @@ stages:
         targetType: 'inline'
         script: |
           ls -lrt
-          chmod 777 junit-report-high.xml
+          chmod 777 junit-report-high-crit.xml
           ls -lrt
 
     - task: PublishTestResults@2
       displayName: 'Publish Trivy Scan Results'
       inputs:
         testResultsFormat: 'JUnit'
-        testResultsFiles: 'junit-report-high.xml'
+        testResultsFiles: 'junit-report-high-crit.xml'
         mergeTestResults: true
         failTaskOnFailedTests: false
         testRunTitle: 'Trivy - High Vulnerabilities'
