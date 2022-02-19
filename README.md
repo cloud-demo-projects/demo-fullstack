@@ -26,7 +26,7 @@ Prerequisites are listed down for local development, CICD and IaC.
 - Helm 3.6.3 ( For Helm communication through command line )
 - Azure SQL database with database server firewall opened up against client IP ( For local database development )
 - Bicep (AZ CLI, VS code bicep extension)
-- Static Code Analysis (Sonarcube, FindBugs, PMD)
+- Java Static Code Analysis (Sonarcube, FindBugs, PMD)
 - Dockerfile Linting (Hadolint)
 - Docker Image Build Scan (Trivy) 
 - Lens kubernetes IDE
