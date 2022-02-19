@@ -73,7 +73,7 @@ stages:
       inputs:
         testResultsFormat: 'JUnit' 
         testResultsFiles: 'junit-report.xml' 
-        failTaskOnFailedTests: $
+        failTaskOnFailedTests: false
         testRunTitle: 'Trivy Image Scan'
           
     - task: Docker@2
