@@ -51,8 +51,8 @@ stages:
         targetType: 'inline'
         script: |
           docker images
-          wget https://github.com/aquasecurity/trivy/releases/download/v0.9.2/trivy_0.9.2_Linux-64bit.deb
-          sudo dpkg -i trivy_0.9.2_Linux-64bit.deb
+          wget https://github.com/aquasecurity/trivy/releases/download/v0.23.0/trivy_0.23.0_Linux-64bit.deb
+          sudo dpkg -i trivy_0.23.0_Linux-64bit.deb
           trivy -v
 
 
@@ -62,7 +62,7 @@ stages:
         targetType: 'inline'
         script: |
           set -euo pipefail
-          trivy image --exit-code 0 --severity LOW,MEDIUM bahrinipun/sb:1.60
+          trivy image --exit-code 0 --severity HIGH bahrinipun/sb:1.60
           trivy image --severity LOW,MEDIUM --format template --template '$(Build.SourcesDirectory)/templates/junit.tpl' -o junit-report-low-med.xml bahrinipun/sb:1.60
 
     - task: Bash@3
