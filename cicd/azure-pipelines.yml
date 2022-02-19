@@ -71,6 +71,7 @@ stages:
           ls -lrt
           chmod 777 junit-report-high-crit.xml
           ls -lrt
+          ls -lrt cicd
 
     - task: PublishTestResults@2
       displayName: 'Publish Trivy Scan Results'
