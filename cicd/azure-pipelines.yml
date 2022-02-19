@@ -64,7 +64,7 @@ stages:
           trivy image \
             --ignore-unfixed \
             --format template \
-            --template "@pipeline-templates/junit.tpl" \
+            --template '$(Build.SourcesDirectory)/templates/structure-test.yaml' \
             -o junit-report.xml \
             bahrinipun/sb:1.60
 
