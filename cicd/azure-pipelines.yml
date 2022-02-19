@@ -82,10 +82,11 @@ stages:
     - task: PublishTestResults@2
       displayName: 'Publish Trivy Scan Results'
       inputs:
-        testResultsFormat: 'JUnit' 
-        testResultsFiles: 'junit-report.xml' 
+        testResultsFormat: 'JUnit'
+        testResultsFiles: '**/junit-report-low-med.xml'
+        mergeTestResults: true
         failTaskOnFailedTests: false
-        testRunTitle: 'Trivy Image Scan'
+        testRunTitle: 'Trivy - Low and Medium Vulnerabilities'
           
     - task: Docker@2
       displayName: Push Image
