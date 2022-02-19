@@ -65,20 +65,6 @@ stages:
           trivy image --exit-code 0 --severity LOW,MEDIUM bahrinipun/sb:1.60
           trivy image --severity LOW,MEDIUM --format template --template '$(Build.SourcesDirectory)/templates/junit.tpl' -o junit-report-low-med.xml bahrinipun/sb:1.60
 
-    - task: Bash@3
-      displayName: Trivy Scan
-      inputs:
-        targetType: 'inline'
-        script: |
-          set -euo pipefail
-
-          trivy image \
-            --ignore-unfixed \
-            --format template \
-            --template '$(Build.SourcesDirectory)/templates/junit.tpl' \
-            -o junit-report.xml \
-            bahrinipun/sb:1.60
-
     - task: PublishTestResults@2
       displayName: 'Publish Trivy Scan Results'
       inputs:
