@@ -61,7 +61,7 @@ stages:
       inputs:
         targetType: 'inline'
         script: |
-          trivy image --severity HIGH,CRITICAL --format template --template "@templates/junit.tpl" -o junit-report-high-crit.xml bahrinipun/sb:1.60
+          trivy image --severity HIGH,CRITICAL --format template --template "@cicd/templates/junit.tpl" -o junit-report-high-crit.xml bahrinipun/sb:1.60
 
     - task: Bash@3
       displayName: Listing contents
