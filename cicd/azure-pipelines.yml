@@ -60,6 +60,14 @@ stages:
         targetType: 'inline'
         script: |
           set -euo pipefail
+          trivy image bahrinipun/sb:1.60
+
+    - task: Bash@3
+      displayName: Trivy Scan
+      inputs:
+        targetType: 'inline'
+        script: |
+          set -euo pipefail
 
           trivy image \
             --ignore-unfixed \
