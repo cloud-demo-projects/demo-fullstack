@@ -63,16 +63,6 @@ stages:
         script: |
           trivy image --severity HIGH,CRITICAL --format template --template "@cicd/templates/junit.tpl" -o junit-report-high-crit.xml bahrinipun/sb:1.60
 
-    - task: Bash@3
-      displayName: Listing contents
-      inputs:
-        targetType: 'inline'
-        script: |
-          ls -lrt
-          chmod 777 junit-report-high-crit.xml
-          ls -lrt
-          ls -lrt cicd
-
     - task: PublishTestResults@2
       displayName: 'Publish Trivy Scan Results'
       inputs:
@@ -80,7 +70,7 @@ stages:
         testResultsFiles: 'junit-report-high-crit.xml'
         mergeTestResults: true
         failTaskOnFailedTests: false
-        testRunTitle: 'Trivy - High Vulnerabilities'
+        testRunTitle: 'Trivy - High & Critical Vulnerabilities'
       condition: 'always()' 
           
     - task: Docker@2
