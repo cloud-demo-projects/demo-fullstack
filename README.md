@@ -5,9 +5,11 @@ This sample shows how to create/manage/deploy an AKS clusters with:
 - Spring boot API
 - Azure SQL connectivity through Private Endpoint
 - Helm charts for release management into AKS cluster
-- Terraform for IaC to build/change/destroy the Azure infrastructure
+- Terraform for IaC to build/change/destroy the k8 infrastructure
+- Bicep for deploying the prerequiste storage account
 - Hadolint for Dockerfile linting
-- Aqua Trivy for image scan
+- Aqua Trivy for image static scan
+- Google container structure test
 
 # Prerequisites
 Prerequisites are listed down for local development, CICD and IaC.
@@ -24,9 +26,10 @@ Prerequisites are listed down for local development, CICD and IaC.
 - Helm 3.6.3 ( For Helm communication through command line )
 - Azure SQL database with database server firewall opened up against client IP ( For local database development )
 - Bicep (AZ CLI, VS code bicep extension)
-- Static Code Analysis (Sonarcube, FindBugs, PMD)
+- Java Static Code Analysis (Sonarcube, FindBugs, PMD)
 - Dockerfile Linting (Hadolint)
 - Docker Image Build Scan (Trivy) 
+- Lens kubernetes IDE
 
 ## CI/CD 
 - AKS Cluster with CNI, Managed Identity enabled and ACR integrated
