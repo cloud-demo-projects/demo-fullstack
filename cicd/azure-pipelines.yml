@@ -73,7 +73,7 @@ stages:
           ls -lrt
           chmod 777 junit-report-high.xml
           ls -lrt
-          view junit-report-high.xml
+          cat junit-report-high.xml
 
     - task: PublishTestResults@2
       displayName: 'Publish Trivy Scan Results'
