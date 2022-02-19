@@ -63,7 +63,6 @@ stages:
         script: |
           set -euo pipefail
           trivy image --exit-code 0 --severity LOW,MEDIUM bahrinipun/sb:1.60
-          trivy image --exit-code 1 --severity LOW,MEDIUM bahrinipun/sb:1.60
           trivy image --severity LOW,MEDIUM --format template --template "@templates/junit.tpl" -o junit-report-low-med.xml bahrinipun/sb:1.60
 
     - task: Bash@3
