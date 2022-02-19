@@ -3,13 +3,13 @@
 This sample shows how to create/manage/deploy an AKS clusters with:
 - React SPA frontend 
 - Spring boot API
-- Azure SQL connectivity through Private Endpoint
 - Helm charts for release management into AKS cluster
 - Terraform for IaC to build/change/destroy the k8 infrastructure
 - Bicep for deploying the prerequiste storage account
 - Hadolint for Dockerfile linting
 - Aqua Trivy for image static scan
 - Google container structure test
+- Azure SQL PaaS connectivity
 
 # Prerequisites
 Prerequisites are listed down for local development, CICD and IaC.
