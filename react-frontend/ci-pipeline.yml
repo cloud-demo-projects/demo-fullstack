@@ -48,7 +48,7 @@ stages:
     pool:
       vmImage: ubuntu-latest  
     steps:
-      - template: ../pipelines/templates/docker-template.yml
+      - template: ../cicd/templates/docker-template.yml
         parameters:
           dockerRegistry_sc: '${{ parameters.dockerRegistry_sc }}'
           projectName: '${{ parameters.projectName }}'
@@ -65,7 +65,7 @@ stages:
     pool:
       vmImage: ubuntu-latest  
     steps:
-      - template: ../pipelines/templates/helm-ci-template.yml
+      - template: ../cicd/templates/helm-ci-template.yml
         parameters:
           dockerRegistry_sc: '${{ parameters.dockerRegistry_sc }}'
           projectName: '${{ parameters.projectName }}'
@@ -81,7 +81,7 @@ stages:
     pool:
       vmImage: ubuntu-latest  
     steps:      
-      - template: ../pipelines/templates/helm-cd-template.yml
+      - template: ../cicd/templates/helm-cd-template.yml
         parameters:
           dockerRegistry_sc: '${{ parameters.dockerRegistry_sc }}'
           projectName: '${{ parameters.projectName }}'
