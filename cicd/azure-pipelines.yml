@@ -61,6 +61,7 @@ stages:
       inputs:
         targetType: 'inline'
         script: |
+          trivy image --exit-code 0 --severity HIGH,CRITICA bahrinipun/sb:1.60
           trivy image --severity HIGH,CRITICAL --format template --template "@cicd/templates/junit.tpl" -o junit-report-high-crit.xml bahrinipun/sb:1.60
 
     - task: PublishTestResults@2
