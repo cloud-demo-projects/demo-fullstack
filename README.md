@@ -8,6 +8,7 @@ This sample shows how to create/manage/deploy an AKS clusters with:
 - Terraform for IaC to build/change/destroy the Azure infrastructure
 - Hadolint for Dockerfile linting
 - Aqua Trivy for image scan
+- Google container structure test
 
 # Prerequisites
 Prerequisites are listed down for local development, CICD and IaC.
