@@ -76,7 +76,7 @@ stages:
       displayName: 'Publish Trivy Scan Results'
       inputs:
         testResultsFormat: 'JUnit'
-        testResultsFiles: '**/junit-report-low-med.xml'
+        testResultsFiles: 'junit-report-low-med.xml'
         mergeTestResults: true
         failTaskOnFailedTests: false
         testRunTitle: 'Trivy - Low and Medium Vulnerabilities'
