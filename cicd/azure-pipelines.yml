@@ -71,7 +71,8 @@ stages:
         targetType: 'inline'
         script: |
           ls -lrt
-          view junit-report-high.xml
+          chmod 777 junit-report-high.xml
+          ls -lrt
 
     - task: PublishTestResults@2
       displayName: 'Publish Trivy Scan Results'
