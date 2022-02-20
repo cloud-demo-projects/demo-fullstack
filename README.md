@@ -11,6 +11,13 @@ This sample shows how to create/manage/deploy an AKS clusters with:
 - Google container structure test
 - Azure SQL PaaS connectivity
 
+# Upcoming Features
+- Ingress for L7 loadbalancing
+- Azure SQL connectivity through pod identity
+- Kured for safe linux node reboots after patching
+- Hashicorp integration for secrets
+- Consuming static volume in pod    
+
 # Prerequisites
 Prerequisites are listed down for local development, CICD and IaC.
 
@@ -44,3 +51,4 @@ With principle of least privilidges the DevOps SPN is granted required delegatio
 - AKS Cluster with CNI, Managed Identity enabled and ACR integrated
 - Docker Registry Service Connection
 - Azure SQL database server firewall opened up through private endpoint against AKS VNet.
+
