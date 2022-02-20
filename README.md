@@ -12,9 +12,9 @@ This sample shows how to create/manage/deploy an AKS clusters with:
 - Azure SQL PaaS connectivity
 
 # Upcoming Features
-- Ingress for L7 loadbalancing
-- Pod identity setup for Azure SQL connectivity 
-- Kured for safe linux node reboots after patching
+- Ingress(manifest) for L7 loadbalancing
+- Pod identity(Helm) setup for Azure SQL connectivity 
+- Kured(Helm) for safe linux node reboots after patching
 - Consuming static volume in pod 
 - Hashicorp integration for secrets   
 
