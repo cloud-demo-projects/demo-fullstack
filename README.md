@@ -17,7 +17,7 @@ This sample shows how to create/manage/deploy an AKS clusters with:
 - Kured(Helm) for safe linux node reboots after patching
 - Consuming static volume(manifest) in pod 
 - Hashicorp integration(annotations) for secrets  
-- IaC for Azure SQL server and database 
+- Bicep IaC for Azure SQL server and database 
 
 # Prerequisites
 Prerequisites are listed down for local development, CICD and IaC.
