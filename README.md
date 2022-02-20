@@ -16,7 +16,8 @@ This sample shows how to create/manage/deploy an AKS clusters with:
 - Pod identity(Helm) setup for Azure SQL connectivity 
 - Kured(Helm) for safe linux node reboots after patching
 - Consuming static volume(manifest) in pod 
-- Hashicorp integration(annotations) for secrets   
+- Hashicorp integration(annotations) for secrets  
+- IaC for Azure SQL server and database 
 
 # Prerequisites
 Prerequisites are listed down for local development, CICD and IaC.
