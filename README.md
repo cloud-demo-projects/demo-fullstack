@@ -15,8 +15,8 @@ This sample shows how to create/manage/deploy an AKS clusters with:
 - Ingress(manifest) for L7 loadbalancing
 - Pod identity(Helm) setup for Azure SQL connectivity 
 - Kured(Helm) for safe linux node reboots after patching
-- Consuming static volume in pod 
-- Hashicorp integration for secrets   
+- Consuming static volume(manifest) in pod 
+- Hashicorp integration(annotations) for secrets   
 
 # Prerequisites
 Prerequisites are listed down for local development, CICD and IaC.
