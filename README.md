@@ -13,10 +13,10 @@ This sample shows how to create/manage/deploy an AKS clusters with:
 
 # Upcoming Features
 - Ingress for L7 loadbalancing
-- Azure SQL connectivity through pod identity
+- Pod identity setup for Azure SQL connectivity 
 - Kured for safe linux node reboots after patching
-- Hashicorp integration for secrets
-- Consuming static volume in pod    
+- Consuming static volume in pod 
+- Hashicorp integration for secrets   
 
 # Prerequisites
 Prerequisites are listed down for local development, CICD and IaC.
