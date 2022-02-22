@@ -42,14 +42,14 @@ stages:
         command: 'build'
         Dockerfile: '$(Build.SourcesDirectory)/springboot-backend/Dockerfile'
         buildContext: '$(Build.ArtifactStagingDirectory)'
-        tags: '1.60'
+        tags: '1.61'
         arguments: '--no-cache'
 
     - task: ContainerStructureTest@0
       inputs:
         dockerRegistryServiceConnection: 'dockerhub_sc'
         repository: 'bahrinipun/sb'
-        tag: '1.60'
+        tag: '1.61'
         configFile: '$(Build.SourcesDirectory)/cicd/structure-test.yaml'
         testRunTitle: 'Structure Test'
         failTaskOnFailedTests: false
