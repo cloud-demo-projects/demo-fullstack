@@ -91,11 +91,11 @@ stages:
         command: 'push'
         tags: '1.60'
 
-    - task: ContainerStructureTest@0
-      inputs:
-        dockerRegistryServiceConnection: 'dockerhub_sc'
-        repository: 'bahrinipun/sb'
-        tag: '1.60'
-        configFile: '$(Build.SourcesDirectory)/cicd/structure-test.yaml'
-        testRunTitle: 'Structure Test'
-        failTaskOnFailedTests: false
+    # - task: ContainerStructureTest@0
+    #   inputs:
+    #     dockerRegistryServiceConnection: 'dockerhub_sc'
+    #     repository: 'bahrinipun/sb'
+    #     tag: '1.60'
+    #     configFile: '$(Build.SourcesDirectory)/cicd/structure-test.yaml'
+    #     testRunTitle: 'Structure Test'
+    #     failTaskOnFailedTests: false
