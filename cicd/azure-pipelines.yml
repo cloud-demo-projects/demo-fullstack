@@ -54,34 +54,34 @@ stages:
         testRunTitle: 'Structure Test'
         failTaskOnFailedTests: false
 
-    - task: Bash@3
-      displayName: Download & Install Trivy For Image Scan
-      inputs:
-        targetType: 'inline'
-        script: |
-          docker images
-          wget https://github.com/aquasecurity/trivy/releases/download/v0.23.0/trivy_0.23.0_Linux-64bit.deb
-          sudo dpkg -i trivy_0.23.0_Linux-64bit.deb
-          trivy -v
+    # - task: Bash@3
+    #   displayName: Download & Install Trivy For Image Scan
+    #   inputs:
+    #     targetType: 'inline'
+    #     script: |
+    #       docker images
+    #       wget https://github.com/aquasecurity/trivy/releases/download/v0.23.0/trivy_0.23.0_Linux-64bit.deb
+    #       sudo dpkg -i trivy_0.23.0_Linux-64bit.deb
+    #       trivy -v
 
 
-    - task: Bash@3
-      displayName: Trivy Scan
-      inputs:
-        targetType: 'inline'
-        script: |
-          trivy image --exit-code 0 --severity HIGH,CRITICAL bahrinipun/sb:1.60
-          trivy image --severity HIGH,CRITICAL --format template --template "@cicd/templates/junit.tpl" -o junit-report-high-crit.xml bahrinipun/sb:1.60
+    # - task: Bash@3
+    #   displayName: Trivy Scan
+    #   inputs:
+    #     targetType: 'inline'
+    #     script: |
+    #       trivy image --exit-code 0 --severity HIGH,CRITICAL bahrinipun/sb:1.60
+    #       trivy image --severity HIGH,CRITICAL --format template --template "@cicd/templates/junit.tpl" -o junit-report-high-crit.xml bahrinipun/sb:1.60
 
-    - task: PublishTestResults@2
-      displayName: 'Publish Trivy Scan Results'
-      inputs:
-        testResultsFormat: 'JUnit'
-        testResultsFiles: 'junit-report-high-crit.xml'
-        mergeTestResults: true
-        failTaskOnFailedTests: false
-        testRunTitle: 'Trivy - High & Critical Vulnerabilities'
-      condition: 'always()' 
+    # - task: PublishTestResults@2
+    #   displayName: 'Publish Trivy Scan Results'
+    #   inputs:
+    #     testResultsFormat: 'JUnit'
+    #     testResultsFiles: 'junit-report-high-crit.xml'
+    #     mergeTestResults: true
+    #     failTaskOnFailedTests: false
+    #     testRunTitle: 'Trivy - High & Critical Vulnerabilities'
+    #   condition: 'always()' 
           
     - task: Docker@2
       displayName: Push Image
