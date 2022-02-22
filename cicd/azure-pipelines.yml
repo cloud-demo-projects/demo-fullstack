@@ -42,16 +42,8 @@ stages:
         command: 'build'
         Dockerfile: '$(Build.SourcesDirectory)/springboot-backend/Dockerfile'
         buildContext: '$(Build.ArtifactStagingDirectory)'
-        tags: '1.61'
+        tags: '1.60'
         arguments: '--no-cache'
-
-    - task: ContainerStructureTest@0
-      inputs:
-        dockerRegistryServiceConnection: 'dockerhub_sc'
-        repository: 'bahrinipun/sb'
-        tag: '1.61'
-        configFile: '$(Build.SourcesDirectory)/cicd/structure-test.yaml'
-        failTaskOnFailedTests: false
 
     # - task: Bash@3
     #   displayName: Download & Install Trivy For Image Scan
@@ -90,11 +82,10 @@ stages:
         command: 'push'
         tags: '1.60'
 
-    # - task: ContainerStructureTest@0
-    #   inputs:
-    #     dockerRegistryServiceConnection: 'dockerhub_sc'
-    #     repository: 'bahrinipun/sb'
-    #     tag: '1.60'
-    #     configFile: '$(Build.SourcesDirectory)/cicd/structure-test.yaml'
-    #     testRunTitle: 'Structure Test'
-    #     failTaskOnFailedTests: false
+    - task: ContainerStructureTest@0
+      inputs:
+        dockerRegistryServiceConnection: 'dockerhub_sc'
+        repository: 'bahrinipun/sb'
+        tag: '1.60'
+        configFile: '$(Build.SourcesDirectory)/cicd/structure-test.yaml'
+        failTaskOnFailedTests: false
