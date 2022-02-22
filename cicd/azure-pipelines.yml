@@ -51,7 +51,6 @@ stages:
         repository: 'bahrinipun/sb'
         tag: '1.61'
         configFile: '$(Build.SourcesDirectory)/cicd/structure-test.yaml'
-        testRunTitle: 'Structure Test'
         failTaskOnFailedTests: false
 
     # - task: Bash@3
