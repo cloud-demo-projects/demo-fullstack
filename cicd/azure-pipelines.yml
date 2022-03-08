@@ -50,7 +50,7 @@ stages:
         dockerRegistryServiceConnection: ''
         repository: 'bahrinipun/sb'
         tag: '1.60'
-        configFile: '$(Build.SourcesDirectory)/cicd/structure-test-config.yaml'
+        configFile: '$(Build.SourcesDirectory)/cicd/templates/structure-test-config.yaml'
         testRunTitle: 'Structure Test'
         failTaskOnFailedTests: false
     
