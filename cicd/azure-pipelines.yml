@@ -43,7 +43,7 @@ stages:
         Dockerfile: '$(Build.SourcesDirectory)/springboot-backend/Dockerfile'
         buildContext: '$(Build.ArtifactStagingDirectory)'
         tags: '1.60'
-        arguments: '--no-cache'
+        arguments: 
     
     - task: ContainerStructureTest@0
       inputs:
