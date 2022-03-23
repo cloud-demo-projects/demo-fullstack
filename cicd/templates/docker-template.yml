@@ -39,6 +39,15 @@ steps:
         buildContext: '$(Build.ArtifactStagingDirectory)'
         tags: '${{ parameters.appVersion }}'
 
+    - task: ContainerStructureTest@0
+      displayName: 'Container Structure Test'
+      inputs:
+        dockerRegistryServiceConnection: ''
+        repository: '${{ parameters.projectName }}'
+        tag: '${{ parameters.appVersion }}'
+        configFile: 'structure-test-config.yaml'
+        testRunTitle: 'Structure Test'
+
     - task: Bash@3
       displayName: Install Trivy 0.23.0
       inputs:
@@ -74,15 +83,5 @@ steps:
         repository: '${{ parameters.projectName }}'
         command: 'push'
         tags: '${{ parameters.appVersion }}'
-
-    - task: ContainerStructureTest@0
-      displayName: 'Container Structure Test'
-      inputs:
-        dockerRegistryServiceConnection: '${{ parameters.dockerRegistry_sc }}'
-        repository: '${{ parameters.projectName }}'
-        tag: '${{ parameters.appVersion }}'
-        configFile: 'structure-test-config.yaml'
-        testRunTitle: 'Structure Test'
-      
     
     
