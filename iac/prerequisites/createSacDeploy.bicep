@@ -6,7 +6,7 @@ resource rResourceGroup 'Microsoft.Resources/resourceGroups@2020-06-01' = {
   location: deployment().location
 }
 
-module chrisManagementDeploy 'createSac.bicep' = {
+module AksPreDeploy 'createSac.bicep' = {
   name: deployment().name
   scope: rResourceGroup
   params: {}
