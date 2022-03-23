@@ -10,6 +10,7 @@ This sample shows how to create/manage/deploy an AKS clusters with:
 - Aqua Trivy for image static scan
 - Google container structure test
 - Azure SQL PaaS connectivity
+- Snyk repository scan- https://app.snyk.io/org/test-n5j
 
 # Upcoming Features
 - Ingress(manifest) for L7 loadbalancing

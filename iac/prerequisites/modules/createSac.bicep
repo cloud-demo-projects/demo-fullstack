@@ -1,8 +1,18 @@
+param location string = 'westeurope'
+param storageAccountName string = 'tfaks9'
+
+@allowed([
+  'development'
+  'prod'
+])
+param environmentType string = 'development'
+var storageAccountSkuName = (environmentType == 'prod') ? 'Standard_GRS' : 'Standard_LRS'
+
 resource rStorageAccount 'Microsoft.Storage/storageAccounts@2020-08-01-preview' = {
-  name: 'tfaks9'
-  location: resourceGroup().location
+  name: storageAccountName
+  location: location
   sku: {
-    name: 'Standard_LRS'
+    name: storageAccountSkuName
   }
   kind: 'StorageV2'
   properties: {
