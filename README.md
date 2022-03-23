@@ -3,14 +3,15 @@
 This sample shows how to create/manage/deploy an AKS clusters with:
 - Minimal React SPA frontend 
 - Minimal Springboot API
+- Standard docker pieline template
 - Helm charts for release management into AKS cluster
 - Terraform for IaC to build/change/destroy the k8 infrastructure
 - Bicep for deploying the prerequiste storage account
 - Hadolint for Dockerfile linting
 - Aqua Trivy for image static scan
 - Google container structure test
-- Azure SQL PaaS connectivity
 - Snyk repository scan- https://app.snyk.io/org/test-n5j
+- Azure SQL PaaS connectivity
 
 # Upcoming Features
 - Ingress(manifest) for L7 loadbalancing
