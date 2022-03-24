@@ -16,7 +16,7 @@ variables:
   azureServiceConnection: 'sub_sc'
   resourceGroupName: 'exampleRG'
   location: 'westeurope'
-  templateFile: './prerequisites/createSacDeploy.bicep'
+  templateFile: 'iac/prerequisites/createSacDeploy.bicep'
 pool:
   vmImage: $(vmImageName)
 
@@ -35,10 +35,7 @@ stages:
           scriptType: 'bash'
           scriptLocation: 'inlineScript'
           inlineScript: |        
-            ls -lrt
-            ls -lrt iac/
-            ls -lrt iac/prerequisites/
-            az bicep build --file iac/prerequisites/createSacDeploy.bicep
+            az bicep build --file $(templateFile)
             
 - stage: Bicep_Deploy
   displayName: Bicep Deploy
