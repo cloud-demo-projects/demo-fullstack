@@ -34,7 +34,7 @@ stages:
           scriptType: 'bash'
           scriptLocation: 'inlineScript'
           inlineScript: |            
-            az bicep build --file $(templateFile)
+            az bicep build --file createSacDeploy.bicep
             
 - stage: Bicep_Deploy
   displayName: Bicep Deploy
