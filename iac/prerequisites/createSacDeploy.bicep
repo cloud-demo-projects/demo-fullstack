@@ -1,6 +1,4 @@
 
-targetScope = 'subscription'
-
 @description('The Azure env into which the resources should be deployed.')
 param environmentType string
 
