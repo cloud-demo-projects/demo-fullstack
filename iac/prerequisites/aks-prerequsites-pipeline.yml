@@ -38,7 +38,7 @@ stages:
             ls -lrt
             ls -lrt iac/
             ls -lrt iac/prerequisites/
-            az bicep build --file .iac/prerequisites/createSacDeploy.bicep
+            az bicep build --file iac/prerequisites/createSacDeploy.bicep
             
 - stage: Bicep_Deploy
   displayName: Bicep Deploy
