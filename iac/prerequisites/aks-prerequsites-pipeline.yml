@@ -68,7 +68,7 @@ stages:
         name: RunWhatIf
         displayName: Run what-if
         inputs:
-          azureSubscription: dip06-lz-d-rg
+          azureSubscription: $(azureServiceConnection)
           scriptType: 'bash'
           scriptLocation: 'inlineScript'
           inlineScript: |
