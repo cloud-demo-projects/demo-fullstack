@@ -1,6 +1,6 @@
 
 @description('The Azure env into which the resources should be deployed.')
-param environmentType string = "development"
+param environmentType string = 'development'
 
 @description('The location into which the resources should be deployed.')
 param location string = 'westeurope'
