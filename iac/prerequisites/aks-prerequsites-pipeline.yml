@@ -20,6 +20,22 @@ pool:
   vmImage: $(vmImageName)
 
 stages:
+- stage: Bicep_Lint
+  displayName: Bicep Lint
+  jobs:
+  - job: Lint
+    displayName: Lint
+    steps:
+      - task: AzureCLI@2
+        name: Lint_Bicep_Code
+        displayName: Lint Bicep Code
+        inputs:
+          azureSubscription: $(azureServiceConnection)
+          scriptType: 'bash'
+          scriptLocation: 'inlineScript'
+          inlineScript: |            
+            az bicep build --file $(templateFile)
+            
 - stage: Bicep_Deploy
   displayName: Bicep Deploy
   jobs:
