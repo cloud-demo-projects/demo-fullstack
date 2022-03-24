@@ -57,7 +57,7 @@ stages:
               --resource-group $(resourceGroupName) \
               --template-file $(templateFile)
             
-- stage: Preview
+- stage: Preview Bicep
   variables:
     - template: variables.yml
   jobs: 
