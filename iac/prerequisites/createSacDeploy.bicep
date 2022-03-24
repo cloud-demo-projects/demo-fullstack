@@ -13,7 +13,6 @@ resource rResourceGroup 'Microsoft.Resources/resourceGroups@2020-06-01' = {
 
 module AksPreModule 'modules/createSac.bicep' = {
   name: deployment().name
-  scope: rResourceGroup
   params: {
     environmentType: environmentType
   }
