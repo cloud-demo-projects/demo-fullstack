@@ -57,6 +57,25 @@ stages:
               --resource-group $(resourceGroupName) \
               --template-file $(templateFile)
             
+- stage: Preview
+  variables:
+    - template: variables.yml
+  jobs: 
+  - job: PreviewAzureChanges
+    displayName: Preview Azure changes
+    steps:
+      - task: AzureCLI@2
+        name: RunWhatIf
+        displayName: Run what-if
+        inputs:
+          azureSubscription: dip06-lz-d-rg
+          scriptType: 'bash'
+          scriptLocation: 'inlineScript'
+          inlineScript: |
+            az deployment group what-if \
+              --resource-group $(resourceGroupName) \
+              --template-file $(templateFile)
+              
 - stage: Bicep_Deploy
   displayName: Bicep Deploy
   jobs:
