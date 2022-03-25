@@ -19,7 +19,7 @@ param location string = 'westeurope'
 param keyVaultName string = 'kvdds7657'
 
 module AksPreModuleSac 'modules/createKVDeploy.bicep' = {
-  name: deployment().name
+  name: 'kvdeployment'
   //scope: rResourceGroup
   params: {
     keyVaultName: keyVaultName
