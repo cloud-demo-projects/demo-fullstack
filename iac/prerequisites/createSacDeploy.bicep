@@ -44,17 +44,6 @@ param tags object = {}
 @description('The name of the Key Vault')
 param keyvaultName string = 'kv123224r'
 
-@description('The name of the Key Vault private link endpoint')
-param keyvaultPleName string = 'kvple123224r'
-
-@description('The Subnet ID where the Key Vault Private Link is to be created')
-param subnetId string = 'subnet012'
-
-@description('The VNet ID where the Key Vault Private Link is to be created')
-param virtualNetworkId string = 'vnet123224r'
-
-var privateDnsZoneName = 'privatelink${environment().suffixes.keyvaultDns}'
-
 resource keyVault 'Microsoft.KeyVault/vaults@2021-04-01-preview' = {
   name: keyvaultName
   location: location
