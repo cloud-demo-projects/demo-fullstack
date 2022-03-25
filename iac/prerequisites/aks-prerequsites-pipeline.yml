@@ -67,6 +67,7 @@ stages:
               
 - stage: Bicep_Deploy
   displayName: Bicep Deploy
+  dependsOn: Bicep_Build
   jobs:
   - job: Deploy
     displayName: Deploy
