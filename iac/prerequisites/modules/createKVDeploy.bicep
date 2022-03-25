@@ -1,7 +1,7 @@
 @description('The name of the Key Vault.')
 @minLength(3)
 @maxLength(24)
-param keyVaultName string = 'kvdds7657'
+param keyVaultName string
 
 @description('The location of the Key Vault.')
 param location string = resourceGroup().location

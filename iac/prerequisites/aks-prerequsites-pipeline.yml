@@ -21,61 +21,61 @@ pool:
   vmImage: $(vmImageName)
 
 stages:
-# - stage: Bicep_Lint
-#   displayName: Bicep Lint
-#   jobs:
-#   - job: Lint
-#     displayName: Lint
-#     steps:
-#       - task: AzureCLI@2
-#         name: Lint_Bicep_Code
-#         displayName: Lint Bicep Code
-#         inputs:
-#           azureSubscription: $(azureServiceConnection)
-#           scriptType: 'bash'
-#           scriptLocation: 'inlineScript'
-#           inlineScript: |        
-#             az bicep build --file $(templateFile)
+- stage: Bicep_Lint
+  displayName: Bicep Lint
+  jobs:
+  - job: Lint
+    displayName: Lint
+    steps:
+      - task: AzureCLI@2
+        name: Lint_Bicep_Code
+        displayName: Lint Bicep Code
+        inputs:
+          azureSubscription: $(azureServiceConnection)
+          scriptType: 'bash'
+          scriptLocation: 'inlineScript'
+          inlineScript: |        
+            az bicep build --file $(templateFile)
             
-# - stage: Validate
-#   displayName: Validate Bicep
-#   variables:
-#     - template: variables.yml  
-#   jobs:
-#   - job: ValidateBicepCode
-#     displayName: Validate Bicep code
-#     steps:       
-#       - task: AzureCLI@2
-#         name: RunPreflightValidation
-#         displayName: Run preflight validation
-#         inputs:
-#           azureSubscription: $(azureServiceConnection)
-#           scriptType: 'bash'
-#           scriptLocation: 'inlineScript'
-#           inlineScript: |
-#             az deployment group validate \
-#               --resource-group $(resourceGroupName) \
-#               --template-file $(templateFile)
+- stage: Validate
+  displayName: Validate Bicep
+  variables:
+    - template: variables.yml  
+  jobs:
+  - job: ValidateBicepCode
+    displayName: Validate Bicep code
+    steps:       
+      - task: AzureCLI@2
+        name: RunPreflightValidation
+        displayName: Run preflight validation
+        inputs:
+          azureSubscription: $(azureServiceConnection)
+          scriptType: 'bash'
+          scriptLocation: 'inlineScript'
+          inlineScript: |
+            az deployment group validate \
+              --resource-group $(resourceGroupName) \
+              --template-file $(templateFile)
             
-# - stage: Preview_Bicep
-#   displayName: Preview Bicep
-#   variables:
-#     - template: variables.yml
-#   jobs: 
-#   - job: PreviewAzureChanges
-#     displayName: Preview Azure changes
-#     steps:
-#       - task: AzureCLI@2
-#         name: RunWhatIf
-#         displayName: Run what-if
-#         inputs:
-#           azureSubscription: $(azureServiceConnection)
-#           scriptType: 'bash'
-#           scriptLocation: 'inlineScript'
-#           inlineScript: |
-#             az deployment group what-if \
-#               --resource-group $(resourceGroupName) \
-#               --template-file $(templateFile)
+- stage: Preview_Bicep
+  displayName: Preview Bicep
+  variables:
+    - template: variables.yml
+  jobs: 
+  - job: PreviewAzureChanges
+    displayName: Preview Azure changes
+    steps:
+      - task: AzureCLI@2
+        name: RunWhatIf
+        displayName: Run what-if
+        inputs:
+          azureSubscription: $(azureServiceConnection)
+          scriptType: 'bash'
+          scriptLocation: 'inlineScript'
+          inlineScript: |
+            az deployment group what-if \
+              --resource-group $(resourceGroupName) \
+              --template-file $(templateFile)
               
 - stage: Bicep_Deploy
   displayName: Bicep Deploy
