@@ -19,9 +19,8 @@ resource rResourceGroup 'Microsoft.Resources/resourceGroups@2020-06-01' existing
   scope: subscription()
 }
 
-module AksPreModuleKV 'modules/createKVDeploy.bicep' = {
+module AksPreModuleKV 'modules/createKV.bicep' = {
   name: 'kvdeployment'
-  //scope: rResourceGroup
   params: {
     keyVaultName: keyVaultName
     location: location
@@ -30,7 +29,6 @@ module AksPreModuleKV 'modules/createKVDeploy.bicep' = {
 
 module AksPreModuleSac 'modules/createSac.bicep' = {
   name: 'sacdeployment'
-  //scope: rResourceGroup
   params: {
     environmentType: environmentType
     location: location
