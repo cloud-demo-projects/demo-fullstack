@@ -3,9 +3,6 @@
 // @description('The Azure env into which the resources should be deployed.')
 // param environmentType string = 'development'
 
-// @description('The location into which the resources should be deployed.')
-// param location string = 'westeurope'
-
 // // @description('The Azure rg into which the resources should be deployed.')
 // // @maxLength(13)
 // // param rgName string = 'test-aks9'
@@ -24,12 +21,10 @@
 //   }
 // }
 
-// module AksPreModuleBlob 'modules/createSac.bicep' = {
+// module AksPreModuleBlob 'modules/createBlob.bicep' = {
 //   name: deployment().name
-//   //scope: rResourceGroup
 //   params: {
-//     environmentType: environmentType
-//     location: location
+//     sacName: AksPreModuleSac.outputs.sacName
 //   }
 // }
 
