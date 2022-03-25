@@ -16,7 +16,7 @@ variables:
   azureServiceConnection: 'sub_sc'
   resourceGroupName: 'test-aks9'
   location: 'westeurope'
-  templateFile: 'iac/prerequisites/createSacDeploy.bicep'
+  templateFile: 'iac/prerequisites/main.bicep'
 pool:
   vmImage: $(vmImageName)
 
