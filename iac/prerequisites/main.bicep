@@ -15,10 +15,10 @@ param location string = 'westeurope'
 //   location: location
 // }
 
-@description('The Azure rg into which the resources should be deployed.')
+@description('The Azure KV into which the resources should be deployed.')
 param keyVaultName string = 'kvdds7657'
 
-module AksPreModuleSac 'modules/createKVDeploy.bicep' = {
+module AksPreModuleKV 'modules/createKVDeploy.bicep' = {
   name: 'kvdeployment'
   //scope: rResourceGroup
   params: {
@@ -27,18 +27,18 @@ module AksPreModuleSac 'modules/createKVDeploy.bicep' = {
   }
 }
 
-// module AksPreModuleSac 'modules/createSac.bicep' = {
-//   name: deployment().name
-//   //scope: rResourceGroup
-//   params: {
-//     environmentType: environmentType
-//     location: location
-//   }
-// }
+module AksPreModuleSac 'modules/createSac.bicep' = {
+  name: 'sacdeployment'
+  //scope: rResourceGroup
+  params: {
+    environmentType: environmentType
+    location: location
+  }
+}
 
-// module AksPreModuleBlob 'modules/createBlob.bicep' = {
-//   name: deployment().name
-//   params: {
-//     sacName: AksPreModuleSac.outputs.sacName
-//   }
-// }
+module AksPreModuleBlob 'modules/createBlob.bicep' = {
+  name: 'blobdeployment'
+  params: {
+    sacName: AksPreModuleSac.outputs.sacName
+  }
+}
