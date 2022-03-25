@@ -42,16 +42,16 @@ param location string = resourceGroup().location
 param tags object = {}
 
 @description('The name of the Key Vault')
-param keyvaultName string
+param keyvaultName string = 'kv123224r'
 
 @description('The name of the Key Vault private link endpoint')
-param keyvaultPleName string
+param keyvaultPleName string = 'kvple123224r'
 
 @description('The Subnet ID where the Key Vault Private Link is to be created')
-param subnetId string
+param subnetId string = 'subnet012'
 
 @description('The VNet ID where the Key Vault Private Link is to be created')
-param virtualNetworkId string
+param virtualNetworkId string = 'vnet123224r'
 
 var privateDnsZoneName = 'privatelink${environment().suffixes.keyvaultDns}'
 
