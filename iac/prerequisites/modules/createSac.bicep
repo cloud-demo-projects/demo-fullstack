@@ -8,7 +8,7 @@ param storageAccountName string = 'tfaks9'
 param environmentType string = 'development'
 var storageAccountSkuName = (environmentType == 'prod') ? 'Standard_GRS' : 'Standard_LRS'
 
-resource rStorageAccount 'Microsoft.Storage/storageAccounts@2020-08-01-preview' = {
+resource rStorageAccount 'Microsoft.Storage/storageAccounts@2021-04-01' = {
   name: storageAccountName
   location: location
   sku: {
