@@ -74,7 +74,7 @@ stages:
     displayName: Deploy
     steps:
     - task: AzureCLI@2
-      displayName: Bicep SAC Deployment
+      displayName: Bicep Deployment
       inputs:
         azureSubscription: $(azureServiceConnection)
         scriptType: bash

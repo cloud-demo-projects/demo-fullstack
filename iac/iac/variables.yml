@@ -1,9 +1,0 @@
-parameters:
-  - name: targetEnvironment
-    type: string
-    default: 'Dev'
-
-variables:
-  - group: Abnamro.Coesd.VariableGroup.GlobalVars
-  - group: TeamVars.DOCKR
-  - group: cgt-d-rg-var

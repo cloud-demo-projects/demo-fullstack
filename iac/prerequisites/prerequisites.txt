@@ -1,0 +1,37 @@
+
+
+DevOps SPN :
+az ad sp create-for-rbac -n "subscription-spn" --role Owner --scopes /subscriptions/bf0f6779-86d2-467e-8226-10f92a8ad378
+	( Instead of Governing SPN delegating roles to DeVops SPN )
+- app permissions- 		Directory.Read.All
+- delegated permisions-	Directory.Read.All, User.Read
+
+
+Server SPN:
+az ad sp create-for-rbac -n "aks_rg_spn" --role Owner --scopes /subscriptions/bf0f6779-86d2-467e-8226-10f92a8ad378/resourceGroups/test-aks9
+- AcrPull, AcrPush through TF
+
+ssh-keygen  -f ~/.ssh/id_rsa_terraform
+
+az keyvault secret set --vault-name kvaks992 --name LinuxSSHPubKey -f ~/.ssh/id_rsa_terraform.pub > /dev/null
+az keyvault secret set --vault-name kvaks992 --name spn-id --value f905e753-4d27-46e9-ba6e-c0dcdf0b3c1a > /dev/null
+az keyvault secret set --vault-name kvaks992 --name spn-secret --value I1S7Q~RotE2HTe3xB2ILtsYPMm~JXbx1scOSG > /dev/null
+
+storage account tfaks9 creation in test-aks9 abd blob container 
+az storage container generate-sas --account-name tfaks9 --expiry 2022-01-01 --name akstfstate --permissions dlrw -o json | xargs az keyvault secret set --vault-name kvaks992 --name TerraformSASToken --value
+
+grant Get access to the secret for the SPN we created
+
+az feature register -n AutoUpgradePreview --namespace Microsoft.ContainerService
+
+az aks get-credentials --resource-group test-aks9 --name testaks9
+
+
+debugging-
+kubectl -n default get events --sort-by='{.lastTimestamp}'
+
+
+
+
+(az role assignment create --assignee f905e753-4d27-46e9-ba6e-c0dcdf0b3c1a --scope /subscriptions/bf0f6779-86d2-467e-8226-10f92a8ad378 --role Owner)
+(az role assignment delete --role Contributor --assignee 970629b1-138e-42ca-8eb1-24e881cc505d)
