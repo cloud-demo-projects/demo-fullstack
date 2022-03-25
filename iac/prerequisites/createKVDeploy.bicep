@@ -44,69 +44,27 @@ param virtualNetworkRules array = []
 
 param ServiceConnectionSPID string
 
-
 resource KeyVault 'Microsoft.KeyVault/vaults@2021-11-01-preview' = {
   name: keyVaultName
   location: location
-  tags: {
-    tagName1: 'tagValue1'
-    tagName2: 'tagValue2'
-  }
   properties: {
+    tenantId: subscription().tenantId
+    sku: {
+      name: 'premium'
+      family: 'A'
+    }
     accessPolicies: [for item in AccessPolicies: {
       tenantId: item.tenantId
       objectId: item.objectId
       permissions: item.permissions
     }]
-    createMode: 'string'
     enabledForDeployment: enabledForDeployment
     enabledForDiskEncryption: enabledForDiskEncryption
     enabledForTemplateDeployment: enabledForTemplateDeployment
+    enableSoftDelete: enableSoftDelete
+    softDeleteRetentionInDays: softDeleteRetentionInDays
+    enableRbacAuthorization: enableRbacAuthorization
     enablePurgeProtection: enablePurgeProtection
-    enableRbacAuthorization: enableRbacAuthorization
-    enableSoftDelete: enableSoftDelete
-    networkAcls: {
-      bypass: bypassNetworkAcls
-      defaultAction: 'Allow'
-      ipRules: [
-      ]
-      virtualNetworkRules: [for item in virtualNetworkRules: {
-        id: item
-      }]
-    }
-    provisioningState: 'string'
-    publicNetworkAccess: 'string'
-    sku: {
-      family: 'A'
-      name: 'premium'
-    }
-    softDeleteRetentionInDays: softDeleteRetentionInDays
-    tenantId: subscription().tenantId
-    vaultUri: 'string'
-  }
-}
-
-resource KeyVault 'Microsoft.KeyVault/vaults@2021-11-01-preview' = {
-  name: keyVaultName
-  location: location
-  properties: {
-    tenantId: subscription().tenantId
-    sku: {
-      name: 'premium'
-      family: 'A'
-    }
-    accessPolicies: [for item in AccessPolicies: {
-      tenantId: item.tenantId
-      objectId: item.objectId
-      permissions: item.permissions
-    }]
-    enabledForDeployment: enabledForDeployment
-    enabledForDiskEncryption: enabledForDiskEncryption
-    enabledForTemplateDeployment: enabledForTemplateDeployment
-    enableSoftDelete: enableSoftDelete
-    softDeleteRetentionInDays: softDeleteRetentionInDays
-    enableRbacAuthorization: enableRbacAuthorization
-    enablePurgeProtection: true
     networkAcls: {
       bypass: bypassNetworkAcls
       defaultAction: 'Allow'
@@ -129,40 +87,3 @@ resource roleAssignment 'Microsoft.Authorization/roleAssignments@2020-10-01-prev
   dependsOn: [
   ]
 }
-
-// // Creates a KeyVault with Private Link Endpoint
-// @description('The Azure Region to deploy the resrouce group into')
-// param location string = resourceGroup().location
-
-// @description('Tags to apply to the Key Vault Instance')
-// param tags object = {}
-
-// @description('The name of the Key Vault')
-// param keyvaultName string = 'kv123224r'
-
-// resource keyVault 'Microsoft.KeyVault/vaults@2021-04-01-preview' = {
-//   name: keyvaultName
-//   location: location
-//   tags: tags
-//   properties: {
-//     createMode: 'default'
-//     enabledForDeployment: false
-//     enabledForDiskEncryption: false
-//     enabledForTemplateDeployment: false
-//     enableSoftDelete: true
-//     enableRbacAuthorization: true
-//     enablePurgeProtection: true
-//     networkAcls: {
-//       bypass: 'AzureServices'
-//       defaultAction: 'Deny'
-//     }
-//     sku: {
-//       family: 'A'
-//       name: 'standard'
-//     }
-//     softDeleteRetentionInDays: 7
-//     tenantId: subscription().tenantId
-//   }
-// }
-
-// output keyvaultId string = keyVault.id
