@@ -14,7 +14,7 @@ variables:
   vmImageName: 'ubuntu-latest'
 
   azureServiceConnection: 'sub_sc'
-  resourceGroupName: 'exampleRG'
+  resourceGroupName: 'test-aks9'
   location: 'westeurope'
   templateFile: 'iac/prerequisites/createSacDeploy.bicep'
 pool:
