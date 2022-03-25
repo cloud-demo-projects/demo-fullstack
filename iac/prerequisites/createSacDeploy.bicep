@@ -73,7 +73,7 @@ param bypassNetworkAcls string = 'AzureServices'
 @description('An array of Virtual Network resource IDs allowed to access the Key Vault.')
 param virtualNetworkRules array = []
 
-param ServiceConnectionSPID string
+// param ServiceConnectionSPID string
 
 resource KeyVault 'Microsoft.KeyVault/vaults@2021-11-01-preview' = {
   name: keyVaultName
@@ -108,13 +108,13 @@ resource KeyVault 'Microsoft.KeyVault/vaults@2021-11-01-preview' = {
   }
 }
 
-resource roleAssignment 'Microsoft.Authorization/roleAssignments@2020-10-01-preview' = {
-  name: guid('KV Admin', 'Microsoft.Authorization/roleDefinitions', '00482a5a-887f-4fb3-b363-3b7fe8e74483', ServiceConnectionSPID) // KV Admin
-  scope: KeyVault
-  properties:{
-    roleDefinitionId: resourceId('Microsoft.Authorization/roleDefinitions', '00482a5a-887f-4fb3-b363-3b7fe8e74483') // KV Admin
-    principalId: ServiceConnectionSPID
-  }
-  dependsOn: [
-  ]
-}
+// resource roleAssignment 'Microsoft.Authorization/roleAssignments@2020-10-01-preview' = {
+//   name: guid('KV Admin', 'Microsoft.Authorization/roleDefinitions', '00482a5a-887f-4fb3-b363-3b7fe8e74483', ServiceConnectionSPID) // KV Admin
+//   scope: KeyVault
+//   properties:{
+//     roleDefinitionId: resourceId('Microsoft.Authorization/roleDefinitions', '00482a5a-887f-4fb3-b363-3b7fe8e74483') // KV Admin
+//     principalId: ServiceConnectionSPID
+//   }
+//   dependsOn: [
+//   ]
+// }
