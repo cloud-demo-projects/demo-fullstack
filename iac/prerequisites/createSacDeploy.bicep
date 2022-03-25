@@ -20,5 +20,6 @@ module AksPreModule 'modules/createSac.bicep' = {
   scope: rResourceGroup
   params: {
     environmentType: environmentType
+    location: location
   }
 }
