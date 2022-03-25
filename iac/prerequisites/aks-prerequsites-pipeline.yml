@@ -21,11 +21,11 @@ pool:
   vmImage: $(vmImageName)
 
 stages:
-- stage: Bicep_Lint
-  displayName: Bicep Lint
+- stage: Bicep_Build
+  displayName: Bicep Build
   jobs:
-  - job: Lint
-    displayName: Lint
+  - job: Lint_Bicep
+    displayName: Lint Bicep
     steps:
       - task: AzureCLI@2
         name: Lint_Bicep_Code
@@ -37,13 +37,8 @@ stages:
           inlineScript: |        
             az bicep build --file $(templateFile)
             
-- stage: Validate
-  displayName: Validate Bicep
-  variables:
-    - template: variables.yml  
-  jobs:
-  - job: ValidateBicepCode
-    displayName: Validate Bicep code
+  - job: Validate_Bicep
+    displayName: Validate_Bicep
     steps:       
       - task: AzureCLI@2
         name: RunPreflightValidation
@@ -57,17 +52,12 @@ stages:
               --resource-group $(resourceGroupName) \
               --template-file $(templateFile)
             
-- stage: Preview_Bicep
-  displayName: Preview Bicep
-  variables:
-    - template: variables.yml
-  jobs: 
-  - job: PreviewAzureChanges
+  - job: Preview_Azure_Changes
     displayName: Preview Azure changes
     steps:
       - task: AzureCLI@2
-        name: RunWhatIf
-        displayName: Run what-if
+        name: Preview
+        displayName: Preview Run
         inputs:
           azureSubscription: $(azureServiceConnection)
           scriptType: 'bash'
