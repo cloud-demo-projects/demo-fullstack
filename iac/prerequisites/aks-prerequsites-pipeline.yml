@@ -11,14 +11,12 @@ trigger:
 name: $(TeamProject)_$(BuildDefinitionName)_$(SourceBranch)_$(Date:yyyyMMdd)$(Rev:.r)
 
 variables:
-  vmImageName: 'ubuntu-latest'
-
   azureServiceConnection: 'sub_sc'
   resourceGroupName: 'test-aks9'
-  location: 'westeurope'
   templateFile: 'iac/prerequisites/main.bicep'
+  
 pool:
-  vmImage: $(vmImageName)
+  vmImage: 'ubuntu-latest'
 
 stages:
 - stage: Bicep_Build
