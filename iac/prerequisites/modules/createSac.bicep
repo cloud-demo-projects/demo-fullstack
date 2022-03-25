@@ -45,7 +45,4 @@ resource rStorageAccount 'Microsoft.Storage/storageAccounts@2020-08-01-preview' 
   }
 }
 
-resource rStorageAccountContainer 'Microsoft.Storage/storageAccounts/blobServices/containers@2021-04-01' = {
-  name: '${rStorageAccount.name}/default/akstfstate'
-  properties: {}
-}
+output sacName string = rStorageAccount.name
