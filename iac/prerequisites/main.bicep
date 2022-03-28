@@ -19,7 +19,7 @@ resource resourceGroup 'Microsoft.Resources/resourceGroups@2020-06-01' existing 
   scope: subscription()
 }
 
-module keyVaultModule 'modules/cgt-keyVault.bicep' = {
+module keyVaultModule 'modules/keyVault.bicep' = {
   name: 'keyVaultModuleDeploy'
   params: {
     keyVaultName: keyVaultName
