@@ -11,20 +11,21 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.spingboot.model.Employee;
-import com.example.spingboot.repository.EmployeeRepository;
+import com.example.spingboot.service.EmployeeService;
 
 @RestController
 @RequestMapping(path = "/api/v1/")
 @CrossOrigin(origins = {"http://localhost:3000", "http://nipunbahri.com"})
 public class EmployeeController {
 	
+
 	@Autowired
-	private EmployeeRepository employeeRepository;
+	private EmployeeService employeeService;
 	
 	@GetMapping(path = "/employees")
 	@ResponseStatus(code = HttpStatus.OK)
 	public List<Employee> getEmployees(){
-		return employeeRepository.findAll();
+		return employeeService.findAllEmployees();
 	}
 
 }
