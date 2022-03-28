@@ -19,8 +19,8 @@ resource resourceGroup 'Microsoft.Resources/resourceGroups@2020-06-01' existing 
   scope: subscription()
 }
 
-module keyVault 'modules/createKV.bicep' = {
-  name: 'kvdeployment'
+module keyVaultModule 'modules/cgt-keyVault.bicep' = {
+  name: 'keyVaultModuleDeploy'
   params: {
     keyVaultName: keyVaultName
     location: location
@@ -30,17 +30,20 @@ module keyVault 'modules/createKV.bicep' = {
   ]
 }
 
-// module AksPreModuleSac 'modules/createSac.bicep' = {
-//   name: 'sacdeployment'
-//   params: {
-//     environmentType: environmentType
-//     location: location
-//   }
-// }
+module storageAccountModule 'modules/storageAccount.bicep' = {
+  name: 'storageAccountModuleDeploy'
+  params: {
+    environmentType: environmentType
+    location: location
+  }
+}
 
-// module AksPreModuleBlob 'modules/createBlob.bicep' = {
-//   name: 'blobdeployment'
-//   params: {
-//     sacName: AksPreModuleSac.outputs.sacName
-//   }
-// }
+module storageBlobModule 'modules/storageBlob.bicep' = {
+  name: 'storageBlobModuleDeploy'
+  params: {
+    sacName: storageAccountModule.outputs.sacName
+  }
+  dependsOn: [
+    storageAccountModule
+  ]
+}
