@@ -14,6 +14,7 @@ variables:
   azureServiceConnection: 'sub_sc'
   resourceGroupName: 'test-aks9'
   templateFile: 'iac/prerequisites/main.bicep'
+  keyVaultName: 'kvdds7657'
   
 pool:
   vmImage: 'ubuntu-latest'
@@ -79,4 +80,4 @@ stages:
         scriptType: bash
         scriptLocation: inlineScript
         inlineScript: |
-          az deployment group create --resource-group $(resourceGroupName) --template-file $(templateFile)
+          az deployment group create --resource-group $(resourceGroupName) --template-file $(templateFile) --parameters rgName=$(resourceGroupName) keyVaultName=$(keyVaultName)
