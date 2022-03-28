@@ -4,6 +4,7 @@ This sample shows how to create/manage/deploy an AKS clusters with:
 - Minimal React SPA frontend 
 - Minimal Springboot API
 - Standard docker pieline template
+- Standard bicep pipeline template
 - Helm charts for release management into AKS cluster
 - Terraform for IaC to build/change/destroy the k8 infrastructure
 - Bicep for deploying the prerequiste storage account
