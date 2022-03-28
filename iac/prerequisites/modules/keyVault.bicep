@@ -15,8 +15,12 @@ param enabledForDiskEncryption bool = true
 @description('Whether Azure Resource Manager is permitted to retrieve secrets from the Key Vault.')
 param enabledForTemplateDeployment bool = true
 
-@description('An object array that contains the complete definition of the access policy.')
+@description('An object array that contains the permissions to be assigned.')
 param permissions object = {
+  keys: [
+    'get'
+    'list'
+  ]
   secrets: [
     'get'
     'list'
@@ -51,7 +55,7 @@ param softDeleteRetentionInDays int = 90
   'AzureServices'
   'None'
 ])
-param bypassNetworkAcls string = 'AzureServices'
+param bypassNetworkAcls string = 'None' //AzureServices
 
 @description('An array of Virtual Network resource IDs allowed to access the Key Vault.')
 param virtualNetworkRules array = []
