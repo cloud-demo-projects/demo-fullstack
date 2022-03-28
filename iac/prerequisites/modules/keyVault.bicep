@@ -7,7 +7,7 @@ param keyVaultName string
 param location string
 
 @description('Whether Azure Virtual Machines are permitted to retrieve certificates stored as secrets from the Key Vault.')
-param enabledForDeployment bool = true
+param enabledForDeployment bool = false //relates to bypassNetworkAcls
 
 @description('Whether Azure Disk Encryption is permitted to retrieve secrets from the Key Vault and unwrap keys.')
 param enabledForDiskEncryption bool = true
