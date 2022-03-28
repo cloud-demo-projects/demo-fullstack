@@ -16,7 +16,21 @@ param enabledForDiskEncryption bool = true
 param enabledForTemplateDeployment bool = true
 
 @description('An object array that contains the complete definition of the access policy.')
-param AccessPolicies array = []
+param permissions object = {
+  secrets: [
+    'get'
+    'list'
+  ]
+}
+
+@description('An object array that contains the complete definition of the access policy.')
+param AccessPolicies array = [
+  {
+    objectId: spnObjectId
+    tenantId: subscription().tenantId
+    permissions: permissions
+  }
+]
 
 @description('Whether to enable RBAC authorization.')
 param enableRbacAuthorization bool = true
