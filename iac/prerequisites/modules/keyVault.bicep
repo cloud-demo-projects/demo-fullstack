@@ -10,10 +10,10 @@ param location string
 param enabledForDeployment bool = false //relates to bypassNetworkAcls
 
 @description('Whether Azure Disk Encryption is permitted to retrieve secrets from the Key Vault and unwrap keys.')
-param enabledForDiskEncryption bool = true
+param enabledForDiskEncryption bool = false //relates to bypassNetworkAcls
 
 @description('Whether Azure Resource Manager is permitted to retrieve secrets from the Key Vault.')
-param enabledForTemplateDeployment bool = true
+param enabledForTemplateDeployment bool = false //relates to bypassNetworkAcls
 
 @description('An object array that contains the permissions to be assigned.')
 param permissions object = {
