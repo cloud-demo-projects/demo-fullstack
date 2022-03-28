@@ -13,7 +13,7 @@ param enabledForDeployment bool = false //relates to bypassNetworkAcls
 param enabledForDiskEncryption bool = false //relates to bypassNetworkAcls
 
 @description('Whether Azure Resource Manager is permitted to retrieve secrets from the Key Vault.')
-param enabledForTemplateDeployment bool = false //relates to bypassNetworkAcls
+param enabledForTemplateDeployment bool = true //relates to bypassNetworkAcls
 
 @description('An object array that contains the permissions to be assigned.')
 param permissions object = {
@@ -64,7 +64,7 @@ param softDeleteRetentionInDays int = 90
   'AzureServices'
   'None'
 ])
-param bypassNetworkAcls string = 'None' //AzureServices
+param bypassNetworkAcls string = 'AzureServices' //AzureServices
 
 @description('An array of Virtual Network resource IDs allowed to access the Key Vault.')
 param virtualNetworkRules array = []
