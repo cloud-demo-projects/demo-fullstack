@@ -42,7 +42,14 @@ param bypassNetworkAcls string = 'AzureServices'
 @description('An array of Virtual Network resource IDs allowed to access the Key Vault.')
 param virtualNetworkRules array = []
 
-param ServiceConnectionSPID string = '61b1df67-a2ad-493f-9fd1-b6a19d122f06'
+@description('Service Pronciple ObjectID to assign role against.')
+param spnObjectId string = '61b1df67-a2ad-493f-9fd1-b6a19d122f06'
+
+@description('Azure Reader role definition Guid.')
+param roleDefinitionGuid string = '61b1df67-a2ad-493f-9fd1-b6a19d122f06'
+
+@description('Azure Reader role definition name.')
+param roleDefinitionName string = 'Reader'
 
 resource keyVault 'Microsoft.KeyVault/vaults@2021-11-01-preview' = {
   name: keyVaultName
@@ -78,10 +85,10 @@ resource keyVault 'Microsoft.KeyVault/vaults@2021-11-01-preview' = {
 }
 
 resource roleAssignment 'Microsoft.Authorization/roleAssignments@2020-10-01-preview' = {
-  name: guid('KV Admin', 'Microsoft.Authorization/roleDefinitions', '00482a5a-887f-4fb3-b363-3b7fe8e74483', ServiceConnectionSPID)
+  name: guid(roleDefinitionName, 'Microsoft.Authorization/roleDefinitions', roleDefinitionGuid, spnObjectId)
   scope: keyVault
   properties:{
-    roleDefinitionId: resourceId('Microsoft.Authorization/roleDefinitions', '00482a5a-887f-4fb3-b363-3b7fe8e74483')
-    principalId: ServiceConnectionSPID
+    roleDefinitionId: resourceId('Microsoft.Authorization/roleDefinitions', roleDefinitionGuid)
+    principalId: spnObjectId
   }
 }
