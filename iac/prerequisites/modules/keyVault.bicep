@@ -64,7 +64,7 @@ param softDeleteRetentionInDays int = 90
   'AzureServices'
   'None'
 ])
-param bypassNetworkAcls string = 'AzureServices' //AzureServices
+param bypassNetworkAcls string = 'AzureServices' //None
 
 @description('An array of Virtual Network resource IDs allowed to access the Key Vault.')
 param virtualNetworkRules array = []
