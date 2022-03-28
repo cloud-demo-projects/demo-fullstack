@@ -20,10 +20,19 @@ param permissions object = {
   keys: [
     'get'
     'list'
+    'update'
+    'create'
   ]
   secrets: [
     'get'
     'list'
+    'set'
+  ]
+  certificates: [
+    'get'
+    'list'
+    'update'
+    'import'
   ]
 }
 
