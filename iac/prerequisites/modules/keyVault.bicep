@@ -42,7 +42,7 @@ param bypassNetworkAcls string = 'AzureServices'
 @description('An array of Virtual Network resource IDs allowed to access the Key Vault.')
 param virtualNetworkRules array = []
 
-param ServiceConnectionSPID string = 'eeec8256-21f6-4fc6-8cca-17065ae14344'
+param ServiceConnectionSPID string = '61b1df67-a2ad-493f-9fd1-b6a19d122f06'
 
 resource keyVault 'Microsoft.KeyVault/vaults@2021-11-01-preview' = {
   name: keyVaultName
