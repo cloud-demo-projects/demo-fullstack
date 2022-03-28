@@ -55,7 +55,7 @@
 		    <version>1.5.2</version>
 		</dependency>
 		<!--  Swagger -->
-		<!--  Azure SQl -->
+		<!--  Azure SQL -->
 		<dependency>
 			<groupId>com.microsoft.sqlserver</groupId>
 			<artifactId>mssql-jdbc</artifactId>

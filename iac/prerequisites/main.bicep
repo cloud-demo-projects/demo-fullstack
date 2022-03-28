@@ -27,17 +27,17 @@ module AksPreModuleKV 'modules/createKV.bicep' = {
   }
 }
 
-module AksPreModuleSac 'modules/createSac.bicep' = {
-  name: 'sacdeployment'
-  params: {
-    environmentType: environmentType
-    location: location
-  }
-}
+// module AksPreModuleSac 'modules/createSac.bicep' = {
+//   name: 'sacdeployment'
+//   params: {
+//     environmentType: environmentType
+//     location: location
+//   }
+// }
 
-module AksPreModuleBlob 'modules/createBlob.bicep' = {
-  name: 'blobdeployment'
-  params: {
-    sacName: AksPreModuleSac.outputs.sacName
-  }
-}
+// module AksPreModuleBlob 'modules/createBlob.bicep' = {
+//   name: 'blobdeployment'
+//   params: {
+//     sacName: AksPreModuleSac.outputs.sacName
+//   }
+// }
