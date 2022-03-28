@@ -4,7 +4,7 @@
 param keyVaultName string
 
 @description('The location of the Key Vault.')
-param location string = resourceGroup().location
+param location string
 
 @description('Whether Azure Virtual Machines are permitted to retrieve certificates stored as secrets from the Key Vault.')
 param enabledForDeployment bool = true

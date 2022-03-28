@@ -1,4 +1,6 @@
-param location string = 'westeurope'
+@description('The location of the resource group.')
+param location string
+
 param storageAccountName string = 'tfaks9'
 
 @allowed([
