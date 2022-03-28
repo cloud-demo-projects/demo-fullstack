@@ -14,17 +14,20 @@ param location string = 'westeurope'
 param keyVaultName string = 'kvdds7657'
 
 
-resource rResourceGroup 'Microsoft.Resources/resourceGroups@2020-06-01' existing = {
+resource resourceGroup 'Microsoft.Resources/resourceGroups@2020-06-01' existing = {
   name: rgName
   scope: subscription()
 }
 
-module AksPreModuleKV 'modules/createKV.bicep' = {
+module keyVault 'modules/createKV.bicep' = {
   name: 'kvdeployment'
   params: {
     keyVaultName: keyVaultName
     location: location
   }
+  dependsOn: [
+    resourceGroup
+  ]
 }
 
 // module AksPreModuleSac 'modules/createSac.bicep' = {
