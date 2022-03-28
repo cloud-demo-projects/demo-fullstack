@@ -49,7 +49,7 @@ stages:
           inlineScript: |
             az deployment group validate \
               --resource-group $(resourceGroupName) \
-              --template-file $(templateFile)
+              --template-file $(templateFile) --parameters rgName=$(resourceGroupName) keyVaultName=$(keyVaultName)
             
   - job: Preview_Azure_Changes
     displayName: Preview Azure changes
@@ -64,7 +64,7 @@ stages:
           inlineScript: |
             az deployment group what-if \
               --resource-group $(resourceGroupName) \
-              --template-file $(templateFile)
+              --template-file $(templateFile) --parameters rgName=$(resourceGroupName) keyVaultName=$(keyVaultName)
               
 - stage: Bicep_Deploy
   displayName: Bicep Deploy
