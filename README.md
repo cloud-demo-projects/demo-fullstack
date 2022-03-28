@@ -15,6 +15,7 @@ This sample shows how to create/manage/deploy an AKS clusters with:
 - Azure SQL PaaS connectivity
 
 # Upcoming Features
+- Enable logging for AKS https://docs.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-enable-existing-clusters
 - Ingress(manifest) for L7 loadbalancing
 - Pod identity(Helm) setup for Azure SQL connectivity 
 - Kured(Helm) for safe linux node reboots after patching
