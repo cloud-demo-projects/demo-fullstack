@@ -11,10 +11,7 @@ trigger:
 name: $(TeamProject)_$(BuildDefinitionName)_$(SourceBranch)_$(Date:yyyyMMdd)$(Rev:.r)
 
 variables:
-  azureServiceConnection: 'sub_sc'
-  resourceGroupName: 'test-aks9'
-  templateFile: 'iac/prerequisites/main.bicep'
-  keyVaultName: 'kvdds7657'
+- template: bicep-variables.yml
   
 pool:
   vmImage: 'ubuntu-latest'
