@@ -33,7 +33,7 @@ param AccessPolicies array = [
 ]
 
 @description('Whether to enable RBAC authorization.')
-param enableRbacAuthorization bool = true
+param enableRbacAuthorization bool = false
 
 @description('Whether to enable enable purge protection.')
 param enablePurgeProtection bool = true
