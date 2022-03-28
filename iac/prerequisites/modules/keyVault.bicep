@@ -46,7 +46,7 @@ param virtualNetworkRules array = []
 param spnObjectId string = '61b1df67-a2ad-493f-9fd1-b6a19d122f06'
 
 @description('Azure Reader role definition Guid.')
-param roleDefinitionGuid string = '61b1df67-a2ad-493f-9fd1-b6a19d122f06'
+param roleDefinitionGuid string = 'acdd72a7-3385-48ef-bd42-f606fba81ae7'
 
 @description('Azure Reader role definition name.')
 param roleDefinitionName string = 'Reader'
