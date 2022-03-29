@@ -2,7 +2,7 @@
 
 # Application Setup
 - Spring Initializer project with dependecies- Spring web, Devtools, JPA
-- SpringbootApplication -> Controller -> Service -> Repository -> Database(Azure SQL)
+- SpringbootApplication -> Controller -> Service -> Repository -JPA-> Database(Azure SQL)
 
 # Upcoming Features
 - Junit testcases with Mockito framework
