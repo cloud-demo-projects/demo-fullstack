@@ -8,5 +8,7 @@ import com.example.spingboot.model.Employee;
 public interface EmployeeService {
 	
 	public List<Employee> findAllEmployees();
+	
+	public Employee findEmployeeByLastName(String lastName);
 
 }

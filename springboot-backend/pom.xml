@@ -62,6 +62,13 @@
 			<scope>runtime</scope>
 		</dependency>
 		<!-- Azure SQL -->
+		<!--Lombok -->
+		<dependency>
+	      <groupId>org.projectlombok</groupId>
+	      <artifactId>lombok</artifactId>
+	      <optional>true</optional>
+	    </dependency>
+	    <!--Lombok -->
 	</dependencies>
 
 	<build>
@@ -70,6 +77,20 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<!-- Lombok plugin -->
+			 <plugin>
+		        <groupId>org.springframework.boot</groupId>
+		        <artifactId>spring-boot-maven-plugin</artifactId>
+		        <configuration>
+		          <excludes>
+		            <exclude>
+		              <groupId>org.projectlombok</groupId>
+		              <artifactId>lombok</artifactId>
+		            </exclude>
+		          </excludes>
+		        </configuration>
+		      </plugin>
+		      <!-- Lombok plugin -->
 		</plugins>
 	</build>
 	

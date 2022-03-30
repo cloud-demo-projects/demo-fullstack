@@ -17,5 +17,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public List<Employee> findAllEmployees(){
 		return employeeRepository.findAll();
 	}
+	
+	public Employee findEmployeeByLastName(String lastName){
+		return employeeRepository.findByLastName(lastName);
+	}
 
 }

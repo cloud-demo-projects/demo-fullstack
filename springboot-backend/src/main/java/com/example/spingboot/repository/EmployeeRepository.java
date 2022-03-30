@@ -7,5 +7,7 @@ import com.example.spingboot.model.Employee;
 
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, Long>{
+	
+	public Employee findByLastName(String lastName);
 
 }
