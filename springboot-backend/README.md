@@ -4,6 +4,12 @@
 - Spring Initializer project with dependecies- Spring web, Devtools, JPA
 - SpringbootApplication -> Controller -> Service -> Repository -JPA-> Database(Azure SQL)
 
+# Features
+- Azure SQL
+- Lombok
+- Actuator
+- Swagger 
+
 # Upcoming Features
 - Junit testcases with Mockito framework
 - Jackson API
