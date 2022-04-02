@@ -8,13 +8,13 @@
 - Client-side Validation
 - Logger
 - Exception Handling
+- Junit5 testcases with Mockito framework
 - Azure SQL
 - Lombok
 - Actuator
 - Swagger 
 
 # Upcoming Features
-- Junit testcases with Mockito framework
 - Jackson API
 - Caching
   
