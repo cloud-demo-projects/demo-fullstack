@@ -7,6 +7,7 @@
 # Features
 - Client-side Validation
 - Logger
+- Exception Handling
 - Azure SQL
 - Lombok
 - Actuator
