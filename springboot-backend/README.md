@@ -5,6 +5,8 @@
 - SpringbootApplication -> Controller -> Service -> Repository -JPA-> Database(Azure SQL)
 
 # Features
+- Client-side Validation
+- Logger
 - Azure SQL
 - Lombok
 - Actuator
