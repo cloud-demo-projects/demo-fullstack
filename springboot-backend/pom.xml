@@ -37,11 +37,13 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+		<!-- default: Junit5 & Mockito comes by default -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>		
+		<!-- default: Junit5 & Mockito comes by default -->
 		<!-- Actuator -->
 		<dependency>
 		   <groupId>org.springframework.boot</groupId>
@@ -69,16 +71,18 @@
 	      <optional>true</optional>
 	    </dependency>
 	    <!--Lombok -->
+	    <!-- Client side validation for Hibernate entities -->
+	    <dependency>
+	        <groupId>org.springframework.boot</groupId>
+	        <artifactId>spring-boot-starter-validation</artifactId>
+	    </dependency>
+	    <!-- Client side validation for Hibernate entities -->
 	</dependencies>
 
 	<build>
 		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
 			<!-- Lombok plugin -->
-			 <plugin>
+			  <plugin>
 		        <groupId>org.springframework.boot</groupId>
 		        <artifactId>spring-boot-maven-plugin</artifactId>
 		        <configuration>

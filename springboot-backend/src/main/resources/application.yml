@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    username: mysql
+    url: jdbc:mysql://localhost:3306/sample
+    password: mysql
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+    hibernate:
+      ddl-auto: update
+  profiles:
+    active: '@spring.profiles.active@'
+management:
+  security:
+    enabled: 'false'
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
