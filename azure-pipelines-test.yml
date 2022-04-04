@@ -16,4 +16,4 @@ steps:
     scriptType: 'bash'
     scriptLocation: 'scriptPath'
     scriptPath: './test-script.sh'
-    arguments: 'testarg1 testarg2'
+    arguments: '-testarg1 arg2'

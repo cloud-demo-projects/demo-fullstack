@@ -1,1 +1,1 @@
-echo $testarg1
+echo ${testarg1}
