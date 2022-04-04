@@ -15,5 +15,5 @@ steps:
     azureSubscription: 'sub_sc'
     scriptType: 'bash'
     scriptLocation: 'scriptPath'
-    scriptPath: 'test-script.sh'
+    scriptPath: './test-script.sh'
     arguments: 'testarg1 testarg2'
