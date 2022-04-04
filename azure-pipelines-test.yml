@@ -9,6 +9,9 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
+variables:
+  PAT_TOKEN: 7vqmliwuj7jw74wm4wroriyy3lsz2mwoaj6kb7cnne23y53zcx5a
+
 steps:
 - task: AzureCLI@2
   inputs:
@@ -16,4 +19,4 @@ steps:
     scriptType: 'bash'
     scriptLocation: 'scriptPath'
     scriptPath: './test-script.sh'
-    arguments: '-testarg1 arg2'
+    arguments: '-testarg1 arg2 -PAT_TOKEN $(PAT_TOKEN)'
