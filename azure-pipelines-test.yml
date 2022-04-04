@@ -14,6 +14,7 @@ variables:
   VAR1: val1
   VAR2: ${{ parameters.PARAM }}
   TESTURL: "$(System.CollectionUri)/$(System.TeamProject)/test"
+  var3: val3
 
 parameters:
 - name: PARAM
@@ -26,4 +27,4 @@ steps:
     scriptType: 'bash'
     scriptLocation: 'scriptPath'
     scriptPath: './test-script.sh'
-    arguments: '$(PAT_TOKEN) $(VAR1) ${{ parameters.PARAM }} $(VAR2) $(TESTURL)'
+    arguments: '$(PAT_TOKEN) $(VAR1) ${{ parameters.PARAM }} $(VAR2) $(TESTURL) $(var3)'
