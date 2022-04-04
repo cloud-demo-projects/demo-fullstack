@@ -20,6 +20,15 @@ LABEL org.label-schema.vendor="Cloud Demo"
 LABEL org.label-schema.version=${VERSION}
 LABEL org.label-schema.schema-version="1.0"
 
+##RUN as non root user RUN useradd --system java -m -u 888
+#RUN adduser --system java -h /home/java/ -u 888
+#USER 888
+
+#RUN chmod 777 /var/log\
+#	&& addgroup --system --gid 1000 mbr \ 
+#    && adduser --system --uid 1000 --ingroup mbr mbr
+#USER mbr
+
 WORKDIR /usr/local/lib
 
 COPY . .
