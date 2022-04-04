@@ -19,4 +19,4 @@ steps:
     scriptType: 'bash'
     scriptLocation: 'scriptPath'
     scriptPath: './test-script.sh'
-    arguments: '-testarg1 arg2 -PAT_TOKEN $(PAT_TOKEN)'
+    arguments: '$(PAT_TOKEN)'
