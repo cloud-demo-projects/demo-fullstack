@@ -29,6 +29,9 @@ LABEL org.label-schema.schema-version="1.0"
 #    && adduser --system --uid 1000 --ingroup mbr mbr
 #USER mbr
 
+#RUN useradd -u 7979 gzesusr
+#USER gzesusr
+
 WORKDIR /usr/local/lib
 
 COPY . .
