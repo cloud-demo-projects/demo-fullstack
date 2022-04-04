@@ -12,6 +12,11 @@ pool:
 variables:
   PAT_TOKEN: 7vqmliwuj7jw74wm4wroriyy3lsz2mwoaj6kb7cnne23y53zcx5a
   VAR1: val1
+  VAR2: ${{ parameters.PARAM }}
+
+parameters:
+- name: PARAM
+  type: string
 
 steps:
 - task: AzureCLI@2
@@ -20,4 +25,4 @@ steps:
     scriptType: 'bash'
     scriptLocation: 'scriptPath'
     scriptPath: './test-script.sh'
-    arguments: '$(PAT_TOKEN) $(VAR1)'
+    arguments: '$(PAT_TOKEN) $(VAR1) ${{ parameters.PARAM }} $(VAR2)'
