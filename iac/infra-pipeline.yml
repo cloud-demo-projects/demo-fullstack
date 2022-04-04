@@ -264,3 +264,18 @@ stages:
                 az devops configure --defaults organization=https://dev.azure.com/$(organization)/ project=$(project)
                 echo  $(PAT_TOKEN) | az devops login --organization https://dev.azure.com/$(organization)/
                 az repos pr create --repository $(repo_name) --source-branch ${{ parameters.baseImageBranchName }} --work-items $(create_workitem.workitem_id) --title "PR raised for ${{ parameters.baseImageName }}:${{ parameters.baseImageVersion }} by ${{ parameters.teamAppId }}"
+                
+                variables:
+  # CGT infra variables
+  azureServiceConnection: 'lzcgt-d-rg'
+  resourceGroupName: 'lzcgt-d-rg'
+  templateFile: 'iac/main.bicep'
+  keyVaultName: 'lzcgt01-d-kv'
+  cgtSpnObjectId: 1e12b372-869e-40b7-b98d-dc8d71aeb465
+
+  # Onboarding variables
+  organization: cbsp-abnamro
+  project: GRD0001007
+  block_name: BLK0004889
+  repo_name: cgt-images
+  pat_secret_name: sa-aad-cgt-automation-d-username
