@@ -1,7 +1,7 @@
 echo "2- ${PAT_TOKEN}"
 echo "3- ${VAR1}"
 echo "4- ${Sytem.CollectionUri}"
-echo "5- ${var3}"
+echo "5- ${var3Var}"
 echo "55- ${VAR3}"
 echo "6- ${{ parameters.PARAM }}"
 echo "7- ${TESTURL}"
