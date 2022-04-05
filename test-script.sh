@@ -5,8 +5,7 @@ echo "5- ${VAR3VAR}"
 echo "55- ${VAR3}"
 echo "6- ${{ parameters.PARAM }}"
 echo "7- ${TESTURL}"
-
-"${PAT_TOKEN:?must be set}"
+echo "${PAT_TOKEN:?must be set}"
 
 az devops configure --defaults organization=https://dev.azure.com/bahrinipun project=demo-fullstack
 echo ${PAT_TOKEN} | az devops login --organization https://dev.azure.com/bahrinipun

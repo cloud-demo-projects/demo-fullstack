@@ -32,6 +32,5 @@ steps:
 - task: Bash@3
   inputs:
     filePath: 'test-script.sh'
-    arguments: 'PAT_TOKEN'
   env:
     PAT_TOKEN: $(PAT_TOKEN)
