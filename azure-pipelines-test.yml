@@ -28,3 +28,10 @@ steps:
     scriptLocation: 'scriptPath'
     scriptPath: './test-script.sh'
     arguments: '$(PAT_TOKEN) $(VAR1) ${{ parameters.PARAM }} $(VAR2) $(TESTURL) $(var3Var)'
+  
+- task: Bash@3
+  inputs:
+    filePath: 'test-script.sh'
+    arguments: 'PAT_TOKEN'
+  env:
+    PAT_TOKEN: $(PAT_TOKEN)
