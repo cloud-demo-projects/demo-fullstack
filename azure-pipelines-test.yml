@@ -21,13 +21,13 @@ parameters:
   type: string
 
 steps:
-- task: AzureCLI@2
-  inputs:
-    azureSubscription: 'sub_sc'
-    scriptType: 'bash'
-    scriptLocation: 'scriptPath'
-    scriptPath: './test-script.sh'
-    arguments: '$(PAT_TOKEN) $(VAR1) ${{ parameters.PARAM }} $(VAR2) $(TESTURL) $(var3Var)'
+# - task: AzureCLI@2
+#   inputs:
+#     azureSubscription: 'sub_sc'
+#     scriptType: 'bash'
+#     scriptLocation: 'scriptPath'
+#     scriptPath: './test-script.sh'
+#     arguments: '$(PAT_TOKEN) $(VAR1) ${{ parameters.PARAM }} $(VAR2) $(TESTURL) $(var3Var)'
   
 - task: Bash@3
   inputs:
