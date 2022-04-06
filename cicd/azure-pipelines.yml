@@ -50,8 +50,14 @@ stages:
       inputs:
         command: buildx
         arguments: create --use --name $(BUILDER_NAME)
-    
 
+    ## enable buildkit
+    - task: Docker@2
+      displayName: Enable Buildkit
+      inputs:
+        command: buildx
+        arguments: install
+      
     - task: Docker@2
       displayName: Build an image
       inputs:
