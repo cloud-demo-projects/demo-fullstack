@@ -38,11 +38,11 @@ stages:
 
     - task: Cache@2
       inputs:
-        key: '"docker-build" | "$(Agent.OS)" | ${{ parameters.Dockerfile }} | "$(Build.SourceBranchName)"'
+        key: '"docker-build" | "$(Agent.OS)" | "Dockerfile" | "$(Build.SourceBranchName)"'
         path: $(DOCKER_BUILD_CACHE_DIR)
         restoreKeys: |
-          "docker-build" | "$(Agent.OS)" | ${{ parameters.Dockerfile }} | "$(Build.SourceBranchName)"
-          "docker-build" | "$(Agent.OS)" | ${{ parameters.Dockerfile }}
+          "docker-build" | "$(Agent.OS)" | "Dockerfile" | "$(Build.SourceBranchName)"
+          "docker-build" | "$(Agent.OS)" | "Dockerfile"
 
     ## create builder
     - task: Docker@2
