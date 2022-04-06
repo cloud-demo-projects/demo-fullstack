@@ -67,7 +67,25 @@ stages:
         Dockerfile: '$(Build.SourcesDirectory)/springboot-backend/Dockerfile'
         buildContext: '$(Build.ArtifactStagingDirectory)'
         tags: '1.60'
-        arguments: 
+        arguments: >-
+          --progress plain
+          --output type=docker,dest="$(Container.Image.Artifact.Path)"
+          --cache-from type=local,src=$(DOCKER_BUILD_CACHE_DIR)
+          --cache-to type=local,mode=max,dest=$(DOCKER_BUILD_CACHE_DIR)
+
+    ## remove builder
+    - task: Docker@2
+      displayName: Remove Builder
+      condition: succeededOrFailed()
+      inputs:
+        command: buildx
+        arguments: rm $(BUILDER_NAME)
+
+    - task: PublishPipelineArtifact@1
+      displayName: Publish Artifact
+      inputs:
+        path: "$(Container.Image.Artifact.Path)"
+        artifactName: ContainerImage
 
     - task: ContainerStructureTest@0
       inputs:
