@@ -7,6 +7,8 @@ resources:
 
 variables:
   tag: '$(Build.BuildId)'
+  DOCKER_BUILD_CACHE_DIR: ${Pipeline.Workspace}/.buildx-cache
+  BUILDER_NAME: $(Build.SourceBranchName)-$(Build.BuildId)
 
 stages:
 - stage: Build
