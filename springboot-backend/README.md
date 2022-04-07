@@ -13,6 +13,7 @@
 - Lombok
 - Actuator
 - Swagger 
+- Internalization
 
 # Upcoming Features
 - Jackson API
