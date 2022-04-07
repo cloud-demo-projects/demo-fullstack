@@ -20,4 +20,6 @@ public interface EmployeeService {
 
 	public List<Employee> findEmployeeOnGmail(String emailId);
 
+	public void updateEmployeeName(String firstName, String lastName, Long employeeId);
+
 }

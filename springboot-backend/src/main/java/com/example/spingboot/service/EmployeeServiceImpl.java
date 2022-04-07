@@ -67,6 +67,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 		
 		return employeeRepository.save(emp);
 	}
+	
+	@Override
+	public void updateEmployeeName(String firstName, String lastName, Long employeeId) {
+		employeeRepository.updateEmployeeName(firstName, lastName,employeeId);
+	}
 
 	@Override
 	public List<Employee> findEmployeeOnGmail(String emailId) {
