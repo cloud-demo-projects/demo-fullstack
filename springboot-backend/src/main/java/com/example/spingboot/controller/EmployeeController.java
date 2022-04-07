@@ -47,7 +47,7 @@ public class EmployeeController {
 	
 	@GetMapping(path = "/employees/{id}")
 	@ResponseStatus(code = HttpStatus.FOUND)
-	public Employee findEmployeeById(@PathVariable("id") Long employeeId) {
+	public Employee findEmployeeById(@Valid @PathVariable("id") Long employeeId) {
 		LOGGER.info("Getting findEmployeeById");
 		return employeeService.findEmployeeById(employeeId);
 	}

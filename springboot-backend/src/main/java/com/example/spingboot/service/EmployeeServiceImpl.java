@@ -3,6 +3,7 @@ package com.example.spingboot.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.example.spingboot.exception.ResourceNotFoundException;
@@ -11,6 +12,9 @@ import com.example.spingboot.repository.EmployeeRepository;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
+	
+	@Value("${exception.message}")
+	private String message;
 	
 	@Autowired
 	private EmployeeRepository employeeRepository;
@@ -35,7 +39,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		if(!employeeRepository.findById(employeeId).isEmpty()) {
 			employee = employeeRepository.findById(employeeId).get();
 		}else {
-			throw new ResourceNotFoundException("employee not found.");
+			throw new ResourceNotFoundException(message);
 		}
 		return employee;
 	}

@@ -1,4 +1,13 @@
+server:
+  port: 8080
+ 
+spring: 
+ profiles:
+    active: '@spring.profiles.active@'
+
+---
 spring:
+  profiles: local
   datasource:
     username: mysql
     url: jdbc:mysql://localhost:3306/sample
@@ -9,8 +18,6 @@ spring:
         dialect: org.hibernate.dialect.MySQL5InnoDBDialect
     hibernate:
       ddl-auto: update
-  profiles:
-    active: '@spring.profiles.active@'
 management:
   security:
     enabled: 'false'
@@ -19,3 +26,25 @@ logging:
     org:
       hibernate:
         SQL: DEBUG
+exception:
+  message: Employee Not Found in Database
+  
+---
+spring:
+  profiles: dev
+  datasource:
+    username: adminuser@testsqldbserver9.database.windows.net
+    url: jdbc:sqlserver://testsqldbserver9.database.windows.net:1433;database=testsqldb9;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;
+    password: Passw0rd
+  jpa:
+    show-sql: 'true'
+    hibernate:
+      ddl-auto: update
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+exception:
+  message: Employee Not Found in Database
+
