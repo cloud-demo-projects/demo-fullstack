@@ -9,10 +9,10 @@
 - Logger
 - Exception Handling
 - Junit5 testcases with Mockito framework (for service/repository/controller layer)
-- Azure SQL connectivity
+- Azure SQL Connectivity
 - Lombok
 - Actuator
-- Swagger 
+- Swagger API Docuementation
 - Internalization
 
 # Upcoming Features
