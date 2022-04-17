@@ -25,6 +25,8 @@ stages:
           echo "kubernetesVersion: $version"
         #addSpnToEnvironment: true
 
+    - bash: ls -lrt $(System.DefaultWorkingDirectory)
+
     - task: ms-devlabs.custom-terraform-tasks.custom-terraform-installer-task.TerraformInstaller@0
       displayName: Terraform installation
       inputs:
