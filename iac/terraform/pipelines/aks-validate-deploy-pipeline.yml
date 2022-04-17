@@ -76,7 +76,7 @@ stages:
         provider: 'azurerm'
         command: 'plan'
         workingDirectory: '$(System.DefaultWorkingDirectory)/iac/terraform'
-        commandOptions: '-out $(System.DefaultWorkingDirectory)/terraform/out.plan'
+        commandOptions: '-out $(System.DefaultWorkingDirectory)/iac/terraform/out.plan'
         environmentServiceNameAzureRM: $(service_connection)
 
     - task: TerraformTaskV2@2
@@ -85,5 +85,5 @@ stages:
         provider: 'azurerm'
         command: 'apply'
         workingDirectory: '$(System.DefaultWorkingDirectory)/iac/terraform'
-        commandOptions: '$(System.DefaultWorkingDirectory)/terraform/out.plan'
+        commandOptions: '$(System.DefaultWorkingDirectory)/iac/terraform/out.plan'
         environmentServiceNameAzureRM: $(service_connection)
