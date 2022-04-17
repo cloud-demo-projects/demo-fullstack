@@ -35,6 +35,7 @@ spring:
   datasource:
     username: adminuser@testsqldbserver9.database.windows.net
     url: jdbc:sqlserver://testsqldbserver9.database.windows.net:1433;database=testsqldb9;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;
+    #url: jdbc:sqlserver://testsqldbserver9.database.windows.net:1433;database=testsqldb9;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;Authentication=ActiveDirectoryMSI
     password: Passw0rd
   jpa:
     show-sql: 'true'
