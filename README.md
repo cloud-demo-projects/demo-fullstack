@@ -31,7 +31,8 @@ Prerequisites are listed down for local development, CICD and IaC.
 - Spring Tool Suite ( For Java code IDE )
 - Node v14.17.5 ( For react package managment )
 - VS Code ( React code IDE )
-- Docker ( For local conainter building & testing through Dockerfile )
+- Docker Desktop 4.7.0 ( For local conainter building & testing through Dockerfile )
+- Terraform 1.1.8
 - Kubernetes Cluster ( For local k8 cluster testing )
 - Kubectl ( For kubernetes cluster communication through command line )
 - Azure CLI ( For Azure subscription communication through command line )
