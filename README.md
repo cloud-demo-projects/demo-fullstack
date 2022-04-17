@@ -39,9 +39,9 @@ Prerequisites are listed down for local development, CICD and IaC.
 - Azure SQL database with database server firewall opened up against client IP ( For local database development )
 - Bicep (AZ CLI, VS code bicep extension)
 - Java Static Code Analysis (Sonarcube, FindBugs, PMD)
-- Dockerfile Linting (Hadolint)
-- Docker Image Build Scan (Trivy) 
-- Lens kubernetes IDE
+- Hadolint (Dockerfile Linting)
+- Aqua Trivy (Docker Image Static Scan) 
+- Lens (Kubernetes IDE)
 
 ## IaC with Principle of Least Privileges 
 With principle of least privilidges the DevOps SPN is granted required delegations by the governing SPN (usually carrying the Owner rights)
