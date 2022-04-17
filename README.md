@@ -5,8 +5,8 @@ This sample shows how to create/manage/deploy an AKS clusters with:
 - Springboot API
 - Standard docker pieline template
 - Standard bicep pipeline template for provisioning AKS prerequisite infrastructure 
-- Helm charts for release management into AKS cluster
 - Terraform to deploy/destroy the k8 infrastructure
+- Helm charts for release management into AKS cluster
 - Hadolint for Dockerfile linting
 - Aqua Trivy for container image static scan
 - Google container structure test for container images
