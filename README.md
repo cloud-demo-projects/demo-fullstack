@@ -33,8 +33,8 @@ Prerequisites are listed down for local development, CICD and IaC.
 - Docker Desktop 4.7.0 ( For local conainter building & testing through Dockerfile )
 - Terraform 1.1.8
 - Kubernetes Cluster ( For local k8 cluster testing )
-- Kubectl ( For kubernetes cluster communication through command line )
-- Azure CLI ( For Azure subscription communication through command line )
+- Kubectl 1.22 ( For kubernetes cluster communication through command line )
+- Azure CLI 2.32.0 ( For Azure subscription communication through command line )
 - Helm 3.6.3 ( For Helm communication through command line )
 - Azure SQL database with database server firewall opened up against client IP ( For local database development )
 - Bicep (AZ CLI, VS code bicep extension)
