@@ -30,20 +30,20 @@ module keyVaultModule 'modules/keyVault.bicep' = {
   ]
 }
 
-// module storageAccountModule 'modules/storageAccount.bicep' = {
-//   name: 'storageAccountModuleDeploy'
-//   params: {
-//     environmentType: environmentType
-//     location: location
-//   }
-// }
+module storageAccountModule 'modules/storageAccount.bicep' = {
+  name: 'storageAccountModuleDeploy'
+  params: {
+    environmentType: environmentType
+    location: location
+  }
+}
 
-// module storageBlobModule 'modules/storageBlob.bicep' = {
-//   name: 'storageBlobModuleDeploy'
-//   params: {
-//     sacName: storageAccountModule.outputs.sacName
-//   }
-//   dependsOn: [
-//     storageAccountModule
-//   ]
-// }
+module storageBlobModule 'modules/storageBlob.bicep' = {
+  name: 'storageBlobModuleDeploy'
+  params: {
+    sacName: storageAccountModule.outputs.sacName
+  }
+  dependsOn: [
+    storageAccountModule
+  ]
+}
