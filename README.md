@@ -4,14 +4,13 @@ This sample shows how to create/manage/deploy an AKS clusters with:
 - Minimal React SPA frontend 
 - Springboot API
 - Standard docker pieline template
-- Standard bicep pipeline template
+- Standard bicep pipeline template for provisioning AKS prerequisite infrastructure 
+- Terraform to deploy/destroy the k8 infrastructure
 - Helm charts for release management into AKS cluster
-- Terraform for IaC to build/change/destroy the k8 infrastructure
-- Bicep for deploying the prerequiste storage account
 - Hadolint for Dockerfile linting
-- Aqua Trivy for image static scan
-- Google container structure test
-- Snyk repository scan- https://app.snyk.io/org/test-n5j
+- Aqua Trivy for container image static scan
+- Google container structure test for container images
+- Snyk repository scan for vulneribilities - https://app.snyk.io/org/test-n5j
 - Azure SQL PaaS connectivity
 
 # Upcoming Features
@@ -31,17 +30,18 @@ Prerequisites are listed down for local development, CICD and IaC.
 - Spring Tool Suite ( For Java code IDE )
 - Node v14.17.5 ( For react package managment )
 - VS Code ( React code IDE )
-- Docker ( For local conainter building & testing through Dockerfile )
+- Docker Desktop 4.7.0 ( For local conainter building & testing through Dockerfile )
+- Terraform 1.1.8
 - Kubernetes Cluster ( For local k8 cluster testing )
-- Kubectl ( For kubernetes cluster communication through command line )
-- Azure CLI ( For Azure subscription communication through command line )
+- Kubectl 1.22 ( For kubernetes cluster communication through command line )
+- Azure CLI 2.32.0 ( For Azure subscription communication through command line )
 - Helm 3.6.3 ( For Helm communication through command line )
 - Azure SQL database with database server firewall opened up against client IP ( For local database development )
 - Bicep (AZ CLI, VS code bicep extension)
-- Java Static Code Analysis (Sonarcube, FindBugs, PMD)
-- Dockerfile Linting (Hadolint)
-- Docker Image Build Scan (Trivy) 
-- Lens kubernetes IDE
+- Sonarlint/FindBugs/PMD (IDE Plugins For Java Static Code Analysis)
+- Hadolint (Dockerfile Linting)
+- Aqua Trivy (Docker Image Static Scan) 
+- Lens (Kubernetes IDE)
 
 ## IaC with Principle of Least Privileges 
 With principle of least privilidges the DevOps SPN is granted required delegations by the governing SPN (usually carrying the Owner rights)
