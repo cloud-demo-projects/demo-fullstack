@@ -13,14 +13,15 @@ This sample shows how to create/manage/deploy an AKS clusters with:
 - Snyk repository scan for vulneribilities - https://app.snyk.io/org/test-n5j
 - Azure SQL PaaS connectivity
 
-# Upcoming Features
-- Enable logging for AKS https://docs.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-enable-existing-clusters
+# Upcoming Enhancements
+- Modularize Terraform IaC
 - Ingress(manifest) for L7 loadbalancing
 - Pod identity(Helm) setup for Azure SQL connectivity 
 - Kured(Helm) for safe linux node reboots after patching
 - Consuming static volume(manifest) in pod 
-- Hashicorp integration(annotations) for secrets  
+- Hashicorp secrets integration(annotations)  
 - Bicep IaC for Azure SQL server and database 
+- Enable logging for AKS https://docs.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-enable-existing-clusters
 
 # Prerequisites
 Prerequisites are listed down for local development, CICD and IaC.
