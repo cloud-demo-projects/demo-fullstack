@@ -8,9 +8,9 @@ This sample shows how to create/manage/deploy an AKS clusters with:
 - Helm charts for release management into AKS cluster
 - Terraform to deploy/destroy the k8 infrastructure
 - Hadolint for Dockerfile linting
-- Aqua Trivy for image static scan
-- Google container structure test
-- Snyk repository scan- https://app.snyk.io/org/test-n5j
+- Aqua Trivy for container image static scan
+- Google container structure test for container images
+- Snyk repository scan for vulneribilities - https://app.snyk.io/org/test-n5j
 - Azure SQL PaaS connectivity
 
 # Upcoming Features
