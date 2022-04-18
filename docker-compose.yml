@@ -1,0 +1,35 @@
+version: "3.9"
+
+services:
+  mysqldb:
+    image: mysql/mysql-server:latest
+    container_name: mysql-db
+    restart: unless-stopped
+    environment:
+      - MYSQL_USER=mysql
+      - MYSQL_PASSWORD=mysql
+      - MYSQL_DATABASE=sample
+      - MYSQL_ROOT_PASSWORD=root
+    ports:
+      - "3306:3306"
+    networks:
+      - mysql-network
+    volumes:
+      - mysqldbvol:/var/lib/mysql
+  app:
+    image: sb:latest
+    container_name: sb-app
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/sample
+    ports:
+    - "8080:8080"
+    networks:
+      - mysql-network
+    depends_on:
+    - mysqldb
+
+volumes:
+  mysqldbvol: {}
+
+networks:
+  mysql-network: {}
