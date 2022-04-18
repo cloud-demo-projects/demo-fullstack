@@ -1,4 +1,6 @@
-param location string = 'westeurope'
+@description('The location of the resource group.')
+param location string
+
 param storageAccountName string = 'tfaks9'
 
 @allowed([
@@ -8,7 +10,7 @@ param storageAccountName string = 'tfaks9'
 param environmentType string = 'development'
 var storageAccountSkuName = (environmentType == 'prod') ? 'Standard_GRS' : 'Standard_LRS'
 
-resource rStorageAccount 'Microsoft.Storage/storageAccounts@2020-08-01-preview' = {
+resource rStorageAccount 'Microsoft.Storage/storageAccounts@2021-04-01' = {
   name: storageAccountName
   location: location
   sku: {
@@ -45,7 +47,4 @@ resource rStorageAccount 'Microsoft.Storage/storageAccounts@2020-08-01-preview' 
   }
 }
 
-resource rStorageAccountContainer 'Microsoft.Storage/storageAccounts/blobServices/containers@2021-04-01' = {
-  name: '${rStorageAccount.name}/default/akstfstate'
-  properties: {}
-}
+output sacName string = rStorageAccount.name

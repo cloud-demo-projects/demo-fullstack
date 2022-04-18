@@ -1,5 +1,5 @@
 variables:
-  terraformVersion: 1.0.7
+  terraformVersion: 1.1.8
   tfstatePath: terraform.tfstate
   location: westeurope
   service_connection: sub_sc

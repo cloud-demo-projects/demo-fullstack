@@ -11,21 +11,17 @@ trigger:
 name: $(TeamProject)_$(BuildDefinitionName)_$(SourceBranch)_$(Date:yyyyMMdd)$(Rev:.r)
 
 variables:
-  vmImageName: 'ubuntu-latest'
-
-  azureServiceConnection: 'sub_sc'
-  resourceGroupName: 'exampleRG'
-  location: 'westeurope'
-  templateFile: 'iac/prerequisites/createSacDeploy.bicep'
+- template: bicep-variables.yml
+  
 pool:
-  vmImage: $(vmImageName)
+  vmImage: 'ubuntu-latest'
 
 stages:
-- stage: Bicep_Lint
-  displayName: Bicep Lint
+- stage: Bicep_Build
+  displayName: Bicep Build
   jobs:
-  - job: Lint
-    displayName: Lint
+  - job: Lint_Bicep
+    displayName: Lint Bicep
     steps:
       - task: AzureCLI@2
         name: Lint_Bicep_Code
@@ -37,13 +33,8 @@ stages:
           inlineScript: |        
             az bicep build --file $(templateFile)
             
-- stage: Validate
-  displayName: Validate Bicep
-  variables:
-    - template: variables.yml  
-  jobs:
-  - job: ValidateBicepCode
-    displayName: Validate Bicep code
+  - job: Validate_Bicep
+    displayName: Validate_Bicep
     steps:       
       - task: AzureCLI@2
         name: RunPreflightValidation
@@ -55,19 +46,14 @@ stages:
           inlineScript: |
             az deployment group validate \
               --resource-group $(resourceGroupName) \
-              --template-file $(templateFile)
+              --template-file $(templateFile) --parameters rgName=$(resourceGroupName) keyVaultName=$(keyVaultName)
             
-- stage: Preview_Bicep
-  displayName: Preview Bicep
-  variables:
-    - template: variables.yml
-  jobs: 
-  - job: PreviewAzureChanges
+  - job: Preview_Azure_Changes
     displayName: Preview Azure changes
     steps:
       - task: AzureCLI@2
-        name: RunWhatIf
-        displayName: Run what-if
+        name: Preview
+        displayName: Preview Run
         inputs:
           azureSubscription: $(azureServiceConnection)
           scriptType: 'bash'
@@ -75,19 +61,20 @@ stages:
           inlineScript: |
             az deployment group what-if \
               --resource-group $(resourceGroupName) \
-              --template-file $(templateFile)
+              --template-file $(templateFile) --parameters rgName=$(resourceGroupName) keyVaultName=$(keyVaultName)
               
 - stage: Bicep_Deploy
   displayName: Bicep Deploy
+  dependsOn: Bicep_Build
   jobs:
   - job: Deploy
     displayName: Deploy
     steps:
     - task: AzureCLI@2
-      displayName: Bicep SAC Deployment
+      displayName: Bicep Deployment
       inputs:
         azureSubscription: $(azureServiceConnection)
         scriptType: bash
         scriptLocation: inlineScript
         inlineScript: |
-          az deployment group create --resource-group $(resourceGroupName) --template-file $(templateFile)
+          az deployment group create --resource-group $(resourceGroupName) --template-file $(templateFile) --parameters rgName=$(resourceGroupName) keyVaultName=$(keyVaultName)

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.spingboot.model.Skill;
-import com.example.spingboot.repository.SkillRepository;
+import com.example.spingboot.service.SkillService;
 
 @RestController
 @RequestMapping(path = "/api/v1/")
@@ -19,12 +19,12 @@ import com.example.spingboot.repository.SkillRepository;
 public class SkillController {
 	
 	@Autowired
-	private SkillRepository skillRepository;
+	private SkillService skillService;
 	
 	@GetMapping(path = "/skills")
 	@ResponseStatus(code = HttpStatus.OK)
 	public List<Skill> getSkills(){
-		return skillRepository.findAll();
+		return skillService.findAllSkills();
 	}
 
 }

@@ -22,7 +22,7 @@ stages:
         inlineScript: |
           version=$(az aks get-versions --location $(location) --query orchestrators[-1].orchestratorVersion --output tsv)
           echo "##vso[task.setvariable variable=kubernetesVersion;]$version"
-          echo "kubernetesVersion: $(version)"
+          echo "kubernetesVersion: $version"
         #addSpnToEnvironment: true
 
     - task: ms-devlabs.custom-terraform-tasks.custom-terraform-installer-task.TerraformInstaller@0
@@ -35,7 +35,7 @@ stages:
       inputs:
         provider: 'azurerm'
         command: 'init'
-        workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/iac/terraform'
         backendServiceArm: $(service_connection)
         backendAzureRmResourceGroupName: $(sac_rg)
         backendAzureRmStorageAccountName: $(sac)
@@ -56,14 +56,14 @@ stages:
     - task: ms-devlabs.custom-terraform-tasks.custom-terraform-installer-task.TerraformInstaller@0
       displayName: Terraform installation
       inputs:
-        terraformVersion: '1.0.7'
+        terraformVersion: $(terraformVersion)
       
     - task: TerraformTaskV2@2
       displayName: Terraform init
       inputs:
         provider: 'azurerm'
         command: 'init'
-        workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/iac/terraform'
         backendServiceArm: $(service_connection)
         backendAzureRmResourceGroupName: $(sac_rg)
         backendAzureRmStorageAccountName: $(sac)
@@ -75,8 +75,8 @@ stages:
       inputs:
         provider: 'azurerm'
         command: 'plan'
-        workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
-        commandOptions: '-out $(System.DefaultWorkingDirectory)/terraform/out.plan'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/iac/terraform'
+        commandOptions: '-out $(System.DefaultWorkingDirectory)/iac/terraform/out.plan'
         environmentServiceNameAzureRM: $(service_connection)
 
     - task: TerraformTaskV2@2
@@ -84,6 +84,6 @@ stages:
       inputs:
         provider: 'azurerm'
         command: 'apply'
-        workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
-        commandOptions: '$(System.DefaultWorkingDirectory)/terraform/out.plan'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/iac/terraform'
+        commandOptions: '$(System.DefaultWorkingDirectory)/iac/terraform/out.plan'
         environmentServiceNameAzureRM: $(service_connection)

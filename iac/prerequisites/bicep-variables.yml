@@ -1,0 +1,5 @@
+variables:
+  azureServiceConnection: 'sub_sc'
+  resourceGroupName: 'test-aks9'
+  templateFile: 'iac/prerequisites/main.bicep'
+  keyVaultName: 'kvdds7657'

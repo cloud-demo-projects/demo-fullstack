@@ -7,6 +7,8 @@ resources:
 
 variables:
   tag: '$(Build.BuildId)'
+  DOCKER_BUILD_CACHE_DIR: ${Pipeline.Workspace}/.buildx-cache
+  BUILDER_NAME: $(Build.SourceBranchName)-$(Build.BuildId)
 
 stages:
 - stage: Build
@@ -34,6 +36,28 @@ stages:
             echo "##vso[task.complete result=Succeeded]Docker Lint succeeded"
           fi
 
+    - task: Cache@2
+      inputs:
+        key: '"docker-build" | "$(Agent.OS)" | "Dockerfile" | "$(Build.SourceBranchName)"'
+        path: $(DOCKER_BUILD_CACHE_DIR)
+        restoreKeys: |
+          "docker-build" | "$(Agent.OS)" | "Dockerfile" | "$(Build.SourceBranchName)"
+          "docker-build" | "$(Agent.OS)" | "Dockerfile"
+
+    ## create builder
+    - task: Docker@2
+      displayName: Create Builder
+      inputs:
+        command: buildx
+        arguments: create --use --name $(BUILDER_NAME)
+
+    ## enable buildkit
+    - task: Docker@2
+      displayName: Enable Buildkit
+      inputs:
+        command: buildx
+        arguments: install
+      
     - task: Docker@2
       displayName: Build an image
       inputs:
@@ -43,15 +67,25 @@ stages:
         Dockerfile: '$(Build.SourcesDirectory)/springboot-backend/Dockerfile'
         buildContext: '$(Build.ArtifactStagingDirectory)'
         tags: '1.60'
-        arguments: 
-    
-    - task: Cache@2
-      displayName: Cache task
+        arguments: >-
+          --progress plain
+          --output type=docker,dest="$(Container.Image.Artifact.Path)"
+          --cache-from type=local,src=$(DOCKER_BUILD_CACHE_DIR)
+          --cache-to type=local,mode=max,dest=$(DOCKER_BUILD_CACHE_DIR)
+
+    ## remove builder
+    - task: Docker@2
+      displayName: Remove Builder
+      condition: succeededOrFailed()
       inputs:
-        key: 'docker | "$(Agent.OS)" | cache'
-        path: $(Pipeline.Workspace)/docker
-        cacheHitVar: CACHE_RESTORED
-          
+        command: buildx
+        arguments: rm $(BUILDER_NAME)
+
+    - task: PublishPipelineArtifact@1
+      displayName: Publish Artifact
+      inputs:
+        path: "$(Container.Image.Artifact.Path)"
+        artifactName: ContainerImage
 
     - task: ContainerStructureTest@0
       inputs:

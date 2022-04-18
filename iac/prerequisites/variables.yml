@@ -1,7 +1,0 @@
-parameters:
-  - name: targetEnvironment
-    type: string
-    default: 'Dev'
-
-variables:
-  - group: VariableGroup.GlobalVars
