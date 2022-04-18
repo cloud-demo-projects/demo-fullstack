@@ -38,6 +38,6 @@ COPY . .
 
 EXPOSE 8080
 
-ENTRYPOINT ["java","-jar","/usr/local/lib/target/springboot-backend-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java","-jar","/usr/local/lib/target/springboot-backend-1.0.jar"]
 
 
