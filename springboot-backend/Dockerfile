@@ -1,4 +1,4 @@
-FROM openjdk:11.0-oraclelinux8
+FROM openjdk:11.0-jdk-slim
 
 ARG DESCRIPTION="springboot-backend"
 ARG VERSION=$VERSION
@@ -20,24 +20,17 @@ LABEL org.label-schema.vendor="Cloud Demo"
 LABEL org.label-schema.version=${VERSION}
 LABEL org.label-schema.schema-version="1.0"
 
-##RUN as non root user RUN useradd --system java -m -u 888
-#RUN adduser --system java -h /home/java/ -u 888
-#USER 888
+RUN addgroup --system --gid 1001 appuser
+RUN adduser --system --uid 1001 --ingroup appuser appuser
 
-#RUN chmod 777 /var/log\
-#	&& addgroup --system --gid 1000 mbr \ 
-#    && adduser --system --uid 1000 --ingroup mbr mbr
-#USER mbr
+USER appuser
 
-#RUN useradd -u 7979 gzesusr
-#USER gzesusr
+#WORKDIR /usr/local/lib
 
-WORKDIR /usr/local/lib
-
-COPY . .
+COPY target/springboot-backend-1.0.jar app.jar
 
 EXPOSE 8080
 
-ENTRYPOINT ["java","-jar","/usr/local/lib/target/springboot-backend-1.0.jar"]
+ENTRYPOINT ["java","-jar","/app.jar"]
 
 
