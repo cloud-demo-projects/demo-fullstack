@@ -25,8 +25,6 @@ RUN adduser --system --uid 1001 --ingroup appuser appuser
 
 USER appuser
 
-#WORKDIR /usr/local/lib
-
 COPY target/springboot-backend-1.0.jar app.jar
 
 EXPOSE 8080
