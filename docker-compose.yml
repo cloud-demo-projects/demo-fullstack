@@ -32,4 +32,5 @@ volumes:
   mysqldbvol: {}
 
 networks:
-  mysql-network: {}
+  mysql-network:
+    driver: bridge
