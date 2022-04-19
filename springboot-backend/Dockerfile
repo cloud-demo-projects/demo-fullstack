@@ -22,9 +22,9 @@ LABEL org.label-schema.version=${VERSION}
 LABEL org.label-schema.schema-version="1.0"
 
 ############################ Disable root user ####################
-# add the appuser group with a groupip of 1001 (does not exist on the host)
+# add the appuser group with a group id of 1001 (does not exist on the host)
 RUN addgroup --system --gid 1001 appuser
-# add the appuser user with userid of 1001 (does not exist on the host)
+# add the appuser user with user id of 1001 (does not exist on the host)
 # add the appuser user to the appuser group
 RUN adduser --system --uid 1001 --ingroup appuser appuser
 # make sure login is done via appuser not via root
