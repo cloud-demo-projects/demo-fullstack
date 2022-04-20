@@ -20,123 +20,115 @@ stages:
     pool:
       vmImage: ubuntu-latest
     steps:
-    - task: AzureCLI@2
+    - task: Bash@3
+      continueOnError: true
+      displayName: "Linting Dockerfile"
       inputs:
-        azureSubscription: 'sub_sc'
-        scriptType: 'bash'
-        scriptLocation: 'scriptPath'
-        scriptPath: 'cicd/test.sh'
-        arguments: '$(testvar)'
-
-    # - task: Bash@3
-    #   continueOnError: true
-    #   displayName: "Linting Dockerfile"
-    #   inputs:
-    #     targetType: 'inline'
-    #     script: |
-    #       docker run --rm -i hadolint/hadolint < '$(Build.SourcesDirectory)/springboot-backend/Dockerfile'
+        targetType: 'inline'
+        script: |
+          docker run --rm -i hadolint/hadolint < '$(Build.SourcesDirectory)/springboot-backend/Dockerfile'
           
-    #       # check if the Hadolint command found issues or not
-    #       if [ $? != 0 ];
-    #       then
-    #         echo "##vso[task.logissue type=error]Lint scanning found errors in the Dockerfile that need to be resolved!"
-    #         echo "##vso[task.complete result=Failed]Docker Lint reporting errors"
-    #       else
-    #         echo "##vso[task.complete result=Succeeded]Docker Lint succeeded"
-    #       fi
+          # check if the Hadolint command found issues or not
+          if [ $? != 0 ];
+          then
+            echo "##vso[task.logissue type=error]Lint scanning found errors in the Dockerfile that need to be resolved!"
+            echo "##vso[task.complete result=Failed]Docker Lint reporting errors"
+          else
+            echo "##vso[task.complete result=Succeeded]Docker Lint succeeded"
+          fi
 
-    # - task: Cache@2
-    #   inputs:
-    #     key: '"docker-build" | "$(Agent.OS)" | "Dockerfile" | "$(Build.SourceBranchName)"'
-    #     path: $(DOCKER_BUILD_CACHE_DIR)
-    #     restoreKeys: |
-    #       "docker-build" | "$(Agent.OS)" | "Dockerfile" | "$(Build.SourceBranchName)"
-    #       "docker-build" | "$(Agent.OS)" | "Dockerfile"
+    - task: Cache@2
+      inputs:
+        key: '"docker-build" | "$(Agent.OS)" | "Dockerfile" | "$(Build.SourceBranchName)"'
+        path: $(DOCKER_BUILD_CACHE_DIR)
+        restoreKeys: |
+          "docker-build" | "$(Agent.OS)" | "Dockerfile" | "$(Build.SourceBranchName)"
+          "docker-build" | "$(Agent.OS)" | "Dockerfile"
 
-    # ## create builder
-    # - task: Docker@2
-    #   displayName: Create Builder
-    #   inputs:
-    #     command: buildx
-    #     arguments: create --use --name $(BUILDER_NAME)
+    ## create builder
+    - task: Docker@2
+      displayName: Create Builder
+      inputs:
+        command: buildx
+        arguments: create --use --name $(BUILDER_NAME)
 
-    # ## enable buildkit
-    # - task: Docker@2
-    #   displayName: Enable Buildkit
-    #   inputs:
-    #     command: buildx
-    #     arguments: install
+    ## enable buildkit
+    - task: Docker@2
+      displayName: Enable Buildkit
+      inputs:
+        command: buildx
+        arguments: install
       
-    # - task: Docker@2
-    #   displayName: Build an image
-    #   inputs:
-    #     containerRegistry: 'dockerhub_sc'
-    #     repository: 'bahrinipun/sb'
-    #     command: 'build'
-    #     Dockerfile: '$(Build.SourcesDirectory)/springboot-backend/Dockerfile'
-    #     buildContext: '$(Build.ArtifactStagingDirectory)'
-    #     tags: '1.60'
-    #     arguments: >-
-    #       --progress plain
-    #       --output type=docker,dest="$(Container.Image.Artifact.Path)"
-    #       --cache-from type=local,src=$(DOCKER_BUILD_CACHE_DIR)
-    #       --cache-to type=local,mode=max,dest=$(DOCKER_BUILD_CACHE_DIR)
+    - task: Docker@2
+      displayName: Build an image
+      inputs:
+        containerRegistry: 'dockerhub_sc'
+        repository: 'bahrinipun/sb'
+        command: 'build'
+        Dockerfile: '$(Build.SourcesDirectory)/springboot-backend/Dockerfile'
+        buildContext: '$(Build.ArtifactStagingDirectory)'
+        tags: '1.60'
+        arguments: >-
+          --progress plain
+          --output type=docker,dest="$(Container.Image.Artifact.Path)"
+          --cache-from type=local,src=$(DOCKER_BUILD_CACHE_DIR)
+          --cache-to type=local,mode=max,dest=$(DOCKER_BUILD_CACHE_DIR)
 
-    # ## remove builder
-    # - task: Docker@2
-    #   displayName: Remove Builder
-    #   condition: succeededOrFailed()
-    #   inputs:
-    #     command: buildx
-    #     arguments: rm $(BUILDER_NAME)
+    ## remove builder
+    - task: Docker@2
+      displayName: Remove Builder
+      condition: succeededOrFailed()
+      inputs:
+        command: buildx
+        arguments: rm $(BUILDER_NAME)
 
-    # - task: PublishPipelineArtifact@1
-    #   displayName: Publish Artifact
-    #   inputs:
-    #     path: "$(Container.Image.Artifact.Path)"
-    #     artifactName: ContainerImage
+    - task: PublishPipelineArtifact@1
+      displayName: Publish Artifact
+      inputs:
+        path: "$(Container.Image.Artifact.Path)"
+        artifactName: ContainerImage
 
-    # - task: ContainerStructureTest@0
-    #   inputs:
-    #     dockerRegistryServiceConnection: ''
-    #     repository: 'bahrinipun/sb'
-    #     tag: '1.60'
-    #     configFile: '$(Build.SourcesDirectory)/cicd/templates/structure-test-config.yaml'
-    #     testRunTitle: 'Structure Test'
-    #     failTaskOnFailedTests: false
+    - task: ContainerStructureTest@0
+      inputs:
+        dockerRegistryServiceConnection: ''
+        repository: 'bahrinipun/sb'
+        tag: '1.60'
+        configFile: '$(Build.SourcesDirectory)/cicd/templates/structure-test-config.yaml'
+        testRunTitle: 'Structure Test'
+        failTaskOnFailedTests: false
     
-    # - task: Bash@3
-    #   displayName: Download & Install Trivy For Image Scan
-    #   inputs:
-    #     targetType: 'inline'
-    #     script: |
-    #       docker images
-    #       wget https://github.com/aquasecurity/trivy/releases/download/v0.23.0/trivy_0.23.0_Linux-64bit.deb
-    #       sudo dpkg -i trivy_0.23.0_Linux-64bit.deb
-    #       trivy -v
+    - task: Bash@3
+      displayName: Download & Install Trivy For Image Scan
+      inputs:
+        targetType: 'inline'
+        script: |
+          docker images
+          wget https://github.com/aquasecurity/trivy/releases/download/v0.23.0/trivy_0.23.0_Linux-64bit.deb
+          sudo dpkg -i trivy_0.23.0_Linux-64bit.deb
+          trivy -v
 
-    # - task: Bash@3
-    #   displayName: Trivy Scan
-    #   inputs:
-    #     targetType: 'inline'
-    #     script: |
-    #       trivy image --exit-code 0 --severity HIGH,CRITICAL bahrinipun/sb:1.60
-    #       trivy image --severity HIGH,CRITICAL --format template --template "@cicd/templates/junit.tpl" -o junit-report-high-crit.xml bahrinipun/sb:1.60
+    - task: Bash@3
+      displayName: Trivy Scan
+      inputs:
+        targetType: 'inline'
+        script: |
+          trivy image --exit-code 0 --severity HIGH,CRITICAL bahrinipun/sb:1.60
+          trivy image --severity HIGH,CRITICAL --format template --template "@cicd/templates/junit.tpl" -o junit-report-high-crit.xml bahrinipun/sb:1.60
 
-    # - task: PublishTestResults@2
-    #   displayName: 'Publish Trivy Scan Results'
-    #   inputs:
-    #     testResultsFormat: 'JUnit'
-    #     testResultsFiles: 'junit-report-high-crit.xml'
-    #     mergeTestResults: true
-    #     failTaskOnFailedTests: false
-    #     testRunTitle: 'Trivy - High & Critical Vulnerabilities'
-    #   condition: 'always()' 
+    - task: PublishTestResults@2
+      displayName: 'Publish Trivy Scan Results'
+      inputs:
+        testResultsFormat: 'JUnit'
+        testResultsFiles: 'junit-report-high-crit.xml'
+        mergeTestResults: true
+        failTaskOnFailedTests: false
+        testRunTitle: 'Trivy - High & Critical Vulnerabilities'
+      condition: 'always()' 
           
-    # - task: Docker@2
-    #   displayName: Push Image
-    #   inputs:
-    #     containerRegistry: 'dockerhub_sc'
-    #     repository: 'bahrinipun/sb'
-    #     command: 'push'
-    #     tags: '1.60'
+    - task: Docker@2
+      displayName: Push Image
+      inputs:
+        containerRegistry: 'dockerhub_sc'
+        repository: 'bahrinipun/sb'
+        command: 'push'
+        tags: '1.60'
