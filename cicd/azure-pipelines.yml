@@ -26,7 +26,7 @@ stages:
         scriptType: 'bash'
         scriptLocation: 'scriptPath'
         scriptPath: 'cicd/test.sh'
-        arguments: '-TEST_ARG $(testvar)'
+        arguments: '$(testvar)'
 
     # - task: Bash@3
     #   continueOnError: true
