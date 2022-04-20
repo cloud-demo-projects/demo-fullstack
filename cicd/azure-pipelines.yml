@@ -25,7 +25,7 @@ stages:
         azureSubscription: 'sub_sc'
         scriptType: 'bash'
         scriptLocation: 'scriptPath'
-        scriptPath: '.test.sh'
+        scriptPath: 'cicd/test.sh'
         arguments: '-TEST_ARG $(testvar)'
 
     # - task: Bash@3
