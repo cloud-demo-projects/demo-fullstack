@@ -3,7 +3,7 @@ server:
  
 spring: 
  profiles:
-    active: '@spring.profiles.active@'
+    active: ${spring.profiles.active}
 
 ---
 spring:
@@ -27,16 +27,16 @@ logging:
       hibernate:
         SQL: DEBUG
 exception:
-  message: Employee Not Found in Database
+  message: Employee Not Found in Local Database
   
 ---
 spring:
   profiles: dev
   datasource:
-    username: adminuser@testsqldbserver9.database.windows.net
-    url: jdbc:sqlserver://testsqldbserver9.database.windows.net:1433;database=testsqldb9;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;
-    #url: jdbc:sqlserver://testsqldbserver9.database.windows.net:1433;database=testsqldb9;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;Authentication=ActiveDirectoryMSI
-    password: Passw0rd
+    username: ${spring.datasource.username}
+    url: jdbc:sqlserver://${db.server.name}.database.windows.net:1433;database=${db.name};encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;
+    #url: jdbc:sqlserver://${db.server.name}.database.windows.net:1433;database=${db.name};encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;Authentication=ActiveDirectoryMSI
+    password: ${spring.datasource.password}
   jpa:
     show-sql: 'true'
     hibernate:
@@ -47,5 +47,5 @@ logging:
       hibernate:
         SQL: DEBUG
 exception:
-  message: Employee Not Found in Database
+  message: Employee Not Found in Dev Database
 

@@ -25,6 +25,16 @@ spec:
             configMapKeyRef:
               name: {{ .Values.configMap.name }}
               key: ENVIRONMENT
+        - name: DB_SERVER_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: {{ .Values.configMap.name }}
+              key: DBSERVERNAME
+        - name: DB_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: {{ .Values.configMap.name }}
+              key: DBNAME
         - name: SPRING_DATASOURCE_URL
           valueFrom:
             secretKeyRef:

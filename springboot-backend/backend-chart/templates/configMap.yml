@@ -1,6 +1,8 @@
 apiVersion: v1
 data:
-    ENVIRONMENT: dev     
+    ENVIRONMENT: dev
+    DBSERVERNAME: testsqldbserver9
+    DBNAME: testsqldb9     
 kind: ConfigMap
 metadata:
   name: {{ .Values.configMap.name }}

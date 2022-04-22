@@ -12,8 +12,8 @@ services:
       - MYSQL_ROOT_PASSWORD=root
     ports:
       - "3306:3306"
-    networks:
-      - mysql-network
+    # networks:
+    #   - mysql-network
     volumes:
       - mysqldbvol:/var/lib/mysql
   app:
@@ -23,14 +23,14 @@ services:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/sample
     ports:
     - "8080:8080"
-    networks:
-      - mysql-network
+    # networks:
+    #   - mysql-network
     depends_on:
     - mysqldb
 
 volumes:
   mysqldbvol: {}
 
-networks:
-  mysql-network:
-    driver: bridge
+# networks:
+#   mysql-network:
+#     driver: bridge
