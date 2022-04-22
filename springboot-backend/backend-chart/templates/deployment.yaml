@@ -20,7 +20,7 @@ spec:
         ports:
         - containerPort: 8080
         env:
-        - name: SPRING_PROFILES_ACTIVE
+        - name: ACTIVE_PROFILE
           valueFrom:
             configMapKeyRef:
               name: {{ .Values.configMap.name }}
@@ -35,17 +35,12 @@ spec:
             configMapKeyRef:
               name: {{ .Values.configMap.name }}
               key: DBNAME
-        - name: SPRING_DATASOURCE_URL
-          valueFrom:
-            secretKeyRef:
-              name: {{ .Values.secret.name }}
-              key: SPRINGDATASOURCEURL
-        - name: SPRING_DATASOURCE_USERNAME
+        - name: DB_USERNAME
           valueFrom:
             secretKeyRef:
               name: {{ .Values.secret.name }}
               key: SPRINGDATASOURCEUSERNAME
-        - name: SPRING_DATASOURCE_PASSWORD
+        - name: DB_PASSWORD
           valueFrom:
             secretKeyRef:
               name: {{ .Values.secret.name }}
