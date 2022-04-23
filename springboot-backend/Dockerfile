@@ -33,6 +33,6 @@ USER appuser
 
 COPY target/springboot-backend-1.0.jar app.jar
 EXPOSE 8080
-ENTRYPOINT ["java","-jar","/app.jar"]
+ENTRYPOINT ["java","-Dspring.profiles.active=dev","-jar","/app.jar"]
 
 
