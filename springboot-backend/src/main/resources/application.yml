@@ -3,7 +3,7 @@ server:
  
 spring: 
  profiles:
-    active: ${ACTIVE_PROFILE}
+    active: @spring.profiles.active@
 
 ---
 spring:
@@ -33,10 +33,10 @@ exception:
 spring:
   profiles: dev
   datasource:
-    username: ${DB_USERNAME}
+    username: ${DB_USER}
     url: jdbc:sqlserver://${DB_SERVER_NAME}.database.windows.net:1433;database=${DB_NAME};encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;
     #url: jdbc:sqlserver://${db.server.name}.database.windows.net:1433;database=${db.name};encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;Authentication=ActiveDirectoryMSI
-    password: ${DB_PASSWORD}
+    password: ${DB_PASS}
   jpa:
     show-sql: 'true'
     hibernate:
