@@ -14,17 +14,17 @@ metadataTest:
       value: /usr/local/openjdk-11
   exposedPorts: ["8080"]
   labels:
-    - key: 'Maintainer'
+    - key: 'com.abnamro.label-schema.maintainer'
       value: 'Nipun Bahri'
   # volumes: ["null"]
   # entrypoint: []
   # cmd: ["/bin/bash"]
-  workdir: "/usr/local/lib"
+  workdir: "/"
 
 fileExistenceTests:
   # check that the apt-packages text file exists and has the correct permissions
   - name: 'JAR Existence'
-    path: '/usr/local/lib/target/springboot-backend-0.0.1-SNAPSHOT.jar'
+    path: '/springboot-backend-1.0.jar'
     shouldExist: true
 
   # - name: 'Docker Entry Point Exists'
