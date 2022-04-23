@@ -40,6 +40,7 @@ parameters:
     
 variables:
 - template: ../cicd/variables/cicd-variables.yml
+- group: VariableGroup.GlobalVars
 
 stages:
 - stage: Java_Maven_Building
