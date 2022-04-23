@@ -36,6 +36,6 @@ USER appuser
 
 COPY target/springboot-backend-1.0.jar app.jar
 EXPOSE 8080
-ENTRYPOINT ["java","-jar","/app.jar","--spring.profiles.active=${SPRING_PROFILE}", "--db.user=${DB_USER}", "--db.pass=${DB_PASS}"]
+ENTRYPOINT ["java","-jar","/app.jar","--spring.profiles.active=${SPRING_PROFILE}","--db.user=${DB_USER}", "--db.pass=${DB_PASS}"]
 
 
