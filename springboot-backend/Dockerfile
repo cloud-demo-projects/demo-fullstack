@@ -1,5 +1,8 @@
 FROM openjdk:11.0-jdk-slim
 
+ENV DB_USER DB_PASS
+
+ARG SPRING_PROFILE="dev"
 ARG DESCRIPTION="springboot-backend"
 ARG VERSION=$VERSION
 ARG BUILD_URL=$BUILD_URL
@@ -33,6 +36,6 @@ USER appuser
 
 COPY target/springboot-backend-1.0.jar app.jar
 EXPOSE 8080
-ENTRYPOINT ["java","-Dspring.profiles.active=dev","-jar","/app.jar"]
+ENTRYPOINT ["java","-jar","/app.jar","--spring.profiles.active=${SPRING_PROFILE}", "--db.user=${DB_USER}", "--db.pass=${DB_PASS}"]
 
 
