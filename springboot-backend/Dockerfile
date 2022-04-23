@@ -26,14 +26,15 @@ LABEL org.label-schema.schema-version="1.0"
 
 ############################ Disable root user ####################
 # add the appuser group with a group id of 1001 (does not exist on the host)
-RUN addgroup --system --gid 1001 appuser
+RUN addgroup --system --gid 1001 appuser \
 # add the appuser user with user id of 1001 (does not exist on the host)
 # add the appuser user to the appuser group
-RUN adduser --system --uid 1001 --ingroup appuser appuser
+&& adduser --system --uid 1001 --ingroup appuser appuser
 # make sure login is done via appuser not via root
 USER appuser
 ############################ End: Disable root user ####################
 
+WORKDIR /
 COPY target/springboot-backend-1.0.jar app.jar
 EXPOSE 8080
 ENTRYPOINT ["java","-jar","/app.jar","--spring.profiles.active=${SPRING_PROFILE}","--db.user=${DB_USER}", "--db.pass=${DB_PASS}"]
