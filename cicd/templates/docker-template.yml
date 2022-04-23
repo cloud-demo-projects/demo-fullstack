@@ -45,7 +45,7 @@ steps:
         dockerRegistryServiceConnection: ''
         repository: '${{ parameters.projectName }}'
         tag: '${{ parameters.appVersion }}'
-        configFile: 'structure-test-config.yaml'
+        configFile: '/cicd/templates/structure-test-config.yaml'
         testRunTitle: 'Structure Test'
 
     - task: Bash@3
