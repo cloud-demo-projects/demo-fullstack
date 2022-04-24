@@ -92,7 +92,7 @@ stages:
   displayName: Helm Chart Deployment
   jobs:
   - job: Helm_Chart_Deployment
-    displayName: Helm Chart Deloy
+    displayName: Helm Chart Deploy
     pool:
       vmImage: ubuntu-latest  
     steps:      
