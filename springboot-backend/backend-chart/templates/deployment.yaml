@@ -20,7 +20,7 @@ spec:
         ports:
         - containerPort: 8080
         env:
-        - name: ACTIVE_PROFILE
+        - name: SPRING_PROFILE
           valueFrom:
             configMapKeyRef:
               name: {{ .Values.configMap.name }}
