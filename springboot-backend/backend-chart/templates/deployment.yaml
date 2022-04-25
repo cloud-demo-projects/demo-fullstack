@@ -5,7 +5,9 @@ metadata:
     {{- include "backend-chart.labels" . | nindent 4 }}
   name: {{ include "backend-chart.fullname" . }}
 spec:
+  {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
+  {{- end }}
   selector:
     matchLabels:
       {{- include "backend-chart.selectorLabels" . | nindent 6 }}
