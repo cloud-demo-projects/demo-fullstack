@@ -16,6 +16,7 @@ spec:
       labels:
         {{- include "backend-chart.selectorLabels" . | nindent 8 }}
     spec:
+      serviceAccountName: {{ include "backend-chart.serviceAccountName" . }}
       volumes:
         - name: sb-cm
           configMap:
