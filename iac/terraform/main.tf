@@ -131,12 +131,12 @@ resource "azurerm_kubernetes_cluster" "k8s" {
       type = "SystemAssigned"
     }
 
-    # addon_profile {
-    #     oms_agent {
-    #     enabled                    = true
-    #     log_analytics_workspace_id = azurerm_log_analytics_workspace.fullstack_lws.id
-    #     }
-    # }
+    addon_profile {
+        oms_agent {
+        enabled                    = true
+        log_analytics_workspace_id = azurerm_log_analytics_workspace.fullstack_lws.id
+        }
+    }
 
     role_based_access_control {
         enabled = var.role_based_access_control_enabled
