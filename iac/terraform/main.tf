@@ -16,90 +16,90 @@ resource "azurerm_resource_group" "k8s" {
     location = var.location
 }
 
-# resource "random_id" "log_analytics_workspace_name_suffix" {
-#     byte_length = 8
-# }
+resource "random_id" "log_analytics_workspace_name_suffix" {
+    byte_length = 8
+}
 
-# resource "azurerm_log_analytics_workspace" "test" {
-#     # The WorkSpace name has to be unique across the whole of azure, not just the current subscription/tenant.
-#     name                = "${var.log_analytics_workspace_name}-${random_id.log_analytics_workspace_name_suffix.dec}"
-#     location            = var.log_analytics_workspace_location
-#     resource_group_name = azurerm_resource_group.k8s.name
-#     sku                 = var.log_analytics_workspace_sku
-# }
+resource "azurerm_log_analytics_workspace" "test" {
+    # The WorkSpace name has to be unique across the whole of azure, not just the current subscription/tenant.
+    name                = "${var.log_analytics_workspace_name}-${random_id.log_analytics_workspace_name_suffix.dec}"
+    location            = var.log_analytics_workspace_location
+    resource_group_name = azurerm_resource_group.k8s.name
+    sku                 = var.log_analytics_workspace_sku
+}
 
-# resource "azurerm_log_analytics_solution" "test" {
-#     solution_name         = "ContainerInsights"
-#     location              = azurerm_log_analytics_workspace.test.location
-#     resource_group_name   = azurerm_resource_group.k8s.name
-#     workspace_resource_id = azurerm_log_analytics_workspace.test.id
-#     workspace_name        = azurerm_log_analytics_workspace.test.name
+resource "azurerm_log_analytics_solution" "test" {
+    solution_name         = "ContainerInsights"
+    location              = azurerm_log_analytics_workspace.test.location
+    resource_group_name   = azurerm_resource_group.k8s.name
+    workspace_resource_id = azurerm_log_analytics_workspace.test.id
+    workspace_name        = azurerm_log_analytics_workspace.test.name
 
-#     plan {
-#         publisher = "Microsoft"
-#         product   = "OMSGallery/ContainerInsights"
-#     }
-# }
+    plan {
+        publisher = "Microsoft"
+        product   = "OMSGallery/ContainerInsights"
+    }
+}
 
-# resource "azurerm_monitor_diagnostic_setting" "workspace_logananalytics" {
-#   name                       = "customer_diagnostics"
-#   target_resource_id         = azurerm_kubernetes_cluster.aks.id
-#   log_analytics_workspace_id = var.log_analytics_workspace_id
+resource "azurerm_monitor_diagnostic_setting" "workspace_logananalytics" {
+  name                       = "customer_diagnostics"
+  target_resource_id         = azurerm_kubernetes_cluster.aks.id
+  log_analytics_workspace_id = azurerm_log_analytics_workspace.test.id
 
-#   metric {
-#     category = "AllMetrics"
-#     enabled  = var.customer_diagnostics_enabled
-#     retention_policy {
-#       enabled = var.customer_diagnostics_retention_enabled
-#       days    = var.customer_diagnostics_retention_days
-#     }
-#   }
+  metric {
+    category = "AllMetrics"
+    enabled  = var.customer_diagnostics_enabled
+    retention_policy {
+      enabled = var.customer_diagnostics_retention_enabled
+      days    = var.customer_diagnostics_retention_days
+    }
+  }
 
-#   log {
-#     category = "kube-apiserver"
-#     enabled  = var.customer_diagnostics_enabled
-#     retention_policy {
-#       enabled = var.customer_diagnostics_retention_enabled
-#       days    = var.customer_diagnostics_retention_days
-#     }
-#   }
+  log {
+    category = "kube-apiserver"
+    enabled  = var.customer_diagnostics_enabled
+    retention_policy {
+      enabled = var.customer_diagnostics_retention_enabled
+      days    = var.customer_diagnostics_retention_days
+    }
+  }
 
-#   log {
-#     category = "kube-controller-manager"
-#     enabled  = var.customer_diagnostics_enabled
-#     retention_policy {
-#       enabled = var.customer_diagnostics_retention_enabled
-#       days    = var.customer_diagnostics_retention_days
-#     }
-#   }
+  log {
+    category = "kube-controller-manager"
+    enabled  = var.customer_diagnostics_enabled
+    retention_policy {
+      enabled = var.customer_diagnostics_retention_enabled
+      days    = var.customer_diagnostics_retention_days
+    }
+  }
 
-#   log {
-#     category = "kube-scheduler"
-#     enabled  = var.customer_diagnostics_enabled
-#     retention_policy {
-#       enabled = var.customer_diagnostics_retention_enabled
-#       days    = var.customer_diagnostics_retention_days
-#     }
-#   }
+  log {
+    category = "kube-scheduler"
+    enabled  = var.customer_diagnostics_enabled
+    retention_policy {
+      enabled = var.customer_diagnostics_retention_enabled
+      days    = var.customer_diagnostics_retention_days
+    }
+  }
 
-#   log {
-#     category = "kube-audit"
-#     enabled  = var.customer_diagnostics_enabled
-#     retention_policy {
-#       enabled = var.customer_diagnostics_retention_enabled
-#       days    = var.customer_diagnostics_retention_days
-#     }
-#   }
+  log {
+    category = "kube-audit"
+    enabled  = var.customer_diagnostics_enabled
+    retention_policy {
+      enabled = var.customer_diagnostics_retention_enabled
+      days    = var.customer_diagnostics_retention_days
+    }
+  }
 
-#   log {
-#     category = "cluster-autoscaler"
-#     enabled  = var.customer_diagnostics_enabled
-#     retention_policy {
-#       enabled = var.customer_diagnostics_retention_enabled
-#       days    = var.customer_diagnostics_retention_days
-#     }
-#   }
-# }
+  log {
+    category = "cluster-autoscaler"
+    enabled  = var.customer_diagnostics_enabled
+    retention_policy {
+      enabled = var.customer_diagnostics_retention_enabled
+      days    = var.customer_diagnostics_retention_days
+    }
+  }
+}
 
 resource "azurerm_kubernetes_cluster" "k8s" {
     name                = var.cluster_name
