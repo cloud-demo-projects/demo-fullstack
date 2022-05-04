@@ -41,6 +41,66 @@ resource "azurerm_resource_group" "k8s" {
 #     }
 # }
 
+# resource "azurerm_monitor_diagnostic_setting" "workspace_logananalytics" {
+#   name                       = "customer_diagnostics"
+#   target_resource_id         = azurerm_kubernetes_cluster.aks.id
+#   log_analytics_workspace_id = var.log_analytics_workspace_id
+
+#   metric {
+#     category = "AllMetrics"
+#     enabled  = var.customer_diagnostics_enabled
+#     retention_policy {
+#       enabled = var.customer_diagnostics_retention_enabled
+#       days    = var.customer_diagnostics_retention_days
+#     }
+#   }
+
+#   log {
+#     category = "kube-apiserver"
+#     enabled  = var.customer_diagnostics_enabled
+#     retention_policy {
+#       enabled = var.customer_diagnostics_retention_enabled
+#       days    = var.customer_diagnostics_retention_days
+#     }
+#   }
+
+#   log {
+#     category = "kube-controller-manager"
+#     enabled  = var.customer_diagnostics_enabled
+#     retention_policy {
+#       enabled = var.customer_diagnostics_retention_enabled
+#       days    = var.customer_diagnostics_retention_days
+#     }
+#   }
+
+#   log {
+#     category = "kube-scheduler"
+#     enabled  = var.customer_diagnostics_enabled
+#     retention_policy {
+#       enabled = var.customer_diagnostics_retention_enabled
+#       days    = var.customer_diagnostics_retention_days
+#     }
+#   }
+
+#   log {
+#     category = "kube-audit"
+#     enabled  = var.customer_diagnostics_enabled
+#     retention_policy {
+#       enabled = var.customer_diagnostics_retention_enabled
+#       days    = var.customer_diagnostics_retention_days
+#     }
+#   }
+
+#   log {
+#     category = "cluster-autoscaler"
+#     enabled  = var.customer_diagnostics_enabled
+#     retention_policy {
+#       enabled = var.customer_diagnostics_retention_enabled
+#       days    = var.customer_diagnostics_retention_days
+#     }
+#   }
+# }
+
 resource "azurerm_kubernetes_cluster" "k8s" {
     name                = var.cluster_name
     location            = azurerm_resource_group.k8s.location
