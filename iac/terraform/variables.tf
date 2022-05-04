@@ -35,7 +35,7 @@ variable location {
 }
 
 variable log_analytics_workspace_name {
-    default = "testLogAnalyticsWorkspaceName"
+    default = "fullstack_LogWS"
 }
 
 variable log_analytics_workspace_location {
