@@ -20,7 +20,7 @@ resource "random_id" "log_analytics_workspace_name_suffix" {
     byte_length = 8
 }
 
-resource "azurerm_log_analytics_workspace" "test" {
+resource "azurerm_log_analytics_workspace" "fullstack_lws" {
     # The WorkSpace name has to be unique across the whole of azure, not just the current subscription/tenant.
     name                = "${var.log_analytics_workspace_name}-${random_id.log_analytics_workspace_name_suffix.dec}"
     location            = var.log_analytics_workspace_location
@@ -28,12 +28,12 @@ resource "azurerm_log_analytics_workspace" "test" {
     sku                 = var.log_analytics_workspace_sku
 }
 
-resource "azurerm_log_analytics_solution" "test" {
+resource "azurerm_log_analytics_solution" "fullstack_lws_solution" {
     solution_name         = "ContainerInsights"
-    location              = azurerm_log_analytics_workspace.test.location
+    location              = azurerm_log_analytics_workspace.fullstack_lws.location
     resource_group_name   = azurerm_resource_group.k8s.name
-    workspace_resource_id = azurerm_log_analytics_workspace.test.id
-    workspace_name        = azurerm_log_analytics_workspace.test.name
+    workspace_resource_id = azurerm_log_analytics_workspace.fullstack_lws.id
+    workspace_name        = azurerm_log_analytics_workspace.fullstack_lws.name
 
     plan {
         publisher = "Microsoft"
@@ -41,10 +41,10 @@ resource "azurerm_log_analytics_solution" "test" {
     }
 }
 
-resource "azurerm_monitor_diagnostic_setting" "workspace_logananalytics" {
+resource "azurerm_monitor_diagnostic_setting" "fullstack_diagnostic_settings" {
   name                       = "customer_diagnostics"
   target_resource_id         = azurerm_kubernetes_cluster.k8s.id
-  log_analytics_workspace_id = azurerm_log_analytics_workspace.test.id
+  log_analytics_workspace_id = azurerm_log_analytics_workspace.fullstack_lws.id
 
   metric {
     category = "AllMetrics"
@@ -134,7 +134,7 @@ resource "azurerm_kubernetes_cluster" "k8s" {
     # addon_profile {
     #     oms_agent {
     #     enabled                    = true
-    #     log_analytics_workspace_id = azurerm_log_analytics_workspace.test.id
+    #     log_analytics_workspace_id = azurerm_log_analytics_workspace.fullstack_lws.id
     #     }
     # }
 
