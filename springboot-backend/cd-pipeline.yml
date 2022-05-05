@@ -1,0 +1,72 @@
+# Steps
+# Helm chart packaging & deployment
+
+# Build Name
+name: $(TeamProject)_$(SourceBranch)_$(BuildId) 
+
+trigger:
+- none
+
+resources:
+- repo: self
+
+parameters:
+  - name: acrName
+    type: string
+    default: testaks9acr9.azurecr.io
+  - name: dockerRegistry_sc
+    type: string
+    default: testaks9acr9_sc
+  - name: projectName
+    type: string
+    default: springboot-backend
+  - name: chartName
+    type: string
+    default: backend-chart
+  - name: appVersion
+    type: string
+    default: 1.16.0
+  - name: chartVersion
+    type: string
+    default: 1.16.0
+  - name: releaseName
+    type: string
+    default: sb
+    
+variables:
+- template: ../cicd/variables/cicd-variables.yml
+- group: VariableGroup.GlobalVars
+
+stages:
+- stage: Helm_Chart_Packaging
+  displayName: Helm Chart Packaging
+  jobs:
+  - job: Helm_Chart_Package
+    displayName: Helm Chart Package
+    pool:
+      vmImage: ubuntu-latest  
+    steps:
+      - template: ../cicd/templates/helm-ci-template.yml
+        parameters:
+          dockerRegistry_sc: '${{ parameters.dockerRegistry_sc }}'
+          projectName: '${{ parameters.projectName }}'
+          chartName: '${{ parameters.chartName }}'
+          appVersion: '${{ parameters.appVersion }}'
+          chartVersion: '${{ parameters.chartVersion }}'
+
+- stage: Helm_Chart_Deploy
+  displayName: Helm Chart Deployment
+  jobs:
+  - job: Helm_Chart_Deployment
+    displayName: Helm Chart Deploy
+    pool:
+      vmImage: ubuntu-latest  
+    steps:      
+      - template: ../cicd/templates/helm-cd-template.yml
+        parameters:
+          dockerRegistry_sc: '${{ parameters.dockerRegistry_sc }}'
+          projectName: '${{ parameters.projectName }}'
+          chartName: '${{ parameters.chartName }}'
+          appVersion: '${{ parameters.appVersion }}'
+          chartVersion: '${{ parameters.chartVersion }}'
+          releaseName: '${{ parameters.releaseName }}'

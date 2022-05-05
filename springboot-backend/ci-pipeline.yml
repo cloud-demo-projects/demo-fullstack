@@ -71,36 +71,3 @@ stages:
           appVersion: '${{ parameters.appVersion }}'
           chartVersion: '${{ parameters.chartVersion }}'
           acrName: '${{ parameters.acrName }}'
-
-- stage: Helm_Chart_Packaging
-  displayName: Helm Chart Packaging
-  jobs:
-  - job: Helm_Chart_Package
-    displayName: Helm Chart Package
-    pool:
-      vmImage: ubuntu-latest  
-    steps:
-      - template: ../cicd/templates/helm-ci-template.yml
-        parameters:
-          dockerRegistry_sc: '${{ parameters.dockerRegistry_sc }}'
-          projectName: '${{ parameters.projectName }}'
-          chartName: '${{ parameters.chartName }}'
-          appVersion: '${{ parameters.appVersion }}'
-          chartVersion: '${{ parameters.chartVersion }}'
-
-- stage: Helm_Chart_Deploy
-  displayName: Helm Chart Deployment
-  jobs:
-  - job: Helm_Chart_Deployment
-    displayName: Helm Chart Deploy
-    pool:
-      vmImage: ubuntu-latest  
-    steps:      
-      - template: ../cicd/templates/helm-cd-template.yml
-        parameters:
-          dockerRegistry_sc: '${{ parameters.dockerRegistry_sc }}'
-          projectName: '${{ parameters.projectName }}'
-          chartName: '${{ parameters.chartName }}'
-          appVersion: '${{ parameters.appVersion }}'
-          chartVersion: '${{ parameters.chartVersion }}'
-          releaseName: '${{ parameters.releaseName }}'
