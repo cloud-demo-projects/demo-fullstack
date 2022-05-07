@@ -1,7 +1,7 @@
 apiVersion: v1
 data:
-  EMPLOYEE_API_BASE_URL_VALUE: http://20.103.61.35:8080/api/v1/employees
-  SKILL_API_BASE_URL_VALUE: http://20.103.61.35:8080/api/v1/skills
+  EMPLOYEE_API_BASE_URL_VALUE: http://20.71.22.228:8080/api/v1/employees
+  SKILL_API_BASE_URL_VALUE: http://20.71.22.228:8080/api/v1/skills
 kind: ConfigMap
 metadata:
   name: {{ .Values.configMap.name }}
