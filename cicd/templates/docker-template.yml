@@ -38,8 +38,6 @@ steps:
           echo $(Build.ArtifactStagingDirectory)
           ls -lrt  $(Build.ArtifactStagingDirectory)/
           ls -lrt '${{ parameters.projectName }}'/
-          cp react-frontend/ci-pipeline.yml .
-          cp react-frontend/package.json .
 
     - task: Docker@2
       displayName: 'Build Docker Image'
