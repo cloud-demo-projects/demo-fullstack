@@ -37,6 +37,7 @@ steps:
           ls -lrt
           echo $(Build.ArtifactStagingDirectory)
           ls -lrt  $(Build.ArtifactStagingDirectory)/
+          ls -lrt '${{ parameters.projectName }}'/
 
     - task: Docker@2
       displayName: 'Build Docker Image'
