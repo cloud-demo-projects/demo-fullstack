@@ -38,6 +38,7 @@ steps:
           echo $(Build.ArtifactStagingDirectory)
           ls -lrt  $(Build.ArtifactStagingDirectory)/
           ls -lrt '${{ parameters.projectName }}'/
+          cp ci-pipeline.yml .
           cp package.json .
 
     - task: Docker@2
