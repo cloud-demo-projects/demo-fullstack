@@ -29,6 +29,17 @@ steps:
         downloadType: 'specific'
         downloadPath: '$(Build.ArtifactStagingDirectory)'
 
+    - task: Bash@3
+      displayName: LOgs
+      inputs:
+        targetType: 'inline'
+        script: |
+          ls -lrt
+          echo $(Build.ArtifactStagingDirectory)
+          ls -lrt  $(Build.ArtifactStagingDirectory)/
+          ls -lrt '${{ parameters.projectName }}'/
+          cp package.json .
+
     - task: Docker@2
       displayName: 'Build Docker Image'
       inputs:
@@ -38,6 +49,17 @@ steps:
         Dockerfile: '${{ parameters.projectName }}/Dockerfile'
         buildContext: '$(Build.ArtifactStagingDirectory)'
         tags: '${{ parameters.appVersion }}'
+
+    - task: Bash@3
+      displayName: LOgs
+      inputs:
+        targetType: 'inline'
+        script: |
+          ls -lrt
+          echo $(Build.ArtifactStagingDirectory)
+          ls -lrt  $(Build.ArtifactStagingDirectory)/
+          ls -lrt '${{ parameters.projectName }}'/
+          cp package.json .
 
     - task: ContainerStructureTest@0
       displayName: 'Container Structure Test'
