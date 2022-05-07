@@ -8,8 +8,8 @@ WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
 
 # install app dependencies
-USER root
-
+RUN chmod 777 package.json
+RUN chmod 777 package-lock.json
 COPY package.json ./
 COPY package-lock.json ./
 
