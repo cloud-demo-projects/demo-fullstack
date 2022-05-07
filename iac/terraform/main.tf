@@ -42,61 +42,61 @@ resource "azurerm_log_analytics_solution" "fullstack_lws_solution" {
 }
 
 resource "azurerm_monitor_diagnostic_setting" "fullstack_diagnostic_settings" {
-  name                       = "customer_diagnostics"
+  name                       = "custom_diagnostics"
   target_resource_id         = azurerm_kubernetes_cluster.k8s.id
   log_analytics_workspace_id = azurerm_log_analytics_workspace.fullstack_lws.id
 
   metric {
     category = "AllMetrics"
-    enabled  = var.customer_diagnostics_enabled
+    enabled  = var.custom_diagnostics_enabled
     retention_policy {
-      enabled = var.customer_diagnostics_retention_enabled
-      days    = var.customer_diagnostics_retention_days
+      enabled = var.custom_diagnostics_retention_enabled
+      days    = var.custom_diagnostics_retention_days
     }
   }
 
   log {
     category = "kube-apiserver"
-    enabled  = var.customer_diagnostics_enabled
+    enabled  = var.custom_diagnostics_enabled
     retention_policy {
-      enabled = var.customer_diagnostics_retention_enabled
-      days    = var.customer_diagnostics_retention_days
+      enabled = var.custom_diagnostics_retention_enabled
+      days    = var.custom_diagnostics_retention_days
     }
   }
 
   log {
     category = "kube-controller-manager"
-    enabled  = var.customer_diagnostics_enabled
+    enabled  = var.custom_diagnostics_enabled
     retention_policy {
-      enabled = var.customer_diagnostics_retention_enabled
-      days    = var.customer_diagnostics_retention_days
+      enabled = var.custom_diagnostics_retention_enabled
+      days    = var.custom_diagnostics_retention_days
     }
   }
 
   log {
     category = "kube-scheduler"
-    enabled  = var.customer_diagnostics_enabled
+    enabled  = var.custom_diagnostics_enabled
     retention_policy {
-      enabled = var.customer_diagnostics_retention_enabled
-      days    = var.customer_diagnostics_retention_days
+      enabled = var.custom_diagnostics_retention_enabled
+      days    = var.custom_diagnostics_retention_days
     }
   }
 
   log {
     category = "kube-audit"
-    enabled  = var.customer_diagnostics_enabled
+    enabled  = var.custom_diagnostics_enabled
     retention_policy {
-      enabled = var.customer_diagnostics_retention_enabled
-      days    = var.customer_diagnostics_retention_days
+      enabled = var.custom_diagnostics_retention_enabled
+      days    = var.custom_diagnostics_retention_days
     }
   }
 
   log {
     category = "cluster-autoscaler"
-    enabled  = var.customer_diagnostics_enabled
+    enabled  = var.custom_diagnostics_enabled
     retention_policy {
-      enabled = var.customer_diagnostics_retention_enabled
-      days    = var.customer_diagnostics_retention_days
+      enabled = var.custom_diagnostics_retention_enabled
+      days    = var.custom_diagnostics_retention_days
     }
   }
 }

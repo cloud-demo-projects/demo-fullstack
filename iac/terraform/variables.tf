@@ -55,17 +55,17 @@ variable "vm_size" {
   
 }
 
-variable "customer_diagnostics_enabled" {
+variable "custom_diagnostics_enabled" {
   type    = bool
   default = "true"
 }
 
-variable "customer_diagnostics_retention_enabled" {
+variable "custom_diagnostics_retention_enabled" {
   type    = bool
   default = "false"
 }
 
-variable "customer_diagnostics_retention_days" {
+variable "custom_diagnostics_retention_days" {
   type    = number
   default = 0
 }
