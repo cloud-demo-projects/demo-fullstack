@@ -46,7 +46,7 @@ stages:
     pool:
       vmImage: ubuntu-latest  
     steps:
-      - template: ../cicd/templates/docker-template.yml
+      - template: ../cicd/templates/docker-react-template.yml
         parameters:
           dockerRegistry_sc: '${{ parameters.dockerRegistry_sc }}'
           projectName: '${{ parameters.projectName }}'
