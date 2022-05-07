@@ -30,12 +30,12 @@ steps:
         downloadPath: '$(Build.ArtifactStagingDirectory)'
 
     - task: Bash@3
-    displayName: LOgs
-    inputs:
-      targetType: 'inline'
-      script: |
-        ls -lrt
-        echo $(Build.ArtifactStagingDirectory)
+      displayName: LOgs
+      inputs:
+        targetType: 'inline'
+        script: |
+          ls -lrt
+          echo $(Build.ArtifactStagingDirectory)
 
     - task: Docker@2
       displayName: 'Build Docker Image'
