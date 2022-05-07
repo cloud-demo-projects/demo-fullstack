@@ -51,7 +51,7 @@ variable "role_based_access_control_enabled" {
 }
 
 variable "vm_size" {
-    default = "Standard_B2S"
+    default = "Standard_B2MS"
   
 }
 
