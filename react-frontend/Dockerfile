@@ -10,8 +10,8 @@ ENV PATH /app/node_modules/.bin:$PATH
 # install app dependencies
 RUN chmod 777 package.json
 RUN chmod 777 package-lock.json
-COPY package.json ./
-COPY package-lock.json ./
+COPY react-frontend/package.json ./
+COPY react-frontend/package-lock.json ./
 
 RUN npm install --silent \
 && npm install react-scripts@3.4.1 -g --silent
