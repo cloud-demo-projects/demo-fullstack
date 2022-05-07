@@ -1,8 +1,6 @@
 # Steps
-# Code compilation & static scan: sonarcube,PMD, FindBugs
+# Code compilation & static scan.
 # Docker image build & push
-# Helm chart packaging & deployment
-
 
 # Build Name
 name: $(TeamProject)_$(SourceBranch)_$(BuildId) 
