@@ -8,8 +8,6 @@ WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
 
 # install app dependencies
-RUN chmod 777 package.json
-RUN chmod 777 package-lock.json
 COPY react-frontend/package.json ./
 COPY react-frontend/package-lock.json ./
 
