@@ -1,0 +1,29 @@
+repositories:
+- name: ingress-nginx
+  url: https://kubernetes.github.io/ingress-nginx
+- name: gatekeeper
+  url: https://open-policy-agent.github.io/gatekeeper/charts
+- name: aad-pod-identity
+  url: https://raw.githubusercontent.com/Azure/aad-pod-identity/master/charts
+
+releases:
+- name: ingress-nginx
+  namespace: default
+  chart: ingress-nginx/ingress-nginx
+  labels:
+    name: nginx-ingress
+  version: 4.1.1
+
+- name: gatekeeper
+  namespace: default
+  chart: gatekeeper/gatekeeper
+  labels:
+    name: gatekeeper
+  version: 3.8.1
+
+- name: aad-pod-identity
+  namespace: default
+  chart: aad-pod-identity/aad-pod-identity
+  labels:
+    name: aad-pod-identity
+  version: 4.1.9
