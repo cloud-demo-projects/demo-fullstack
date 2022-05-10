@@ -20,6 +20,11 @@ stages:
     pool:
       vmImage: ubuntu-latest
     steps:
+    - bash: |
+        curl -L https://github.com/roboll/helmfile/releases/download/v0.135.0/helmfile_linux_amd64 > helmfile
+        chmod +x helmfile
+      displayName: 'Install helm'
+
     - task: Bash@3
       continueOnError: true
       displayName: "Linting Dockerfile"
