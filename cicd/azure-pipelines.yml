@@ -24,6 +24,13 @@ stages:
         curl -L https://github.com/roboll/helmfile/releases/download/v0.135.0/helmfile_linux_amd64 > helmfile
         chmod +x helmfile
       displayName: 'Install helm'
+      
+    - bash: |
+        az login --service-principal -u "$(AZURE_SERVICE_PRINCIPAL_USER)" -p "$(AZURE_SERVICE_PRINCIPAL_PW_OR_CERT)" --tenant "$(AZURE_SERVICE_PRINCIPAL_TENANT)"
+        az aks get-credentials --resource-group "$(AZURE_RESOURCE_GROUP)" --name "$(CLUSTER_NAME)"
+            
+        ./helmfile -environment=<my-environment> sync
+      displayName: 'helmfile  sync'
 
     - task: Bash@3
       continueOnError: true
