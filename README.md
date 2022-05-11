@@ -2,7 +2,7 @@
 # Fullstack Application in AKS using Azure DevOps, IaC(Terraform & Bicep), CI/CD & Helm
 This sample shows how to create/manage/deploy an AKS clusters with:
 - Minimal React SPA frontend 
-- Springboot API
+- Springboot APIs
 - Standard docker pieline template
 - Standard bicep pipeline template for provisioning AKS prerequisite infrastructure 
 - Terraform to deploy/destroy the k8 infrastructure
