@@ -3,3 +3,17 @@ defaultToleration:
   operator: Equal
   value: "true"
   effect: NoSchedule
+
+controllerManager:
+  affinity:
+    podAntiAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+        - podAffinityTerm:
+            labelSelector:
+              matchExpressions:
+                - key: gatekeeper.sh/operation
+                  operator: In
+                  values:
+                    - webhook
+            topologyKey: kubernetes.io/hostname
+          weight: 100

@@ -9,7 +9,7 @@ repositories:
 environments:
   default:
     values:
-      - values.yaml
+      - "values.yaml"
 
 releases:
 - name: ingress-nginx
@@ -25,6 +25,12 @@ releases:
   labels:
     name: gatekeeper
   version: 3.8.1
+  values:
+    - controllerManager:
+        affinity:
+          podAntiAffinity:
+            preferredDuringSchedulingIgnoredDuringExecution:
+            {{ toYaml .Values.controllerManager.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution | nindent 14 }}
 
 - name: aad-pod-identity
   namespace: default
