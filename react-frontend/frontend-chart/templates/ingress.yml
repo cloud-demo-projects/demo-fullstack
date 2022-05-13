@@ -25,12 +25,12 @@ spec:
                 name: employee-service
                 port:
                   number: 80
-            path: /employee
+            path: /api/v1/employees
             pathType: Prefix
           - backend:
               service:
                 name: skill-service
                 port:
                   number: 80
-            path: /skill
+            path: /api/v1/skills
             pathType: Prefix
