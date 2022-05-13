@@ -6,3 +6,5 @@ variables:
   sac_rg: test-aks9
   sac: tfaks9
   sac_container: akstfstate
+  cluster_name: testaks9
+  cluster_rg: test-aks

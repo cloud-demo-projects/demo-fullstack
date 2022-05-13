@@ -10,6 +10,9 @@ environments:
   default:
     values:
       - "values.yaml"
+  dev:
+    values:
+      - "values.yaml"
 
 releases:
 - name: ingress-nginx
@@ -18,6 +21,14 @@ releases:
   labels:
     name: nginx-ingress
   version: 4.1.1
+  values:
+    - controller:
+        replicaCount: 2
+        nodeSelector:
+          beta.kubernetes.io/os: linux
+    - defaultBackend:
+        nodeSelector:
+          beta.kubernetes.io/os: linux
 
 - name: gatekeeper
   namespace: default

@@ -87,3 +87,31 @@ stages:
         workingDirectory: '$(System.DefaultWorkingDirectory)/iac/terraform'
         commandOptions: '$(System.DefaultWorkingDirectory)/iac/terraform/out.plan'
         environmentServiceNameAzureRM: $(service_connection)
+
+- stage: Helmfile_Deploy
+  jobs:
+  - job: Helmfile_Deployment
+    displayName: Helmfile Deployment
+    steps:
+    - task: Bash@3
+      displayName: 'Helmfile Install'
+      inputs:
+        targetType: 'inline'
+        script: |
+          curl -L https://github.com/roboll/helmfile/releases/download/v0.135.0/helmfile_linux_amd64 > helmfile
+          chmod +x helmfile
+
+    - task: Bash@3
+      displayName: 'debug'
+      inputs:
+        targetType: 'inline'
+        script: |
+          ls -lrt
+
+    - task: Bash@3
+      displayName: 'Helmfile Sync'
+      inputs:
+        targetType: 'inline'
+        script: |
+          az aks get-credentials --resource-group "$(cluster_rg)" --name "$(cluster_name)"
+          ./helmfile apply
