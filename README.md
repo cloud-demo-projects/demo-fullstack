@@ -16,8 +16,8 @@ This sample shows how to create/manage/deploy an AKS clusters with:
 - AKS Monitoring (https://docs.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-enable-existing-clusters)
 
 # Upcoming Enhancements
-- Ingress(manifest) for L7 loadbalancing (Prerequisite- nginx ingress controller)
-- Pod identity(Helm) setup for Azure SQL connectivity 
+- Ingress for L7 loadbalancing (Prerequisite- nginx ingress controller)
+- Pod identity setup for Azure SQL connectivity 
 - Bicep IaC for Azure SQL server and database 
 - Consuming static volume(manifest) in pod 
 - Hashicorp secrets integration(annotations)  
