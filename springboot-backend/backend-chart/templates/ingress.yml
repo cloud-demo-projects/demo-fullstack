@@ -4,14 +4,14 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: "nginx"
     # Enable client certificate authentication
-    nginx.ingress.kubernetes.io/auth-tls-verify-client: "on"
+    #nginx.ingress.kubernetes.io/auth-tls-verify-client: "on"
     # Create the secret containing the trusted ca certificates
-    nginx.ingress.kubernetes.io/auth-tls-secret: "sb-admin/ca-secret"
+    #nginx.ingress.kubernetes.io/auth-tls-secret: "sb-admin/ca-secret"
     # Specify the verification depth in the client certificates chain
-    nginx.ingress.kubernetes.io/auth-tls-verify-depth: "1"
-    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    #nginx.ingress.kubernetes.io/auth-tls-verify-depth: "1"
+    #nginx.ingress.kubernetes.io/ssl-redirect: "false"
   name: ingress-sb-admin
-  namespace: sb-admin
+  #namespace: sb-admin
 spec:
   tls:
     - hosts:
