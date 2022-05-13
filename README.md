@@ -27,7 +27,7 @@ This sample shows how to create/manage/deploy an AKS clusters with:
 # Prerequisites
 Prerequisites are listed down for local development, CICD and IaC.
 
-##  Local Dvelopment
+##  Local Dvelopment Tools
 - JDK 11 ( For local java code compilation )
 - Spring Tool Suite ( For Java code IDE )
 - Node v14.17.5 ( For react package managment )
