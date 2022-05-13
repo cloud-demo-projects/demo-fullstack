@@ -120,7 +120,7 @@ stages:
       inputs:
       azureSubscription: $(service_connection)
       scriptType: 'bash'
-        scriptLocation: 'inlineScript'
-        inlineScript: |
-          az aks get-credentials --resource-group "$(cluster_rg)" --name "$(cluster_name)"
-          ./helmfile apply
+      scriptLocation: 'inlineScript'
+      inlineScript: |
+        az aks get-credentials --resource-group "$(cluster_rg)" --name "$(cluster_name)"
+        ./helmfile apply
