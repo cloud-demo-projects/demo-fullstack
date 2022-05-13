@@ -126,4 +126,5 @@ stages:
         scriptLocation: 'inlineScript'
         inlineScript: |
           az aks get-credentials --resource-group "$(cluster_rg)" --name "$(cluster_name)"
-          ./helmfile apply
+          helm plugin install https://github.com/databus23/helm-diff
+          ./helmfile --log-level=debug apply
