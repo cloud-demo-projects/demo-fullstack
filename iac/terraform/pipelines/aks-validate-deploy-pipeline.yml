@@ -100,6 +100,7 @@ stages:
         script: |
           curl -L https://github.com/roboll/helmfile/releases/download/v0.135.0/helmfile_linux_amd64 > helmfile
           chmod +x helmfile
+          helm plugin install https://github.com/databus23/helm-diff
 
     - task: Bash@3
       displayName: 'debug'
@@ -126,5 +127,4 @@ stages:
         scriptLocation: 'inlineScript'
         inlineScript: |
           az aks get-credentials --resource-group "$(cluster_rg)" --name "$(cluster_name)"
-          helm plugin install https://github.com/databus23/helm-diff
           ./helmfile apply
