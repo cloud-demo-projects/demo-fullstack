@@ -25,12 +25,5 @@ spec:
                 name: react-frontend-chart
                 port:
                   number: 80
-            path: /
+            path: /api/v1/skills
             pathType: Prefix
-          # - backend:
-          #     service:
-          #       name: skill-service
-          #       port:
-          #         number: 8080
-          #   path: /api/v1/skills
-          #   pathType: Prefix
