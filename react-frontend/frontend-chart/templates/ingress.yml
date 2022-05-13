@@ -17,7 +17,7 @@ spec:
     - hosts:
       secretName: api
   rules:
-    - host: frontend.20-31-240-138.nip.io # IMPORTANT: update <ingress ip> with the dashed public IP of your ingress, for example frontend.13-68-177-68.nip.io
+    - host: frontend.20-31-240-138.nip.io
       http:
         paths:
           - backend:
