@@ -1,0 +1,36 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    # Enable client certificate authentication
+    nginx.ingress.kubernetes.io/auth-tls-verify-client: "on"
+    # Create the secret containing the trusted ca certificates
+    nginx.ingress.kubernetes.io/auth-tls-secret: "sb-admin/ca-secret"
+    # Specify the verification depth in the client certificates chain
+    nginx.ingress.kubernetes.io/auth-tls-verify-depth: "1"
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+  name: ingress-sb-admin
+  namespace: sb-admin
+spec:
+  tls:
+    - hosts:
+      secretName: api
+  rules:
+    - host: frontend.<ingress ip>.nip.io # IMPORTANT: update <ingress ip> with the dashed public IP of your ingress, for example frontend.13-68-177-68.nip.io
+      http:
+        paths:
+          - backend:
+              service:
+                name: employee-service
+                port:
+                  number: 80
+            path: /employee
+            pathType: Prefix
+          - backend:
+              service:
+                name: skill-service
+                port:
+                  number: 80
+            path: /skill
+            pathType: Prefix
