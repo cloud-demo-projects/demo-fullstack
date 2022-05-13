@@ -3,8 +3,6 @@ repositories:
   url: https://kubernetes.github.io/ingress-nginx
 - name: gatekeeper
   url: https://open-policy-agent.github.io/gatekeeper/charts
-# - name: aad-pod-identity
-#   url: https://raw.githubusercontent.com/Azure/aad-pod-identity/master/charts
 
 environments:
   default:
@@ -42,14 +40,3 @@ releases:
           podAntiAffinity:
             preferredDuringSchedulingIgnoredDuringExecution:
             {{ toYaml .Values.controllerManager.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution | nindent 14 }}
-
-# - name: aad-pod-identity
-#   namespace: default
-#   chart: aad-pod-identity/aad-pod-identity
-#   labels:
-#     name: aad-pod-identity
-#   version: 4.1.9
-#   values:
-#     - nmi:
-#         tolerations: 
-#         {{ toYaml .Values.defaultToleration | nindent 10 }}
