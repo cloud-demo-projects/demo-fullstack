@@ -25,7 +25,7 @@ spec:
                 name: react-frontend-chart
                 port:
                   number: 80
-            path: /api/v1/skills
+            path: /
             pathType: Prefix
     - host: nipunbahri.com
       http:
@@ -35,5 +35,5 @@ spec:
                 name: react-frontend-chart
                 port:
                   number: 80
-            path: /api/v1/skills
+            path: /
             pathType: Prefix
