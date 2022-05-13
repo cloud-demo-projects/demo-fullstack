@@ -10,7 +10,7 @@ metadata:
     # Specify the verification depth in the client certificates chain
     #nginx.ingress.kubernetes.io/auth-tls-verify-depth: "1"
     #nginx.ingress.kubernetes.io/ssl-redirect: "false"
-  name: ingress-sb-admin
+  name: ingress-react-frontend
   #namespace: sb-admin
 spec:
   tls:
