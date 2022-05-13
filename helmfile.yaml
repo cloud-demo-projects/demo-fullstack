@@ -1,8 +1,6 @@
 repositories:
 - name: ingress-nginx
   url: https://kubernetes.github.io/ingress-nginx
-- name: gatekeeper
-  url: https://open-policy-agent.github.io/gatekeeper/charts
 
 environments:
   default:
@@ -27,16 +25,3 @@ releases:
     - defaultBackend:
         nodeSelector:
           beta.kubernetes.io/os: linux
-
-- name: gatekeeper
-  namespace: default
-  chart: gatekeeper/gatekeeper
-  labels:
-    name: gatekeeper
-  version: 3.8.1
-  values:
-    - controllerManager:
-        affinity:
-          podAntiAffinity:
-            preferredDuringSchedulingIgnoredDuringExecution:
-            {{ toYaml .Values.controllerManager.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution | nindent 14 }}
