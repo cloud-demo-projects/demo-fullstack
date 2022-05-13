@@ -15,7 +15,7 @@ import com.example.spingboot.service.SkillService;
 
 @RestController
 @RequestMapping(path = "/api/v1/")
-@CrossOrigin(origins = {"http://localhost:3000", "http://nipunbahri.com"})
+@CrossOrigin("*")
 public class SkillController {
 	
 	@Autowired

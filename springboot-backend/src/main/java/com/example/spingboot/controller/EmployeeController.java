@@ -24,7 +24,7 @@ import com.example.spingboot.service.EmployeeService;
 
 @RestController
 @RequestMapping(path = "/api/v1/")
-@CrossOrigin(origins = {"http://localhost:3000", "http://nipunbahri.com"})
+@CrossOrigin("*")
 public class EmployeeController {
 	
 	private final Logger LOGGER = LoggerFactory.getLogger(EmployeeController.class);
