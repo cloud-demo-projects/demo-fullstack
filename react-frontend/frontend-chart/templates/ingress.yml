@@ -10,13 +10,23 @@ metadata:
     # Specify the verification depth in the client certificates chain
     #nginx.ingress.kubernetes.io/auth-tls-verify-depth: "1"
     #nginx.ingress.kubernetes.io/ssl-redirect: "false"
-  name: ingress-react-frontend
+  name: ingress-sb-admin
   #namespace: sb-admin
 spec:
   tls:
     - hosts:
       secretName: api
   rules:
+    - host: frontend.20-31-240-138.nip.io # IMPORTANT: update <ingress ip> with the dashed public IP of your ingress, for example frontend.13-68-177-68.nip.io
+      http:
+        paths:
+          - backend:
+              service:
+                name: react-frontend-chart
+                port:
+                  number: 80
+            path: /api/v1/skills
+            pathType: Prefix
     - host: nipunbahri.com
       http:
         paths:
@@ -25,5 +35,5 @@ spec:
                 name: react-frontend-chart
                 port:
                   number: 80
-            path: /
+            path: /api/v1/skills
             pathType: Prefix
