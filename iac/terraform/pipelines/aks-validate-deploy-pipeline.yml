@@ -108,7 +108,7 @@ stages:
         script: |
           ls -lrt
           helm version
-          helmfile version
+          ./helmfile version
 
     # - task: Bash@3
     #   displayName: 'Helmfile Sync'
