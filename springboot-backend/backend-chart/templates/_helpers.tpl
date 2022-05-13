@@ -48,6 +48,7 @@ Selector labels
 {{- define "backend-chart.selectorLabels" -}}
 app.kubernetes.io/name: {{ include "backend-chart.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
+aadpodidbinding: {{ .Values.podAnnotations.aadpodidbinding }}
 {{- end }}
 
 {{/*
