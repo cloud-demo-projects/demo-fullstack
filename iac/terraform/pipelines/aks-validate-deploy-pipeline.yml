@@ -101,23 +101,9 @@ stages:
           curl -L https://github.com/roboll/helmfile/releases/download/v0.135.0/helmfile_linux_amd64 > helmfile
           chmod +x helmfile
           helm plugin install https://github.com/databus23/helm-diff
-
-    - task: Bash@3
-      displayName: 'debug'
-      inputs:
-        targetType: 'inline'
-        script: |
           ls -lrt
           helm version
           ./helmfile version
-
-    # - task: Bash@3
-    #   displayName: 'Helmfile Sync'
-    #   inputs:
-    #     targetType: 'inline'
-    #     script: |
-    #       az aks get-credentials --resource-group "$(cluster_rg)" --name "$(cluster_name)"
-    #       ./helmfile apply
 
     - task: AzureCLI@2
       displayName: Helmfile Apply
