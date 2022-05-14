@@ -1,6 +1,8 @@
 repositories:
 - name: ingress-nginx
   url: https://kubernetes.github.io/ingress-nginx
+- name: jetstack
+  url: https://charts.jetstack.io
 
 environments:
   default:
@@ -25,3 +27,12 @@ releases:
     - defaultBackend:
         nodeSelector:
           beta.kubernetes.io/os: linux
+
+- name: cert-manager
+  namespace: cert-manager
+  chart: cert-manager/cert-manager
+  labels:
+    name: cert-manager
+  version: 1.8.0
+  values:
+    installCRDs: true
