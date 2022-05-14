@@ -16,6 +16,7 @@ metadata:
 spec:
   tls:
     - hosts:
+      - frontend.20-23-169-41.nip.io
       secretName: api
   rules:
     - host: frontend.20-23-169-41.nip.io
