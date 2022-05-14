@@ -30,7 +30,7 @@ releases:
 
 - name: cert-manager
   namespace: cert-manager
-  chart: cert-manager/cert-manager
+  chart: jetstack/cert-manager
   labels:
     name: cert-manager
   version: 1.8.0
