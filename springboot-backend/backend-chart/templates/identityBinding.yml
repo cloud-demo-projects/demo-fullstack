@@ -1,7 +1,0 @@
-apiVersion: "aadpodidentity.k8s.io/v1"
-kind: AzureIdentityBinding
-metadata:
-  name: "sb-mi-binding"
-spec:
-  azureIdentity: "sb-mi"
-  selector: "sb-mi"

@@ -1,8 +1,17 @@
-apiVersion: "aadpodidentity.k8s.io/v1"
-kind: AzureIdentity
-metadata:
-  name: "sb-mi"
-spec:
-  type: 0
-  resourceID: "/subscriptions/bf0f6779-86d2-467e-8226-10f92a8ad378/resourceGroups/test-aks/providers/Microsoft.ManagedIdentity/userAssignedIdentities/sb-mi"
-  clientID: "ecee383d-77aa-4bd1-ba84-14f3b18811eb"
+# apiVersion: "aadpodidentity.k8s.io/v1"
+# kind: AzureIdentity
+# metadata:
+#   name: "sb-mi"
+# spec:
+#   type: 0
+#   resourceID: "/subscriptions/bf0f6779-86d2-467e-8226-10f92a8ad378/resourceGroups/test-aks/providers/Microsoft.ManagedIdentity/userAssignedIdentities/sb-mi"
+#   clientID: "ecee383d-77aa-4bd1-ba84-14f3b18811eb"
+---
+# apiVersion: "aadpodidentity.k8s.io/v1"
+# kind: AzureIdentityBinding
+# metadata:
+#   name: "sb-mi-binding"
+# spec:
+#   azureIdentity: "sb-mi"
+#   selector: "sb-mi"
+
