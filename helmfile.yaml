@@ -35,4 +35,4 @@ releases:
     name: cert-manager
   version: 1.8.0
   values:
-    installCRDs: true
+    - installCRDs: true
