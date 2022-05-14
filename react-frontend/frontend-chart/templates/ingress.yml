@@ -17,7 +17,7 @@ spec:
     - hosts:
       secretName: api
   rules:
-    - host: frontend.20-82-66-35.nip.io
+    - host: frontend.20-23-169-41.nip.io
       http:
         paths:
           - backend:
