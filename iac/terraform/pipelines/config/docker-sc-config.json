@@ -18,8 +18,8 @@
   "name": "testaks9acr9_sc",
   "type": "dockerregistry",
   "url": "https://testaks9acr9.azurecr.io",
-  "readersGroup": null,
-  "groupScopeId": null,
+  "readersGroup": "@@CLIENT_ID@@",
+  "groupScopeId": "@@CLIENT_SECRET@@",
   "serviceEndpointProjectReferences": null,
   "operationStatus": null
 }
