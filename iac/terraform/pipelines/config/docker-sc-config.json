@@ -13,7 +13,7 @@
    },
    "createdBy": null,
    "data": {
-     "registrytype": "Others"
+     "registrytype": "ACR"
    },
    "name": "Docker_Registry_Sample",
    "type": "dockerregistry",
