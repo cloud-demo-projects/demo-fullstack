@@ -166,6 +166,7 @@ stages:
         scriptType: 'bash'
         scriptLocation: 'inlineScript'
         inlineScript: |
+          cat $(Build.SourcesDirectory)/iac/terraform/pipelines/config/docker-sc-config.json
           az extension add --name azure-devops
           az devops configure --defaults organization=https://dev.azure.com/bahrinipun/
           az devops configure --defaults project=demo-fullstack
