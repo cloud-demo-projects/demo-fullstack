@@ -7,6 +7,27 @@ steps:
         checkLatestHelmVersion: false
         installKubectl: true
         
+    - task: Bash@3
+      displayName: Helm Dependency Update
+      inputs:
+        targetType: 'inline'
+        script: |
+          helm dependency update ${{ parameters.projectName }}/${{ parameters.chartName }}
+
+    - task: Bash@3
+      displayName: Helm Lint
+      inputs:
+        targetType: 'inline'
+        script: |
+          helm lint ${{ parameters.projectName }}/${{ parameters.chartName }}
+
+    - task: Bash@3
+      displayName: Helm template
+      inputs:
+        targetType: 'inline'
+        script: |
+          helm template ${{ parameters.projectName }}/${{ parameters.chartName }}
+
     - task: HelmDeploy@0
       displayName: Save Helm Package to ACR
       inputs:
