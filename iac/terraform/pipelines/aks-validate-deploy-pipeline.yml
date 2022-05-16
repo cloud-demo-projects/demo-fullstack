@@ -92,7 +92,15 @@ stages:
   jobs:
   - job: SC_Create
     displayName: ACR Service Connection Create
-    steps:
+    steps:    
+    - task: qetza.replacetokens.replacetokens-task.replacetokens@3
+      displayName: 'Replace secrets'
+      inputs:
+        rootDirectory: '$(System.ArtifactsDirectory)'
+        targetFiles: 'iac/terraform/pipelines/docker-sc-config.json'
+        tokenPrefix: '@@'
+        tokenSuffix: '@@'
+        
     - task: AzureCLI@1
       displayName: 'Create ACR Service Connection'
       inputs:
