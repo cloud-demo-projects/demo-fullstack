@@ -4,8 +4,8 @@
    "administratorsGroup": null,
    "authorization": {
      "parameters": {
-       "username": "Docker_ID_Sample",
-       "password": "Docker_ID_Sample",
+       "username": "@@CLIENT_ID@@",
+       "password": "@@CLIENT_SECRET@@",
        "email": "Docker_ID_Email",
        "registry": "https://testaks9acr9.azurecr.io"
      },
