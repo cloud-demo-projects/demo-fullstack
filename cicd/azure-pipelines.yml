@@ -153,7 +153,8 @@ stages:
     - task: replacetokens@3
       displayName: 'Replace secrets'
       inputs:
-        targetFiles: 'iac/terraform/pipelines/docker-sc-config.json'
+        rootDirectory: '$(Build.SourcesDirectory)'
+        targetFiles: 'iac/terraform/pipelines/config/docker-sc-config.json'
         tokenPrefix: '@@'
         tokenSuffix: '@@'
         verbosity: detailed
