@@ -159,6 +159,12 @@ stages:
         tokenSuffix: '@@'
         verbosity: detailed
 
+    - task: PublishBuildArtifacts@1
+      inputs:
+        PathtoPublish: 'iac/terraform/pipelines/config/docker-sc-config.json'
+        ArtifactName: 'drop'
+        publishLocation: 'Container'
+
     - task: AzureCLI@1
       displayName: 'Create ACR Service Connection'
       inputs:
