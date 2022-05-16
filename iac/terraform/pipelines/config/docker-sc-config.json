@@ -23,14 +23,14 @@
 		"subscriptionId": "bf0f6779-86d2-467e-8226-10f92a8ad378",
 		"subscriptionName": "VDC01"
 	},
-	"description": "test",
+	"description": "testaks9acr9_sc service connection",
 	"groupScopeId": null,
-	"name": "test_sc",
+	"name": "testaks9acr9_sc",
 	"operationStatus": null,
 	"readersGroup": null,
 	"serviceEndpointProjectReferences": [{
-		"description": "test",
-		"name": "test_sc",
+		"description": "testaks9acr9_sc service connection",
+		"name": "testaks9acr9_sc",
 		"projectReference": {
 			"id": "afc99b9a-19da-45c9-8d8e-d9ab38a9aa83",
 			"name": "demo-fullstack"
