@@ -88,6 +88,33 @@ stages:
 #         commandOptions: '$(System.DefaultWorkingDirectory)/iac/terraform/out.plan'
 #         environmentServiceNameAzureRM: $(service_connection)
 
+- stage: ACR_Docker_SC_Create
+  jobs:
+  - job: SC_Create
+    displayName: ACR Service Connection Create
+    steps:
+    - task: AzureCLI@1
+      displayName: 'Create ACR Service Connection'
+      inputs:
+        azureSubscription: $(service_connection)
+        scriptType: 'bash'
+        scriptLocation: 'inlineScript'
+        inlineScript: |
+          az extension add --name azure-devops
+          az devops configure --defaults organization=https://dev.azure.com/bahrinipun/
+          az devops configure --defaults project=demo-fullstack
+          echo $AZURE_DEVOPS_EXT_PAT | az devops login --organization https://dev.azure.com/bahrinipun/
+          docker_acr_sc_name=testaks9acr9_sc
+          if az devops service-endpoint list --detect true -p demo-fullstack --org https://dev.azure.com/bahrinipun/ --query "[?type=='dockerregistry'].name" -o tsv then
+              echo "Docker service connection $docker_acr_sc_name already exists"
+          else
+              az devops service-endpoint create --service-endpoint-configuration '$(System.ArtifactsDirectory)/config/docker-sc-config.json' --detect true
+          fi
+          az devops logout
+      env:
+        AZURE_DEVOPS_EXT_PAT: '$(AZURE_DEVOPS_EXT_PAT)'
+              
+
 - stage: Helmfile_Deploy
   jobs:
   - job: Helmfile_Deployment
