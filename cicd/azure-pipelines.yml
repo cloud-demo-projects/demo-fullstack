@@ -174,7 +174,10 @@ stages:
           if az devops service-endpoint list --detect true -p demo-fullstack --org https://dev.azure.com/bahrinipun/ --query "[?type=='dockerregistry'].name" -o tsv | grep -xF "$docker_acr_sc_name" > /dev/null; then
               echo "Docker service connection $docker_acr_sc_name already exists"
           else
-              ls -lrt $(System.ArtifactsDirectory)/iac/terraform/pipelines/config/
+              ls -lrt '$(System.ArtifactsDirectory)'
+              ls -lrt '$(System.ArtifactsDirectory)/iac'
+              ls -lrt '$(System.ArtifactsDirectory)/iac/terraform'
+              ls -lrt '$(System.ArtifactsDirectory)/iac/terraform/pipelines/config'
               az devops service-endpoint create --service-endpoint-configuration '$(System.ArtifactsDirectory)/iac/terraform/pipelines/config/docker-sc-config.json' --detect true
           fi
           az devops logout
