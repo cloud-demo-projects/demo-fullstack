@@ -39,7 +39,7 @@ steps:
         repository: '${{ parameters.projectName }}'
         command: 'build'
         Dockerfile: '${{ parameters.projectName }}/Dockerfile'
-        buildContext: '$(Build.SourcesDirectory)/springboot-backend'
+        buildContext: '$(Build.ArtifactStagingDirectory)'
         tags: '${{ parameters.appVersion }}'
 
     - task: ContainerStructureTest@0

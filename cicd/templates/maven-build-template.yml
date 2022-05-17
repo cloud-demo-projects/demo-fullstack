@@ -25,9 +25,10 @@ steps:
 - task: CopyFiles@2
   displayName: Copy JAR
   inputs:
-    SourceFolder: '$(System.DefaultWorkingDirectory)/${{ parameters.projectName }}/target/'
+    SourceFolder: '$(System.DefaultWorkingDirectory)/${{ parameters.projectName }}/'
     Contents: |
       *.jar
+      **/target/**/?*.jar
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
 - task: PublishBuildArtifacts@1
