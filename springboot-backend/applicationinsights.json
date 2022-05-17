@@ -1,3 +1,3 @@
 {
-    "connectionString": "InstrumentationKey=4770b5fa-d168-445a-8964-0042856a5f51;IngestionEndpoint=https://westeurope-5.in.applicationinsights.azure.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.com/"
+    "connectionString": "InstrumentationKey=88cc50da-39e1-4266-8089-b90e1453a840;IngestionEndpoint=https://westeurope-5.in.applicationinsights.azure.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.com/"
 }
