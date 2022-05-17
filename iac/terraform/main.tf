@@ -29,7 +29,7 @@ resource "azurerm_log_analytics_workspace" "fullstack_lws" {
 }
 
 resource "azurerm_log_analytics_solution" "fullstack_lws_solution" {
-    solution_name         = "fullstack-lws-solution"
+    solution_name         = "ContainerInsights"
     location              = azurerm_log_analytics_workspace.fullstack_lws.location
     resource_group_name   = azurerm_resource_group.k8s.name
     workspace_resource_id = azurerm_log_analytics_workspace.fullstack_lws.id
