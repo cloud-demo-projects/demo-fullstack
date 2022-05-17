@@ -39,7 +39,7 @@ steps:
         repository: '${{ parameters.projectName }}'
         command: 'build'
         Dockerfile: '${{ parameters.projectName }}/Dockerfile'
-        buildContext: '$(Build.ArtifactStagingDirectory)'
+        buildContext: '$(Build.ArtifactStagingDirectory)/drop'
         tags: '${{ parameters.appVersion }}'
 
     - task: ContainerStructureTest@0

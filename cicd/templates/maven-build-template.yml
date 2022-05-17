@@ -35,6 +35,6 @@ steps:
   displayName: Upload JAR
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'target'
+    ArtifactName: 'drop'
     publishLocation: 'Container'
     
