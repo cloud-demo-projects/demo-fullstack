@@ -35,10 +35,12 @@ USER appuser
 
 WORKDIR /
 
+#ENV JAVA_OPTS="-javaagent:applicationinsights-agent-3.2.11.jar"
+ENV APPLICATIONINSIGHTS_CONNECTION_STRING="InstrumentationKey=15e4e356-6572-4bcf-af8f-8ae9bd0059ce"
 COPY applicationinsights-agent-3.2.11.jar applicationinsights-agent-3.2.11.jar
 COPY target/springboot-backend-1.0.jar app.jar
 
 EXPOSE 8080
-ENTRYPOINT ["java","-javaagent:/applicationinsights-agent-3.2.11.jar","-jar","/app.jar","--spring.profiles.active=${SPRING_PROFILE}","--db.user=${DB_USER}", "--db.pass=${DB_PASS}"]
+ENTRYPOINT ["java","-javaagent:applicationinsights-agent-3.2.11.jar","-Xshare:off","-jar","/app.jar","--spring.profiles.active=${SPRING_PROFILE}","--db.user=${DB_USER}", "--db.pass=${DB_PASS}"]
 
 

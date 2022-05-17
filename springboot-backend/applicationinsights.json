@@ -1,3 +1,6 @@
 {
-    "connectionString": "InstrumentationKey=15e4e356-6572-4bcf-af8f-8ae9bd0059ce;IngestionEndpoint=https://westeurope-5.in.applicationinsights.azure.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.com/"
+    "connectionString": "InstrumentationKey=15e4e356-6572-4bcf-af8f-8ae9bd0059ce",
+    "role": {
+        "name": "my cloud role name"
+      }
 }
