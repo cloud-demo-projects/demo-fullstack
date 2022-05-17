@@ -35,7 +35,6 @@ USER appuser
 
 WORKDIR /
 
-ENV JAVA_OPTS="-javaagent:/applicationinsights-agent-3.2.11.jar"
 COPY applicationinsights-agent-3.2.11.jar applicationinsights-agent-3.2.11.jar
 COPY target/springboot-backend-1.0.jar app.jar
 
