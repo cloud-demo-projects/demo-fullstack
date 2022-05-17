@@ -28,9 +28,17 @@ stages:
           **.jar
         TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
+    - task: CopyFiles@2
+      displayName: Copy JAR
+      inputs:
+        SourceFolder: '$(System.DefaultWorkingDirectory)/springboot-backend/target/'
+        Contents: |
+          *.jar
+        TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
     - bash: |
         ls -lrt $(Build.ArtifactStagingDirectory)/
-      displayName: 'Install helm'
+      displayName: 'list'
 
     # - bash: |
     #     curl -L https://github.com/roboll/helmfile/releases/download/v0.135.0/helmfile_linux_amd64 > helmfile
