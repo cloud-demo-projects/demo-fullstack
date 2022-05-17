@@ -93,18 +93,19 @@ stages:
   - job: SC_Create
     displayName: ACR Service Connection Create
     steps:    
-    - task: qetza.replacetokens.replacetokens-task.replacetokens@3
+    - task: replacetokens@3
       displayName: 'Replace secrets'
       inputs:
-        rootDirectory: '$(System.ArtifactsDirectory)'
-        targetFiles: 'iac/terraform/pipelines/docker-sc-config.json'
-        tokenPrefix: '@@'
-        tokenSuffix: '@@'
+        rootDirectory: '$(Build.SourcesDirectory)'
+        targetFiles: 'iac/terraform/pipelines/config/docker-sc-config.json'
+        tokenPrefix: '##'
+        tokenSuffix: '##'
+        verbosity: detailed
         
     - task: AzureCLI@1
       displayName: 'Create ACR Service Connection'
       inputs:
-        azureSubscription: $(service_connection)
+        azureSubscription: sub_sc
         scriptType: 'bash'
         scriptLocation: 'inlineScript'
         inlineScript: |
@@ -112,11 +113,13 @@ stages:
           az devops configure --defaults organization=https://dev.azure.com/bahrinipun/
           az devops configure --defaults project=demo-fullstack
           echo $AZURE_DEVOPS_EXT_PAT | az devops login --organization https://dev.azure.com/bahrinipun/
+          
           docker_acr_sc_name=testaks9acr9_sc
-          if az devops service-endpoint list --detect true -p demo-fullstack --org https://dev.azure.com/bahrinipun/ --query "[?type=='dockerregistry'].name" -o tsv then
+
+          if az devops service-endpoint list --detect true -p demo-fullstack --org https://dev.azure.com/bahrinipun/ --query "[?type=='dockerregistry'].name" -o tsv | grep -xF "$docker_acr_sc_name" > /dev/null; then
               echo "Docker service connection $docker_acr_sc_name already exists"
           else
-              az devops service-endpoint create --service-endpoint-configuration '$(System.ArtifactsDirectory)/config/docker-sc-config.json' --detect true
+              az devops service-endpoint create --service-endpoint-configuration '$(Build.SourcesDirectory)/iac/terraform/pipelines/config/docker-sc-config.json' --detect true
           fi
           az devops logout
       env:
