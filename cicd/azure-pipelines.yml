@@ -25,17 +25,18 @@ stages:
       inputs:
         SourceFolder: '$(System.DefaultWorkingDirectory)/springboot-backend/'
         Contents: |
-          **.jar
+          *.jar
           applicationinsights.json
+          **/backend-chart/**/?*.yaml
         TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
-    - task: CopyFiles@2
-      displayName: Copy JAR
-      inputs:
-        SourceFolder: '$(System.DefaultWorkingDirectory)/springboot-backend/target/'
-        Contents: |
-          *.jar
-        TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    # - task: CopyFiles@2
+    #   displayName: Copy JAR
+    #   inputs:
+    #     SourceFolder: '$(System.DefaultWorkingDirectory)/springboot-backend/target/'
+    #     Contents: |
+    #       *.jar
+    #     TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
     - bash: |
         ls -lrt $(Build.ArtifactStagingDirectory)/
