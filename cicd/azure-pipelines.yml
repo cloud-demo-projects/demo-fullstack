@@ -26,6 +26,7 @@ stages:
         SourceFolder: '$(System.DefaultWorkingDirectory)/springboot-backend/'
         Contents: |
           **.jar
+          applicationinsights.json
         TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
     - task: CopyFiles@2
