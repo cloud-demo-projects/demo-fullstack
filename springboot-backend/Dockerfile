@@ -40,6 +40,6 @@ COPY applicationinsights-agent-3.2.11.jar applicationinsights-agent-3.2.11.jar
 COPY target/springboot-backend-1.0.jar app.jar
 
 EXPOSE 8080
-ENTRYPOINT ["java","${JAVA_OPTS}","-jar","/app.jar","--spring.profiles.active=${SPRING_PROFILE}","--db.user=${DB_USER}", "--db.pass=${DB_PASS}"]
+ENTRYPOINT ["java","-javaagent:/applicationinsights-agent-3.2.11.jar","-jar","/app.jar","--spring.profiles.active=${SPRING_PROFILE}","--db.user=${DB_USER}", "--db.pass=${DB_PASS}"]
 
 
