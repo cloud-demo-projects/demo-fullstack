@@ -1,43 +1,26 @@
 {
-	"administratorsGroup": null,
-	"authorization": {
-		"scheme": "ServicePrincipal",
-		"parameters": {
-			"loginServer": "testaks9acr9.azurecr.io",
-			"role": "8311e382-0749-4cb8-b61a-304f252e45ec",
-			"scope": "/subscriptions/bf0f6779-86d2-467e-8226-10f92a8ad378/resourceGroups/test-aks/providers/Microsoft.ContainerRegistry/registries/testaks9acr9",
-			"servicePrincipalId": "<placeholder>",
-			"tenantId": "40bf7642-4a94-438c-bbc1-4e4feeaeda86",
-			"accessTokenFetchingMethod": "1",
-			"accessToken": "6e2e4d89-4bed-48b1-9813-e59392addda6"
-		}
-	},
-	"createdBy": null,
-	"data": {
-		"appObjectId": "",
-		"azureSpnPermissions": "",
-		"azureSpnRoleAssignmentId": "",
-		"registryId": "/subscriptions/bf0f6779-86d2-467e-8226-10f92a8ad378/resourceGroups/test-aks/providers/Microsoft.ContainerRegistry/registries/testaks9acr9",
-		"registrytype": "ACR",
-		"spnObjectId": "",
-		"subscriptionId": "bf0f6779-86d2-467e-8226-10f92a8ad378",
-		"subscriptionName": "VDC01"
-	},
-	"description": "testaks9acr9_sc service connection",
-	"groupScopeId": null,
-	"name": "testaks9acr9_sc",
-	"operationStatus": null,
-	"readersGroup": null,
-	"serviceEndpointProjectReferences": [{
-		"description": "testaks9acr9_sc service connection",
-		"name": "testaks9acr9_sc",
-		"projectReference": {
-			"id": "afc99b9a-19da-45c9-8d8e-d9ab38a9aa83",
-			"name": "demo-fullstack"
-		}
-	}],
-	"type": "dockerregistry",
-	"url": "https://testaks9acr9.azurecr.io",
-	"isShared": false,
-	"owner": "library"
+  "id": "980cf1c0-ba7c-4731-bd7f-1df785b89ab3",
+  "description": "testaks9acr9_sc service connection",
+  "administratorsGroup": null,
+  "authorization": {
+    "parameters": {
+      "username": "@@CLIENT_ID@@",
+      "password": "@@CLIENT_SECRET@@",
+      "email": "Docker_ID_Email",
+      "registry": "https://testaks9acr9.azurecr.io"
+    },
+    "scheme": "UsernamePassword"
+  },
+  "createdBy": null,
+  "data": {
+    "registrytype": "Others"
+  },
+  "name": "testaks9acr9_sc",
+  "type": "dockerregistry",
+  "url": "https://testaks9acr9.azurecr.io",
+  "readersGroup": null,
+  "groupScopeId": null,
+  "isShared": false,
+  "serviceEndpointProjectReferences": null,
+  "operationStatus": null
 }
