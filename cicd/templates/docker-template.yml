@@ -11,6 +11,7 @@ steps:
       inputs:
         targetType: 'inline'
         script: |
+          ls -lrt $(Build.ArtifactStagingDirectory)
           docker run --rm -i hadolint/hadolint < '${{ parameters.projectName }}/Dockerfile'
           
           # check if the Hadolint command found issues or not
