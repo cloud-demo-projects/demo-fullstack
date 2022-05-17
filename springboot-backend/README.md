@@ -1,4 +1,4 @@
-[![Build Status](https://dev.azure.com/bahrinipun/demo-fullstack/_apis/build/status/springboot-backend?branchName=master)](https://dev.azure.com/bahrinipun/demo-fullstack/_build/latest?definitionId=48&branchName=master)
+[![Build Status](https://dev.azure.com/bahrinipun/demo-fullstack/_apis/build/status/cd-springboot-backend?branchName=master)](https://dev.azure.com/bahrinipun/demo-fullstack/_build/latest?definitionId=80&branchName=master)
 
 # Application Setup
 - KickOff: Spring Initializer project with initial dependecies- Spring web, Devtools, JPA
