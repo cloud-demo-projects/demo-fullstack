@@ -29,7 +29,7 @@ resource "azurerm_log_analytics_workspace" "fullstack_lws" {
 }
 
 resource "azurerm_log_analytics_solution" "fullstack_lws_solution" {
-    solution_name         = "ContainerInsights"
+    solution_name         = "fullstack-lws-solution"
     location              = azurerm_log_analytics_workspace.fullstack_lws.location
     resource_group_name   = azurerm_resource_group.k8s.name
     workspace_resource_id = azurerm_log_analytics_workspace.fullstack_lws.id
@@ -39,6 +39,14 @@ resource "azurerm_log_analytics_solution" "fullstack_lws_solution" {
         publisher = "Microsoft"
         product   = "OMSGallery/ContainerInsights"
     }
+}
+
+resource "azurerm_application_insights" "fullstack-appinsights" {
+  name                = "fullstack-appinsights"
+  location            = azurerm_resource_group.k8s.location
+  resource_group_name = azurerm_resource_group.k8s.name
+  workspace_id        = azurerm_log_analytics_workspace.fullstack_lws.id
+  application_type    = "web"
 }
 
 resource "azurerm_monitor_diagnostic_setting" "fullstack_diagnostic_settings" {

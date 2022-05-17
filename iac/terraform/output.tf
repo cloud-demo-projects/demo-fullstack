@@ -26,3 +26,12 @@ output "kube_config" {
 output "host" {
     value = azurerm_kubernetes_cluster.k8s.kube_config.0.host
 }
+
+#app insights outputs
+output "instrumentation_key" {
+  value = azurerm_application_insights.fullstack-appinsights.instrumentation_key
+}
+
+output "app_id" {
+  value = azurerm_application_insights.fullstack-appinsights.app_id
+}
