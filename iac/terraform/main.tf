@@ -49,146 +49,146 @@ resource "azurerm_application_insights" "applicationinsights" {
   application_type    = "web"
 }
 
-# resource "azurerm_monitor_diagnostic_setting" "fullstack_diagnostic_settings" {
-#   name                       = "custom_diagnostics"
-#   target_resource_id         = azurerm_kubernetes_cluster.k8s.id
-#   log_analytics_workspace_id = azurerm_log_analytics_workspace.fullstack_lws.id
+resource "azurerm_monitor_diagnostic_setting" "fullstack_diagnostic_settings" {
+  name                       = "custom_diagnostics"
+  target_resource_id         = azurerm_kubernetes_cluster.k8s.id
+  log_analytics_workspace_id = azurerm_log_analytics_workspace.fullstack_lws.id
 
-#   metric {
-#     category = "AllMetrics"
-#     enabled  = var.custom_diagnostics_enabled
-#     retention_policy {
-#       enabled = var.custom_diagnostics_retention_enabled
-#       days    = var.custom_diagnostics_retention_days
-#     }
-#   }
+  metric {
+    category = "AllMetrics"
+    enabled  = var.custom_diagnostics_enabled
+    retention_policy {
+      enabled = var.custom_diagnostics_retention_enabled
+      days    = var.custom_diagnostics_retention_days
+    }
+  }
 
-#   log {
-#     category = "kube-apiserver"
-#     enabled  = var.custom_diagnostics_enabled
-#     retention_policy {
-#       enabled = var.custom_diagnostics_retention_enabled
-#       days    = var.custom_diagnostics_retention_days
-#     }
-#   }
+  log {
+    category = "kube-apiserver"
+    enabled  = var.custom_diagnostics_enabled
+    retention_policy {
+      enabled = var.custom_diagnostics_retention_enabled
+      days    = var.custom_diagnostics_retention_days
+    }
+  }
 
-#   log {
-#     category = "kube-controller-manager"
-#     enabled  = var.custom_diagnostics_enabled
-#     retention_policy {
-#       enabled = var.custom_diagnostics_retention_enabled
-#       days    = var.custom_diagnostics_retention_days
-#     }
-#   }
+  log {
+    category = "kube-controller-manager"
+    enabled  = var.custom_diagnostics_enabled
+    retention_policy {
+      enabled = var.custom_diagnostics_retention_enabled
+      days    = var.custom_diagnostics_retention_days
+    }
+  }
 
-#   log {
-#     category = "kube-scheduler"
-#     enabled  = var.custom_diagnostics_enabled
-#     retention_policy {
-#       enabled = var.custom_diagnostics_retention_enabled
-#       days    = var.custom_diagnostics_retention_days
-#     }
-#   }
+  log {
+    category = "kube-scheduler"
+    enabled  = var.custom_diagnostics_enabled
+    retention_policy {
+      enabled = var.custom_diagnostics_retention_enabled
+      days    = var.custom_diagnostics_retention_days
+    }
+  }
 
-#   log {
-#     category = "kube-audit"
-#     enabled  = var.custom_diagnostics_enabled
-#     retention_policy {
-#       enabled = var.custom_diagnostics_retention_enabled
-#       days    = var.custom_diagnostics_retention_days
-#     }
-#   }
+  log {
+    category = "kube-audit"
+    enabled  = var.custom_diagnostics_enabled
+    retention_policy {
+      enabled = var.custom_diagnostics_retention_enabled
+      days    = var.custom_diagnostics_retention_days
+    }
+  }
 
-#   log {
-#     category = "cluster-autoscaler"
-#     enabled  = var.custom_diagnostics_enabled
-#     retention_policy {
-#       enabled = var.custom_diagnostics_retention_enabled
-#       days    = var.custom_diagnostics_retention_days
-#     }
-#   }
-# }
+  log {
+    category = "cluster-autoscaler"
+    enabled  = var.custom_diagnostics_enabled
+    retention_policy {
+      enabled = var.custom_diagnostics_retention_enabled
+      days    = var.custom_diagnostics_retention_days
+    }
+  }
+}
 
-# resource "azurerm_kubernetes_cluster" "k8s" {
-#     name                = var.cluster_name
-#     location            = azurerm_resource_group.k8s.location
-#     resource_group_name = azurerm_resource_group.k8s.name
-#     dns_prefix          = var.dns_prefix
+resource "azurerm_kubernetes_cluster" "k8s" {
+    name                = var.cluster_name
+    location            = azurerm_resource_group.k8s.location
+    resource_group_name = azurerm_resource_group.k8s.name
+    dns_prefix          = var.dns_prefix
 
-#     linux_profile {
-#         admin_username = "ubuntu"
+    linux_profile {
+        admin_username = "ubuntu"
 
-#         ssh_key {
-#             //key_data = data.azurerm_key_vault_secret.ssh_public_key.value
-#             key_data    = var.ssh_public_key_value
-#         }
-#     }
+        ssh_key {
+            //key_data = data.azurerm_key_vault_secret.ssh_public_key.value
+            key_data    = var.ssh_public_key_value
+        }
+    }
 
-#     default_node_pool {
-#         name            = "agentpool"
-#         node_count      = var.agent_count
-#         vm_size         = var.vm_size
-#     }
+    default_node_pool {
+        name            = "agentpool"
+        node_count      = var.agent_count
+        vm_size         = var.vm_size
+    }
 
-#     # service_principal {
-#     #     client_id     = data.azurerm_key_vault_secret.spn_id.value
-#     #     client_secret = data.azurerm_key_vault_secret.spn_secret.value
-#     # }
+    # service_principal {
+    #     client_id     = data.azurerm_key_vault_secret.spn_id.value
+    #     client_secret = data.azurerm_key_vault_secret.spn_secret.value
+    # }
 
-#     identity {
-#       type = "SystemAssigned"
-#     }
+    identity {
+      type = "SystemAssigned"
+    }
 
-#     addon_profile {
-#         oms_agent {
-#         enabled                    = true
-#         log_analytics_workspace_id = azurerm_log_analytics_workspace.fullstack_lws.id
-#         }
-#     }
+    addon_profile {
+        oms_agent {
+        enabled                    = true
+        log_analytics_workspace_id = azurerm_log_analytics_workspace.fullstack_lws.id
+        }
+    }
 
-#     role_based_access_control {
-#         enabled = var.role_based_access_control_enabled
-#     }
+    role_based_access_control {
+        enabled = var.role_based_access_control_enabled
+    }
 
-#     network_profile {
-#         load_balancer_sku = "Standard"
-#         network_plugin = "azure"
-#     }
+    network_profile {
+        load_balancer_sku = "Standard"
+        network_plugin = "azure"
+    }
 
-#     tags = {
-#         EnvironmentSetup = "Development"
-#     }
-# }
+    tags = {
+        EnvironmentSetup = "Development"
+    }
+}
 
-# resource "azurerm_container_registry" "acr" {
-#     name                = var.acr_name
-#     resource_group_name = azurerm_resource_group.k8s.name
-#     location            = azurerm_resource_group.k8s.location
-#     sku                 = "Basic"
-#     admin_enabled       = false
-#     depends_on          = [azurerm_resource_group.k8s]
-# }
+resource "azurerm_container_registry" "acr" {
+    name                = var.acr_name
+    resource_group_name = azurerm_resource_group.k8s.name
+    location            = azurerm_resource_group.k8s.location
+    sku                 = "Basic"
+    admin_enabled       = false
+    depends_on          = [azurerm_resource_group.k8s]
+}
+
+resource "azurerm_role_assignment" "aks_sp_container_registry_pull" {
+    scope                = azurerm_container_registry.acr.id
+    role_definition_name = "AcrPull"
+    principal_id         = azurerm_kubernetes_cluster.k8s.kubelet_identity[0].object_id
+}
+
+resource "azurerm_role_assignment" "aks_sp_container_registry_push" {
+    scope                = azurerm_container_registry.acr.id
+    role_definition_name = "AcrPush"
+    principal_id         = azurerm_kubernetes_cluster.k8s.kubelet_identity[0].object_id
+}
 
 # resource "azurerm_role_assignment" "aks_sp_container_registry_pull" {
-#     scope                = azurerm_container_registry.acr.id
-#     role_definition_name = "AcrPull"
-#     principal_id         = azurerm_kubernetes_cluster.k8s.kubelet_identity[0].object_id
+#   scope                            = azurerm_container_registry.acr.id
+#   role_definition_name             = "AcrPull"
+#   principal_id                     = data.azuread_service_principal.aks_principal.object_id
 # }
 
 # resource "azurerm_role_assignment" "aks_sp_container_registry_push" {
-#     scope                = azurerm_container_registry.acr.id
-#     role_definition_name = "AcrPush"
-#     principal_id         = azurerm_kubernetes_cluster.k8s.kubelet_identity[0].object_id
+#   scope                            = azurerm_container_registry.acr.id
+#   role_definition_name             = "AcrPush"
+#   principal_id                     = data.azuread_service_principal.aks_principal.object_id
 # }
-
-# # resource "azurerm_role_assignment" "aks_sp_container_registry_pull" {
-# #   scope                            = azurerm_container_registry.acr.id
-# #   role_definition_name             = "AcrPull"
-# #   principal_id                     = data.azuread_service_principal.aks_principal.object_id
-# # }
-
-# # resource "azurerm_role_assignment" "aks_sp_container_registry_push" {
-# #   scope                            = azurerm_container_registry.acr.id
-# #   role_definition_name             = "AcrPush"
-# #   principal_id                     = data.azuread_service_principal.aks_principal.object_id
-# # }
