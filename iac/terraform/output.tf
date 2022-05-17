@@ -30,6 +30,7 @@ output "host" {
 #app insights outputs
 output "instrumentation_key" {
   value = azurerm_application_insights.fullstack-appinsights.instrumentation_key
+  sensitive = true
 }
 
 output "app_id" {
