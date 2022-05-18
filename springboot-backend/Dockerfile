@@ -24,6 +24,7 @@ LABEL org.label-schema.schema-version="1.0"
 
 RUN addgroup --system --gid 1001 appuser \
 && adduser --system --uid 1001 --ingroup appuser appuser
+
 USER appuser
 
 WORKDIR /
