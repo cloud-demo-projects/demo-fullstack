@@ -1,4 +1,4 @@
-FROM openjdk:11.0-jdk-slim
+FROM adoptopenjdk/openjdk11:slim
 
 ENV DB_USER DB_PASS
 
@@ -22,16 +22,16 @@ LABEL org.label-schema.vendor="Cloud Demo"
 LABEL org.label-schema.version=${VERSION}
 LABEL org.label-schema.schema-version="1.0"
 
-RUN addgroup --system --gid 1001 appuser \
-&& adduser --system --uid 1001 --ingroup appuser appuser
+RUN useradd --system java -m -u 678
 
-USER appuser
+USER 678
 
-WORKDIR /
+WORKDIR /home/java
 
 ENV APPLICATIONINSIGHTS_CONNECTION_STRING="InstrumentationKey=72a5274a-08a8-4d4d-b24d-7f13f501906d"
-COPY applicationinsights-agent-3.0.3.jar applicationinsights-agent-3.0.3.jar
+COPY applicationinsights-agent-3.0.3.jar applicationinsights-agent.jar
+
 COPY target/springboot-backend-1.0.jar app.jar
 
 EXPOSE 8080
-ENTRYPOINT ["java","-javaagent:/applicationinsights-agent-3.0.3.jar","-jar","/app.jar","--spring.profiles.active=${SPRING_PROFILE}","--db.user=${DB_USER}", "--db.pass=${DB_PASS}"]
+ENTRYPOINT ["java","-javaagent:/home/java/applicationinsights-agent.jar","-jar","/app.jar","--spring.profiles.active=${SPRING_PROFILE}","--db.user=${DB_USER}", "--db.pass=${DB_PASS}"]
