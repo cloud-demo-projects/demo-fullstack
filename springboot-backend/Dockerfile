@@ -22,7 +22,7 @@ LABEL org.label-schema.vendor="Cloud Demo"
 LABEL org.label-schema.version=${VERSION}
 LABEL org.label-schema.schema-version="1.0"
 
-RUN useradd --system java -m -u 678
+RUN adduser --system java -h /home/java -u 678
 
 USER 678
 
