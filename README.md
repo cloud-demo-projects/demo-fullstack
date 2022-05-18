@@ -13,7 +13,7 @@ This sample shows how to create/manage/deploy an AKS clusters with:
 - Google container structure test for container images
 - Snyk repository scan for vulneribilities - https://app.snyk.io/org/test-n5j
 - Azure SQL PaaS connectivity
-- AKS Monitoring with Log analtics workspace, diagnostics, OMS agen and application insights 
+- AKS Monitoring with Log analytics workspace, diagnostics, OMS agent and application insights Java agent 
 - Ingress for L7 loadbalancing (Prerequisite- nginx ingress controller)
 
 # Upcoming Enhancements
