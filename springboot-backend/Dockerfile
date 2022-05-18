@@ -1,4 +1,4 @@
-FROM adoptopenjdk/openjdk11:jdk-11.0.14.1_1-alpine-slim
+FROM openjdk:11.0-jdk-slim
 
 ENV DB_USER DB_PASS
 
@@ -22,16 +22,16 @@ LABEL org.label-schema.vendor="Cloud Demo"
 LABEL org.label-schema.version=${VERSION}
 LABEL org.label-schema.schema-version="1.0"
 
-RUN adduser --system java -h /home/java/ -u 888
+# RUN addgroup --system --gid 1001 appuser \
+# && adduser --system --uid 1001 --ingroup appuser appuser
 
-USER 888
+# USER appuser
 
-WORKDIR /home/java
+WORKDIR /
 
-ENV APPLICATIONINSIGHTS_CONNECTION_STRING="InstrumentationKey=72a5274a-08a8-4d4d-b24d-7f13f501906d"
-COPY applicationinsights-agent-3.0.3.jar applicationinsights-agent.jar
-
+ENV APPLICATIONINSIGHTS_CONNECTION_STRING="InstrumentationKey=72a5274a-08a8-4d4d-b24d-7f13f501906d;IngestionEndpoint=https://westeurope-5.in.applicationinsights.azure.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.com/"
+COPY applicationinsights-agent-3.2.11.jar applicationinsights-agent-3.2.11.jar
 COPY target/springboot-backend-1.0.jar app.jar
 
 EXPOSE 8080
-ENTRYPOINT ["java","-javaagent:/home/java/applicationinsights-agent.jar","-jar","app.jar","--spring.profiles.active=${SPRING_PROFILE}","--db.user=${DB_USER}", "--db.pass=${DB_PASS}"]
+ENTRYPOINT ["java","-javaagent:applicationinsights-agent-3.2.11.jar","-jar","app.jar","--spring.profiles.active=${SPRING_PROFILE}","--db.user=${DB_USER}", "--db.pass=${DB_PASS}"]
