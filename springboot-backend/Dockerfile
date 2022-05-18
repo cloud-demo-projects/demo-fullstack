@@ -1,4 +1,4 @@
-FROM adoptopenjdk/openjdk11:slim
+FROM adoptopenjdk/openjdk11:jdk-11.0.14.1_1-alpine-slim
 
 ENV DB_USER DB_PASS
 
@@ -22,9 +22,9 @@ LABEL org.label-schema.vendor="Cloud Demo"
 LABEL org.label-schema.version=${VERSION}
 LABEL org.label-schema.schema-version="1.0"
 
-RUN adduser --system java -h /home/java -u 678
+RUN adduser --system java -h /home/java/ -u 888
 
-USER 678
+USER 888
 
 WORKDIR /home/java
 
@@ -34,4 +34,4 @@ COPY applicationinsights-agent-3.0.3.jar applicationinsights-agent.jar
 COPY target/springboot-backend-1.0.jar app.jar
 
 EXPOSE 8080
-ENTRYPOINT ["java","-javaagent:/home/java/applicationinsights-agent.jar","-jar","/app.jar","--spring.profiles.active=${SPRING_PROFILE}","--db.user=${DB_USER}", "--db.pass=${DB_PASS}"]
+ENTRYPOINT ["java","-javaagent:/home/java/applicationinsights-agent.jar","-jar","app.jar","--spring.profiles.active=${SPRING_PROFILE}","--db.user=${DB_USER}", "--db.pass=${DB_PASS}"]
