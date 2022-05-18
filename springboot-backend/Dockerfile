@@ -9,7 +9,6 @@ ARG BUILD_DATE=$BUILD_DATE
 ARG VCS_URL=$VCS_URL
 ARG VCS_REF=$VCS_REF
 
-############################ Mandatory Labels For Tracing & Visibility ####################
 LABEL com.abnamro.label-schema.maintainer="Nipun Bahri"
 LABEL com.abnamro.label-schema.schema-version="0.1"
 LABEL org.label-schema.build-date=${BUILD_DATE}
@@ -23,24 +22,15 @@ LABEL org.label-schema.vendor="Cloud Demo"
 LABEL org.label-schema.version=${VERSION}
 LABEL org.label-schema.schema-version="1.0"
 
-############################ Disable root user ####################
-# add the appuser group with a group id of 1001 (does not exist on the host)
 RUN addgroup --system --gid 1001 appuser \
-# add the appuser user with user id of 1001 (does not exist on the host)
-# add the appuser user to the appuser group
 && adduser --system --uid 1001 --ingroup appuser appuser
-# make sure login is done via appuser not via root
 USER appuser
-############################ End: Disable root user ####################
 
 WORKDIR /
 
-#ENV JAVA_OPTS="-javaagent:applicationinsights-agent-3.2.11.jar"
-ENV APPLICATIONINSIGHTS_CONNECTION_STRING="InstrumentationKey=15e4e356-6572-4bcf-af8f-8ae9bd0059ce"
-COPY applicationinsights-agent-3.2.11.jar applicationinsights-agent-3.2.11.jar
+ENV APPLICATIONINSIGHTS_CONNECTION_STRING="InstrumentationKey=72a5274a-08a8-4d4d-b24d-7f13f501906d"
+COPY applicationinsights-agent-3.0.3.jar applicationinsights-agent-3.0.3.jar
 COPY target/springboot-backend-1.0.jar app.jar
 
 EXPOSE 8080
-ENTRYPOINT ["java","-javaagent:applicationinsights-agent-3.2.11.jar","-Xshare:off","-jar","/app.jar","--spring.profiles.active=${SPRING_PROFILE}","--db.user=${DB_USER}", "--db.pass=${DB_PASS}"]
-
-
+ENTRYPOINT ["java","-javaagent:/applicationinsights-agent-3.0.3.jar","-jar","/app.jar","--spring.profiles.active=${SPRING_PROFILE}","--db.user=${DB_USER}", "--db.pass=${DB_PASS}"]
