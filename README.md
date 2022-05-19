@@ -6,7 +6,7 @@ This sample shows how to create/manage/deploy an AKS clusters with:
 - Standard docker pieline template
 - Standard bicep pipeline template for provisioning AKS prerequisite infrastructure 
 - Terraform to deploy & destroy the AKS infrastructure
-- Helm charts for code release management into AKS cluster
+- Helm charts for application release management
 - Helmfile for additional AKS tools deployment 
 - Hadolint for Dockerfile linting
 - Aqua Trivy for container image static scan
