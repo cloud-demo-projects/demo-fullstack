@@ -12,14 +12,15 @@ This sample shows how to create/manage/deploy an AKS clusters with:
 - Azure SQL PaaS connectivity
 - Cluster Monitoring with Log analytics workspace, diagnostics, OMS agent and Application Insights Java agent 
 - Ingress for L7 loadbalancing (Prerequisite- nginx ingress controller)
+- Automated docker service endpoint creation
 
 # Upcoming Enhancements
 - Pod identity setup for Azure SQL connectivity 
 - Bicep IaC for Azure SQL server and database 
+- Modularize Terraform IaC
+- Kustomize for release mmanagement
 - Consuming static volume(manifest) in pod 
 - Hashicorp secrets integration(annotations)  
-- Modularize Terraform IaC
-- Automate docker service endpoint creation
 
 # Prerequisites
 Prerequisites are listed down for local development, CICD and IaC.
