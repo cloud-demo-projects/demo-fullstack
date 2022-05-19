@@ -3,13 +3,10 @@
 This sample shows how to create/manage/deploy an AKS clusters with:
 - Minimal React SPA frontend 
 - Springboot Microservices
-- Standard docker pieline template
+- Standard docker pieline template including Hadolint for Dockerfile linting & Aqua Trivy for container image static scan
 - Standard bicep pipeline template for provisioning AKS prerequisite infrastructure 
 - Terraform to deploy & destroy the AKS infrastructure
-- Helm charts for application release management
-- Helmfile for additional AKS tools deployment 
-- Hadolint for Dockerfile linting
-- Aqua Trivy for container image static scan
+- Helm charts for application release management & Helmfile for additional cluster charts deployment 
 - Google container structure test for container images
 - Snyk repository scan for vulneribilities - https://app.snyk.io/org/test-n5j
 - Azure SQL PaaS connectivity
