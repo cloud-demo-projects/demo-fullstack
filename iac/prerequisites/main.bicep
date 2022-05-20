@@ -57,13 +57,6 @@ module sqlServerModule 'modules/sqlServer.bicep' = {
   name: 'sqlServerModuleDeploy'
   params: {
     sqlServerName: sqlServerName
-    location: location
-  }
-}
-
-module sqlServerDBModule 'modules/sqlServerDB.bicep' = {
-  name: 'sqlServerDBModuleDeploy'
-  params: {
     sqlServerDBName: sqlServerDBName
     location: location
   }

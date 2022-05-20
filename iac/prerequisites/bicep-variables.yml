@@ -4,3 +4,4 @@ variables:
   templateFile: 'iac/prerequisites/main.bicep'
   keyVaultName: 'kvdds7657'
   sqlServerName: 'testsqldbserver9'
+  sqlServerDBName: testsqldb9

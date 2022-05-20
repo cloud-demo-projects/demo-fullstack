@@ -46,7 +46,7 @@ stages:
           inlineScript: |
             az deployment group validate \
               --resource-group $(resourceGroupName) \
-              --template-file $(templateFile) --parameters rgName=$(resourceGroupName) sqlServerName=$(sqlServerName)
+              --template-file $(templateFile) --parameters rgName=$(resourceGroupName) sqlServerName=$(sqlServerName) sqlServerDBName=$(sqlServerDBName)
             
   - job: Preview_Azure_Changes
     displayName: Preview Azure changes
@@ -61,7 +61,7 @@ stages:
           inlineScript: |
             az deployment group what-if \
               --resource-group $(resourceGroupName) \
-              --template-file $(templateFile) --parameters rgName=$(resourceGroupName) sqlServerName=$(sqlServerName)
+              --template-file $(templateFile) --parameters rgName=$(resourceGroupName) sqlServerName=$(sqlServerName) sqlServerDBName=$(sqlServerDBName)
               
 - stage: Bicep_Deploy
   displayName: Bicep Deploy
@@ -77,4 +77,4 @@ stages:
         scriptType: bash
         scriptLocation: inlineScript
         inlineScript: |
-          az deployment group create --resource-group $(resourceGroupName) --template-file $(templateFile) --parameters rgName=$(resourceGroupName) sqlServerName=$(sqlServerName)
+          az deployment group create --resource-group $(resourceGroupName) --template-file $(templateFile) --parameters rgName=$(resourceGroupName) sqlServerName=$(sqlServerName) sqlServerDBName=$(sqlServerDBName)
