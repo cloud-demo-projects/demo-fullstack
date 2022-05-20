@@ -1,7 +1,7 @@
 //targetScope = 'subscription'
 
-@description('The Azure env into which the resources should be deployed.')
-param environmentType string = 'development'
+// @description('The Azure env into which the resources should be deployed.')
+// param environmentType string = 'development'
 
 @description('The Azure rg into which the resources should be deployed.')
 @maxLength(13)
@@ -10,8 +10,8 @@ param rgName string
 @description('The Azure rg into which the resources should be deployed.')
 param location string = resourceGroup().location
 
-@description('The Azure KV into which the resources should be deployed.')
-param keyVaultName string
+// @description('The Azure KV into which the resources should be deployed.')
+// param keyVaultName string
 
 @description('The Azure KV into which the resources should be deployed.')
 param sqlServerName string
