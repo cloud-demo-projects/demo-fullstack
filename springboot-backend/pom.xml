@@ -77,6 +77,12 @@
 	        <artifactId>spring-boot-starter-validation</artifactId>
 	    </dependency>
 	    <!-- Client side validation for Hibernate entities -->
+		<!--SecurityAutoConfiguration -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<!--SecurityAutoConfiguration -->
 	</dependencies>
 
 	<build>
