@@ -13,9 +13,11 @@ param location string = resourceGroup().location
 // @description('The Azure KV into which the resources should be deployed.')
 // param keyVaultName string
 
-@description('The Azure KV into which the resources should be deployed.')
+@description('The SQL Server into which the DB should be deployed.')
 param sqlServerName string
 
+@description('The SQL Server Database into which data should be stored.')
+param sqlServerDBName string
 
 resource resourceGrp 'Microsoft.Resources/resourceGroups@2020-06-01' existing = {
   name: rgName
@@ -59,10 +61,11 @@ module sqlServerModule 'modules/sqlServer.bicep' = {
   }
 }
 
-// module sqlServerDBModule 'modules/sqlServerDB.bicep' = {
-//   name: 'sqlServerDBModuleDeploy'
-//   params: {
-//     serverName: testsqldb9
-//   }
-// }
+module sqlServerDBModule 'modules/sqlServerDB.bicep' = {
+  name: 'sqlServerDBModuleDeploy'
+  params: {
+    sqlServerDBName: sqlServerDBName
+    location: location
+  }
+}
 
