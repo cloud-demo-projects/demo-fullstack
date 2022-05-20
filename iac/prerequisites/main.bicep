@@ -10,8 +10,8 @@ param rgName string
 @description('The Azure rg into which the resources should be deployed.')
 param location string = resourceGroup().location
 
-// @description('The Azure KV into which the resources should be deployed.')
-// param keyVaultName string
+@description('The Azure KV into which the resources should be deployed.')
+param keyVaultName string
 
 @description('The Azure KV into which the resources should be deployed.')
 param sqlServerName string
@@ -22,16 +22,16 @@ resource resourceGrp 'Microsoft.Resources/resourceGroups@2020-06-01' existing = 
   scope: subscription()
 }
 
-// module keyVaultModule 'modules/keyVault.bicep' = {
-//   name: 'keyVaultModuleDeploy'
-//   params: {
-//     keyVaultName: keyVaultName
-//     location: location
-//   }
-//   dependsOn: [
-//     resourceGrp
-//   ]
-// }
+module keyVaultModule 'modules/keyVault.bicep' = {
+  name: 'keyVaultModuleDeploy'
+  params: {
+    keyVaultName: keyVaultName
+    location: location
+  }
+  dependsOn: [
+    resourceGrp
+  ]
+}
 
 // module storageAccountModule 'modules/storageAccount.bicep' = {
 //   name: 'storageAccountModuleDeploy'
