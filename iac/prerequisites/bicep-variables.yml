@@ -3,3 +3,4 @@ variables:
   resourceGroupName: 'test-aks9'
   templateFile: 'iac/prerequisites/main.bicep'
   keyVaultName: 'kvdds7657'
+  sqlServerName: 'testsqldbserver9'
