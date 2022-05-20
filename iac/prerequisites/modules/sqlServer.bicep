@@ -1,9 +1,9 @@
-@description('The name of the Key Vault.')
+@description('The name of the SQL Server.')
 @minLength(3)
 @maxLength(24)
 param sqlServerName string
 
-@description('The location of the Key Vault.')
+@description('The location of the SQL Server.')
 param location string
 
 
