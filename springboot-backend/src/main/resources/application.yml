@@ -28,6 +28,7 @@ logging:
         SQL: DEBUG
 exception:
   message: Employee Not Found in Local Database
+  skillMessage: Skill Not Found in Local Database
   
 ---
 spring:
@@ -48,4 +49,5 @@ logging:
         SQL: DEBUG
 exception:
   message: Employee Not Found in Dev Database
+  skillMessage: Skill Not Found in Local Database
 

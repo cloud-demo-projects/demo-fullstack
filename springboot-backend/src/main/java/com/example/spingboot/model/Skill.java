@@ -1,61 +1,33 @@
 package com.example.spingboot.model;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "skills")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Skill {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	@Column(name = "skill_type")
+	@NotBlank(message = "skillType can not be blank")
 	private String skillType;
 	
-	@Column(name = "skill_name")
+	@NotBlank(message = "skillName can not be blank")
 	private String skillName;
 	
-	@Column(name = "skill_proficiency")
+	@NotBlank(message = "skillProficiency can not be blank")
 	private String skillProficiency;
-	
-	public Skill() {		
-	}
-
-	public Skill(String skillType, String skillName, String skillProficiency) {
-		super();
-		this.skillType = skillType;
-		this.skillName = skillName;
-		this.skillProficiency = skillProficiency;
-	}
-
-	public String getSkillType() {
-		return skillType;
-	}
-
-	public void setSkillType(String skillType) {
-		this.skillType = skillType;
-	}
-
-	public String getSkillName() {
-		return skillName;
-	}
-
-	public void setSkillName(String skillName) {
-		this.skillName = skillName;
-	}
-
-	public String getSkillProficiency() {
-		return skillProficiency;
-	}
-
-	public void setSkillProficiency(String skillProficiency) {
-		this.skillProficiency = skillProficiency;
-	}
 
 }
