@@ -16,7 +16,7 @@ class HeaderComponent extends Component {
             <div>
                 <header>
                     <nav className="navbar navbar-expand-md navbar-dark color-nav">
-                    <div><a href="http://nipunbahri.com" className="navbar-brand">Skill Management System</a></div>
+                    <div><a href="/" className="navbar-brand">Online Portfolio</a></div>
                     </nav>
                 </header>
             </div>
