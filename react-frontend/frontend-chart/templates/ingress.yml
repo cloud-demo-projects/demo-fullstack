@@ -19,17 +19,7 @@ spec:
       - frontend.20-82-67-163.nip.io
       secretName: api
   rules:
-    # - host: frontend.20-82-67-163.nip.io
-    #   http:
-    #     paths:
-    #       - backend:
-    #           service:
-    #             name: react-frontend-chart
-    #             port:
-    #               number: 80
-    #         path: /
-    #         pathType: Prefix
-    - host: nipunbahri.com
+    - host: frontend.20-82-67-163.nip.io
       http:
         paths:
           - backend:
@@ -39,3 +29,13 @@ spec:
                   number: 80
             path: /
             pathType: Prefix
+    # - host: nipunbahri.com
+    #   http:
+    #     paths:
+    #       - backend:
+    #           service:
+    #             name: react-frontend-chart
+    #             port:
+    #               number: 80
+    #         path: /
+    #         pathType: Prefix
