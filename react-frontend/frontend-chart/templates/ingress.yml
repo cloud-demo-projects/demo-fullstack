@@ -17,10 +17,10 @@ metadata:
 spec:
   # tls:
   #   - hosts:
-  #     - frontend.20-82-67-163.nip.io
+  #     - frontend.20-103-33-1.nip.io
   #     secretName: api
   rules:
-    - host: frontend.20-82-67-163.nip.io
+    - host: frontend.20-103-33-15.nip.io
       http:
         paths:
           - backend:
