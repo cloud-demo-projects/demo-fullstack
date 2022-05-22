@@ -18,7 +18,7 @@ spec:
   tls:
     - hosts:
       - frontend.20-103-33-1.nip.io
-      secretName: api
+      secretName: react-frontend-cert
   rules:
     - host: frontend.20-103-33-15.nip.io
       http:
