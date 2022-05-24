@@ -17,10 +17,20 @@ metadata:
 spec:
   tls:
     - hosts:
-      - frontend.20-103-33-1.nip.io
+      - nipunbahri.com
       secretName: react-frontend-cert
   rules:
-    - host: frontend.20-103-33-15.nip.io
+#     - host: frontend.20-103-33-15.nip.io
+#       http:
+#         paths:
+#           - backend:
+#               service:
+#                 name: react-frontend-chart
+#                 port:
+#                   number: 80
+#             path: /
+#             pathType: Prefix
+    - host: nipunbahri.com
       http:
         paths:
           - backend:
@@ -30,13 +40,3 @@ spec:
                   number: 80
             path: /
             pathType: Prefix
-    # - host: nipunbahri.com
-    #   http:
-    #     paths:
-    #       - backend:
-    #           service:
-    #             name: react-frontend-chart
-    #             port:
-    #               number: 80
-    #         path: /
-    #         pathType: Prefix
