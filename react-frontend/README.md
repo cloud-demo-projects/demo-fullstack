@@ -5,6 +5,9 @@ openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
     -out aks-ingress-tls.crt \
     -keyout aks-ingress-tls.key \
     -subj "/CN=nipunbahri.com/O=aks-ingress-tls"
+    
+# DNS Resolution
+curl -v -k --resolve nipunbahri.com:443:<ingress-lb-pip> https://nipunbahri.com
        
 # Getting Started with Create React App
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
