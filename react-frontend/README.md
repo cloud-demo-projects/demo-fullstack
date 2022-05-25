@@ -1,5 +1,11 @@
 [![Build Status](https://dev.azure.com/bahrinipun/demo-fullstack/_apis/build/status/cd-react-frontend?branchName=master)](https://dev.azure.com/bahrinipun/demo-fullstack/_build/latest?definitionId=82&branchName=master)
 
+# Certificate Generation
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
+    -out aks-ingress-tls.crt \
+    -keyout aks-ingress-tls.key \
+    -subj "/CN=nipunbahri.com/O=aks-ingress-tls"
+       
 # Getting Started with Create React App
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
