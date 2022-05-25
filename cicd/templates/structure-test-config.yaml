@@ -12,7 +12,7 @@ metadataTest:
   env:
     - key: JAVA_HOME
       value: /usr/local/openjdk-11
-  exposedPorts: ["8080"]
+  exposedPorts: ["8443"]
   labels:
     - key: 'com.abnamro.label-schema.maintainer'
       value: 'Nipun Bahri'
