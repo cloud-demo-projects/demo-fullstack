@@ -20,8 +20,15 @@
 - Caching
   
 ## SSL
-In cryptography, X.509 is a standard defining the format of public key certificates.
+keytool -genkeypair -alias fullstack -keyalg RSA -keysize 2048 -storetype PKCS12 -keystore fullstack.p12 -validity 365
+keytool -genkey -alias fullstack -storetype JKS -keyalg RSA -keysize 2048 -keystore fullstack.jks -validity 365
+keytool -importkeystore -srckeystore fullstack.jks -destkeystore fullstack.jks -deststoretype pkcs12
 
+### Certificate Brushup
+Keystore- used to store private certificates
+Trust store- used to store public certificares
+
+In cryptography, X.509 is a standard defining the format of public key certificates-
 **Certificate filename extensions**
 There are several commonly used filename extensions for X.509 certificates. Unfortunately, some of these extensions are also used for other data such as private keys.
 - .pem – (Privacy-enhanced Electronic Mail) Base64 encoded DER certificate, enclosed between "-----BEGIN CERTIFICATE-----" and "-----END CERTIFICATE-----"
