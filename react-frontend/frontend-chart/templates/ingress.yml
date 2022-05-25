@@ -38,6 +38,6 @@ spec:
               service:
                 name: react-frontend-chart
                 port:
-                  number: 80
+                  number: 443
             path: /
             pathType: Prefix
