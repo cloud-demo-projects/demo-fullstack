@@ -3,6 +3,8 @@ repositories:
   url: https://kubernetes.github.io/ingress-nginx
 - name: jetstack
   url: https://charts.jetstack.io
+- name: aad-pod-identity
+  url: https://raw.githubusercontent.com/Azure/aad-pod-identity/master/charts
 
 environments:
   default:
@@ -36,3 +38,10 @@ releases:
 #   version: 1.8.0
 #   values:
 #     - installCRDs: true
+
+- name: aad-pod-identity
+  namespace: default
+  chart: aad-pod-identity/aad-pod-identity
+  labels:
+   name: aad-pod-identity
+  version: 4.1.10
