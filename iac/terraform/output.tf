@@ -27,6 +27,18 @@ output "host" {
     value = azurerm_kubernetes_cluster.k8s.kube_config.0.host
 }
 
+output "UMI_clientID" {
+    value = azurerm_user_assigned_identity.this.client_id
+}
+
+output "UMI_ID" {
+    value = azurerm_user_assigned_identity.this.id
+}
+
+output "UMI_objectID" {
+    value = azurerm_user_assigned_identity.this.object_id
+}
+
 #app insights outputs
 # output "instrumentation_key" {
 #   value = azurerm_application_insights.applicationinsights.instrumentation_key
