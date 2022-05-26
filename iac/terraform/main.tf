@@ -194,22 +194,22 @@ resource "azurerm_role_assignment" "aks_sp_container_registry_push" {
 # }
 
 # UMI Module
-# resource "azurerm_user_assigned_identity" "this" {
-#   location            = var.location
-#   name                = var.umi_name
-#   resource_group_name = var.resource_group_name
-# }
+resource "azurerm_user_assigned_identity" "this" {
+  location            = var.location
+  name                = var.umi_name
+  resource_group_name = var.resource_group_name
+}
 
-# resource "azurerm_role_assignment" "managed_identity_operator" {
-#   principal_id                     = azurerm_kubernetes_cluster.k8s.kubelet_identity[0].object_id
-#   scope                            = azurerm_user_assigned_identity.this.id
-#   role_definition_name             = "Managed Identity Operator"
-#   skip_service_principal_aad_check = true
-# }
+resource "azurerm_role_assignment" "managed_identity_operator" {
+  principal_id                     = azurerm_kubernetes_cluster.k8s.kubelet_identity[0].object_id
+  scope                            = azurerm_user_assigned_identity.this.id
+  role_definition_name             = "Managed Identity Operator"
+  skip_service_principal_aad_check = true
+}
 
-# resource "azurerm_role_assignment" "keyvault_reader" {
-#   principal_id                     = azurerm_kubernetes_cluster.k8s.kubelet_identity[0].object_id
-#   scope                            = data.azurerm_key_vault.this.id
-#   role_definition_name             = "Reader"
-#   skip_service_principal_aad_check = true
-# }
+resource "azurerm_role_assignment" "keyvault_reader" {
+  principal_id                     = azurerm_kubernetes_cluster.k8s.kubelet_identity[0].object_id
+  scope                            = data.azurerm_key_vault.this.id
+  role_definition_name             = "Reader"
+  skip_service_principal_aad_check = true
+}
