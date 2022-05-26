@@ -16,9 +16,7 @@ resource "azurerm_resource_group" "k8s" {
     location = var.location
 }
 
-resource "random_id" "log_analytics_workspace_name_suffix" {
-    byte_length = 8
-}
+## Logging Module ##
 
 # resource "azurerm_log_analytics_workspace" "fullstack_lws" {
 #     # The WorkSpace name has to be unique across the whole of azure, not just the current subscription/tenant.
@@ -108,6 +106,8 @@ resource "random_id" "log_analytics_workspace_name_suffix" {
 #     }
 #   }
 # }
+
+## Logging Module End ##
 
 resource "azurerm_kubernetes_cluster" "k8s" {
     name                = var.cluster_name
