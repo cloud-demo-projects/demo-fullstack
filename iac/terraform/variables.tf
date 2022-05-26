@@ -84,3 +84,9 @@ variable keyvault_rg {
 variable "acr_name" {
     default = "testaks9acr9"  
 }
+
+
+## UMI #######################
+variable "umi_name" {
+    default = "fullstack-umi"  
+}
