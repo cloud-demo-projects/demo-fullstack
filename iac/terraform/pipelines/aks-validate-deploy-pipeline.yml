@@ -8,122 +8,122 @@ variables:
 - template: variables/iac-variables.yml
 
 stages:
-- stage: Terraform_Validate
-  jobs:
-  - job: Validate
-    displayName: Validation
-    steps:
-    - task: AzureCLI@2
-      displayName: 'Get Latest Kubernetes Version'
-      inputs:
-        azureSubscription: $(service_connection)
-        scriptType: 'bash'
-        scriptLocation: 'inlineScript'
-        inlineScript: |
-          version=$(az aks get-versions --location $(location) --query orchestrators[-1].orchestratorVersion --output tsv)
-          echo "##vso[task.setvariable variable=kubernetesVersion;]$version"
-          echo "kubernetesVersion: $version"
-        #addSpnToEnvironment: true
+# - stage: Terraform_Validate
+#   jobs:
+#   - job: Validate
+#     displayName: Validation
+#     steps:
+#     - task: AzureCLI@2
+#       displayName: 'Get Latest Kubernetes Version'
+#       inputs:
+#         azureSubscription: $(service_connection)
+#         scriptType: 'bash'
+#         scriptLocation: 'inlineScript'
+#         inlineScript: |
+#           version=$(az aks get-versions --location $(location) --query orchestrators[-1].orchestratorVersion --output tsv)
+#           echo "##vso[task.setvariable variable=kubernetesVersion;]$version"
+#           echo "kubernetesVersion: $version"
+#         #addSpnToEnvironment: true
 
-    - task: ms-devlabs.custom-terraform-tasks.custom-terraform-installer-task.TerraformInstaller@0
-      displayName: Terraform installation
-      inputs:
-        terraformVersion: $(terraformVersion)
+#     - task: ms-devlabs.custom-terraform-tasks.custom-terraform-installer-task.TerraformInstaller@0
+#       displayName: Terraform installation
+#       inputs:
+#         terraformVersion: $(terraformVersion)
 
-    - task: TerraformTaskV2@2
-      displayName: Terraform init
-      inputs:
-        provider: 'azurerm'
-        command: 'init'
-        workingDirectory: '$(System.DefaultWorkingDirectory)/iac/terraform'
-        backendServiceArm: $(service_connection)
-        backendAzureRmResourceGroupName: $(sac_rg)
-        backendAzureRmStorageAccountName: $(sac)
-        backendAzureRmContainerName: $(sac_container)
-        backendAzureRmKey: $(tfstatePath)
+#     - task: TerraformTaskV2@2
+#       displayName: Terraform init
+#       inputs:
+#         provider: 'azurerm'
+#         command: 'init'
+#         workingDirectory: '$(System.DefaultWorkingDirectory)/iac/terraform'
+#         backendServiceArm: $(service_connection)
+#         backendAzureRmResourceGroupName: $(sac_rg)
+#         backendAzureRmStorageAccountName: $(sac)
+#         backendAzureRmContainerName: $(sac_container)
+#         backendAzureRmKey: $(tfstatePath)
         
-    - task: TerraformTaskV2@2
-      displayName: Terraform validate
-      inputs:
-        provider: 'azurerm'
-        command: 'validate'
+#     - task: TerraformTaskV2@2
+#       displayName: Terraform validate
+#       inputs:
+#         provider: 'azurerm'
+#         command: 'validate'
         
-- stage: Terraform_Deploy
-  jobs:
-  - job: Deploy
-    displayName: TF Deployment
-    steps:
-    - task: ms-devlabs.custom-terraform-tasks.custom-terraform-installer-task.TerraformInstaller@0
-      displayName: Terraform installation
-      inputs:
-        terraformVersion: $(terraformVersion)
+# - stage: Terraform_Deploy
+#   jobs:
+#   - job: Deploy
+#     displayName: TF Deployment
+#     steps:
+#     - task: ms-devlabs.custom-terraform-tasks.custom-terraform-installer-task.TerraformInstaller@0
+#       displayName: Terraform installation
+#       inputs:
+#         terraformVersion: $(terraformVersion)
       
-    - task: TerraformTaskV2@2
-      displayName: Terraform init
-      inputs:
-        provider: 'azurerm'
-        command: 'init'
-        workingDirectory: '$(System.DefaultWorkingDirectory)/iac/terraform'
-        backendServiceArm: $(service_connection)
-        backendAzureRmResourceGroupName: $(sac_rg)
-        backendAzureRmStorageAccountName: $(sac)
-        backendAzureRmContainerName: $(sac_container)
-        backendAzureRmKey: $(tfstatePath)
+#     - task: TerraformTaskV2@2
+#       displayName: Terraform init
+#       inputs:
+#         provider: 'azurerm'
+#         command: 'init'
+#         workingDirectory: '$(System.DefaultWorkingDirectory)/iac/terraform'
+#         backendServiceArm: $(service_connection)
+#         backendAzureRmResourceGroupName: $(sac_rg)
+#         backendAzureRmStorageAccountName: $(sac)
+#         backendAzureRmContainerName: $(sac_container)
+#         backendAzureRmKey: $(tfstatePath)
 
-    - task: TerraformTaskV2@2
-      displayName: Terraform plan
-      inputs:
-        provider: 'azurerm'
-        command: 'plan'
-        workingDirectory: '$(System.DefaultWorkingDirectory)/iac/terraform'
-        commandOptions: '-out $(System.DefaultWorkingDirectory)/iac/terraform/out.plan'
-        environmentServiceNameAzureRM: $(service_connection)
+#     - task: TerraformTaskV2@2
+#       displayName: Terraform plan
+#       inputs:
+#         provider: 'azurerm'
+#         command: 'plan'
+#         workingDirectory: '$(System.DefaultWorkingDirectory)/iac/terraform'
+#         commandOptions: '-out $(System.DefaultWorkingDirectory)/iac/terraform/out.plan'
+#         environmentServiceNameAzureRM: $(service_connection)
 
-    - task: TerraformTaskV2@2
-      displayName: Terraform apply
-      inputs:
-        provider: 'azurerm'
-        command: 'apply'
-        workingDirectory: '$(System.DefaultWorkingDirectory)/iac/terraform'
-        commandOptions: '$(System.DefaultWorkingDirectory)/iac/terraform/out.plan'
-        environmentServiceNameAzureRM: $(service_connection)
+#     - task: TerraformTaskV2@2
+#       displayName: Terraform apply
+#       inputs:
+#         provider: 'azurerm'
+#         command: 'apply'
+#         workingDirectory: '$(System.DefaultWorkingDirectory)/iac/terraform'
+#         commandOptions: '$(System.DefaultWorkingDirectory)/iac/terraform/out.plan'
+#         environmentServiceNameAzureRM: $(service_connection)
 
 - stage: ACR_Docker_SC_Create_UMI
   jobs:
   - job: SC_UMI_Create
     displayName: ACR SC & UMI Create
     steps:    
-    - task: replacetokens@3
-      displayName: 'Replace secrets'
-      inputs:
-        rootDirectory: '$(Build.SourcesDirectory)'
-        targetFiles: 'iac/terraform/pipelines/config/docker-sc-config.json'
-        tokenPrefix: '##'
-        tokenSuffix: '##'
-        verbosity: detailed
+    # - task: replacetokens@3
+    #   displayName: 'Replace secrets'
+    #   inputs:
+    #     rootDirectory: '$(Build.SourcesDirectory)'
+    #     targetFiles: 'iac/terraform/pipelines/config/docker-sc-config.json'
+    #     tokenPrefix: '##'
+    #     tokenSuffix: '##'
+    #     verbosity: detailed
         
-    - task: AzureCLI@1
-      displayName: 'Create ACR Service Connection'
-      inputs:
-        azureSubscription: sub_sc
-        scriptType: 'bash'
-        scriptLocation: 'inlineScript'
-        inlineScript: |
-          az extension add --name azure-devops
-          az devops configure --defaults organization=https://dev.azure.com/bahrinipun/
-          az devops configure --defaults project=demo-fullstack
-          echo $AZURE_DEVOPS_EXT_PAT | az devops login --organization https://dev.azure.com/bahrinipun/
+    # - task: AzureCLI@1
+    #   displayName: 'Create ACR Service Connection'
+    #   inputs:
+    #     azureSubscription: sub_sc
+    #     scriptType: 'bash'
+    #     scriptLocation: 'inlineScript'
+    #     inlineScript: |
+    #       az extension add --name azure-devops
+    #       az devops configure --defaults organization=https://dev.azure.com/bahrinipun/
+    #       az devops configure --defaults project=demo-fullstack
+    #       echo $AZURE_DEVOPS_EXT_PAT | az devops login --organization https://dev.azure.com/bahrinipun/
           
-          docker_acr_sc_name=testaks9acr9_sc
+    #       docker_acr_sc_name=testaks9acr9_sc
 
-          if az devops service-endpoint list --detect true -p demo-fullstack --org https://dev.azure.com/bahrinipun/ --query "[?type=='dockerregistry'].name" -o tsv | grep -xF "$docker_acr_sc_name" > /dev/null; then
-              echo "Docker service connection $docker_acr_sc_name already exists"
-          else
-              az devops service-endpoint create --service-endpoint-configuration '$(Build.SourcesDirectory)/iac/terraform/pipelines/config/docker-sc-config.json' --detect true
-          fi
-          az devops logout
-      env:
-        AZURE_DEVOPS_EXT_PAT: '$(AZURE_DEVOPS_EXT_PAT)'
+    #       if az devops service-endpoint list --detect true -p demo-fullstack --org https://dev.azure.com/bahrinipun/ --query "[?type=='dockerregistry'].name" -o tsv | grep -xF "$docker_acr_sc_name" > /dev/null; then
+    #           echo "Docker service connection $docker_acr_sc_name already exists"
+    #       else
+    #           az devops service-endpoint create --service-endpoint-configuration '$(Build.SourcesDirectory)/iac/terraform/pipelines/config/docker-sc-config.json' --detect true
+    #       fi
+    #       az devops logout
+    #   env:
+    #     AZURE_DEVOPS_EXT_PAT: '$(AZURE_DEVOPS_EXT_PAT)'
 
     - task: AzureCLI@1
       displayName: 'Create UMI & Role Assign'
