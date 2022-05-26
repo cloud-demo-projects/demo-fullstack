@@ -88,7 +88,7 @@ stages:
 #         commandOptions: '$(System.DefaultWorkingDirectory)/iac/terraform/out.plan'
 #         environmentServiceNameAzureRM: $(service_connection)
 
-- stage: ACR_Docker_SC_Create_UMI
+- stage: DockerSC_UMI_Create
   jobs:
   - job: SC_UMI_Create
     displayName: ACR SC & UMI Create
