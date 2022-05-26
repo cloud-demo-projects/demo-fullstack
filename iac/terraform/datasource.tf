@@ -1,7 +1,7 @@
 ### Key Vault #######################################
 data "azurerm_key_vault" "this"{
   name                = var.keyvault_name
-  resource_group_name = var.resource_group_name
+  resource_group_name = var.keyvault_rg
 }
 
 # data "azurerm_key_vault" "terraform_vault" {
