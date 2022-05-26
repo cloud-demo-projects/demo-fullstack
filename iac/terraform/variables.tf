@@ -70,9 +70,13 @@ variable "custom_diagnostics_retention_days" {
   default = 0
 }
 
-###### KV #######################################################################
+###### KV & SQL Server #######################################################################
 variable keyvault_name {
     default = "fullstack-kv"
+}
+
+variable sqlserver_name {
+    default = "testsqldbserver9"
 }
 
 variable prerequisite_rg {

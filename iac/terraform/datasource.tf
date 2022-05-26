@@ -4,6 +4,11 @@ data "azurerm_key_vault" "this"{
   resource_group_name = var.prerequisite_rg
 }
 
+data "azurerm_sql_server" "this"{
+  name                = var.sqlserver_name
+  resource_group_name = var.prerequisite_rg
+}
+
 # data "azurerm_key_vault" "terraform_vault" {
 #   name                = var.keyvault_name
 #   resource_group_name = var.prerequisite_rg

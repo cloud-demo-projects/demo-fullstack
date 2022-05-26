@@ -215,4 +215,11 @@ resource "azurerm_role_assignment" "keyvault_reader" {
   role_definition_name             = "Reader"
   skip_service_principal_aad_check = true
 }
+
+resource "azurerm_role_assignment" "sqlserver_contributor" {
+  principal_id                     = azurerm_user_assigned_identity.this.client_id
+  scope                            = data.azurerm_sql_server.this.id
+  role_definition_name             = "Contributor"
+  skip_service_principal_aad_check = true
+}
 ################# UMI Module End #################################################
