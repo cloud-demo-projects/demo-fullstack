@@ -199,7 +199,7 @@ resource "azurerm_role_assignment" "aks_sp_container_registry_push" {
 resource "azurerm_user_assigned_identity" "this" {
   location            = var.location
   name                = var.umi_name
-  resource_group_name = var.resource_group_name
+  resource_group_name = azurerm_resource_group.k8s.name
 }
 
 resource "azurerm_role_assignment" "managed_identity_operator" {

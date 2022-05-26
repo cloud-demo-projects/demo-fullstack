@@ -2,6 +2,6 @@ variables:
   azureServiceConnection: 'sub_sc'
   resourceGroupName: 'test-aks9'
   templateFile: 'iac/prerequisites/main.bicep'
-  keyVaultName: 'kvdds7657'
+  keyVaultName: 'fullstack-kv'
   sqlServerName: 'testsqldbserver9'
   sqlServerDBName: testsqldb9

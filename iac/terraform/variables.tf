@@ -72,7 +72,7 @@ variable "custom_diagnostics_retention_days" {
 
 ###### KV #######################################################################
 variable keyvault_name {
-    default = "kvdds7657"
+    default = "fullstack-kv"
 }
 
 variable prerequisite_rg {
