@@ -16,8 +16,7 @@ resource "azurerm_resource_group" "k8s" {
     location = var.location
 }
 
-## Logging Module ##
-
+############ Logging Module ################################################
 # resource "azurerm_log_analytics_workspace" "fullstack_lws" {
 #     # The WorkSpace name has to be unique across the whole of azure, not just the current subscription/tenant.
 #     name                = var.log_analytics_workspace_name
@@ -106,9 +105,9 @@ resource "azurerm_resource_group" "k8s" {
 #     }
 #   }
 # }
+################# Logging Module End #################################################
 
-## Logging Module End ##
-
+################# AKS #################################################
 resource "azurerm_kubernetes_cluster" "k8s" {
     name                = var.cluster_name
     location            = azurerm_resource_group.k8s.location
@@ -159,7 +158,9 @@ resource "azurerm_kubernetes_cluster" "k8s" {
         EnvironmentSetup = "Development"
     }
 }
+################# AKS Module End #################################################
 
+################# ACR Module #################################################
 resource "azurerm_container_registry" "acr" {
     name                = var.acr_name
     resource_group_name = azurerm_resource_group.k8s.name
@@ -180,6 +181,7 @@ resource "azurerm_role_assignment" "aks_sp_container_registry_push" {
     role_definition_name = "AcrPush"
     principal_id         = azurerm_kubernetes_cluster.k8s.kubelet_identity[0].object_id
 }
+################# ACR Module End #################################################
 
 # resource "azurerm_role_assignment" "aks_sp_container_registry_pull" {
 #   scope                            = azurerm_container_registry.acr.id
@@ -193,7 +195,7 @@ resource "azurerm_role_assignment" "aks_sp_container_registry_push" {
 #   principal_id                     = data.azuread_service_principal.aks_principal.object_id
 # }
 
-# UMI Module
+################# UMI Module #################################################
 resource "azurerm_user_assigned_identity" "this" {
   location            = var.location
   name                = var.umi_name
@@ -213,3 +215,4 @@ resource "azurerm_role_assignment" "keyvault_reader" {
   role_definition_name             = "Reader"
   skip_service_principal_aad_check = true
 }
+################# UMI Module End #################################################
