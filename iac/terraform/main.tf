@@ -196,12 +196,11 @@ resource "azurerm_role_assignment" "aks_sp_container_registry_push" {
 # UMI Module
 resource "azurerm_user_assigned_identity" "this" {
   location            = var.location
-  name                = var.identity_name
+  name                = var.umi_name
   resource_group_name = var.resource_group_name
 }
 
 resource "azurerm_role_assignment" "managed_identity_operator" {
-  count                            = var.create_service_principal_role_assignments ? 1 : 0
   principal_id                     = data.azuread_service_principal.aks_cluster.id
   scope                            = azurerm_user_assigned_identity.this.id
   role_definition_name             = "Managed Identity Operator"
@@ -209,8 +208,6 @@ resource "azurerm_role_assignment" "managed_identity_operator" {
 }
 
 resource "azurerm_role_assignment" "keyvault_reader" {
-  depends_on                       = [null_resource.add_keyvault_lock]
-  count                            = var.create_service_principal_role_assignments ? 1 : 0
   principal_id                     = azurerm_user_assigned_identity.this.principal_id
   scope                            = data.azurerm_key_vault.this.id
   role_definition_name             = "Reader"
