@@ -8,3 +8,4 @@ variables:
   sac_container: akstfstate
   cluster_name: testaks9
   cluster_rg: test-aks
+  umi_name: fullstack-umi

@@ -88,10 +88,10 @@ stages:
         commandOptions: '$(System.DefaultWorkingDirectory)/iac/terraform/out.plan'
         environmentServiceNameAzureRM: $(service_connection)
 
-- stage: ACR_Docker_SC_Create
+- stage: ACR_Docker_SC_Create_UMI
   jobs:
-  - job: SC_Create
-    displayName: ACR Service Connection Create
+  - job: SC_UMI_Create
+    displayName: ACR SC & UMI Create
     steps:    
     - task: replacetokens@3
       displayName: 'Replace secrets'
@@ -124,7 +124,21 @@ stages:
           az devops logout
       env:
         AZURE_DEVOPS_EXT_PAT: '$(AZURE_DEVOPS_EXT_PAT)'
-              
+
+    - task: AzureCLI@1
+      displayName: 'Create UMI & Role Assign'
+      inputs:
+        azureSubscription: sub_sc
+        scriptType: 'bash'
+        scriptLocation: 'inlineScript'
+        inlineScript: |
+          az identity create --resource-group $(cluster_rg) --name $(umi_name)
+          IDENTITY_CLIENT_ID="$(az identity show -g $(cluster_rg) -n $(umi_name) --query clientId -otsv)"
+          IDENTITY_RESOURCE_ID="$(az identity show -g $(cluster_rg) -n $(umi_name) --query id -otsv)"   
+
+          NODE_GROUP=$(az aks show -g $(cluster_rg) -n $(cluster_name) --query nodeResourceGroup -o tsv)
+          NODES_RESOURCE_ID=$(az group show -n $NODE_GROUP -o tsv --query "id")
+          az role assignment create --role "Virtual Machine Contributor" --assignee "$IDENTITY_CLIENT_ID" --scope $NODES_RESOURCE_ID         
 
 - stage: Helmfile_Deploy
   jobs:
