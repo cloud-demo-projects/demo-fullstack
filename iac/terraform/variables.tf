@@ -72,10 +72,10 @@ variable "custom_diagnostics_retention_days" {
 
 ###### KV #######################################################################
 variable keyvault_name {
-    default = "kvaks993"
+    default = "kvdds7657"
 }
 
-variable keyvault_rg {
+variable prerequisite_rg {
     default = "test-aks9"
 }
 
