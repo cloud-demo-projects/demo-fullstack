@@ -3,7 +3,7 @@ variables:
   tfstatePath: terraform.tfstate
   location: westeurope
   service_connection: sub_sc
-  sac_rg: pre-fullstack-aks
+  sac_rg: pre-aks
   sac: tfaks9
   sac_container: akstfstate
   cluster_name: testaks9

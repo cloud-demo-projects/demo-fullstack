@@ -1,6 +1,6 @@
 variables:
   azureServiceConnection: 'sub_sc'
-  resourceGroupName: 'pre-fullstack-aks'
+  resourceGroupName: 'pre-aks'
   templateFile: 'iac/prerequisites/main.bicep'
   keyVaultName: 'fullstack-kv'
   sqlServerName: 'backend-dbserver'
