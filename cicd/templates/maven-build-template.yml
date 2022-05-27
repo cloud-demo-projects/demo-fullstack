@@ -11,16 +11,13 @@ steps:
   displayName: Maven Build
   inputs:
     mavenPomFile: '$(Build.SourcesDirectory)/${{ parameters.projectName }}/pom.xml'
-    publishJUnitResults: true
-    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    mavenOptions: '-Xmx3072m'
     javaHomeOption: 'JDKVersion'
     jdkVersionOption: '1.11'
-    mavenVersionOption: 'Default'
-    mavenOptions: '-Xmx3072m'
-    mavenAuthenticateFeed: false
-    effectivePomSkip: false
-    sonarQubeRunAnalysis: false
-    goals: 'verify -Pdev'
+    jdkArchitectureOption: 'x64'
+    publishJUnitResults: true
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    goals: 'verify -Pdev'  
 
 - task: CopyFiles@2
   displayName: Copy JAR
