@@ -32,6 +32,14 @@ releases:
         nodeSelector:
           beta.kubernetes.io/os: linux
 
+# Enables pod-identity on cluster with CRDs
+- name: aad-pod-identity
+  namespace: default
+  chart: aad-pod-identity/aad-pod-identity
+  labels:
+   name: aad-pod-identity
+  version: 4.1.10
+
 - name: cert-manager
   namespace: cert-manager
   chart: jetstack/cert-manager
@@ -40,14 +48,6 @@ releases:
   version: 1.8.0
   values:
     - installCRDs: true
-
-# Enables pod-identity on cluster with CRDs
-- name: aad-pod-identity
-  namespace: default
-  chart: aad-pod-identity/aad-pod-identity
-  labels:
-   name: aad-pod-identity
-  version: 4.1.10
 
 - name: cert-manager-issuer
   chart: itscontained/raw
