@@ -76,7 +76,7 @@ variable keyvault_name {
 }
 
 variable sqlserver_name {
-    default = "testsqldbserver9"
+    default = "backend-dbserver"
 }
 
 variable prerequisite_rg {

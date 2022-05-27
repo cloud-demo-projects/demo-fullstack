@@ -3,5 +3,5 @@ variables:
   resourceGroupName: 'test-aks9'
   templateFile: 'iac/prerequisites/main.bicep'
   keyVaultName: 'fullstack-kv'
-  sqlServerName: 'testsqldbserver9'
-  sqlServerDBName: testsqldb9
+  sqlServerName: 'backend-dbserver'
+  sqlServerDBName: backend-db
