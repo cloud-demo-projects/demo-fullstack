@@ -43,8 +43,7 @@ releases:
 
 # Enables pod-identity on cluster with CRDs
 - name: aad-pod-identity
-  namespace: vault
-  createNamespace: true
+  namespace: default
   chart: aad-pod-identity/aad-pod-identity
   labels:
    name: aad-pod-identity
@@ -54,6 +53,8 @@ releases:
   chart: itscontained/raw
   namespace: default
   version:  0.2.5
+  labels:
+   name: itscontained
   disableValidation: true
   values:
     - resources:
