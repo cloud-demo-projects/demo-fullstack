@@ -53,6 +53,10 @@ logging:
     org:
       hibernate:
         SQL: DEBUG
+    com:
+      zaxxer:
+        hikari:
+          HikariConfig: DEBUG
 exception:
   message: Employee Not Found in Dev Database
   skillMessage: Skill Not Found in Local Database
