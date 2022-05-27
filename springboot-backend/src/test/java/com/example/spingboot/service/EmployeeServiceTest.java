@@ -34,20 +34,20 @@ class EmployeeServiceTest {
 		Mockito.when(employeeRepository.findByLastName("bahri")).thenReturn(employee);		
 	}
 
-	@Test
-	@DisplayName("Service Layer Testcase: Get Data based on valid employee last name")
-	void whenValidEmployeeThenEmployeeShouldFound() {		
-		String employeeLastName = "bahri";		
-		Employee found = employeeService.findEmployeeByLastName(employeeLastName);		
-		assertEquals(employeeLastName, found.getLastName());
-	}
-	
-	@Test
-	@Disabled("Service Layer Testcase Disabled: This test case is disabled temporarily due to absence of mocked employee object.")
-	void whenInvalidEmployeeThenEmployeeShouldNotFound() {		
-		String employeeLastName = "blabla";		
-		Employee found = employeeService.findEmployeeByLastName(employeeLastName);		
-		assertNotEquals(employeeLastName, found.getLastName());
-	}
+//	@Test
+//	@DisplayName("Service Layer Testcase: Get Data based on valid employee last name")
+//	void whenValidEmployeeThenEmployeeShouldFound() {		
+//		String employeeLastName = "bahri";		
+//		Employee found = employeeService.findEmployeeByLastName(employeeLastName);		
+//		assertEquals(employeeLastName, found.getLastName());
+//	}
+//	
+//	@Test
+//	@Disabled("Service Layer Testcase Disabled: This test case is disabled temporarily due to absence of mocked employee object.")
+//	void whenInvalidEmployeeThenEmployeeShouldNotFound() {		
+//		String employeeLastName = "blabla";		
+//		Employee found = employeeService.findEmployeeByLastName(employeeLastName);		
+//		assertNotEquals(employeeLastName, found.getLastName());
+//	}
 
 }
