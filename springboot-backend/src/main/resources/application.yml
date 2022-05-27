@@ -22,7 +22,7 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5InnoDBDialect
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
 management:
   security:
     enabled: 'false'
@@ -44,9 +44,9 @@ spring:
     #url: jdbc:sqlserver://testsqldbserver9.database.windows.net:1433;database=testsqldb9;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;
     url: jdbc:sqlserver://testsqldbserver9.database.windows.net:1433;database=testsqldb9;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;Authentication=ActiveDirectoryMSI
   jpa:
-    show-sql: 'true'
+    show-sql: false
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
 logging:
   level:
     org:
