@@ -80,7 +80,7 @@ variable sqlserver_name {
 }
 
 variable prerequisite_rg {
-    default = "test-aks9"
+    default = "pre-fullstack-aks"
 }
 
 ### ACR #####################################################
