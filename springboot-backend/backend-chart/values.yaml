@@ -21,7 +21,7 @@ serviceAccount:
   name: "backend-api-sa"
 
 podAnnotations:
-  aadpodidbinding: fullstack-mi
+  aadpodidbinding: fullstack-umi
 
 podSecurityContext: {}
   # fsGroup: 2000

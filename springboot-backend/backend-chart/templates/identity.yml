@@ -1,17 +1,17 @@
 apiVersion: "aadpodidentity.k8s.io/v1"
 kind: AzureIdentity
 metadata:
-  name: "fullstack-mi"
+  name: "fullstack-umi"
 spec:
   type: 0
-  resourceID: "/subscriptions/bf0f6779-86d2-467e-8226-10f92a8ad378/resourceGroups/test-aks/providers/Microsoft.ManagedIdentity/userAssignedIdentities/fullstack-mi"
+  resourceID: "/subscriptions/bf0f6779-86d2-467e-8226-10f92a8ad378/resourceGroups/test-aks/providers/Microsoft.ManagedIdentity/userAssignedIdentities/fullstack-umi"
   clientID: "c88eda4f-bc0c-49c4-88a8-ceded826f14c"
 ---
 apiVersion: "aadpodidentity.k8s.io/v1"
 kind: AzureIdentityBinding
 metadata:
-  name: "fullstack-mi-binding"
+  name: "fullstack-umi-binding"
 spec:
-  azureIdentity: "fullstack-mi"
-  selector: "fullstack-mi"
+  azureIdentity: "fullstack-umi"
+  selector: "fullstack-umi"
 
