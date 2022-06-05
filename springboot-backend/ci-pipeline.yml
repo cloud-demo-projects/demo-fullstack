@@ -55,7 +55,6 @@ stages:
 
 - stage: Docker_Building_Pushing
   displayName: Docker Building Pushing
-  condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
   jobs:
   - job: Docker_Build_Push
     displayName: Docker Build Push
