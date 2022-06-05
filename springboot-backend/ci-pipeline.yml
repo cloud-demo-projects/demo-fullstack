@@ -61,11 +61,11 @@ stages:
   #   pool:
   #     vmImage: ubuntu-latest  
   #   steps:
-    - template: ../cicd/templates/docker-template.yml
-      parameters:
-        dockerRegistry_sc: '${{ parameters.dockerRegistry_sc }}'
-        projectName: '${{ parameters.projectName }}'
-        chartName: '${{ parameters.chartName }}'
-        appVersion: '${{ parameters.appVersion }}'
-        chartVersion: '${{ parameters.chartVersion }}'
-        acrName: '${{ parameters.acrName }}'
+  - template: ../cicd/templates/docker-template.yml
+    parameters:
+      dockerRegistry_sc: '${{ parameters.dockerRegistry_sc }}'
+      projectName: '${{ parameters.projectName }}'
+      chartName: '${{ parameters.chartName }}'
+      appVersion: '${{ parameters.appVersion }}'
+      chartVersion: '${{ parameters.chartVersion }}'
+      acrName: '${{ parameters.acrName }}'
