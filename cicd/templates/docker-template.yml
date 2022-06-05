@@ -83,7 +83,7 @@ jobs:
 
 - job: Docker_Push
   displayName: Docker Push
-  condition: ne(variables['Build.Reason'], 'PullRequest')
+  condition: and(succeeded(),ne(variables['Build.Reason'], 'PullRequest'))
   pool:
     vmImage: ubuntu-latest  
   steps:
