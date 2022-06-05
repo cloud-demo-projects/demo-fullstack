@@ -10,7 +10,6 @@ jobs:
   pool:
     vmImage: ubuntu-latest  
   steps:
-# steps:
     - task: Bash@3
       displayName: "Linting Dockerfile"
       continueOnError: true
@@ -82,9 +81,14 @@ jobs:
         testRunTitle: 'Trivy - High & Critical Vulnerabilities'
       condition: 'always()' 
 
+- job: Docker_Push
+  displayName: Docker Push
+  condition: ne(variables['Build.Reason'], 'PullRequest')
+  pool:
+    vmImage: ubuntu-latest  
+  steps:
     - task: Docker@2
       displayName: 'Push Docker Image to ACR'
-      condition: ne(variables['Build.Reason'], 'PullRequest')
       inputs:
         containerRegistry: '${{ parameters.dockerRegistry_sc }}'
         repository: '${{ parameters.projectName }}'
