@@ -4,7 +4,12 @@
 # push
 # container structure test
 
-steps:
+- job: Docker_Build_Push
+  displayName: Docker Build Push
+  pool:
+    vmImage: ubuntu-latest  
+  steps:
+# steps:
     - task: Bash@3
       displayName: "Linting Dockerfile"
       continueOnError: true

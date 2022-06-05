@@ -56,16 +56,16 @@ stages:
 - stage: Docker_Building_Pushing
   displayName: Docker Building Pushing
   jobs:
-  - job: Docker_Build_Push
-    displayName: Docker Build Push
-    pool:
-      vmImage: ubuntu-latest  
-    steps:
-      - template: ../cicd/templates/docker-template.yml
-        parameters:
-          dockerRegistry_sc: '${{ parameters.dockerRegistry_sc }}'
-          projectName: '${{ parameters.projectName }}'
-          chartName: '${{ parameters.chartName }}'
-          appVersion: '${{ parameters.appVersion }}'
-          chartVersion: '${{ parameters.chartVersion }}'
-          acrName: '${{ parameters.acrName }}'
+  # - job: Docker_Build_Push
+  #   displayName: Docker Build Push
+  #   pool:
+  #     vmImage: ubuntu-latest  
+  #   steps:
+    - template: ../cicd/templates/docker-template.yml
+      parameters:
+        dockerRegistry_sc: '${{ parameters.dockerRegistry_sc }}'
+        projectName: '${{ parameters.projectName }}'
+        chartName: '${{ parameters.chartName }}'
+        appVersion: '${{ parameters.appVersion }}'
+        chartVersion: '${{ parameters.chartVersion }}'
+        acrName: '${{ parameters.acrName }}'
