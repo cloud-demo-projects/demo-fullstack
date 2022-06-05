@@ -4,7 +4,7 @@
 # push
 # container structure test
 
-- job: Docker_Build_Push
+  job: Docker_Build_Push
   displayName: Docker Build Push
   pool:
     vmImage: ubuntu-latest  
