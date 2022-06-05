@@ -1,4 +1,4 @@
-FROM openjdk:11.0-jdk-slim
+FROM openjdk:11.0-jdk-oracle
 
 ENV DB_USER DB_PASS
 
