@@ -27,6 +27,14 @@ steps:
         targetType: 'inline'
         script: |
           helm template ${{ parameters.projectName }}/${{ parameters.chartName }}
+          
+    - task: Bash@3
+      displayName: Helm Chart & Application Version Update
+      inputs:
+        targetType: 'inline'
+        script: |
+          sed -i -e "s/^version:.*/version: ${{ parameters.chartVersion }}/" "${{ parameters.projectName }}/${{ parameters.chartName }}/Chart.yaml"
+          sed -i -e "s/^appVersion:.*/appVersion: ${{ parameters.appVersion }}/" "${{ parameters.projectName }}/${{ parameters.chartName }}/Chart.yaml"
 
     - task: HelmDeploy@0
       displayName: Save Helm Package to ACR
