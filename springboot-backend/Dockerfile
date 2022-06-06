@@ -29,7 +29,7 @@ LABEL org.label-schema.schema-version="1.0"
 
 WORKDIR /
 
-ENV APPLICATIONINSIGHTS_CONNECTION_STRING="InstrumentationKey=88b78755-448b-4c03-a6d1-fa348fc63937;IngestionEndpoint=https://westeurope-5.in.applicationinsights.azure.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.com/"
+ENV APPLICATIONINSIGHTS_CONNECTION_STRING="InstrumentationKey=b1838a0c-15d2-470e-8a8c-24987b9d3dc5;IngestionEndpoint=https://westeurope-5.in.applicationinsights.azure.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.com/"
 COPY applicationinsights-agent-3.2.11.jar applicationinsights-agent-3.2.11.jar
 COPY target/springboot-backend-1.0.jar app.jar
 
