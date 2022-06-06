@@ -45,7 +45,7 @@ jobs:
         tags: '${{ parameters.appVersion }}'
         arguments: >-
           --progress plain
-          --output type=docker,dest="$(Build.ArtifactStagingDirectory)/${{ parameters.projectName }}.tar"
+          --output type=local,dest="$(Build.ArtifactStagingDirectory)/${{ parameters.projectName }}.tar"
 
     - task: ContainerStructureTest@0
       displayName: 'Container Structure Test'
