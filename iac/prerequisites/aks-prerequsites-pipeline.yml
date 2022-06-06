@@ -19,6 +19,7 @@ pool:
 stages:
 - stage: Bicep_Build
   displayName: Bicep Build
+  condition: and(succeeded(),ne(variables['Build.Reason'], 'PullRequest'))
   jobs:
   - job: Lint_Bicep
     displayName: Lint Bicep
