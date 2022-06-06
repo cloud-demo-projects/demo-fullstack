@@ -35,9 +35,6 @@ parameters:
   - name: releaseName
     type: string
     default: sb
-  - name: buildAgrs
-    type: string
-    default: ""
     
 variables:
 - template: ../cicd/variables/cicd-variables.yml
