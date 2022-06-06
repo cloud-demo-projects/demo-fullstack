@@ -5,7 +5,7 @@ metadata:
 spec:
   type: 0
   resourceID: "/subscriptions/bf0f6779-86d2-467e-8226-10f92a8ad378/resourceGroups/test-aks/providers/Microsoft.ManagedIdentity/userAssignedIdentities/fullstack-umi"
-  clientID: "c88eda4f-bc0c-49c4-88a8-ceded826f14c"
+  clientID: "f9020b94-3761-4706-99fa-b1647f2c18e7"
 ---
 apiVersion: "aadpodidentity.k8s.io/v1"
 kind: AzureIdentityBinding
