@@ -98,7 +98,7 @@ jobs:
     vmImage: ubuntu-latest  
   steps:
     - task: Docker@2
-      displayeName: Load Image
+      displayName: Load Image
       inputs:
         command: load
         arguments: >-
