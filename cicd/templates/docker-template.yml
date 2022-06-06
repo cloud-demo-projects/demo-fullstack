@@ -46,6 +46,7 @@ jobs:
         arguments: >-
           --progress plain
           --output type=docker, dest="$(Build.ArtifactStagingDirectory)/${{ parameters.projectName }}.tar"
+          ${{ parameters.buildAgrs }}
 
     - task: ContainerStructureTest@0
       displayName: 'Container Structure Test'
