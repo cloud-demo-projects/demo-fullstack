@@ -87,7 +87,7 @@ jobs:
     - task: PublishPipelineArtifact@1
       displayName: Publish Artifact
       inputs:
-        path: '$(Build.ArtifactStagingDirectory)/${{ parameters.projectName }}.tar'
+        path: "$(Build.ArtifactStagingDirectory)/${{ parameters.projectName }}.tar"
         artifactName: ContainerImage
 
 - job: Docker_Push
