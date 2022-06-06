@@ -94,7 +94,7 @@ jobs:
   pool:
     vmImage: ubuntu-latest  
   steps:
-    - task: DownloadBuildArtifacts@2
+    - task: DownloadPipelineArtifact@2
       inputs:
         source: 'current'
         artifactName: 'ContainerImage'
