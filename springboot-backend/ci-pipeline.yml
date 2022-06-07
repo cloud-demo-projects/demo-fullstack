@@ -13,6 +13,9 @@ trigger:
 resources:
 - repo: self
 
+pool:
+  vmImage: ubuntu-latest
+
 parameters:
   - name: acrName
     type: string
@@ -45,9 +48,7 @@ stages:
   displayName: Java Maven Building
   jobs:
   - job: Java_Maven_Build
-    displayName: Java Maven Build
-    pool:
-      vmImage: ubuntu-latest  
+    displayName: Java Maven Build  
     steps:
       - template: ../cicd/templates/maven-build-template.yml
         parameters:
