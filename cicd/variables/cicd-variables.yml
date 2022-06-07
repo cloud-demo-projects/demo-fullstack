@@ -4,3 +4,8 @@ variables:
   acrname: 'testaks9acr9'
   aks: 'testaks9'
   aksrg: 'test-aks'
+
+  # buildkit var
+  tag: '$(Build.BuildId)'
+  DOCKER_BUILD_CACHE_DIR: ${Pipeline.Workspace}/.buildx-cache
+  BUILDER_NAME: $(Build.SourceBranchName)-$(Build.BuildId)

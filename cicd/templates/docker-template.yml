@@ -34,6 +34,20 @@ jobs:
         downloadType: 'specific'
         downloadPath: '$(Build.ArtifactStagingDirectory)'
 
+    ## create builder
+    - task: Docker@2
+      displayName: Create Builder
+      inputs:
+        command: buildx
+        arguments: create --use --name $(BUILDER_NAME)
+
+    ## enable buildkit
+    - task: Docker@2
+      displayName: Enable Buildkit
+      inputs:
+        command: buildx
+        arguments: install
+
     - task: Docker@2
       displayName: 'Build Docker Image'
       inputs:
@@ -45,7 +59,7 @@ jobs:
         tags: '${{ parameters.appVersion }}'
         arguments: >-
           --progress plain
-          --output type=local,dest=/
+          --output type=local,dest="$(Build.ArtifactStagingDirectory)/${{ parameters.projectName }}.tar"
 
     - task: Bash@3
       displayName: Logging
