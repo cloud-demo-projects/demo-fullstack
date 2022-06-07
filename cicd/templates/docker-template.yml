@@ -67,7 +67,7 @@ jobs:
         targetType: 'inline'
         script: |
           docker images
-          ls -lrt /
+          ls -lrt $(Build.ArtifactStagingDirectory)/
 
     - task: ContainerStructureTest@0
       displayName: 'Container Structure Test'
