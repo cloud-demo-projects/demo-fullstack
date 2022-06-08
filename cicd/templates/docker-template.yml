@@ -60,6 +60,19 @@ jobs:
           docker buildx install
           docker buildx inspect --bootstrap
 
+    # - task: Docker@2
+    #   displayName: 'Build Docker Image'
+    #   inputs:
+    #     containerRegistry: '${{ parameters.dockerRegistry_sc }}'
+    #     repository: '${{ parameters.projectName }}'
+    #     command: 'build'
+    #     Dockerfile: '${{ parameters.projectName }}/Dockerfile'
+    #     buildContext: '$(Build.ArtifactStagingDirectory)/drop'
+    #     tags: '${{ parameters.appVersion }}'
+    #     arguments: >-
+    #       --progress plain
+    #       --output=type=docker,dest="$(Build.ArtifactStagingDirectory)/${{ parameters.projectName }}.tar"
+
     - task: Docker@2
       displayName: 'Build Docker Image'
       inputs:
@@ -69,9 +82,25 @@ jobs:
         Dockerfile: '${{ parameters.projectName }}/Dockerfile'
         buildContext: '$(Build.ArtifactStagingDirectory)/drop'
         tags: '${{ parameters.appVersion }}'
+
+    - task: Bash@3
+      displayName: Logging
+      inputs:
+        targetType: 'inline'
+        script: |
+          docker images
+          ls -lrt $(Build.ArtifactStagingDirectory)/
+
+    - task: Docker@2
+      displayName: 'Save Docker Image'
+      inputs:
+        containerRegistry: '${{ parameters.dockerRegistry_sc }}'
+        repository: '${{ parameters.projectName }}'
+        command: 'save'
         arguments: >-
           --progress plain
-          --output=type=oci,dest="$(Build.ArtifactStagingDirectory)/${{ parameters.projectName }}.tar"
+          --output "$(Build.ArtifactStagingDirectory)/${{ parameters.projectName }}.tar ${{ parameters.dockerRegistry_sc }}:${{ parameters.appVersion }}"
+
 
     - task: Bash@3
       displayName: Logging
