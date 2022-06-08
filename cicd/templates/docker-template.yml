@@ -71,7 +71,7 @@ jobs:
         tags: '${{ parameters.appVersion }}'
         arguments: >-
           --progress plain
-          --output=type=docker,dest="$(Build.ArtifactStagingDirectory)/${{ parameters.projectName }}.tar"
+          --output=type=tar,dest="$(Build.ArtifactStagingDirectory)/${{ parameters.projectName }}.tar"
 
     - task: Bash@3
       displayName: Logging
