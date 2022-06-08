@@ -35,18 +35,18 @@ jobs:
         downloadPath: '$(Build.ArtifactStagingDirectory)'
 
     ## create builder
-    - task: Docker@2
-      displayName: Create Builder
-      inputs:
-        command: buildx
-        arguments: create --use --name $(BUILDER_NAME)
+    # - task: Docker@2
+    #   displayName: Create Builder
+    #   inputs:
+    #     command: buildx
+    #     arguments: create --use --name $(BUILDER_NAME)
 
-    ## enable buildkit
-    - task: Docker@2
-      displayName: Enable Buildkit
-      inputs:
-        command: buildx
-        arguments: install
+    # ## enable buildkit
+    # - task: Docker@2
+    #   displayName: Enable Buildkit
+    #   inputs:
+    #     command: buildx
+    #     arguments: install
 
     - task: Docker@2
       displayName: 'Build Docker Image'
@@ -59,7 +59,7 @@ jobs:
         tags: '${{ parameters.appVersion }}'
         arguments: >-
           --progress plain
-          --output=type=docker,dest="$(Build.ArtifactStagingDirectory)/${{ parameters.projectName }}.tar"
+          --output=type=oci,dest="$(Build.ArtifactStagingDirectory)/${{ parameters.projectName }}.tar"
 
     - task: Bash@3
       displayName: Logging
