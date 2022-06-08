@@ -97,9 +97,7 @@ jobs:
         containerRegistry: '${{ parameters.dockerRegistry_sc }}'
         repository: '${{ parameters.projectName }}'
         command: 'save'
-        arguments: >-
-          --progress plain
-          --output "$(Build.ArtifactStagingDirectory)/${{ parameters.projectName }}.tar ${{ parameters.dockerRegistry_sc }}:${{ parameters.appVersion }}"
+        arguments: '--output $(Build.ArtifactStagingDirectory)/${{ parameters.projectName }}.tar $(containerRegistry)/${{ parameters.projectName }}:${{ parameters.appVersion }}'
 
 
     - task: Bash@3
