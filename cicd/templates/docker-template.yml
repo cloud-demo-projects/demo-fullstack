@@ -57,6 +57,7 @@ jobs:
           docker buildx ls
           docker buildx create --name mybuilder
           docker buildx use mybuilder
+          docker buildx install
           docker buildx inspect --bootstrap
 
     - task: Docker@2
