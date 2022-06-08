@@ -6,9 +6,7 @@
 
 jobs:
 - job: Docker_Build
-  displayName: Docker Build
-  pool:
-    vmImage: ubuntu-latest  
+  displayName: Docker Build 
   steps:
     - task: Bash@3
       displayName: "Linting Dockerfile"
@@ -165,8 +163,6 @@ jobs:
   displayName: Docker Push
   condition: and(succeeded(),ne(variables['Build.Reason'], 'PullRequest'))
   dependsOn: Docker_Build
-  pool:
-    vmImage: ubuntu-latest  
   steps:
     - task: Bash@3
       inputs:
