@@ -48,6 +48,14 @@ jobs:
     #     command: buildx
     #     arguments: install
 
+    - task: Bash@3
+      displayName: Logging
+      inputs:
+        targetType: 'inline'
+        script: |
+          docker version
+          docker buildx build -o . .
+
     - task: Docker@2
       displayName: 'Build Docker Image'
       inputs:
