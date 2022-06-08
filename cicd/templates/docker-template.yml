@@ -150,6 +150,17 @@ jobs:
         path: "$(Build.ArtifactStagingDirectory)/${{ parameters.projectName }}.tar"
         artifactName: ContainerImage
 
+    - task: Bash@3
+      inputs:
+        targetType: 'inline'
+        script: |
+          docker images
+          ls -lrt
+          ls -lrt $(Build.ArtifactStagingDirectory)/
+          ls -lrt $(Pipeline.Workspace)/ContainerImage/
+          ls -lrt $(Pipeline.Workspace)/
+          ls -lrt $(Pipeline.Workspace)/a/
+
 - job: Docker_Push
   displayName: Docker Push
   condition: and(succeeded(),ne(variables['Build.Reason'], 'PullRequest'))
@@ -166,6 +177,7 @@ jobs:
           ls -lrt $(Build.ArtifactStagingDirectory)/
           ls -lrt $(Pipeline.Workspace)/ContainerImage/
           ls -lrt $(Pipeline.Workspace)/
+          ls -lrt $(Pipeline.Workspace)/a/
 
     - task: Docker@2
       displayName: Load Image
