@@ -158,6 +158,8 @@ jobs:
           ls -lrt $(Pipeline.Workspace)/ContainerImage/
           ls -lrt $(Pipeline.Workspace)/
           ls -lrt $(Pipeline.Workspace)/a/
+          ls -lrt $(System.DefaultWorkingDirectory)/
+          ls -lrt $(System.DefaultWorkingDirectory)/ContainerImage/
 
 - job: Docker_Push
   displayName: Docker Push
@@ -176,6 +178,8 @@ jobs:
           ls -lrt $(Pipeline.Workspace)/a/
           ls -lrt $(Pipeline.Workspace)/b/
           ls -lrt $(Pipeline.Workspace)/s/
+          ls -lrt $(System.DefaultWorkingDirectory)/
+          ls -lrt $(System.DefaultWorkingDirectory)/ContainerImage/
 
     - task: Docker@2
       displayName: Load Image
