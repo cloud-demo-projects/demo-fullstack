@@ -145,10 +145,10 @@ jobs:
       condition: 'always()' 
 
     - task: PublishPipelineArtifact@1
-      displayName: Publish Artifact
+      displayName: Publish Image as Pipeline Artifact
       inputs:
-        path: "$(Build.ArtifactStagingDirectory)/${{ parameters.projectName }}.tar"
-        artifactName: ContainerImage
+        path: $(build.artifactstagingdirectory)
+        artifactName: 'ContainerImage'
 
     - task: Bash@3
       inputs:
@@ -178,6 +178,8 @@ jobs:
           ls -lrt $(Pipeline.Workspace)/ContainerImage/
           ls -lrt $(Pipeline.Workspace)/
           ls -lrt $(Pipeline.Workspace)/a/
+          ls -lrt $(Pipeline.Workspace)/b/
+          ls -lrt $(Pipeline.Workspace)/s/
 
     - task: Docker@2
       displayName: Load Image
