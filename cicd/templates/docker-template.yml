@@ -99,7 +99,6 @@ jobs:
         command: 'save'
         arguments: '--output $(Build.ArtifactStagingDirectory)/${{ parameters.projectName }}.tar $(containerRegistry)/${{ parameters.projectName }}:${{ parameters.appVersion }}'
 
-
     - task: Bash@3
       displayName: Logging
       inputs:
@@ -163,7 +162,7 @@ jobs:
       inputs:
         command: load
         arguments: >-
-          -- input "$(Build.ArtifactStagingDirectory)/${{ parameters.projectName }}.tar"
+          --input "$(Build.ArtifactStagingDirectory)/${{ parameters.projectName }}.tar"
 
     - task: Bash@3
       inputs:
