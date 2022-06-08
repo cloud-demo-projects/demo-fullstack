@@ -54,7 +54,7 @@ jobs:
         targetType: 'inline'
         script: |
           docker version
-          docker buildx build -o type=docker,dest=- . > myimage.tar
+          docker buildx ls
 
     - task: Docker@2
       displayName: 'Build Docker Image'
