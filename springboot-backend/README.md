@@ -6,6 +6,8 @@
 
 # Features
 - Azure SQL UMI Connectivity: prerequisites:- UMI with Virtual Machine Contributor role, AzureIdentity & AzureIdentityBinding AKS resources, pod label,       Azure SQL pom dependency,data source endpoint
+![image](https://user-images.githubusercontent.com/67367858/173436098-d73599ab-4218-407c-bd7d-015f9dc52faf.png)
+
 - Client-side Validation
 - Logger
 - Exception Handling
