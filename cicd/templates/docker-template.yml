@@ -167,6 +167,7 @@ jobs:
     - task: DownloadPipelineArtifact@2
       displayName: Download Image as Pipeline Artifact
       inputs:
+        source: current
         path: $(Build.SourcesDirectory)
         artifactName: 'ContainerImage'
 
@@ -177,19 +178,13 @@ jobs:
           docker images
           ls -lrt
           ls -lrt $(Build.SourcesDirectory)/
-          ls -lrt $(Build.ArtifactStagingDirectory)/
-          ls -lrt $(Pipeline.Workspace)/ContainerImage/
-          ls -lrt $(Pipeline.Workspace)/
-          ls -lrt $(Pipeline.Workspace)/a/
-          ls -lrt $(Pipeline.Workspace)/b/
-          ls -lrt $(Pipeline.Workspace)/s/
 
     - task: Docker@2
       displayName: Load Image
       inputs:
         command: load
         arguments: >-
-          --input "$(Pipeline.Workspace)/ContainerImage/${{ parameters.projectName }}.tar"
+          --input "$(Build.SourcesDirectory)/${{ parameters.projectName }}.tar"
 
     - task: Bash@3
       inputs:
