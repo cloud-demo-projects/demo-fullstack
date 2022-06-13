@@ -107,7 +107,7 @@ jobs:
         artifactName: 'ContainerImage'
 
 - job: Docker_Test
-  displayName: Docker Push
+  displayName: Docker Test
   condition: and(succeeded(),ne(variables['Build.Reason'], 'PullRequest'))
   dependsOn: Docker_Build
   steps:
