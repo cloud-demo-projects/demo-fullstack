@@ -8,7 +8,7 @@ variables:
 - template: variables/iac-variables.yml
 
 stages:
-- stage: Terraform_Validate
+- stage: Terraform_Cluster_Validate
   jobs:
   - job: Validate
     displayName: Validation
@@ -48,10 +48,10 @@ stages:
         provider: 'azurerm'
         command: 'validate'
         
-- stage: Terraform_Deploy
+- stage: Terraform_Cluster_Deploy
   jobs:
   - job: Deploy
-    displayName: TF Deployment
+    displayName: Cluster Deployment
     steps:
     - task: ms-devlabs.custom-terraform-tasks.custom-terraform-installer-task.TerraformInstaller@0
       displayName: Terraform installation
@@ -88,9 +88,9 @@ stages:
         commandOptions: '$(System.DefaultWorkingDirectory)/iac/terraform/out.plan'
         environmentServiceNameAzureRM: $(service_connection)
 
-- stage: ACR_Docker_SC_Create
+- stage: ACR_Docker_Service_Connection_Create
   jobs:
-  - job: SC_Create
+  - job: Service_Connection_Create
     displayName: ACR Service Connection Create
     steps:    
     - task: replacetokens@3
