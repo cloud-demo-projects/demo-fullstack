@@ -118,6 +118,13 @@ jobs:
         path: $(Build.SourcesDirectory)
         artifactName: 'ContainerImage'
 
+    - task: Docker@2
+      displayName: Load Image
+      inputs:
+        command: load
+        arguments: >-
+          --input "$(Build.SourcesDirectory)/${{ parameters.projectName }}.tar"
+
     - task: Bash@3
       inputs:
         targetType: 'inline'
