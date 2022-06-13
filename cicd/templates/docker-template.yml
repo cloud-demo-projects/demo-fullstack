@@ -118,6 +118,14 @@ jobs:
         path: $(Build.SourcesDirectory)
         artifactName: 'ContainerImage'
 
+    - task: Bash@3
+      inputs:
+        targetType: 'inline'
+        script: |
+          docker images
+          ls -lrt
+          ls -lrt $(Build.SourcesDirectory)/
+
     - task: ContainerStructureTest@0
       displayName: 'Container Structure Test'
       inputs:
