@@ -63,6 +63,61 @@ jobs:
         command: 'save'
         arguments: '--output $(Build.ArtifactStagingDirectory)/${{ parameters.projectName }}.tar $(containerRegistry)/${{ parameters.projectName }}:${{ parameters.appVersion }}'
 
+    # - task: ContainerStructureTest@0
+    #   displayName: 'Container Structure Test'
+    #   inputs:
+    #     dockerRegistryServiceConnection: ''
+    #     repository: '${{ parameters.projectName }}'
+    #     tag: '${{ parameters.appVersion }}'
+    #     configFile: 'cicd/templates/structure-test-config.yaml'
+    #     testRunTitle: 'Structure Test'
+
+    # - task: Bash@3
+    #   displayName: Install Trivy 0.23.0
+    #   inputs:
+    #     targetType: 'inline'
+    #     script: |
+    #       docker images
+    #       wget https://github.com/aquasecurity/trivy/releases/download/v0.23.0/trivy_0.23.0_Linux-64bit.deb
+    #       sudo dpkg -i trivy_0.23.0_Linux-64bit.deb
+    #       trivy -v
+
+    # - task: Bash@3
+    #   displayName: Trivy Image Scan
+    #   inputs:
+    #     targetType: 'inline'
+    #     script: |
+    #       trivy image --exit-code 0 --severity HIGH,CRITICAL '${{ parameters.acrName }}'/'${{ parameters.projectName }}':'${{ parameters.appVersion }}'
+    #       trivy image --severity HIGH,CRITICAL --format template --template "junit.tpl" -o junit-report-high-crit.xml '${{ parameters.acrName }}'/'${{ parameters.projectName }}':'${{ parameters.appVersion }}'
+
+    # - task: PublishTestResults@2
+    #   displayName: 'Publish Trivy Scan Results'
+    #   inputs:
+    #     testResultsFormat: 'JUnit'
+    #     testResultsFiles: 'junit-report-high-crit.xml'
+    #     mergeTestResults: true
+    #     failTaskOnFailedTests: false
+    #     testRunTitle: 'Trivy - High & Critical Vulnerabilities'
+    #   condition: 'always()' 
+
+    - task: PublishPipelineArtifact@1
+      displayName: Publish Image as Pipeline Artifact
+      inputs:
+        path: $(build.artifactstagingdirectory)
+        artifactName: 'ContainerImage'
+
+- job: Docker_Test
+  displayName: Docker Test
+  condition: and(succeeded(),ne(variables['Build.Reason'], 'PullRequest'))
+  dependsOn: Docker_Build
+  steps:
+    - task: DownloadPipelineArtifact@2
+      displayName: Download Image as Pipeline Artifact
+      inputs:
+        source: current
+        path: $(Build.SourcesDirectory)
+        artifactName: 'ContainerImage'
+
     - task: ContainerStructureTest@0
       displayName: 'Container Structure Test'
       inputs:
@@ -99,24 +154,6 @@ jobs:
         failTaskOnFailedTests: false
         testRunTitle: 'Trivy - High & Critical Vulnerabilities'
       condition: 'always()' 
-
-    - task: PublishPipelineArtifact@1
-      displayName: Publish Image as Pipeline Artifact
-      inputs:
-        path: $(build.artifactstagingdirectory)
-        artifactName: 'ContainerImage'
-
-- job: Docker_Test
-  displayName: Docker Test
-  condition: and(succeeded(),ne(variables['Build.Reason'], 'PullRequest'))
-  dependsOn: Docker_Build
-  steps:
-    - task: DownloadPipelineArtifact@2
-      displayName: Download Image as Pipeline Artifact
-      inputs:
-        source: current
-        path: $(Build.SourcesDirectory)
-        artifactName: 'ContainerImage'
 
 - job: Docker_Push
   displayName: Docker Push
