@@ -164,12 +164,19 @@ jobs:
   condition: and(succeeded(),ne(variables['Build.Reason'], 'PullRequest'))
   dependsOn: Docker_Build
   steps:
+    - task: DownloadPipelineArtifact@2
+      displayName: Download Image as Pipeline Artifact
+      inputs:
+        path: $(Build.SourcesDirectory)
+        artifactName: 'ContainerImage'
+
     - task: Bash@3
       inputs:
         targetType: 'inline'
         script: |
           docker images
           ls -lrt
+          ls -lrt $(Build.SourcesDirectory)/
           ls -lrt $(Build.ArtifactStagingDirectory)/
           ls -lrt $(Pipeline.Workspace)/ContainerImage/
           ls -lrt $(Pipeline.Workspace)/
