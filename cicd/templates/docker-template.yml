@@ -32,20 +32,6 @@ jobs:
         downloadType: 'specific'
         downloadPath: '$(Build.ArtifactStagingDirectory)'
 
-    ## create builder
-    # - task: Docker@2
-    #   displayName: Create Builder
-    #   inputs:
-    #     command: buildx
-    #     arguments: create --use --name $(BUILDER_NAME)
-
-    # ## enable buildkit
-    # - task: Docker@2
-    #   displayName: Enable Buildkit
-    #   inputs:
-    #     command: buildx
-    #     arguments: install
-
     # - task: Bash@3
     #   displayName: Logging
     #   inputs:
@@ -68,13 +54,6 @@ jobs:
         buildContext: '$(Build.ArtifactStagingDirectory)/drop'
         tags: '${{ parameters.appVersion }}'
 
-    - task: Bash@3
-      displayName: Logging
-      inputs:
-        targetType: 'inline'
-        script: |
-          docker images
-          ls -lrt $(Build.ArtifactStagingDirectory)/
 
     - task: Docker@2
       displayName: 'Save Docker Image'
