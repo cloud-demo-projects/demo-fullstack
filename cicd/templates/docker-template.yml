@@ -128,7 +128,7 @@ jobs:
 - job: Docker_Push
   displayName: Docker Push
   condition: and(succeeded(),ne(variables['Build.Reason'], 'PullRequest'))
-  dependsOn: Docker_Build
+  dependsOn: Docker_Test
   steps:
     - task: DownloadPipelineArtifact@2
       displayName: Download Image as Pipeline Artifact
