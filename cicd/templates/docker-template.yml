@@ -33,7 +33,7 @@ jobs:
         downloadPath: '$(Build.ArtifactStagingDirectory)'
 
     # - task: Bash@3
-    #   displayName: Logging
+    #   displayName: Buildx
     #   inputs:
     #     targetType: 'inline'
     #     script: |
@@ -62,14 +62,6 @@ jobs:
         repository: '${{ parameters.projectName }}'
         command: 'save'
         arguments: '--output $(Build.ArtifactStagingDirectory)/${{ parameters.projectName }}.tar $(containerRegistry)/${{ parameters.projectName }}:${{ parameters.appVersion }}'
-
-    - task: Bash@3
-      displayName: Logging
-      inputs:
-        targetType: 'inline'
-        script: |
-          docker images
-          ls -lrt $(Build.ArtifactStagingDirectory)/
 
     - task: ContainerStructureTest@0
       displayName: 'Container Structure Test'
