@@ -54,8 +54,8 @@ stages:
         parameters:
           projectName: '${{ parameters.projectName }}'
 
-- stage: Docker_Building_Pushing
-  displayName: Docker Building Pushing
+- stage: Docker_CI
+  displayName: Docker CI
   jobs:
   - template: ../cicd/templates/docker-template.yml
     parameters:
