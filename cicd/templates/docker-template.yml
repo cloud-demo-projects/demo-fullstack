@@ -1,8 +1,9 @@
-# hadolint
-# build
-# image static scan & publish test results
-# push
-# container structure test
+# Docker Template comprises of-
+# Hadolint scan
+# Docker build
+# Image static scan & publish test results
+# Docker push
+# Container structure test
 
 jobs:
 - job: Docker_Build
@@ -54,7 +55,6 @@ jobs:
         buildContext: '$(Build.ArtifactStagingDirectory)/drop'
         tags: '${{ parameters.appVersion }}'
 
-
     - task: Docker@2
       displayName: 'Save Docker Image'
       inputs:
@@ -62,43 +62,6 @@ jobs:
         repository: '${{ parameters.projectName }}'
         command: 'save'
         arguments: '--output $(Build.ArtifactStagingDirectory)/${{ parameters.projectName }}.tar $(containerRegistry)/${{ parameters.projectName }}:${{ parameters.appVersion }}'
-
-    # - task: ContainerStructureTest@0
-    #   displayName: 'Container Structure Test'
-    #   inputs:
-    #     dockerRegistryServiceConnection: ''
-    #     repository: '${{ parameters.projectName }}'
-    #     tag: '${{ parameters.appVersion }}'
-    #     configFile: 'cicd/templates/structure-test-config.yaml'
-    #     testRunTitle: 'Structure Test'
-
-    # - task: Bash@3
-    #   displayName: Install Trivy 0.23.0
-    #   inputs:
-    #     targetType: 'inline'
-    #     script: |
-    #       docker images
-    #       wget https://github.com/aquasecurity/trivy/releases/download/v0.23.0/trivy_0.23.0_Linux-64bit.deb
-    #       sudo dpkg -i trivy_0.23.0_Linux-64bit.deb
-    #       trivy -v
-
-    # - task: Bash@3
-    #   displayName: Trivy Image Scan
-    #   inputs:
-    #     targetType: 'inline'
-    #     script: |
-    #       trivy image --exit-code 0 --severity HIGH,CRITICAL '${{ parameters.acrName }}'/'${{ parameters.projectName }}':'${{ parameters.appVersion }}'
-    #       trivy image --severity HIGH,CRITICAL --format template --template "junit.tpl" -o junit-report-high-crit.xml '${{ parameters.acrName }}'/'${{ parameters.projectName }}':'${{ parameters.appVersion }}'
-
-    # - task: PublishTestResults@2
-    #   displayName: 'Publish Trivy Scan Results'
-    #   inputs:
-    #     testResultsFormat: 'JUnit'
-    #     testResultsFiles: 'junit-report-high-crit.xml'
-    #     mergeTestResults: true
-    #     failTaskOnFailedTests: false
-    #     testRunTitle: 'Trivy - High & Critical Vulnerabilities'
-    #   condition: 'always()' 
 
     - task: PublishPipelineArtifact@1
       displayName: Publish Image as Pipeline Artifact
@@ -124,14 +87,6 @@ jobs:
         command: load
         arguments: >-
           --input "$(Build.SourcesDirectory)/${{ parameters.projectName }}.tar"
-
-    - task: Bash@3
-      inputs:
-        targetType: 'inline'
-        script: |
-          docker images
-          ls -lrt
-          ls -lrt $(Build.SourcesDirectory)/
 
     - task: ContainerStructureTest@0
       displayName: 'Container Structure Test'
@@ -181,14 +136,6 @@ jobs:
         source: current
         path: $(Build.SourcesDirectory)
         artifactName: 'ContainerImage'
-
-    - task: Bash@3
-      inputs:
-        targetType: 'inline'
-        script: |
-          docker images
-          ls -lrt
-          ls -lrt $(Build.SourcesDirectory)/
 
     - task: Docker@2
       displayName: Load Image
