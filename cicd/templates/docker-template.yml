@@ -46,30 +46,17 @@ jobs:
     #     command: buildx
     #     arguments: install
 
-    - task: Bash@3
-      displayName: Logging
-      inputs:
-        targetType: 'inline'
-        script: |
-          docker version
-          docker buildx ls
-          docker buildx create --name mybuilder
-          docker buildx use mybuilder
-          docker buildx install
-          docker buildx inspect --bootstrap
-
-    # - task: Docker@2
-    #   displayName: 'Build Docker Image'
+    # - task: Bash@3
+    #   displayName: Logging
     #   inputs:
-    #     containerRegistry: '${{ parameters.dockerRegistry_sc }}'
-    #     repository: '${{ parameters.projectName }}'
-    #     command: 'build'
-    #     Dockerfile: '${{ parameters.projectName }}/Dockerfile'
-    #     buildContext: '$(Build.ArtifactStagingDirectory)/drop'
-    #     tags: '${{ parameters.appVersion }}'
-    #     arguments: >-
-    #       --progress plain
-    #       --output=type=docker,dest="$(Build.ArtifactStagingDirectory)/${{ parameters.projectName }}.tar"
+    #     targetType: 'inline'
+    #     script: |
+    #       docker version
+    #       docker buildx ls
+    #       docker buildx create --name mybuilder
+    #       docker buildx use mybuilder
+    #       docker buildx install
+    #       docker buildx inspect --bootstrap
 
     - task: Docker@2
       displayName: 'Build Docker Image'
@@ -148,17 +135,6 @@ jobs:
         path: $(build.artifactstagingdirectory)
         artifactName: 'ContainerImage'
 
-    - task: Bash@3
-      inputs:
-        targetType: 'inline'
-        script: |
-          docker images
-          ls -lrt
-          ls -lrt $(Build.ArtifactStagingDirectory)/
-          ls -lrt $(Pipeline.Workspace)/ContainerImage/
-          ls -lrt $(Pipeline.Workspace)/
-          ls -lrt $(Pipeline.Workspace)/a/
-
 - job: Docker_Push
   displayName: Docker Push
   condition: and(succeeded(),ne(variables['Build.Reason'], 'PullRequest'))
@@ -185,13 +161,6 @@ jobs:
         command: load
         arguments: >-
           --input "$(Build.SourcesDirectory)/${{ parameters.projectName }}.tar"
-
-    - task: Bash@3
-      inputs:
-        targetType: 'inline'
-        script: |
-          docker images
-          ls -lrt
 
     - task: Docker@2
       displayName: 'Push Docker Image to ACR'
