@@ -32,3 +32,8 @@ data "azurerm_sql_server" "this"{
 # data "azuread_service_principal" "aks_principal" {
 #   application_id = data.azurerm_key_vault_secret.spn_id.value
 # }
+
+### Node resource group
+data "azurerm_resource_group" "aks_node_rg" {
+  name = azurerm_kubernetes_cluster.k8s.node_resource_group
+}
