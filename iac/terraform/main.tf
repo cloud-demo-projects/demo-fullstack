@@ -11,6 +11,7 @@ provider "azurerm" {
   features {}
 }
 
+############ Resource Group ##############
 resource "azurerm_resource_group" "k8s" {
     name     = var.resource_group_name
     location = var.location
@@ -105,7 +106,7 @@ resource "azurerm_monitor_diagnostic_setting" "fullstack_diagnostic_settings" {
     }
   }
 }
-################# Logging Module End #################################################
+################# Logging Module End #####################
 
 ################# AKS #################################################
 resource "azurerm_kubernetes_cluster" "k8s" {
@@ -158,9 +159,9 @@ resource "azurerm_kubernetes_cluster" "k8s" {
         EnvironmentSetup = "Development"
     }
 }
-################# AKS Module End #################################################
+################# AKS Module End #######
 
-################# ACR Module #################################################
+################# ACR Module ##############
 resource "azurerm_container_registry" "acr" {
     name                = var.acr_name
     resource_group_name = azurerm_resource_group.k8s.name
@@ -169,35 +170,38 @@ resource "azurerm_container_registry" "acr" {
     admin_enabled       = false
     depends_on          = [azurerm_resource_group.k8s]
 }
+################# ACR Module Ends ###########
 
-resource "azurerm_role_assignment" "aks_sp_container_registry_pull" {
-    scope                = azurerm_container_registry.acr.id
-    role_definition_name = "AcrPull"
-    principal_id         = azurerm_kubernetes_cluster.k8s.kubelet_identity[0].object_id
+############ SMI Role Assignment ##############
+resource "azurerm_role_assignment" "aks_mi_container_registry_pull" {
+    scope                         = azurerm_container_registry.acr.id
+    role_definition_name          = "AcrPull"
+    principal_id                  = azurerm_kubernetes_cluster.k8s.kubelet_identity[0].object_id
 }
 
-resource "azurerm_role_assignment" "aks_sp_container_registry_push" {
-    scope                = azurerm_container_registry.acr.id
-    role_definition_name = "AcrPush"
-    principal_id         = azurerm_kubernetes_cluster.k8s.kubelet_identity[0].object_id
+resource "azurerm_role_assignment" "aks_mi_container_registry_push" {
+    scope                         = azurerm_container_registry.acr.id
+    role_definition_name          = "AcrPush"
+    principal_id                  = azurerm_kubernetes_cluster.k8s.kubelet_identity[0].object_id
 }
 
-resource "azurerm_role_assignment" "managed_identity_operator" {
+resource "azurerm_role_assignment" "aks_mi_managed_identity_operator" {
   principal_id                     = azurerm_kubernetes_cluster.k8s.kubelet_identity[0].object_id
   scope                            = data.azurerm_resource_group.aks_node_rg.id
   role_definition_name             = "Managed Identity Operator"
   skip_service_principal_aad_check = true
 }
 
-resource "azurerm_role_assignment" "virtual_machine_contributor" {
+resource "azurerm_role_assignment" "aks_mi_virtual_machine_contributor" {
   principal_id                     = azurerm_kubernetes_cluster.k8s.kubelet_identity[0].object_id
   scope                            = data.azurerm_resource_group.aks_node_rg.id
   role_definition_name             = "Virtual Machine Contributor"
   skip_service_principal_aad_check = true
 }
-################# ACR Module End #################################################
+############ SMI Role Assignment Ends ##############
 
-# resource "azurerm_role_assignment" "aks_sp_container_registry_pull" {
+# resource "azurerm_role_assignment" "
+" {
 #   scope                            = azurerm_container_registry.acr.id
 #   role_definition_name             = "AcrPull"
 #   principal_id                     = data.azuread_service_principal.aks_principal.object_id
@@ -209,19 +213,12 @@ resource "azurerm_role_assignment" "virtual_machine_contributor" {
 #   principal_id                     = data.azuread_service_principal.aks_principal.object_id
 # }
 
-################# UMI Module #################################################
+################# UMI Module ####################
 resource "azurerm_user_assigned_identity" "this" {
-  location            = var.location
-  name                = var.umi_name
-  resource_group_name = azurerm_resource_group.k8s.name
+  location                          = var.location
+  name                              = var.umi_name
+  resource_group_name               = azurerm_resource_group.k8s.name
 }
-
-# resource "azurerm_role_assignment" "managed_identity_operator" {
-#   principal_id                     = azurerm_user_assigned_identity.this.client_id
-#   scope                            = azurerm_user_assigned_identity.this.id
-#   role_definition_name             = "Managed Identity Operator"
-#   skip_service_principal_aad_check = true
-# }
 
 resource "azurerm_role_assignment" "keyvault_reader" {
   principal_id                     = azurerm_user_assigned_identity.this.client_id
@@ -236,4 +233,4 @@ resource "azurerm_role_assignment" "sqlserver_contributor" {
   role_definition_name             = "Contributor"
   skip_service_principal_aad_check = true
 }
-################# UMI Module End #################################################
+################# UMI Module End #######################
