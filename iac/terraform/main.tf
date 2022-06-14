@@ -184,14 +184,14 @@ resource "azurerm_role_assignment" "aks_sp_container_registry_push" {
 
 resource "azurerm_role_assignment" "managed_identity_operator" {
   principal_id                     = azurerm_kubernetes_cluster.k8s.kubelet_identity[0].object_id
-  scope                            = data.azurerm_resource_group.node_rg.id
+  scope                            = data.azurerm_resource_group.aks_node_rg.id
   role_definition_name             = "Managed Identity Operator"
   skip_service_principal_aad_check = true
 }
 
 resource "azurerm_role_assignment" "virtual_machine_contributor" {
   principal_id                     = azurerm_kubernetes_cluster.k8s.kubelet_identity[0].object_id
-  scope                            = data.azurerm_resource_group.node_rg.id
+  scope                            = data.azurerm_resource_group.aks_node_rg.id
   role_definition_name             = "Virtual Machine Contributor"
   skip_service_principal_aad_check = true
 }
