@@ -15,7 +15,7 @@ jobs:
       inputs:
         targetType: 'inline'
         script: |
-          docker run --rm -i hadolint/hadolint < '${{ parameters.projectName }}/Dockerfile'
+          docker run --rm -i hadolint/hadolint < '${{ parameters.projectName }}/docker/Dockerfile'
           
           # check if the Hadolint command found issues or not
           if [ $? != 0 ];
@@ -51,7 +51,7 @@ jobs:
         containerRegistry: '${{ parameters.dockerRegistry_sc }}'
         repository: '${{ parameters.projectName }}'
         command: 'build'
-        Dockerfile: '${{ parameters.projectName }}/Dockerfile'
+        Dockerfile: '${{ parameters.projectName }}/docker/Dockerfile'
         buildContext: '$(Build.ArtifactStagingDirectory)/drop'
         tags: '${{ parameters.appVersion }}'
 
