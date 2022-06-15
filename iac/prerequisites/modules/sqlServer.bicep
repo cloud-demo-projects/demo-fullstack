@@ -31,7 +31,7 @@ resource rSqlServers 'Microsoft.Sql/servers@2021-11-01-preview' = {
     }
     //federatedClientId: 'string'
     //keyId: 'string'
-    //minimalTlsVersion: '1.2'
+    minimalTlsVersion: '1.2'
     //primaryUserAssignedIdentityId: 'string'
     publicNetworkAccess: 'Enabled'
     restrictOutboundNetworkAccess: 'Disabled'
