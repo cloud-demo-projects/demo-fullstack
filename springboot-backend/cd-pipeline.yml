@@ -34,7 +34,7 @@ parameters:
     default: sb
     
 variables:
-- template: ../cicd/variables/cicd-variables.yml
+- template: ../cicd/variables/d-variables.yml
 - group: VariableGroup.GlobalVars
 
 stages:

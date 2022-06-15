@@ -34,7 +34,7 @@ parameters:
     default: react
     
 variables:
-- template: ../cicd/variables/cicd-variables.yml
+- template: ../cicd/variables/d-variables.yml
 
 stages:
 - stage: Helm_Chart_Packaging
