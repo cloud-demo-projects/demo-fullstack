@@ -21,14 +21,14 @@ resource rSqlServers 'Microsoft.Sql/servers@2021-11-01-preview' = {
   properties: {
     administratorLogin: 'adminuser'
     administratorLoginPassword: 'Passw0rd'
-    // administrators: {
-    //   administratorType: 'ActiveDirectory'
-    //   azureADOnlyAuthentication: false
-    //   login: 'string'
-    //   principalType: 'string'
-    //   sid: 'string'
-    //   tenantId: 'string'
-    // }
+    administrators: {
+      administratorType: 'ActiveDirectory'
+      azureADOnlyAuthentication: false
+      login: 'nipun@bahrinipungmail.onmicrosoft.com'
+      principalType: 'User'
+      sid: 'f7963f76-9b30-4f29-8787-032cf365f1f2'
+      tenantId: '40bf7642-4a94-438c-bbc1-4e4feeaeda86'
+    }
     //federatedClientId: 'string'
     //keyId: 'string'
     //minimalTlsVersion: '1.2'
