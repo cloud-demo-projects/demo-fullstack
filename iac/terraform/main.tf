@@ -139,12 +139,12 @@ resource "azurerm_kubernetes_cluster" "k8s" {
       type = "SystemAssigned"
     }
 
-    # addon_profile {
-    #     oms_agent {
-    #     enabled                    = true
-    #     log_analytics_workspace_id = azurerm_log_analytics_workspace.fullstack_lws.id
-    #     }
-    # }
+    addon_profile {
+        oms_agent {
+        enabled                    = true
+        log_analytics_workspace_id = azurerm_log_analytics_workspace.fullstack_lws.id
+        }
+    }
 
     role_based_access_control {
         enabled = var.role_based_access_control_enabled
@@ -200,8 +200,8 @@ resource "azurerm_role_assignment" "aks_mi_virtual_machine_contributor" {
 }
 ############ SMI Role Assignment Ends ##############
 
-# resource "azurerm_role_assignment" "
-" {
+# resource "azurerm_role_assignment
+# {
 #   scope                            = azurerm_container_registry.acr.id
 #   role_definition_name             = "AcrPull"
 #   principal_id                     = data.azuread_service_principal.aks_principal.object_id
