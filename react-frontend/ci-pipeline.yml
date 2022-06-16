@@ -35,7 +35,7 @@ parameters:
     default: react
     
 variables:
-- template: ../cicd/variables/d-variables.yml
+- template: ../cicd/variables/dev-variables.yml
 
 stages:
 - stage: Docker_Building_Pushing
