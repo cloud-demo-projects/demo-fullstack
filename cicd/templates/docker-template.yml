@@ -30,7 +30,7 @@ jobs:
       displayName: Download JAR
       inputs:
         buildType: 'current'
-        artifactName: '$(Build.Repository.Name)'
+        artifactName: 'drop'
         targetPath: '$(Build.SourcesDirectory)'
 
     # - task: Bash@3
@@ -50,8 +50,6 @@ jobs:
       inputs:
         targetType: 'inline'
         script: |
-          ls -lrt
-          ls -lrt $(Build.ArtifactStagingDirectory)
           ls -lrt $(Build.SourcesDirectory)
 
     - task: Docker@2

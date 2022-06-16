@@ -47,6 +47,6 @@ steps:
   displayName: Upload JAR
   inputs:
     PathtoPublish: '$(Build.SourcesDirectory)/${{ parameters.projectName }}/target'
-    ArtifactName: '$(Build.Repository.Name)'
+    ArtifactName: 'drop'
     publishLocation: 'Container'
     
