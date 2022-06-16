@@ -71,7 +71,7 @@ jobs:
         arguments: '--output $(Build.ArtifactStagingDirectory)/${{ parameters.projectName }}.tar $(containerRegistry)/${{ parameters.projectName }}:${{ parameters.appVersion }}'
 
     - task: PublishPipelineArtifact@1
-      displayName: Publish Image as Pipeline Artifact
+      displayName: Publish Image
       inputs:
         path: $(build.artifactstagingdirectory)
         artifactName: 'ContainerImage'
@@ -82,7 +82,7 @@ jobs:
   dependsOn: Docker_Build
   steps:
     - task: DownloadPipelineArtifact@2
-      displayName: Download Image as Pipeline Artifact
+      displayName: Download Image
       inputs:
         source: current
         path: $(Build.SourcesDirectory)
@@ -138,7 +138,7 @@ jobs:
   dependsOn: Docker_Test
   steps:
     - task: DownloadPipelineArtifact@2
-      displayName: Download Image as Pipeline Artifact
+      displayName: Download Image
       inputs:
         source: current
         path: $(Build.SourcesDirectory)
