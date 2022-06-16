@@ -59,7 +59,7 @@ jobs:
         repository: '${{ parameters.projectName }}'
         command: 'build'
         Dockerfile: '${{ parameters.projectName }}/docker/Dockerfile'
-        # buildContext: '$(Build.ArtifactStagingDirectory)'
+        buildContext: '$(Build.SourcesDirectory)'
         tags: '${{ parameters.appVersion }}'
 
     - task: Docker@2
