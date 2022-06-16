@@ -31,7 +31,7 @@ jobs:
       inputs:
         buildType: 'current'
         downloadType: 'specific'
-        downloadPath: '$(Build.ArtifactStagingDirectory)'
+        downloadPath: '$(Build.SourcesDirectory)'
 
     # - task: Bash@3
     #   displayName: Buildx
