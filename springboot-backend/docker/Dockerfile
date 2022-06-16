@@ -27,11 +27,11 @@ LABEL org.label-schema.schema-version="1.0"
 
 # USER appuser
 
-# WORKDIR /
+WORKDIR /
 
 ENV APPLICATIONINSIGHTS_CONNECTION_STRING="InstrumentationKey=08a6c24c-87b5-4546-9e6e-893037832197;IngestionEndpoint=https://westeurope-5.in.applicationinsights.azure.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.com/"
 COPY applicationinsights-agent-3.2.11.jar applicationinsights-agent-3.2.11.jar
-COPY target/springboot-backend-1.0.jar app.jar
+COPY springboot-backend-1.0.jar app.jar
 
 EXPOSE 8443
 ENTRYPOINT ["java","-javaagent:applicationinsights-agent-3.2.11.jar","-jar","app.jar","--spring.profiles.active=${SPRING_PROFILE}","--db.user=${DB_USER}", "--db.pass=${DB_PASS}"]
