@@ -24,8 +24,8 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      ls -lrt $(Build.ArtifactStagingDirectory)
-      ls -lrt $(Build.SourcesDirectory)
+      ls -lrt $(Build.SourcesDirectory)/${{ parameters.projectName }}/
+      ls -lrt $(Build.SourcesDirectory)/${{ parameters.projectName }}/target/
 
 - task: CopyFiles@2
   displayName: Copy JAR
@@ -41,8 +41,7 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      ls -lrt $(Build.ArtifactStagingDirectory)
-      ls -lrt $(Build.SourcesDirectory)
+      ls -lrt $(Build.SourcesDirectory)/${{ parameters.projectName }}/
 
 - task: PublishBuildArtifacts@1
   displayName: Upload JAR
