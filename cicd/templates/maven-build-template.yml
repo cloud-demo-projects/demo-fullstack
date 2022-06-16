@@ -19,6 +19,14 @@ steps:
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'verify -Pdev'  
 
+- task: Bash@3
+  displayName: Logging
+  inputs:
+    targetType: 'inline'
+    script: |
+      ls -lrt $(Build.ArtifactStagingDirectory)
+      ls -lrt $(Build.SourcesDirectory)
+
 - task: CopyFiles@2
   displayName: Copy JAR
   inputs:
@@ -32,6 +40,6 @@ steps:
   displayName: Upload JAR
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)/target'
-    ArtifactName: 'drop'
+    ArtifactName: '$(Build.Repository.Name)'
     publishLocation: 'Container'
     
