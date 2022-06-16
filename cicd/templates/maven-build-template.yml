@@ -46,7 +46,7 @@ steps:
 - task: PublishBuildArtifacts@1
   displayName: Upload JAR
   inputs:
-    PathtoPublish: '$(Build.SourcesDirectory)/target'
+    PathtoPublish: '$(Build.SourcesDirectory)/${{ parameters.projectName }}/target'
     ArtifactName: '$(Build.Repository.Name)'
     publishLocation: 'Container'
     
