@@ -19,13 +19,13 @@ steps:
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'verify -Pdev'  
 
-- task: Bash@3
-  displayName: Logging
-  inputs:
-    targetType: 'inline'
-    script: |
-      ls -lrt $(Build.SourcesDirectory)/${{ parameters.projectName }}/
-      ls -lrt $(Build.SourcesDirectory)/${{ parameters.projectName }}/target/
+# - task: Bash@3
+#   displayName: Logging
+#   inputs:
+#     targetType: 'inline'
+#     script: |
+#       ls -lrt $(Build.SourcesDirectory)/${{ parameters.projectName }}/
+#       ls -lrt $(Build.SourcesDirectory)/${{ parameters.projectName }}/target/
 
 # - task: CopyFiles@2
 #   displayName: Copy JAR
