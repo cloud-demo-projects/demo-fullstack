@@ -26,7 +26,7 @@ jobs:
             echo "##vso[task.complete result=Succeeded]Docker Lint succeeded"
           fi
 
-    - task: DownloadBuildArtifacts@1
+    - task: DownloadPipelineArtifact@2
       displayName: Download JAR
       inputs:
         buildType: 'current'
@@ -50,7 +50,6 @@ jobs:
       inputs:
         targetType: 'inline'
         script: |
-          docker images
           ls -lrt
           ls -lrt $(Build.ArtifactStagingDirectory)
           ls -lrt $(Build.SourcesDirectory)
