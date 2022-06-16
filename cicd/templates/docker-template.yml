@@ -45,6 +45,16 @@ jobs:
     #       docker buildx install
     #       docker buildx inspect --bootstrap
 
+    - task: Bash@3
+      displayName: Logging
+      inputs:
+        targetType: 'inline'
+        script: |
+          docker images
+          ls -lrt
+          ls -lrt $(Build.ArtifactStagingDirectory)
+          ls -lrt $(Build.SourcesDirectory)
+
     - task: Docker@2
       displayName: 'Build Docker Image'
       inputs:
@@ -52,7 +62,7 @@ jobs:
         repository: '${{ parameters.projectName }}'
         command: 'build'
         Dockerfile: '${{ parameters.projectName }}/docker/Dockerfile'
-        # buildContext: '$(Build.ArtifactStagingDirectory)'
+        buildContext: '$(Build.ArtifactStagingDirectory)'
         tags: '${{ parameters.appVersion }}'
 
     - task: Docker@2
