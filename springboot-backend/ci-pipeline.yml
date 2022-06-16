@@ -25,27 +25,27 @@ parameters:
     - test
     - acc
     - prod
-  - name: acrName
-    type: string
-    default: testaks9acr9.azurecr.io
-  - name: dockerRegistry_sc
-    type: string
-    default: testaks9acr9_sc
-  - name: projectName
-    type: string
-    default: springboot-backend
-  - name: chartName
-    type: string
-    default: backend-chart
-  - name: appVersion
-    type: string
-    default: 1.16.0
-  - name: chartVersion
-    type: string
-    default: 1.16.0
-  - name: releaseName
-    type: string
-    default: sb
+  # - name: acrName
+  #   type: string
+  #   default: testaks9acr9.azurecr.io
+  # - name: dockerRegistry_sc
+  #   type: string
+  #   default: testaks9acr9_sc
+  # - name: projectName
+  #   type: string
+  #   default: springboot-backend
+  # - name: chartName
+  #   type: string
+  #   default: backend-chart
+  # - name: appVersion
+  #   type: string
+  #   default: 1.16.0
+  # - name: chartVersion
+  #   type: string
+  #   default: 1.16.0
+  # - name: releaseName
+  #   type: string
+  #   default: sb
     
 variables:
 - template: ../cicd/variables/dev-variables.yml
@@ -60,16 +60,16 @@ stages:
     steps:
       - template: ../cicd/templates/maven-build-template.yml
         parameters:
-          projectName: '${{ parameters.projectName }}'
+          projectName: '$(backendprojectName)'
 
 - stage: Docker_CI
   displayName: Docker CI
   jobs:
   - template: ../cicd/templates/docker-template.yml
     parameters:
-      dockerRegistry_sc: '${{ parameters.dockerRegistry_sc }}'
-      projectName: '${{ parameters.projectName }}'
-      chartName: '${{ parameters.chartName }}'
-      appVersion: '${{ parameters.appVersion }}'
-      chartVersion: '${{ parameters.chartVersion }}'
-      acrName: '${{ parameters.acrName }}'
+      dockerRegistry_sc: '$(dockerRegistry_sc)'
+      projectName: '$(backendprojectName)'
+      chartName: '$(chartName)'
+      appVersion: '$(appVersion)'
+      chartVersion: '$(chartVersion)'
+      acrName: '$(acrName)'
