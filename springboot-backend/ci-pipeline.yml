@@ -17,6 +17,14 @@ pool:
   vmImage: ubuntu-latest
 
 parameters:
+  - name: environment
+    type: string
+    default: dev
+    values:
+    - dev
+    - test
+    - acc
+    - prod
   - name: acrName
     type: string
     default: testaks9acr9.azurecr.io
