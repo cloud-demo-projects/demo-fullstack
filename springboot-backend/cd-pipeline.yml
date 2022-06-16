@@ -11,27 +11,14 @@ resources:
 - repo: self
 
 parameters:
-  - name: acrName
+  - name: environment
     type: string
-    default: testaks9acr9.azurecr.io
-  - name: dockerRegistry_sc
-    type: string
-    default: testaks9acr9_sc
-  - name: projectName
-    type: string
-    default: springboot-backend
-  - name: chartName
-    type: string
-    default: backend-chart
-  - name: appVersion
-    type: string
-    default: 1.16.0
-  - name: chartVersion
-    type: string
-    default: 1.16.0
-  - name: releaseName
-    type: string
-    default: sb
+    default: dev
+    values:
+    - dev
+    - test
+    - acc
+    - prod
     
 variables:
 - template: ../cicd/variables/dev-variables.yml
@@ -48,11 +35,11 @@ stages:
     steps:
       - template: ../cicd/templates/helm-ci-template.yml
         parameters:
-          dockerRegistry_sc: '${{ parameters.dockerRegistry_sc }}'
-          projectName: '${{ parameters.projectName }}'
-          chartName: '${{ parameters.chartName }}'
-          appVersion: '${{ parameters.appVersion }}'
-          chartVersion: '${{ parameters.chartVersion }}'
+          dockerRegistry_sc: '$(dockerRegistry_sc)'
+          projectName: '$(backendProjectName)'
+          chartName: '$(chartName)'
+          appVersion: '$(appVersion)'
+          chartVersion: '$(chartVersion)'
 
 - stage: Helm_Chart_Deploy
   displayName: Helm Chart Deployment
@@ -64,9 +51,9 @@ stages:
     steps:      
       - template: ../cicd/templates/helm-cd-template.yml
         parameters:
-          dockerRegistry_sc: '${{ parameters.dockerRegistry_sc }}'
-          projectName: '${{ parameters.projectName }}'
-          chartName: '${{ parameters.chartName }}'
-          appVersion: '${{ parameters.appVersion }}'
-          chartVersion: '${{ parameters.chartVersion }}'
-          releaseName: '${{ parameters.releaseName }}'
+          dockerRegistry_sc: '$(dockerRegistry_sc)'
+          projectName: '$(backendProjectName)'
+          chartName: '$(chartName)'
+          appVersion: '$(appVersion)'
+          chartVersion: '$(chartVersion)'
+          releaseName: '$(releaseName)'
