@@ -11,6 +11,7 @@ variables:
   BUILDER_NAME: $(Build.SourceBranchName)-$(Build.BuildId)
   DOCKER_BUILDKIT: 1
 
+  acr: testaks9acr9.azurecr.io
   dockerRegistry_sc: testaks9acr9_sc
   backendProjectName: springboot-backend
   chartName: backend-chart

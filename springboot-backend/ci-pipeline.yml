@@ -51,4 +51,4 @@ stages:
       chartName: '$(chartName)'
       appVersion: '$(appVersion)'
       chartVersion: '$(chartVersion)'
-      acrName: '$(acrName)'
+      acrName: '$(acr)'
