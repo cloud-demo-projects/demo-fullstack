@@ -30,7 +30,7 @@ jobs:
       displayName: Download JAR
       inputs:
         buildType: 'current'
-        downloadType: 'specific'
+        artifactName: '$(Build.Repository.Name)'
         downloadPath: '$(Build.SourcesDirectory)'
 
     # - task: Bash@3
