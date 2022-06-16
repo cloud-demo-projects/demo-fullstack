@@ -34,12 +34,20 @@ steps:
     Contents: |
       *.jar
       **/target/**/?*.jar
-    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    TargetFolder: '$(Build.SourcesDirectory)'
+
+- task: Bash@3
+  displayName: Logging
+  inputs:
+    targetType: 'inline'
+    script: |
+      ls -lrt $(Build.ArtifactStagingDirectory)
+      ls -lrt $(Build.SourcesDirectory)
 
 - task: PublishBuildArtifacts@1
   displayName: Upload JAR
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)/target'
+    PathtoPublish: '$(Build.SourcesDirectory)/target'
     ArtifactName: '$(Build.Repository.Name)'
     publishLocation: 'Container'
     
