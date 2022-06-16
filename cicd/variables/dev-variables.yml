@@ -10,3 +10,11 @@ variables:
   DOCKER_BUILD_CACHE_DIR: ${Pipeline.Workspace}/.buildx-cache
   BUILDER_NAME: $(Build.SourceBranchName)-$(Build.BuildId)
   DOCKER_BUILDKIT: 1
+
+  acrName: testaks9acr9.azurecr.io
+  dockerRegistry_sc: testaks9acr9_sc
+  backendProjectName: springboot-backend
+  chartName: backend-chart
+  appVersion: 1.16.0
+  chartVersion: 1.16.0
+  releaseName: sb
