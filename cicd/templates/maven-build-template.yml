@@ -27,21 +27,21 @@ steps:
       ls -lrt $(Build.SourcesDirectory)/${{ parameters.projectName }}/
       ls -lrt $(Build.SourcesDirectory)/${{ parameters.projectName }}/target/
 
-- task: CopyFiles@2
-  displayName: Copy JAR
-  inputs:
-    SourceFolder: '$(System.DefaultWorkingDirectory)/${{ parameters.projectName }}/'
-    Contents: |
-      *.jar
-      **/target/**/?*.jar
-    TargetFolder: '$(Build.SourcesDirectory)'
+# - task: CopyFiles@2
+#   displayName: Copy JAR
+#   inputs:
+#     SourceFolder: '$(System.DefaultWorkingDirectory)/${{ parameters.projectName }}/'
+#     Contents: |
+#       *.jar
+#       **/target/**/?*.jar
+#     TargetFolder: '$(Build.SourcesDirectory)'
 
-- task: Bash@3
-  displayName: Logging
-  inputs:
-    targetType: 'inline'
-    script: |
-      ls -lrt $(Build.SourcesDirectory)/${{ parameters.projectName }}/
+# - task: Bash@3
+#   displayName: Logging
+#   inputs:
+#     targetType: 'inline'
+#     script: |
+#       ls -lrt $(Build.SourcesDirectory)/${{ parameters.projectName }}/
 
 - task: PublishBuildArtifacts@1
   displayName: Upload JAR
