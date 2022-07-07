@@ -21,7 +21,7 @@ spec:
   #     #secretName: react-frontend-cert
   #     secretName: letsencrypt
   rules:
-    - host: frontend.20-103-235-222.nip.io
+    - host: frontend.20-103-141-243.nip.io
       http:
         paths:
           - backend:
