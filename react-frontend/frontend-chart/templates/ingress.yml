@@ -17,6 +17,7 @@ metadata:
   name: ingress-react-frontend
   #namespace: sb-admin
 spec:
+  ingressClassName: nginx
   # tls:
   #   - hosts:
   #     - frontend.20-103-235-222.nip.io
