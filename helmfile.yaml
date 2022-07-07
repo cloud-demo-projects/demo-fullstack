@@ -7,6 +7,8 @@ repositories:
   url: https://raw.githubusercontent.com/Azure/aad-pod-identity/master/charts
 - name: itscontained
   url: https://charts.itscontained.io
+- name: gatekeeper 
+  url: https://open-policy-agent.github.io/gatekeeper/charts
 
 environments:
   default:
@@ -73,3 +75,9 @@ releases:
                   ingress:
                     class: nginx
 
+- name: gatekeeper
+  namespace: default
+  chart: gatekeeper/gatekeeper
+  labels:
+   name:  gatekeeper
+  version: 3.8.1
