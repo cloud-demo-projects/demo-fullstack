@@ -12,6 +12,7 @@ This sample shows how to create/manage/deploy an AKS clusters with:
 - Cluster Monitoring with Log analytics workspace, diagnostics, OMS agent and Application Insights Java agent 
 - Ingress for L7 loadbalancing (Prerequisite- nginx ingress controller)
 - Automated docker service endpoint creation
+- Governence via Azure Policy & Gatekeeper
 
 # Upcoming Enhancements
 - Pod identity setup for Azure SQL connectivity 
