@@ -7,7 +7,7 @@ This sample shows how to create/manage/deploy an AKS clusters with:
 - Standard bicep pipeline template for provisioning AKS prerequisite infrastructure 
 - Terraform to deploy & destroy the AKS infrastructure
 - Helm charts for application release management & Helmfile for additional cluster charts deployment 
-- Snyk repository scan for vulneribilities - https://app.snyk.io/org/test-n5j
+- Snyk repository scan for vulneribilities
 - Azure SQL PaaS connectivity
 - Cluster Monitoring with Log analytics workspace, diagnostics, OMS agent and Application Insights Java agent 
 - Ingress for L7 loadbalancing (Prerequisite- nginx ingress controller)
