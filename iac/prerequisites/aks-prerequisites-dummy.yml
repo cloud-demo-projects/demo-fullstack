@@ -72,11 +72,20 @@ stages:
   - job: Deploy
     displayName: Deploy
     steps:
-    - task: AzureCLI@2
-      displayName: Bicep Deployment
+      - task: AzureCLI@2
+        name: DeployBicepFile
+        displayName: Deploy Bicep file
       inputs:
-        azureSubscription: $(azureServiceConnection)
-        scriptType: bash
-        scriptLocation: inlineScript
-        inlineScript: |
-          az deployment group create --resource-group $(resourceGroupName) --template-file $(templateFile) --parameters rgName=$(resourceGroupName) sqlServerName=$(sqlServerName) sqlServerDBName=$(sqlServerDBName) keyVaultName=$(keyVaultName)
+        azureSubscription: ${{ parameters.resourceGroupName }}
+        scriptType: 'bash'
+        scriptPath: "$(Build.SourcesDirectory)/demo-fullstack/iac/scripts/deployment.sh"
+      env:
+        RESOURCE_GROUP_NAME: "${{ parameters.resourceGroupName }}"
+        BICEP_FILENAME: "${{ parameters.bicepFileName }}"
+        PARAMETER_FILENAME: "${{ parameters.parameterFileName }}"
+        ENV: "${{ parameters.environment }}"
+        DEPLOYMENT_NAME: "${{ parameters.deploymentName }}"
+        BICEP_ACTION: "create"
+        SOURCE_DIR: $(Build.SourcesDirectory)
+        REPO_NAME: $(Build.Repository.Name)
+        TEST_DIR: "${{ parameters.integrationTestDir }}"
