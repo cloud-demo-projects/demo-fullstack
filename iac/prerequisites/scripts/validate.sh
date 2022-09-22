@@ -26,16 +26,16 @@ fi
 echo "Changing the current working dir to the location '${WORKING_DIR}'"
 cd "${WORKING_DIR}"
 
-if [ -z "${INTEGRATION_TEST_DIR}" ]; then
-    echo "Validating the resource: ${BICEP_DIR}/resources/${FILE_LOCATION}/${BICEP_FILENAME}.bicep"
+if [ -z "${TEST_DIR}" ]; then
+    echo "Validating the resource: ${BICEP_FILENAME}.bicep"
     az deployment group validate ${VERBOSE} \
         --resource-group "${RESOURCE_GROUP_NAME}" \
-        --template-file "${BICEP_DIR}/resources/${FILE_LOCATION}/${BICEP_FILENAME}.bicep" \
-        --parameters "${SOURCE_DIR}/${REPO_NAME}/configuration/${ENV}/${FILE_LOCATION}/${PARAMETER_FILENAME}.json"
+        --template-file "${BICEP_FILENAME}" \
+        --parameters "${PARAMETER_FILENAME}.json"
 else
-    echo "Validating the integration test resource: ${SOURCE_DIR}/${REPO_NAME}/${INTEGRATION_TEST_DIR}/configuration/${ENV}/${FILE_LOCATION}/${PARAMETER_FILENAME}.json"
+    echo "Validating the integration test resource: ${PARAMETER_FILENAME}.json"
     az deployment group validate ${VERBOSE} \
         --resource-group "${RESOURCE_GROUP_NAME}" \
-        --template-file "${BICEP_DIR}/resources/${FILE_LOCATION}/${BICEP_FILENAME}.bicep" \
-        --parameters "${SOURCE_DIR}/${REPO_NAME}/${INTEGRATION_TEST_DIR}/configuration/${ENV}/${FILE_LOCATION}/${PARAMETER_FILENAME}.json"
+        --template-file "${BICEP_FILENAME}" \
+        --parameters "${PARAMETER_FILENAME}.json"
 fi
