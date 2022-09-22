@@ -1,0 +1,85 @@
+trigger: none
+
+name: $(TeamProject)_$(BuildDefinitionName)_$(SourceBranch)_$(Date:yyyyMMdd)$(Rev:.r)
+
+variables:
+- template: bicep-variables.yml
+  
+pool:
+  vmImage: 'ubuntu-latest'
+
+stages:
+- stage: Bicep_Build
+  displayName: Bicep Build
+  condition: and(succeeded(),ne(variables['Build.Reason'], 'PullRequest'))
+  jobs:
+  - job: Lint_Bicep
+    displayName: Lint Bicep
+    steps:
+      - task: AzureCLI@2
+        name: LintBicepCode
+        displayName: Run Bicep linter
+        inputs:
+          azureSubscription: $(azureServiceConnection)
+          scriptType: 'bash'
+          scriptPath: "$(Build.SourcesDirectory)/demo-fullstack/iac/scripts/lint.sh"
+        env:
+          FILE_LOCATION: "${{ parameters.fileLocation }}"
+          BICEP_FILENAME: $(templateFile)
+          SOURCE_DIR: $(Build.SourcesDirectory)
+            
+  - job: Validate_Bicep
+    displayName: Validate_Bicep
+    steps:       
+       - task: AzureCLI@2
+         name: RunPreflightValidation
+         displayName: Run preflight validation
+         inputs:
+           azureSubscription: $(azureServiceConnection)
+           scriptType: 'bash'
+           scriptPath: "$(Build.SourcesDirectory)/demo-fullstack/iac/scripts/validation.sh"
+         env:
+           RESOURCE_GROUP_NAME: $(resourceGroupName)
+           FILE_LOCATION: "${{ parameters.fileLocation }}"
+           BICEP_FILENAME: $(templateFile)
+           PARAMETER_FILENAME: "${{ parameters.parameterFileName }}"
+           ENV: "${{ parameters.environment }}"
+           SOURCE_DIR: $(Build.SourcesDirectory)
+           REPO_NAME: $(Build.Repository.Name)
+           TEST_DIR: "${{ parameters.testDir }}"
+            
+  - job: Preview_Azure_Changes
+    displayName: Preview Azure changes
+    steps:
+      - task: AzureCLI@2
+        name: RunWhatIf
+        displayName: Run what-if
+        inputs:
+          azureSubscription: $(azureServiceConnection)
+          scriptType: 'bash'
+          scriptPath: "$(Build.SourcesDirectory)/demo-fullstack/iac/scripts/whatif.sh"
+        env:
+          RESOURCE_GROUP_NAME: $(resourceGroupName)
+          FILE_LOCATION: "${{ parameters.fileLocation }}"
+          BICEP_FILENAME: $(templateFile)
+          PARAMETER_FILENAME: "${{ parameters.parameterFileName }}"
+          ENV: "${{ parameters.environment }}"
+          SOURCE_DIR: $(Build.SourcesDirectory)
+          REPO_NAME: $(Build.Repository.Name)
+          TEST_DIR: "${{ parameters.testDir }}"
+              
+- stage: Bicep_Deploy
+  displayName: Bicep Deploy
+  dependsOn: Bicep_Build
+  jobs:
+  - job: Deploy
+    displayName: Deploy
+    steps:
+    - task: AzureCLI@2
+      displayName: Bicep Deployment
+      inputs:
+        azureSubscription: $(azureServiceConnection)
+        scriptType: bash
+        scriptLocation: inlineScript
+        inlineScript: |
+          az deployment group create --resource-group $(resourceGroupName) --template-file $(templateFile) --parameters rgName=$(resourceGroupName) sqlServerName=$(sqlServerName) sqlServerDBName=$(sqlServerDBName) keyVaultName=$(keyVaultName)
