@@ -1,0 +1,39 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "keyVaultName": {
+            "value": "fullstack-kv01"
+        },
+        "accessPolicies": {
+            "value": [
+                {
+                    "tenantId": "",
+                    "objectId": "",
+                    "permissions": {
+                        "keys": [
+                            "Get",
+                            "List",
+                            "Create",
+                            "Update"
+                        ],
+                        "secrets": [
+                            "Get",
+                            "List",
+                            "Set"
+                        ],
+                        "certificates": [
+                            "Get",
+                            "List",
+                            "Import",
+                            "Update"
+                        ]
+                    }
+                }
+            ]
+        },
+        "virtualNetworkRules": {
+            "value": []
+        }
+    }
+}
