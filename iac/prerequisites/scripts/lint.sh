@@ -7,7 +7,6 @@ if [ "${SYSTEM_DEBUG:=false}" == "true" ]; then
 fi
 
 # Define the variables if they aren't set
-: "${FILE_LOCATION:?must be set}"
 : "${BICEP_FILENAME:?must be set}"
 : "${SOURCE_DIR:?must be set}"
 : "${BICEP_REPO_NAME:=demo-fullstack}"
@@ -21,5 +20,5 @@ fi
 echo "Changing the current working dir to the location '${WORKING_DIR}'"
 cd "${WORKING_DIR}"
 
-echo "Linting the resource: resources/${FILE_LOCATION}/${BICEP_FILENAME}.bicep"
-az bicep build  ${VERBOSE} --file "resources/${FILE_LOCATION}/${BICEP_FILENAME}.bicep"
+echo "Linting the resource: ${BICEP_FILENAME}"
+az bicep build  ${VERBOSE} --file ${BICEP_FILENAME}
