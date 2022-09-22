@@ -7,7 +7,6 @@ if [ "${SYSTEM_DEBUG:=false}" == "true" ]; then
 fi
 
 # Define the variables if they aren't set
-: "${FILE_LOCATION:?must be set}"
 : "${BICEP_FILENAME:?must be set}"
 : "${PARAMETER_FILENAME:?must be set}"
 : "${RESOURCE_GROUP_NAME:?must be set}"
@@ -25,18 +24,18 @@ fi
 echo "Changing the current working dir to the location '${WORKING_DIR}'"
 cd "${WORKING_DIR}"
 
-if [ -z "${INTEGRATION_TEST_DIR}" ]; then
-    echo "what-if the resource: ${BICEP_DIR}/resources/${FILE_LOCATION}/${BICEP_FILENAME}.bicep"
+if [ -z "${TEST_DIR}" ]; then
+    echo "what-if the resource: ${BICEP_FILENAME}.bicep"
     az deployment group what-if ${VERBOSE} \
     --resource-group "${RESOURCE_GROUP_NAME}" \
-    --template-file "${BICEP_DIR}/resources/${FILE_LOCATION}/${BICEP_FILENAME}.bicep" \
-    --parameters "${SOURCE_DIR}/${REPO_NAME}/configuration/${ENV}/${FILE_LOCATION}/${PARAMETER_FILENAME}.json"
+    --template-file "${BICEP_FILENAME}.bicep" \
+    --parameters "${PARAMETER_FILENAME}.json"
 else
-    echo "what-if the integration test resource: ${SOURCE_DIR}/${REPO_NAME}/${INTEGRATION_TEST_DIR}/configuration/${ENV}/${FILE_LOCATION}/${PARAMETER_FILENAME}.json"
+    echo "what-if the test resource: ${PARAMETER_FILENAME}.json"
     az deployment group what-if ${VERBOSE} \
     --resource-group "${RESOURCE_GROUP_NAME}" \
-    --template-file "${BICEP_DIR}/resources/${FILE_LOCATION}/${BICEP_FILENAME}.bicep" \
-    --parameters "${SOURCE_DIR}/${REPO_NAME}/${INTEGRATION_TEST_DIR}/configuration/${ENV}/${FILE_LOCATION}/${PARAMETER_FILENAME}.json"
+    --template-file "${BICEP_FILENAME}.bicep" \
+    --parameters "${PARAMETER_FILENAME}.json"
 fi
 
 
