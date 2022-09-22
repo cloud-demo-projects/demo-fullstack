@@ -24,7 +24,6 @@ stages:
           scriptType: 'bash'
           scriptPath: "$(Build.SourcesDirectory)/demo-fullstack/iac/scripts/lint.sh"
         env:
-          FILE_LOCATION: "${{ parameters.fileLocation }}"
           BICEP_FILENAME: $(templateFile)
           SOURCE_DIR: $(Build.SourcesDirectory)
             
@@ -40,9 +39,8 @@ stages:
            scriptPath: "$(Build.SourcesDirectory)/demo-fullstack/iac/scripts/validation.sh"
          env:
            RESOURCE_GROUP_NAME: $(resourceGroupName)
-           FILE_LOCATION: "${{ parameters.fileLocation }}"
            BICEP_FILENAME: $(templateFile)
-           PARAMETER_FILENAME: "${{ parameters.parameterFileName }}"
+           PARAMETER_FILENAME: $(parameterFileName)
            ENV: "${{ parameters.environment }}"
            SOURCE_DIR: $(Build.SourcesDirectory)
            REPO_NAME: $(Build.Repository.Name)
@@ -60,9 +58,8 @@ stages:
           scriptPath: "$(Build.SourcesDirectory)/demo-fullstack/iac/scripts/whatif.sh"
         env:
           RESOURCE_GROUP_NAME: $(resourceGroupName)
-          FILE_LOCATION: "${{ parameters.fileLocation }}"
           BICEP_FILENAME: $(templateFile)
-          PARAMETER_FILENAME: "${{ parameters.parameterFileName }}"
+          PARAMETER_FILENAME: $(parameterFileName)
           ENV: "${{ parameters.environment }}"
           SOURCE_DIR: $(Build.SourcesDirectory)
           REPO_NAME: $(Build.Repository.Name)
